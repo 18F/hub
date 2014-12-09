@@ -1,0 +1,7 @@
+---
+layout: bare
+---
+<h1>Snippets for <a href="{{ site.baseurl }}/team/{{ page.member.name }}">{{ page.member.full_name }}</a></h1>
+{% for s in page.member.snippets reversed %}<h2 class='snippet'>{{ s.timestamp }}</h2>
+{% include snippet.html %}
+{% endfor %}

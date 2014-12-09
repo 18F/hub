@@ -1,0 +1,9 @@
+---
+layout: bare
+---
+{% assign dept = page.department %}<div>
+<h1>{{ dept.name }}</h1>
+{% if dept.links and dept.links.length != 0 %}
+<h2>Links</h2>
+{% for l in dept.links %}<a href="{{ l.url }}">{{ l.text }}</a></br>
+{% endfor %}{% endif %}</div>

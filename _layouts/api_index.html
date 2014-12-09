@@ -1,0 +1,10 @@
+---
+layout: bare
+---
+<h1>API Endpoint Index</h1>
+<br/>{% for i in page.endpoints %}
+<div class="api_endpoint_desc">
+<h2><a href="{{ i.endpoint }}"<code>{{ i.endpoint }}</code></a> - {{ i.title }}</h2>
+<p>{{ i.description }}</p>
+</div>
+{% endfor %}

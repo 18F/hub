@@ -1,0 +1,33 @@
+
+markdown: redcarpet
+redcarpet:
+  extensions:
+  - with_toc_data
+
+excerpt_separator: <!-- more -->
+exclude:
+- README.md
+- LICENSE.md
+- CONTRIBUTING.md
+- deploy
+
+permalink: pretty
+tag_dir: tags
+tag_title_prefix: "#"
+
+sass:
+  sass_dir: assets/_sass
+
+# use where a full URL is appropriate (e.g. RSS, OG tags)
+url: https://hub.18f.gsa.gov
+
+# metadata
+title: 18F Hub
+description: "18F Internal Team Information Hub"
+
+# private data
+private_data_path: _data/private
+
+# team member images
+team_img_dir: assets/images/team
+missing_team_member_img: logo-18f.jpg

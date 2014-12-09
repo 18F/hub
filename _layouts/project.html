@@ -1,0 +1,17 @@
+---
+layout: bare
+---
+{% assign proj = page.project %}<div>
+<h1>{{ proj.project }}</h1>
+{% if proj.description %}<p>
+{{ proj.description }}
+</p>{% endif %}{% if proj.dashboard %}
+
+<a href="https://18f.gsa.gov/dashboard/project/{{ proj.name }}">Public Dashboard</a><br/>{% endif %}{% if proj.github and proj.github.length != 0 %}
+
+<h2>GitHub Repos</h2>{% for repo in proj.github %}
+<a href="https://github.com/{{ repo }}">{{ repo }}</a><br/>{% endfor %}{% endif %}{% if proj.team and proj.team.length != 0 %}
+
+<h2>Team Members</h2>{% for i in proj.team %}
+<a href="{{ site.baseurl }}/team/{{ i.name }}">{{ i.full_name }}</a><br/>{% endfor %}{% endif %}
+</div>

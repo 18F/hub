@@ -1,0 +1,3 @@
+public: true
+destination: _site_public/hub
+baseurl: /hub

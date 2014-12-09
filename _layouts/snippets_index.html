@@ -1,0 +1,15 @@
+---
+layout: bare
+---
+<h1>{{ page.title }}</h1>
+<br/>
+<div><strong><a href="{{ site.baseurl }}/snippets/guidelines">Guidelines for Writing Snippets</a></strong></div>
+<h2>By Date</h2>
+{% for s in page.snippets reversed %}<div class='snippet' id="{{ s.timestamp }}">
+<a href="{{ site.baseurl }}/snippets/{{ s.timestamp }}"><strong>{{ s.timestamp | hyphenate_yyyymmdd }}</strong></a>: {{ s.snippets | size }} snippets<br/>
+</div>{% endfor %}
+
+<h2>By Team Member</h2>
+<div>{% for m in page.members %}
+<a href="{{ site.baseurl }}/snippets/{{ m.name }}">{{ m.full_name }}</a><br/>
+{% endfor %}</div>

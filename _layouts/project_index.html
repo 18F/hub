@@ -1,0 +1,17 @@
+---
+layout: bare
+---
+<h1>{{ page.title }}</h1>
+<div>
+<br/>
+<strong>Latest Project Status Report:</strong>
+<a href="{{site.data.project_status.latest_url}}">{{site.data.project_status.latest_date}}</a><br/>
+<a href="{{site.data.project_status.all_updates_url}}">Read all project status updates</a><br/>
+<br/>
+</div>
+<div>{% for proj in page.projects %}
+<a href="{{ site.baseurl }}/projects/{{ proj.name }}">{{ proj.project }}</a>
+<p>{% if proj.description %}{{ proj.description }}{% endif %}{% if proj.team and proj.team.length != 0 %}<br/>
+Team: {% for member in proj.team %}<a href="{{ site.baseurl }}/team/{{ member.name }}">{{ member.full_name }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}{% endif %}
+</p>{% endfor %}
+</div>

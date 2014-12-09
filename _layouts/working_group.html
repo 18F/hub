@@ -1,0 +1,28 @@
+---
+layout: bare
+---
+{% assign wg = page.working_group %}<div>
+<h1>{{ wg.name }}</h1>
+<p>{% if wg.slack %}
+Slack: <a href="https://18f.slack.com/messages/#{{ wg.slack }}">#{{ wg.slack }}</a><br/>{% endif %}{% if wg.agenda %}
+<a href="{{ wg.agenda }}">Agenda</a><br/>{% endif %}{% if wg.wiki %}
+<a href="{{ wg.wiki }}">Wiki</a><br/>{% endif %}{% if wg.drive %}
+<a href="{{ wg.drive }}">Google Drive</a><br/>{% endif %}
+</p>
+
+{% if wg.leads %}<h2>Leads</h2>
+<p>{% for l in wg.leads %}
+<a href="{{ site.baseurl }}/team/{{l.name }}">{{ l.full_name }}</a>{% unless forloop.last %}<br/>{% endunless %}{% endfor %}
+</p>{% endif %}
+
+{% if wg.members %}<h2>Members</h2>
+<p>{% for m in wg.members %}
+<a href="{{ site.baseurl }}/team/{{ m.name }}">{{ m.full_name }}</a>{% unless forloop.last %}<br/>{% endunless %}{% endfor %}
+</p>{% endif %}
+
+{% if wg.links %}<h2>Info</h2>
+<p>
+{% for l in wg.links %}<a href="{{ l.url }}">{{ l.text }}</a>
+<br/>{% endfor %}
+</p>{% endif %}
+</div>

@@ -1,0 +1,12 @@
+{% if s.version == 'v1' %}
+<pre class='snippets-v1'>{{ s.snippets }}</pre>
+{% else %}
+<div class='snippets'>
+<h3>Last Week</h3>
+<div>{{ s.last-week | markdownify }}</div>
+{% if s.this-week %}
+<h3>This Week</h3>
+<div>{{ s.this-week | markdownify }}</div>
+{% endif %}
+</div>
+{% endif %}

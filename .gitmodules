@@ -1,0 +1,8 @@
+[submodule "_data/public"]
+	path = _data/public
+	url = git@github.com:18F/data-public.git
+	branch = master
+[submodule "_data/private"]
+	path = _data/private
+	url = git@github.com:18F/data-private.git
+	branch = master

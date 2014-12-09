@@ -1,0 +1,49 @@
+---
+layout: bare
+---
+<h1>Guidelines for Writing Snippets</h1>
+<br/>
+
+<h2>Writing and reading snippets is optional</h2>
+<p>The best best practices catch on because they are useful, not because they're mandated. Feel free to participate or not as you desire. If you've nothing of interest to report, then skip posting this week!</p>
+
+<h2>Be professional</h2>
+<p>Snippets aren't the place to vent frustration. Concrete, objective information will prove the most helpful to yourself and everyone else who might peruse your snippets.</p>
+
+<h2>Don't read every snippet</h2>
+<p>You are not compelled to read every person's every snippet every week. Nothing's stopping you, but there are no gold stars for reading them all.</p>
+
+<h2>The first audience is the author</h2>
+<p>The author of a snippet is free to write as much or as little as he or she finds helpful to track his or her own progress. It's largely a personal practice that, coincidentally, may prove helpful or informative for others.</p>
+
+<h2>Brevity is the soul of wit</h2>
+<p>That said, one should strive for conciseness. It does make it easier for others to peruse your snippets, which can lead to fruitful, serendipitous discussions and insights.</p>
+
+<h2>Private by default</h2>
+<p>Currently snippets are visible only to other 18F team members. However, support for publicly-visible snippets is underway. If you want <em>any</em> of your snippets to be visible outside of 18F, click the <em>Public</em> box on the form.</p>
+
+<h2>Redact specific information</h2>
+<p>If most of your snippets are OK for public consumption, and you've selected the <em>Public</em> box on the form, yet there are details you'd like to omit, you can redact spans of text by surrounding them with <code>&#123;&#123;</code> and <code>&#125;&#125;</code> tokens.</p>
+
+<h2>Last Week and This Week</h2>
+<p>The <strong>Last Week</strong> and <strong>This Week</strong> sections encourage separation between past and future items. However, if you want to put everything into the <strong>Last week</strong> section, you are free to do so.</p>
+
+<h2>Plaintext or Markdown</h2>
+<p><a href="http://daringfireball.net/projects/markdown/">Markdown syntax</a> is supported, but is not required; plaintext will always continue to work.</p>
+
+<h2>Use the preview tool</h2>
+<p>Use the <a href="https://github.com/mbland/mbland-18f-utils/blob/master/snippets/snippet-preview.rb">snippet-preview.rb</a> tool to generate sample HTML of both complete and redacted snippets. (Longer term: We'll have an online preview tool.) To download and execute:</p>
+<pre>
+$ wget https://raw.githubusercontent.com/mbland/mbland-18f-utils/master/snippets/snippet-preview.rb
+
+# If redcarpet isn't already installed
+$ gem install redcarpet
+
+$ ruby snippet-preview.rb path/to/snippet
+</pre>
+<p>This will print a local <code>file://</code> URL that you can view in your browser. You can also view differences between complete and redacted versions via:</p>
+<pre>
+$ ruby snippet-preview.rb path/to/snippet
+$ ruby snippet-preview.rb path/to/snippet --redact
+$ diff snippet-preview.html snippet-preview-redacted.html
+</pre>

@@ -1,0 +1,7 @@
+---
+layout: bare
+---
+<h1>{{ page.category }}</h1>
+<br/>{% for l in page.skills %}
+<p><strong><a href="{{ site.baseurl }}/{{ page.category | canonicalize }}/{{ l[0] | canonicalize }}">{{ l[0] }}</a></strong></p>
+{% endfor %}

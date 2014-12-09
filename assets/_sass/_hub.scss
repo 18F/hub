@@ -1,0 +1,90 @@
+//********************************************************
+// hub.18F.gsa.gov CUSTOM SASS
+//********************************************************
+
+// Site-wide media queries
+//********************************************************
+.news {
+  @include media($tiny) {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
+
+// News Template
+//********************************************************
+.news {
+  margin: 1em 2em 1em 0em;
+  text-align: left;
+}
+
+.home-block {
+  display: inline-block;
+  text-align: left;
+  vertical-align: top;
+  margin: 1em 2em 1em 0em;
+}
+
+// Snippets
+//********************************************************
+.snippets-v1 {
+  white-space: pre-wrap;
+}
+
+.snippets {
+  h3 {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+  }
+
+  h4 {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+
+  ul {
+    list-style: disc inside none;
+
+    li {
+      margin-bottom: 0.25em;
+    }
+  }
+}
+
+// Team Member
+//********************************************************
+.team-members {
+  display: table;
+}
+
+.team-member {
+  display: table-row;
+}
+
+.team-member-cell {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.team-member-thumb {
+  width: 50px;
+  height: auto;
+  margin-right: 5px;
+}
+
+.team-member-auth-include {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 10px;
+  margin-top: 10px;
+  a {
+    text-decoration: none;
+  }
+  span {
+    margin-right: 5px;
+  }
+  img {
+    vertical-align: middle;
+  }
+}

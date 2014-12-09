@@ -1,0 +1,14 @@
+<div class="team-members">{% for member in members %}
+  <div class="team-member">
+    <div class="team-member-cell">
+      <a href="{{ site.baseurl }}/team/{{ member.name }}"><img class="team-member-thumb" src="{{ site.baseurl }}/{{ member.image }}" alt="Thumbnail photo of {{ member.full_name }}"></a>
+    </div>
+    <div class="team-member-info">
+      <a href="{{ site.baseurl }}/team/{{ member.name }}">{{ member.full_name }}</a>{% if member.location %} - <a href="{{ site.baseurl }}/locations/{{ member.location }}">{{ member.location }}</a><br/>{% endif %}
+      <p>{% if member.projects and member.projects.length != 0 %}
+      Projects: {% for p in member.projects %}<a href="{{ site.baseurl }}/projects/{{ p.name }}">{{ p.project }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}{% endif %}
+      </p>
+    </div>
+  </div>
+{% endfor %}
+</div>

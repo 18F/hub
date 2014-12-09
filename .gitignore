@@ -1,0 +1,6 @@
+_site
+_site_public
+.sass-cache
+.DS_Store
+*.log
+.*.swp

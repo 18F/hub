@@ -1,0 +1,3 @@
+<div class="date-index">{% for y in years %}
+<a href="#{{ y.year }}">{{ y.year }}</a> - {{ y.num_posts }} posts<br/>{% for m in y.months %}
+<a href="#{{ y.year }}-{{ m.month }}">{{ m.month }}</a> - {{ m.num_posts }} posts<br/>{% endfor %}{% endfor %}</div>

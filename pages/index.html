@@ -1,0 +1,29 @@
+---
+layout: bare
+permalink: /
+---
+<h1>{{ site.description }}</h1>
+
+<section>
+<div class="news">
+<h2 id="updates">&lt; updates /&gt;</h2>
+{% for post in site.posts limit:1 %}<h3>{{ post.title }}</h3>
+{{ post.content }}{% endfor %}
+</div>
+{% if site.data.project_status %}
+<div class="home-block">
+<h3>Project status</h3>
+  <a href="{{site.data.project_status.latest_url}}">Latest: {{site.data.project_status.latest_date}}</a>
+  <br/>
+  <a href="{{site.data.project_status.all_updates_url}}">Read all project status updates</a>
+</div>
+{% endif %}{% if site.data.snippets %}
+<div class="home-block">
+<h3>Snippets</h3>
+  <a href="{{ site.baseurl }}/snippets/{{ site.data.snippets_latest }}">Latest: {{ site.data.snippets_latest | hyphenate_yyyymmdd }}</a>
+  <br/>
+  <a href="{{ site.baseurl }}/snippets/">Read all snippets</a>
+</div>
+{% endif %}
+{% include twitter_favorites.html %}
+</section>

@@ -1,0 +1,24 @@
+<div>
+  <a href="{{ site.baseurl }}/#updates">Updates</a><br/>{% if site.data.team %}
+  <a href="{{ site.baseurl }}/team">Team</a><br/>{% endif %}{% if site.data.locations %}
+  <a href="{{ site.baseurl }}/locations">Locations</a><br/>{% endif %}{% if site.data.projects %}
+  <a href="{{ site.baseurl }}/projects">Projects</a><br/>{% endif %}{% if site.data.departments %}
+  <a href="{{ site.baseurl }}/departments">Departments</a><br/>{% endif %}{% if site.data.working_groups %}
+  <a href="{{ site.baseurl }}/wg">Working Groups</a><br/>{% endif %}{% if site.data.snippets %}
+  <a href="{{ site.baseurl }}/snippets">Snippets</a><br/>{% endif %}
+  <br/>
+</div>
+{% if site.data.skills %}
+<div>
+  <strong>Skills</strong><br/>{% if site.data.skills.Languages %}
+  <a href="{{ site.baseurl }}/languages">Languages</a><br/>{% endif %}{% if site.data.skills.Technologies %}
+  <a href="{{ site.baseurl }}/technologies">Technologies</a><br/>{% endif %}{% if site.data.skills.Specialties %}
+  <a href="{{ site.baseurl }}/specialties">Specialties</a><br/>{% endif %}
+  <br/>
+</div>
+{% endif %}
+{% for section in site.data.nav_links %}<div>
+  <strong>{{ section.name }}</strong><br/>{% for doc in section.links %}
+  <a href="{{ doc.url }}">{{ doc.text }}</a><br/>{% endfor %}
+  <br/>
+</div>{% endfor %}

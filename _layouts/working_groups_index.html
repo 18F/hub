@@ -1,0 +1,7 @@
+---
+layout: bare
+---
+<h1>{{ page.title }}</h1>
+<div>{% for wg in page.working_groups %}
+<a href="{{ site.baseurl }}/wg/{{ wg.name | canonicalize }}">{{ wg.name }}</a><br/>
+{% endfor %}</div>
