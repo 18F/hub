@@ -25,6 +25,7 @@ module Hub
 
       impl.join_snippet_data
       impl.join_project_status
+      impl.filter_private_pages
 
       site.data.delete 'public'
       site.data.delete 'private'
@@ -280,6 +281,12 @@ module Hub
         @data['project_status'] = @data['private']['project_status']
       end
       @data['private'].delete 'project_status'
+    end
+
+    # Filters out private pages when generating the public Hub.
+    def filter_private_pages
+      return unless @public_mode
+      @site.pages.delete_if {|p| p.relative_path.start_with? '/pages/private'}
     end
   end
 end
