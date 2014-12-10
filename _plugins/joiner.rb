@@ -285,8 +285,11 @@ module Hub
 
     # Filters out private pages when generating the public Hub.
     def filter_private_pages
-      return unless @public_mode
-      @site.pages.delete_if {|p| p.relative_path.start_with? '/pages/private'}
+      if @public_mode
+        @site.pages.delete_if do |p|
+          p.relative_path.start_with? '/pages/private'
+        end
+      end
     end
   end
 end
