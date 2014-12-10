@@ -30,7 +30,7 @@ Currently snippets are visible only to other 18F team members. However, support 
 
 ## Redact specific information
 
-If most of your snippets are OK for public consumption, and you've selected the _Public_ box on the form, yet there are details you'd like to omit, you can redact spans of text by surrounding them with `&#123;&#123;` and `&#125;&#125;` tokens.
+If most of your snippets are OK for public consumption, and you've selected the _Public_ box on the form, yet there are details you'd like to omit, you can redact spans of text by surrounding them with <code>&#123;&#123;</code> and <code>&#125;&#125;</code> tokens.
 
 ## Last Week and This Week
 
