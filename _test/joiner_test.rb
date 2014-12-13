@@ -2,7 +2,7 @@ require "jekyll"
 require "jekyll/page"
 require "jekyll/site"
 require_relative "../_plugins/joiner"
-require "test/unit"
+require "minitest/autorun"
 
 module Hub
   class DummyTestPage < ::Jekyll::Page
@@ -14,7 +14,7 @@ module Hub
     end
   end
 
-  class TestFilterPrivatePages < ::Test::Unit::TestCase
+  class FilterPrivatePagesTest < ::Minitest::Test
     def setup
       @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
       @all_page_names = []
