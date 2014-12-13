@@ -1,19 +1,11 @@
-require "jekyll"
-require "jekyll/page"
-require "jekyll/site"
 require_relative "../_plugins/joiner"
+require_relative "page"
+
+require "jekyll"
+require "jekyll/site"
 require "minitest/autorun"
 
 module Hub
-  class DummyTestPage < ::Jekyll::Page
-    def initialize(site, dir, filename)
-      @site = site
-      @base = 'fake_test_basedir'
-      @dir = dir
-      @name = filename
-    end
-  end
-
   class ImportGuestUsers < ::Minitest::Test
     def setup
       @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
