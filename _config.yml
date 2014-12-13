@@ -21,7 +21,7 @@ sass:
   sass_dir: assets/_sass
 
 # use where a full URL is appropriate (e.g. RSS, OG tags)
-url: https://hub.18f.gsa.gov
+url: https://hub.18f.us
 
 # metadata
 title: 18F Hub
@@ -34,3 +34,23 @@ private_data_path: _data/private
 team_img_dir: assets/images/team
 missing_team_member_img: logo-18f.jpg
 guest_user_img: logo-18f.jpg
+
+# Editable link idea from:
+# https://github.com/blacktm/standard-jekyll-template/blob/gh-pages/_config.yml
+defaults:
+  -
+    scope:
+      path: "pages"
+    values:
+      layout: "bare"
+      edit_info:
+        text: "Edit this page »"
+        repo: 18F/hub
+        branch: master
+  -
+    scope:
+      path: "pages/private"
+    values:
+      edit_info:
+        repo: 18F/hub-pages-private
+        prefix: pages/private/
