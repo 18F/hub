@@ -28,12 +28,30 @@ module Hub
     private
 
     # Generates the upper-right-corner divs used to identify the authenticated
-    # user as html snippets under _site/auth. The snippets are imported via a
-    # Server Side Include directive in _layouts/bare.html using the
-    # $REMOTE_USER variable set by the web server, which in turn is determined
-    # by the authentication proxy.
+    # user as html snippets under +_site/auth+. The snippets are imported via
+    # a Server Side Include directive in +_layouts/bare.html+ using the
+    # +$REMOTE_USER+ variable set by the web server, which in turn is
+    # determined by the authentication proxy.
+    #
+    # In the specific case of the internal 18F Hub, the +google_auth_proxy+ is
+    # configured with +pass_basic_auth = true+, which passes the authenticated
+    # username as part of the HTTP Basic Auth +Authorization: Basic+ header:
+    #   http://word.bitly.com/post/47548678256/google-auth-proxy
+    # See the +p.SetBasicAuth+ block in +ServeHTTP()+ from:
+    #   https://github.com/bitly/google_auth_proxy/blob/master/oauthproxy.go
+    #
+    # Nginx, in turn, sets the username from this header as the value of the
+    # embedded variable +$remote_user+, which is available to the SSI engine:
+    #   http://nginx.com/resources/admin-guide/web-server/ (Variables section)
+    #   http://nginx.org/en/docs/http/ngx_http_core_module.html#var_remote_user
+    #
+    # More info:
+    #   http://tools.ietf.org/html/rfc3875#section-4.1.11
+    #   http://tools.ietf.org/html/rfc2617#section-2
+    #
     # +site+:: Jekyll site object
     # +user+:: user hash
+    # +layout+:: determines the layout of the HTML snippet
     def self.generate_user_authentication_include(site, user, layout)
       username = user['email'].sub(/@.+$/, '')
       page = Page.new(site, File.join('auth', username), 'index.html',
