@@ -28,24 +28,26 @@ module Hub
     private
 
     # Generates the upper-right-corner divs used to identify the authenticated
-    # user as html snippets under +_site/auth+. The snippets are imported via
-    # a Server Side Include directive in +_layouts/bare.html+ using the
-    # +$REMOTE_USER+ variable set by the web server, which in turn is
-    # determined by the authentication proxy.
+    # user as html snippets under +_site/auth+, one snippet per authenticated
+    # user email address. The snippets are imported via a Server Side Include
+    # directive in +_layouts/bare.html+.
     #
     # In the specific case of the internal 18F Hub, the +google_auth_proxy+ is
     # configured with +pass_basic_auth = true+, which passes the authenticated
-    # username as part of the HTTP Basic Auth +Authorization: Basic+ header:
+    # username as part of the HTTP Basic Auth +Authorization: Basic+ header,
+    # as well as the +X-Forwarded-User+ and +X-Forwarded-Email headers+:
     #   http://word.bitly.com/post/47548678256/google-auth-proxy
     # See the +p.SetBasicAuth+ block in +ServeHTTP()+ from:
     #   https://github.com/bitly/google_auth_proxy/blob/master/oauthproxy.go
     #
-    # Nginx, in turn, sets the username from this header as the value of the
-    # embedded variable +$remote_user+, which is available to the SSI engine:
+    # Nginx, in turn, uses this information to set the values of the
+    # embedded variables +$remote_user+, +$http_x_forwarded_user+, and
+    # +$http_x_forwarded_email+, which are available to the SSI engine:
     #   http://nginx.com/resources/admin-guide/web-server/ (Variables section)
     #   http://nginx.org/en/docs/http/ngx_http_core_module.html#var_remote_user
+    #   http://nginx.org/en/docs/http/ngx_http_core_module.html#var_http_
     #
-    # More info:
+    # More info on HTTP Basic Auth and the +$REMOTE_USER+ CGI variable:
     #   http://tools.ietf.org/html/rfc3875#section-4.1.11
     #   http://tools.ietf.org/html/rfc2617#section-2
     #
@@ -53,8 +55,7 @@ module Hub
     # +user+:: user hash
     # +layout+:: determines the layout of the HTML snippet
     def self.generate_user_authentication_include(site, user, layout)
-      username = user['email'].sub(/@.+$/, '')
-      page = Page.new(site, File.join('auth', username), 'index.html',
+      page = Page.new(site, File.join('auth', user['email']), 'index.html',
         layout, "#{user['full_name']} Authentication Include")
       page.data['user'] = user
       site.pages << page

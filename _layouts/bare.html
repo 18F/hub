@@ -6,7 +6,7 @@
 <body itemscope itemtype="http://schema.org/WebPage">
 <section class="container bare">
 {% unless site.public %}
-<!--# include virtual="{{ site.baseurl }}/auth/$REMOTE_USER/index.html" -->{% endunless %}
+<!--# include virtual="{{ site.baseurl }}/auth/$http_x_forwarded_email/index.html" -->{% endunless %}
 
   <div class="bare-logo" role="banner" itemscope itemtype="http://schema.org/WPHeader">
     <a href="{{ site.baseurl }}/">
