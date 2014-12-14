@@ -28,8 +28,10 @@ module Hub
     private
 
     # Generates the upper-right-corner divs used to identify the authenticated
-    # user. The divs are imported via a Server Side Include directive in
-    # _layouts/bare.html.
+    # user as html snippets under _site/auth. The snippets are imported via a
+    # Server Side Include directive in _layouts/bare.html using the
+    # $REMOTE_USER variable set by the web server, which in turn is determined
+    # by the authentication proxy.
     # +site+:: Jekyll site object
     # +user+:: user hash
     def self.generate_user_authentication_include(site, user, layout)
