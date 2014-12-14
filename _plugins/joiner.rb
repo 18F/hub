@@ -25,6 +25,7 @@ module Hub
 
       impl.join_snippet_data
       impl.join_project_status
+      impl.import_guest_users
       impl.filter_private_pages
 
       site.data.delete 'public'
@@ -281,6 +282,16 @@ module Hub
         @data['project_status'] = @data['private']['project_status']
       end
       @data['private'].delete 'project_status'
+    end
+
+    # Imports the guest_users list into the top-level site.data object.
+    def import_guest_users
+      private_data = site.data['private'] || {}
+      hub_data = private_data['hub'] || {}
+      if hub_data.member? 'guest_users'
+        site.data['guest_users'] = site.data['private']['hub']['guest_users']
+        site.data['private']['hub'].delete 'guest_users'
+      end
     end
 
     # Filters out private pages when generating the public Hub.

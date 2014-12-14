@@ -1,20 +1,45 @@
-require "jekyll"
-require "jekyll/page"
-require "jekyll/site"
 require_relative "../_plugins/joiner"
-require "test/unit"
+require_relative "page"
+
+require "jekyll"
+require "jekyll/site"
+require "minitest/autorun"
 
 module Hub
-  class DummyTestPage < ::Jekyll::Page
-    def initialize(site, dir, filename)
-      @site = site
-      @base = 'fake_test_basedir'
-      @dir = dir
-      @name = filename
+  class ImportGuestUsers < ::Minitest::Test
+    def setup
+      @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
+    end
+
+    def test_no_private_data
+      assert_nil JoinerImpl.new(@site).import_guest_users
+    end
+
+    def test_no_hub_data
+      @site.data['private'] = {}
+      assert_nil JoinerImpl.new(@site).import_guest_users
+      assert_nil @site.data['guest_users']
+    end
+
+    def test_no_guest_users
+      @site.data['private'] = {'hub' => {}}
+      assert_nil JoinerImpl.new(@site).import_guest_users
+      assert_nil @site.data['guest_users']
+    end
+
+    def test_guest_users_moved_to_top_level
+      guests = [
+        {'email' => 'michael.bland@gsa.gov',
+         'full_name' => 'Mike Bland'},
+        ]
+      @site.data['private'] = {'hub' => {'guest_users' => guests}}
+      assert_equal guests, JoinerImpl.new(@site).import_guest_users
+      assert_equal guests, @site.data['guest_users']
+      assert_nil @site.data['private']['hub']['guest_users']
     end
   end
 
-  class TestFilterPrivatePages < ::Test::Unit::TestCase
+  class FilterPrivatePagesTest < ::Minitest::Test
     def setup
       @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
       @all_page_names = []
