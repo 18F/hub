@@ -1,6 +1,5 @@
 ---
-layout: bare
-permalink: /snippets/guidelines/index.html
+permalink: /snippets/guidelines/
 ---
 # Guidelines for Writing Snippets
 
