@@ -2,7 +2,7 @@
 permalink: snippets/
 ---
 # Snippets
-<br/>
+
 **[Guidelines for Writing Snippets]({{ site.baseurl }}/snippets/guidelines)**
 
 ## By Date

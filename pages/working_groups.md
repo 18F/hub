@@ -3,7 +3,7 @@ permalink: wg/
 ---
 
 # Working Groups
-<br/>
+
 {% for wg in site.data.working_groups %}
 [{{ wg.name }}]({{ site.baseurl }}/wg/{{ wg.name | canonicalize }})<br/>
 {% if wg.mission %}<br/>{{ wg.mission }}

@@ -2,7 +2,7 @@
 permalink: projects/
 ---
 # Projects
-<br/>
+
 **Latest Project Status Report:**
 [{{site.data.project_status.latest_date}}]({{site.data.project_status.latest_url}})<br/>
 [Read all project status updates]({{site.data.project_status.all_updates_url}})
