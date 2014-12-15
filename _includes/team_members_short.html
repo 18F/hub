@@ -1,0 +1,1 @@
+{% for member in members %}<a href="{{ site.baseurl }}/team/{{ member.name }}">{{ member.full_name }}</a>{% unless forloop.last %}{{ member_separator }}{% endunless %}{% endfor %}

@@ -1,0 +1,12 @@
+---
+permalink: locations/
+---
+<h1>Team By Location</h1>
+
+{% for l in site.data.locations %}
+<div class="index-entry">
+<h2>&lt; {{ l[0] }} /&gt;</h2>
+{% assign members = l[1] %}{{ members.size }} members:
+{% include team_members.html %}
+</div>
+{% endfor %}
