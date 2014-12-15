@@ -1,0 +1,13 @@
+---
+permalink: wg/
+---
+<h1>Working Groups</h1>
+
+{% for wg in site.data.working_groups %}
+<div class="index-entry">
+<a href="{{ site.baseurl }}/wg/{{ wg.name | canonicalize }}"><strong>{{ wg.name }}</a></strong><br/>
+{% if wg.mission %}<br/>{{ wg.mission }}{% endif %}
+{% if wg.leads %}{% assign member_separator = ', ' %}{% assign members = wg.leads %}Leads:{% include team_members_short.html %}<br/>{% endif %}
+{% if wg.members %}{% assign members = wg.members %}Members: {% include team_members_short.html %}{% endif %}
+</div>
+{% endfor %}
