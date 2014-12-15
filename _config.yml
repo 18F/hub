@@ -44,7 +44,6 @@ defaults:
     values:
       layout: "bare"
       edit_info:
-        text: "Edit this page »"
         repo: 18F/hub
         branch: master
   -
