@@ -84,6 +84,77 @@ module Hub
     end
   end
 
+  class PromotePrivateDataTest < ::Minitest::Test
+    def test_ignore_if_not_a_collection
+      assert_nil JoinerImpl.promote_private_data 27
+      assert_nil JoinerImpl.promote_private_data 'foobar'
+      assert_nil JoinerImpl.promote_private_data :msb
+      assert_nil JoinerImpl.promote_private_data true
+    end
+
+    def test_no_effect_on_empty_collections
+      hash_data = {}
+      JoinerImpl.promote_private_data hash_data
+      assert_empty hash_data
+
+      array_data = []
+      JoinerImpl.promote_private_data array_data
+      assert_empty array_data
+    end
+
+    def test_promote_private_hash_data
+      data = {
+        'name' => 'mbland',
+        'private' => {'email' => 'michael.bland@gsa.gov'},
+        'full_name' => 'Mike Bland',
+      }
+
+      expected = {
+        'name' => 'mbland',
+        'email' => 'michael.bland@gsa.gov',
+        'full_name' => 'Mike Bland',
+      }
+
+      JoinerImpl.promote_private_data data
+      assert_equal expected, data
+    end
+
+    def test_promote_private_data_in_array_at_different_depths
+      data =[
+        {'name' => 'mbland',
+         'full_name' => 'Michael S. Bland',
+         'languages' => ['C++'],
+         'private' => {
+           'full_name' => 'Mike Bland',
+           'email' => 'michael.bland@gsa.gov',
+           'languages' => ['Python', 'Ruby'],
+         },
+        },
+        {'private' => {
+           'name' => 'foobar',
+           'full_name' => 'Foo Bar',
+           'email' => 'foo.bar@gsa.gov',
+         },
+        },
+      ]
+
+      expected = [
+        {'name' => 'mbland',
+         'full_name' => 'Mike Bland',
+         'email' => 'michael.bland@gsa.gov',
+         'languages' => ['C++', 'Python', 'Ruby'],
+        },
+        {'name' => 'foobar',
+         'full_name' => 'Foo Bar',
+         'email' => 'foo.bar@gsa.gov',
+        },
+      ]
+
+      JoinerImpl.promote_private_data data
+      assert_equal expected, data
+    end
+  end
+
   class RemovePrivateDataTest < ::Minitest::Test
     def test_ignore_if_not_a_collection
       assert_nil JoinerImpl.remove_private_data 27

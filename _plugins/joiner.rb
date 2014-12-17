@@ -107,6 +107,28 @@ module Hub
       end
     end
 
+    # Promotes private data within the collection to the same level as the
+    # subcollection containing the private data. Private data is any item
+    # mapped to the "private:" key of a hash. All "private:" key-value pairs
+    # will be deleted.
+    #
+    # Private hash data (other than Array values) will overwrite any
+    # corresponding data in its non-private counterpart, if one exists.
+    # Private Array items will be appended to existing Array items.
+    #
+    # +collection+:: Hash or Array from which to promote private information
+    def self.promote_private_data(collection)
+      if collection.instance_of? ::Hash
+        if collection.member? 'private'
+          private_data = collection['private']
+          collection.delete 'private'
+          deep_merge collection, private_data
+        end
+      elsif collection.instance_of? ::Array
+        collection.each {|i| promote_private_data i}
+      end
+    end
+
     # Joins public and private project data.
     def join_project_data
       join_public_data('projects', 'name')
