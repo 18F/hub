@@ -119,6 +119,21 @@ module Hub
       assert_equal expected, data
     end
 
+    def test_promote_private_array_data
+      data = [
+        {'name' => 'mbland', 'full_name' => 'Mike Bland'},
+        {'private' => [{'name' => 'foobar'}]},
+      ]
+
+      expected = [
+        {'name' => 'mbland', 'full_name' => 'Mike Bland'},
+        {'name' => 'foobar'},
+      ]
+
+      JoinerImpl.promote_private_data data
+      assert_equal expected, data
+    end
+
     def test_promote_private_data_in_array_at_different_depths
       data =[
         {'name' => 'mbland',
@@ -130,11 +145,12 @@ module Hub
            'languages' => ['Python', 'Ruby'],
          },
         },
-        {'private' => {
-           'name' => 'foobar',
-           'full_name' => 'Foo Bar',
-           'email' => 'foo.bar@gsa.gov',
-         },
+        {'private' => [
+           {'name' => 'foobar',
+            'full_name' => 'Foo Bar',
+            'email' => 'foo.bar@gsa.gov',
+           },
+         ],
         },
       ]
 
@@ -187,7 +203,7 @@ module Hub
         JoinerImpl.remove_private_data(
           [{'name' => 'mbland', 'full_name' => 'Mike Bland',
             'private' => {'email' => 'michael.bland@gsa.gov'}},
-           {'private' => {'name' => 'foobar'}}]))
+           {'private' => [{'name' => 'foobar'}]}]))
     end
   end
 

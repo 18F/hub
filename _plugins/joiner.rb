@@ -88,7 +88,8 @@ module Hub
       mergeable_classes = [::Hash, ::Array]
 
       if lhs.class != rhs.class
-        raise MergeError.new "LHS: #{lhs.class} RHS: #{rhs.class}"
+        raise MergeError.new("LHS (#{lhs.class}): #{lhs}\n" +
+          "RHS (#{rhs.class}): #{rhs}")
       elsif !mergeable_classes.include? lhs.class
         raise MergeError.new "Class not mergeable: #{lhs.class}"
       end
@@ -124,8 +125,21 @@ module Hub
           collection.delete 'private'
           deep_merge collection, private_data
         end
+
       elsif collection.instance_of? ::Array
-        collection.each {|i| promote_private_data i}
+        collection.each do |i|
+          # If the Array entry is a hash with 'private' as the only key,
+          # then that key should map to an Array to be promoted.
+          if i.instance_of? ::Hash and i.keys == ['private']
+            private_data = i['private']
+            i.delete 'private'
+            deep_merge collection, private_data
+          else
+            promote_private_data i
+          end
+        end
+
+        collection.delete_if {|i| i.empty?}
       end
     end
 
