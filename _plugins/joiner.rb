@@ -88,7 +88,8 @@ module Hub
       mergeable_classes = [::Hash, ::Array]
 
       if lhs.class != rhs.class
-        raise MergeError.new "LHS: #{lhs.class} RHS: #{rhs.class}"
+        raise MergeError.new("LHS (#{lhs.class}): #{lhs}\n" +
+          "RHS (#{rhs.class}): #{rhs}")
       elsif !mergeable_classes.include? lhs.class
         raise MergeError.new "Class not mergeable: #{lhs.class}"
       end
@@ -104,6 +105,41 @@ module Hub
 
       elsif rhs.instance_of? ::Array
         lhs.concat rhs
+      end
+    end
+
+    # Promotes private data within the collection to the same level as the
+    # subcollection containing the private data. Private data is any item
+    # mapped to the "private:" key of a hash. All "private:" key-value pairs
+    # will be deleted.
+    #
+    # Private hash data (other than Array values) will overwrite any
+    # corresponding data in its non-private counterpart, if one exists.
+    # Private Array items will be appended to existing Array items.
+    #
+    # +collection+:: Hash or Array from which to promote private information
+    def self.promote_private_data(collection)
+      if collection.instance_of? ::Hash
+        if collection.member? 'private'
+          private_data = collection['private']
+          collection.delete 'private'
+          deep_merge collection, private_data
+        end
+
+      elsif collection.instance_of? ::Array
+        collection.each do |i|
+          # If the Array entry is a hash with 'private' as the only key,
+          # then that key should map to an Array to be promoted.
+          if i.instance_of? ::Hash and i.keys == ['private']
+            private_data = i['private']
+            i.delete 'private'
+            deep_merge collection, private_data
+          else
+            promote_private_data i
+          end
+        end
+
+        collection.delete_if {|i| i.empty?}
       end
     end
 
