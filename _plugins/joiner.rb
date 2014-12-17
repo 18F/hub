@@ -57,6 +57,56 @@ module Hub
       assign_team_member_images
     end
 
+    # Removes private data from the collection. Private data is any item
+    # mapped to the "private:" key of a hash.
+    # +collection+:: Hash or Array from which to strip private information
+    def self.remove_private_data(collection)
+      if collection.instance_of? ::Hash
+        collection.delete 'private' if collection.member? 'private'
+        collection.each_value {|i| remove_private_data i}
+      elsif collection.instance_of? ::Array
+        collection.each {|i| remove_private_data i}
+        collection.delete_if {|i| i.empty?}
+      end
+    end
+
+    # Raised by deep_merge() if lhs and rhs are of different types.
+    class MergeError < ::Exception
+    end
+
+    # Performs a deep merge of Hash and Array structures. If the collections
+    # are Hashes, Hash or Array members of +rhs+ will be deep-merged with
+    # any existing members in +lhs+. If the collections are Arrays, the values
+    # from +rhs+ will be appended to lhs.
+    #
+    # Raises MergeError if lhs and rhs are of different classes, or if they
+    # are of classes other than Hash or Array.
+    #
+    # +lhs+:: merged data sink (left-hand side)
+    # +rhs+:: merged data source (right-hand side)
+    def self.deep_merge(lhs, rhs)
+      mergeable_classes = [::Hash, ::Array]
+
+      if lhs.class != rhs.class
+        raise MergeError.new "LHS: #{lhs.class} RHS: #{rhs.class}"
+      elsif !mergeable_classes.include? lhs.class
+        raise MergeError.new "Class not mergeable: #{lhs.class}"
+      end
+
+      if rhs.instance_of? ::Hash
+        rhs.each do |key,value|
+          if lhs.member? key and mergeable_classes.include? value.class
+            deep_merge(lhs[key], value)
+          else
+            lhs[key] = value
+          end
+        end
+
+      elsif rhs.instance_of? ::Array
+        lhs.concat rhs
+      end
+    end
+
     # Joins public and private project data.
     def join_project_data
       join_public_data('projects', 'name')

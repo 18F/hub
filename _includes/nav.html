@@ -22,3 +22,10 @@
   <a href="{{ doc.url }}">{{ doc.text }}</a><br/>{% endfor %}
   <br/>
 </div>{% endfor %}
+{% if site.data.email_groups %}
+<div>
+  <strong>Email Groups</strong><br/>{% for group in site.data.email_groups %}
+  <a href="{{ group.url }}">{{ group.name }}</a></br>{% endfor %}
+  <br/>
+</div>
+{% endif %}

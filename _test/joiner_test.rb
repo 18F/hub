@@ -6,7 +6,121 @@ require "jekyll/site"
 require "minitest/autorun"
 
 module Hub
-  class ImportGuestUsers < ::Minitest::Test
+  class DeepMergeTest < ::Minitest::Test
+    def test_raise_if_classes_differ
+      assert_raises JoinerImpl::MergeError do
+        JoinerImpl.deep_merge({}, [])
+      end
+    end
+
+    def test_raise_if_not_mergeable
+      assert_raises JoinerImpl::MergeError do
+        JoinerImpl.deep_merge(true, false)
+      end
+    end
+
+    def test_merge_into_empty_hash
+      lhs = {}
+      rhs = {:foo => true}
+      JoinerImpl.deep_merge lhs, rhs
+      assert_equal rhs, lhs
+    end
+
+    def test_merge_into_empty_array
+      lhs = []
+      rhs = [{:foo => true}]
+      JoinerImpl.deep_merge lhs, rhs
+      assert_equal rhs, lhs
+    end
+
+    def test_rhs_hash_overwrites_nonmergeable_lhs_hash_values
+      lhs = {:foo => false}
+      rhs = {:foo => true}
+      JoinerImpl.deep_merge lhs, rhs
+      assert_equal rhs, lhs
+    end
+
+    def test_rhs_appends_values_to_lhs
+      lhs = [{:foo => false}]
+      rhs = [{:foo => true}]
+      JoinerImpl.deep_merge lhs, rhs
+      assert_equal [{:foo => false}, {:foo => true}], lhs
+    end
+
+    def test_recursively_merge_hashes
+      lhs = {
+        'name' => 'mbland',
+        'languages' => ['C++'],
+        'age' => 'None of your business',
+        'guitars' => {
+          'strats' => 'too many',
+          'acoustics' => 1,
+          },
+        }
+      rhs = {
+        'full_name' => 'Mike Bland',
+        'languages' => ['Python', 'Ruby'],
+        'age' => 'Not gonna say it',
+        'guitars' => {
+          'strats' => 'not enough',
+          'les_pauls' => 1,
+          },
+        }
+      JoinerImpl.deep_merge lhs, rhs
+
+      expected = {
+        'name' => 'mbland',
+        'full_name' => 'Mike Bland',
+        'languages' => ['C++', 'Python', 'Ruby'],
+        'age' => 'Not gonna say it',
+        'guitars' => {
+          'strats' => 'not enough',
+          'acoustics' => 1,
+          'les_pauls' => 1,
+          },
+        }
+
+      assert_equal expected, lhs
+    end
+  end
+
+  class RemovePrivateDataTest < ::Minitest::Test
+    def test_ignore_if_not_a_collection
+      assert_nil JoinerImpl.remove_private_data 27
+      assert_nil JoinerImpl.remove_private_data 'foobar'
+      assert_nil JoinerImpl.remove_private_data :msb
+      assert_nil JoinerImpl.remove_private_data true
+    end
+
+    def test_ignore_empty_collections
+      assert_equal({}, JoinerImpl.remove_private_data({}))
+      assert_equal([], JoinerImpl.remove_private_data([]))
+    end
+
+    def test_remove_top_level_private_data_from_hash
+      assert_equal({'name' => 'mbland', 'full_name' => 'Mike Bland'},
+        JoinerImpl.remove_private_data(
+          {'name' => 'mbland', 'full_name' => 'Mike Bland',
+           'private' => {'email' => 'michael.bland@gsa.gov'}}))
+    end
+
+    def test_remove_top_level_private_data_from_array
+      assert_equal([{'name' => 'mbland', 'full_name' => 'Mike Bland'}],
+        JoinerImpl.remove_private_data(
+          [{'name' => 'mbland', 'full_name' => 'Mike Bland'},
+           {'private' => {'name' => 'foobar'}}]))
+    end
+
+    def test_remove_private_data_from_object_array_at_different_depths
+      assert_equal([{'name' => 'mbland', 'full_name' => 'Mike Bland'}],
+        JoinerImpl.remove_private_data(
+          [{'name' => 'mbland', 'full_name' => 'Mike Bland',
+            'private' => {'email' => 'michael.bland@gsa.gov'}},
+           {'private' => {'name' => 'foobar'}}]))
+    end
+  end
+
+  class ImportGuestUsersTest < ::Minitest::Test
     def setup
       @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
     end
