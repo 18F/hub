@@ -6,7 +6,43 @@ require "jekyll/site"
 require "minitest/autorun"
 
 module Hub
-  class ImportGuestUsers < ::Minitest::Test
+  class RemovePrivateDataTest < ::Minitest::Test
+    def test_ignore_if_not_a_collection
+      assert_nil JoinerImpl.remove_private_data 27
+      assert_nil JoinerImpl.remove_private_data 'foobar'
+      assert_nil JoinerImpl.remove_private_data :msb
+      assert_nil JoinerImpl.remove_private_data true
+    end
+
+    def test_ignore_empty_collections
+      assert_equal({}, JoinerImpl.remove_private_data({}))
+      assert_equal([], JoinerImpl.remove_private_data([]))
+    end
+
+    def test_remove_top_level_private_data_from_hash
+      assert_equal({'name' => 'mbland', 'full_name' => 'Mike Bland'},
+        JoinerImpl.remove_private_data(
+          {'name' => 'mbland', 'full_name' => 'Mike Bland',
+           'private' => {'email' => 'michael.bland@gsa.gov'}}))
+    end
+
+    def test_remove_top_level_private_data_from_array
+      assert_equal([{'name' => 'mbland', 'full_name' => 'Mike Bland'}],
+        JoinerImpl.remove_private_data(
+          [{'name' => 'mbland', 'full_name' => 'Mike Bland'},
+           {'private' => {'name' => 'foobar'}}]))
+    end
+
+    def test_remove_private_data_from_object_array_at_different_depths
+      assert_equal([{'name' => 'mbland', 'full_name' => 'Mike Bland'}],
+        JoinerImpl.remove_private_data(
+          [{'name' => 'mbland', 'full_name' => 'Mike Bland',
+            'private' => {'email' => 'michael.bland@gsa.gov'}},
+           {'private' => {'name' => 'foobar'}}]))
+    end
+  end
+
+  class ImportGuestUsersTest < ::Minitest::Test
     def setup
       @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
     end

@@ -57,6 +57,19 @@ module Hub
       assign_team_member_images
     end
 
+    # Removes private data from the collection. Private data is any item
+    # mapped to the "private:" key of a hash.
+    # +collection+:: Hash or Array from which to strip private information.
+    def self.remove_private_data(collection)
+      if collection.instance_of? ::Hash
+        collection.delete 'private' if collection.member? 'private' 
+        collection.each_value {|i| remove_private_data i}
+      elsif collection.instance_of? ::Array
+        collection.each {|i| remove_private_data i}
+        collection.delete_if {|i| i.empty?}
+      end
+    end
+
     # Joins public and private project data.
     def join_project_data
       join_public_data('projects', 'name')
