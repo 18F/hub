@@ -2,20 +2,15 @@
 """
 Manage auto-deploy webhooks for the public Hub.
 
+Author/Thief: Mike Bland (michael.bland@gsa.gov)
+Date:         2014-12-18
+
 INSTALLING FABRIC
 -----------------
 On your local machine, using the system Python:
 
 $ sudo easy_install pip
 $ sudo pip install fabric
-
-INSTALLING NODE DEPENDENCIES
-----------------------------
-On your local machine and on the remote server:
-
-$ npm install hookshot
-$ npm install minimist
-$ npm install -g forever
 
 SSH CONFIG
 ----------
@@ -33,6 +28,24 @@ Host 18f-hub
    IdentityFile [INSERT $HOME]/.ssh/[INSERT KEY]
    IdentitiesOnly yes
 
+INSTALLING NODE REMOTELY
+------------------------
+On Eric Mill's advice, for Ubuntu, download the latest Node binary and install
+it directly on the machine, e.g.:
+
+$ ssh 18f-hub
+$ wget http://nodejs.org/dist/v1.10.34/node-v0.10.34-linux-x64.tar.gz
+$ gzip -dc node-v0.10.34-linux-x64.tar.gz | tar xf -
+$ sudo cp node-v0.10.34-linux-x64/bin/node /usr/local/bin
+
+INSTALLING NODE DEPENDENCIES
+----------------------------
+On your local machine and on the remote server:
+
+$ npm install hookshot
+$ npm install minimist
+$ npm install -g forever
+
 INITIAL CLONING
 ---------------
 Before deploying, ssh into each deployment host and clone the repo based on
@@ -41,8 +54,13 @@ the appropriate branch:
 $ ssh 18f-hub
 $ git clone https://github.com/18F/hub.git --branch BRANCH hub-BRANCH
 
-# Say "yes" if the RSA fingerprint is:
-# 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
+LAUNCH
+------
+In the same directory as this file, run:
+
+$ fab start
+
+Same deal with "stop" and "restart".
 """
 
 import time
