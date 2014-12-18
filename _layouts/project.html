@@ -5,9 +5,9 @@ layout: bare
 <h1>{{ proj.project }}</h1>
 {% if proj.description %}<p>
 {{ proj.description }}
-</p>{% endif %}{% if proj.dashboard %}
+</p>{% endif %}{% unless proj.status == "Hold" %}
 
-<a href="https://18f.gsa.gov/dashboard/project/{{ proj.name }}">Public Dashboard</a><br/>{% endif %}{% if proj.github and proj.github.length != 0 %}
+<a href="https://18f.gsa.gov/dashboard/project/{{ proj.name }}">Public Dashboard</a><br/>{% endunless %}{% if proj.github and proj.github.length != 0 %}
 
 <h2>GitHub Repos</h2>{% for repo in proj.github %}
 <a href="https://github.com/{{ repo }}">{{ repo }}</a><br/>{% endfor %}{% endif %}{% if proj.team and proj.team.length != 0 %}

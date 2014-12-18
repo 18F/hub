@@ -221,6 +221,10 @@ module Hub
     # Joins public and private project data.
     def join_project_data
       join_private_data('projects', 'name')
+
+      if @public_mode
+        @data['projects'].delete_if {|p| p['status'] == 'Hold'}
+      end
     end
 
     # Creates +self.team_by_email+, a hash of email address => username to use
