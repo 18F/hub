@@ -169,6 +169,40 @@ module Hub
       JoinerImpl.promote_data data, 'private'
       assert_equal expected, data
     end
+
+    def test_promote_private_data_in_hash_at_different_depths
+      data = {
+        'team' => [
+          {'name' => 'mbland',
+           'private' => {'email' => 'michael.bland@gsa.gov'}},
+          {'private' => [
+            {'name' => 'foobar', 'email' => 'foo.bar@gsa.gov'},
+            ],
+          },
+        ],
+        'projects' => [
+          {'name' => 'hub', 'private' => {'repo' => '18F/hub'}},
+          {'private' => [
+            {'name' => 'snippets', 'repo' => '18F/hub'},
+            ],
+          },
+        ],
+      }
+
+      expected = {
+        'team' => [
+          {'name' => 'mbland','email' => 'michael.bland@gsa.gov'},
+          {'name' => 'foobar', 'email' => 'foo.bar@gsa.gov'},
+        ],
+        'projects' => [
+          {'name' => 'hub', 'repo' => '18F/hub'},
+          {'name' => 'snippets', 'repo' => '18F/hub'},
+        ],
+      }
+
+      JoinerImpl.promote_data data, 'private'
+      assert_equal expected, data
+    end
   end
 
   class RemovePrivateDataTest < ::Minitest::Test

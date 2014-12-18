@@ -122,6 +122,7 @@ module Hub
           collection.delete key
           deep_merge collection, data_to_promote
         end
+        collection.each_value {|i| promote_data i, key}
 
       elsif collection.instance_of? ::Array
         collection.each do |i|
