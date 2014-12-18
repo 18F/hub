@@ -15,6 +15,15 @@ module Hub
     # +site+:: Jekyll site data object
     def self.join_data(site)
       impl = JoinerImpl.new site
+      impl.create_team_by_email_index
+
+      private_data = site.data['private']
+      if impl.public_mode
+        JoinerImpl.remove_data private_data, 'private'
+      else
+        JoinerImpl.promote_data private_data, 'private'
+      end
+
       impl.join_team_data
       impl.join_project_data
 
@@ -48,7 +57,6 @@ module Hub
     # Joins public and private team data, filters out non-18F PIFs, and builds
     # the +team_by_email+ index used to join snippet data.
     def join_team_data
-      create_team_by_email_index
       join_private_data('team', 'name')
       convert_to_hash('team', 'name')
       assign_team_member_images
