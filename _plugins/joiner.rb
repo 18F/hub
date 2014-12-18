@@ -143,6 +143,54 @@ module Hub
       end
     end
 
+    # Raised by join_data() if an error is encountered.
+    class JoinError < ::Exception
+    end
+
+    # Raises JoinError if +h+ is not a Hash, or if
+    # +key_field+ is absent from any element of +lhs+ or +rhs+.
+    def self.assert_is_hash_with_key(h, key, error_prefix)
+      if !h.instance_of? ::Hash
+        raise JoinError.new("#{error_prefix} is not a Hash: #{h}")
+      elsif !h.member? key
+        raise JoinError.new("#{error_prefix} missing \"#{key}\": #{h}")
+      end
+    end
+
+    # Joins data in the +lhs+ Array with data from the +rhs+ Array based on
+    # +key_field+. Both +lhs+ and +rhs+ should be of type Array of Hash.
+    # Performs a deep_merge on matching objects; assigns values from +rhs+ to
+    # +lhs+ if no corresponding object yet exists in lhs.
+    #
+    # Raises JoinError if either lhs or rhs is not an Array of Hash, or if
+    # +key_field+ is absent from any element of +lhs+ or +rhs+.
+    #
+    # +key_field+:: primary key for joined objects
+    # +lhs+:: joined data sink (left-hand side)
+    # +rhs+:: joined data source (right-hand side)
+    def self.join_array_data(key_field, lhs, rhs)
+      unless lhs.instance_of? ::Array and rhs.instance_of? ::Array
+        raise JoinError.new("Both lhs (#{lhs.class}) and " +
+          "rhs (#{rhs.class}) must be an Array of Hash")
+      end
+
+      lhs_index = {}
+      lhs.each do |i|
+        self.assert_is_hash_with_key(i, key_field, "LHS element")
+        lhs_index[i[key_field]] = i
+      end
+
+      rhs.each do |i|
+        self.assert_is_hash_with_key(i, key_field, "RHS element")
+        key = i[key_field]
+        if lhs_index.member? key
+          deep_merge lhs_index[key], i
+        else
+          lhs << i
+        end
+      end
+    end
+
     # Joins public and private project data.
     def join_project_data
       join_public_data('projects', 'name')
