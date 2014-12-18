@@ -48,9 +48,6 @@ module Hub
     # Joins public and private team data, filters out non-18F PIFs, and builds
     # the +team_by_email+ index used to join snippet data.
     def join_team_data
-      @data['team'].each {|i| i['18f'] = true}
-      join_public_data('team', 'name')
-      remove_team_members
       create_team_by_email_index
       join_private_data('team', 'name')
       convert_to_hash('team', 'name')
@@ -191,32 +188,33 @@ module Hub
 
     # Joins public and private project data.
     def join_project_data
-      join_public_data('projects', 'name')
+      join_private_data('projects', 'name')
 
       # For now, we don't actually join in any private data from
       # site.data['private']['projects'].
       @data['projects'].each {|p| p['dashboard'] = true}
     end
 
-    # Removes non-18F PIFs.
-    def remove_team_members
-      @data['team'].delete_if {|i| !i.member? '18f' or !i['18f']}
-    end
-
     # Creates +self.team_by_email+, a hash of email address => username to use
     # as an index into +site.data[+'team'] when joining snippet data.
+    #
+    # MUST be called before remove_data, or else private email addresses will
+    # be inaccessible and snippets will not be joined.
     def create_team_by_email_index
-      @data['private']['team'].each do |i|
-        @team_by_email[i['email']] = i['name'] if i.member? 'email'
-      end
-    end
-
-    # Wrapper around join_data_from_source for public data.
-    # +category+:: key into +site.data[+'public'] specifying data collection
-    # +key_field+:: primary key for +site.data[+'public'][category] objects
-    def join_public_data(category, key_field)
-      if @data['public'].member? category
-        join_data_from_source('public', category, key_field)
+      team = @data['private']['team']
+      team.each do |i|
+        # A Hash containing only a 'private' property is a list of team
+        # members whose information is completely private.
+        if i.keys == ['private']
+          i['private'].each do |private_member|
+            email = private_member['email']
+            @team_by_email[email] = private_member['name'] if email
+          end
+        else
+          email = i['email']
+          email = i['private']['email'] if !email and i.member? 'private'
+          @team_by_email[email] = i['name'] if email
+        end
       end
     end
 
