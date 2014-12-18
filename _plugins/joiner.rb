@@ -108,34 +108,30 @@ module Hub
       end
     end
 
-    # Promotes private data within the collection to the same level as the
-    # subcollection containing the private data. Private data is any item
-    # mapped to the "private:" key of a hash. All "private:" key-value pairs
-    # will be deleted.
+    # Recursively promotes data within the +collection+ matching +key+ to the
+    # same level as +key+ itself. After promotion, each +key+ reference will
+    # be deleted.
     #
-    # Private hash data (other than Array values) will overwrite any
-    # corresponding data in its non-private counterpart, if one exists.
-    # Private Array items will be appended to existing Array items.
-    #
-    # +collection+:: Hash or Array from which to promote private information
-    def self.promote_private_data(collection)
+    # +collection+:: Hash or Array from which to promote information
+    # +key+:: key determining data to be promoted within +collection+
+    def self.promote_data(collection, key)
       if collection.instance_of? ::Hash
-        if collection.member? 'private'
-          private_data = collection['private']
-          collection.delete 'private'
-          deep_merge collection, private_data
+        if collection.member? key
+          data_to_promote = collection[key]
+          collection.delete key
+          deep_merge collection, data_to_promote
         end
 
       elsif collection.instance_of? ::Array
         collection.each do |i|
-          # If the Array entry is a hash with 'private' as the only key,
+          # If the Array entry is a hash that contains only the target key,
           # then that key should map to an Array to be promoted.
-          if i.instance_of? ::Hash and i.keys == ['private']
-            private_data = i['private']
-            i.delete 'private'
-            deep_merge collection, private_data
+          if i.instance_of? ::Hash and i.keys == [key]
+            data_to_promote = i[key]
+            i.delete key
+            deep_merge collection, data_to_promote
           else
-            promote_private_data i
+            promote_data i, key
           end
         end
 

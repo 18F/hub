@@ -84,21 +84,21 @@ module Hub
     end
   end
 
-  class PromotePrivateDataTest < ::Minitest::Test
+  class PromoteDataTest < ::Minitest::Test
     def test_ignore_if_not_a_collection
-      assert_nil JoinerImpl.promote_private_data 27
-      assert_nil JoinerImpl.promote_private_data 'foobar'
-      assert_nil JoinerImpl.promote_private_data :msb
-      assert_nil JoinerImpl.promote_private_data true
+      assert_nil JoinerImpl.promote_data 27, 'private'
+      assert_nil JoinerImpl.promote_data 'foobar', 'private'
+      assert_nil JoinerImpl.promote_data :msb, 'private'
+      assert_nil JoinerImpl.promote_data true, 'private'
     end
 
     def test_no_effect_on_empty_collections
       hash_data = {}
-      JoinerImpl.promote_private_data hash_data
+      JoinerImpl.promote_data hash_data, 'private'
       assert_empty hash_data
 
       array_data = []
-      JoinerImpl.promote_private_data array_data
+      JoinerImpl.promote_data array_data, 'private'
       assert_empty array_data
     end
 
@@ -115,7 +115,7 @@ module Hub
         'full_name' => 'Mike Bland',
       }
 
-      JoinerImpl.promote_private_data data
+      JoinerImpl.promote_data data, 'private'
       assert_equal expected, data
     end
 
@@ -130,7 +130,7 @@ module Hub
         {'name' => 'foobar'},
       ]
 
-      JoinerImpl.promote_private_data data
+      JoinerImpl.promote_data data, 'private'
       assert_equal expected, data
     end
 
@@ -166,7 +166,7 @@ module Hub
         },
       ]
 
-      JoinerImpl.promote_private_data data
+      JoinerImpl.promote_data data, 'private'
       assert_equal expected, data
     end
   end
