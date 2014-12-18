@@ -173,37 +173,37 @@ module Hub
 
   class RemovePrivateDataTest < ::Minitest::Test
     def test_ignore_if_not_a_collection
-      assert_nil JoinerImpl.remove_private_data 27
-      assert_nil JoinerImpl.remove_private_data 'foobar'
-      assert_nil JoinerImpl.remove_private_data :msb
-      assert_nil JoinerImpl.remove_private_data true
+      assert_nil JoinerImpl.remove_data 27, 'private'
+      assert_nil JoinerImpl.remove_data 'foobar', 'private'
+      assert_nil JoinerImpl.remove_data :msb, 'private'
+      assert_nil JoinerImpl.remove_data true, 'private'
     end
 
     def test_ignore_empty_collections
-      assert_equal({}, JoinerImpl.remove_private_data({}))
-      assert_equal([], JoinerImpl.remove_private_data([]))
+      assert_equal({}, JoinerImpl.remove_data({}, 'private'))
+      assert_equal([], JoinerImpl.remove_data([], 'private'))
     end
 
     def test_remove_top_level_private_data_from_hash
       assert_equal({'name' => 'mbland', 'full_name' => 'Mike Bland'},
-        JoinerImpl.remove_private_data(
+        JoinerImpl.remove_data(
           {'name' => 'mbland', 'full_name' => 'Mike Bland',
-           'private' => {'email' => 'michael.bland@gsa.gov'}}))
+           'private' => {'email' => 'michael.bland@gsa.gov'}}, 'private'))
     end
 
     def test_remove_top_level_private_data_from_array
       assert_equal([{'name' => 'mbland', 'full_name' => 'Mike Bland'}],
-        JoinerImpl.remove_private_data(
+        JoinerImpl.remove_data(
           [{'name' => 'mbland', 'full_name' => 'Mike Bland'},
-           {'private' => {'name' => 'foobar'}}]))
+           {'private' => {'name' => 'foobar'}}], 'private'))
     end
 
     def test_remove_private_data_from_object_array_at_different_depths
       assert_equal([{'name' => 'mbland', 'full_name' => 'Mike Bland'}],
-        JoinerImpl.remove_private_data(
+        JoinerImpl.remove_data(
           [{'name' => 'mbland', 'full_name' => 'Mike Bland',
             'private' => {'email' => 'michael.bland@gsa.gov'}},
-           {'private' => [{'name' => 'foobar'}]}]))
+           {'private' => [{'name' => 'foobar'}]}], 'private'))
     end
   end
 

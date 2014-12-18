@@ -57,15 +57,16 @@ module Hub
       assign_team_member_images
     end
 
-    # Removes private data from the collection. Private data is any item
-    # mapped to the "private:" key of a hash.
-    # +collection+:: Hash or Array from which to strip private information
-    def self.remove_private_data(collection)
+    # Recursively removes data from +collection+ matching +key+.
+    #
+    # +collection+:: Hash or Array from which to strip information
+    # +key+:: key determining data to be stripped from +collection+
+    def self.remove_data(collection, key)
       if collection.instance_of? ::Hash
-        collection.delete 'private' if collection.member? 'private'
-        collection.each_value {|i| remove_private_data i}
+        collection.delete key if collection.member? key
+        collection.each_value {|i| remove_data i, key}
       elsif collection.instance_of? ::Array
-        collection.each {|i| remove_private_data i}
+        collection.each {|i| remove_data i, key}
         collection.delete_if {|i| i.empty?}
       end
     end
