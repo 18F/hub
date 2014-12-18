@@ -349,12 +349,15 @@ module Hub
 
     # Parses and publishes a snippet. Filters out snippets rendered empty
     # after redaction.
-    # +snippet+:: snippet hash
+    # +snippet+:: snippet hash with two fields: +last-week+ and +this-week+
     # +published+:: array of snippets to publish
     def publish_snippet(snippet, published)
       ['last-week', 'this-week'].each do |field|
         text = snippet[field]
-        next if text == nil
+        if text == nil
+          snippet[field] = ''
+          next
+        end
         redact! text
         text.gsub!(/^\n\n+/m, '')
 
@@ -386,7 +389,7 @@ module Hub
         snippet[field] = parsed.join("\n")
       end
 
-      is_empty = snippet['last-week'].empty? and snippet['this-week'].empty?
+      is_empty = snippet['last-week'].empty? && snippet['this-week'].empty?
       published << snippet unless is_empty
     end
 
