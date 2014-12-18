@@ -225,6 +225,10 @@ module Hub
       # For now, we don't actually join in any private data from
       # site.data['private']['projects'].
       @data['projects'].each {|p| p['dashboard'] = true}
+
+      if @public_mode
+        @data['projects'].delete_if {|p| p['status'] == 'Hold'}
+      end
     end
 
     # Creates +self.team_by_email+, a hash of email address => username to use
