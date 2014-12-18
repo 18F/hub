@@ -142,6 +142,30 @@ module Hub
     class JoinError < ::Exception
     end
 
+    # Joins objects in +lhs[category]+ with data from +rhs[category]+. If the
+    # object collections are of type Array of Hash, key_field will be used as
+    # the primary key; otherwise key_field is ignored.
+    #
+    # Raises JoinError if an error is encountered.
+    #
+    # +category+:: determines member of +lhs+ to join with +rhs+
+    # +key_field+:: if specified, primary key for Array of joined objects
+    # +lhs+:: joined data sink of type Hash (left-hand side)
+    # +rhs+:: joined data source of type Hash (right-hand side)
+    def self.join_data(category, key_field, lhs, rhs)
+      rhs_data = rhs[category]
+      return unless rhs_data
+
+      lhs_data = lhs[category]
+      if !(lhs_data and [::Hash, ::Array].include? lhs_data.class)
+        lhs[category] = rhs_data
+      elsif lhs_data.instance_of? ::Hash
+        self.deep_merge lhs_data, rhs_data
+      else
+        self.join_array_data key_field, lhs_data, rhs_data
+      end
+    end
+
     # Raises JoinError if +h+ is not a Hash, or if
     # +key_field+ is absent from any element of +lhs+ or +rhs+.
     def self.assert_is_hash_with_key(h, key, error_prefix)
@@ -218,47 +242,11 @@ module Hub
       end
     end
 
-    # Wrapper around join_data_from_source for private data; will omit private
-    # data entirely when running in public mode.
+    # Joins data from +site.data[+'private'] into +site.data+.
     # +category+:: key into +site.data[+'private'] specifying data collection
-    # +key_field+:: primary key for +site.data[+'private'][category] objects
+    # +key_field+:: if specified, primary key for Array of joined objects
     def join_private_data(category, key_field)
-      unless @public_mode or !@data['private'].member? category
-        join_data_from_source('private', category, key_field)
-      end
-    end
-
-    # Joins data from the +join_source+ subhash of +site.data+ (i.e. +public+
-    # or +private+) so that appears directly within +site.data+. Deletes
-    # site.data[join_source][category] when finished.
-    #
-    # Note: It's possible the current algorithm may need to be updated to
-    # handle parallel bits of information contained in both public and private
-    # data sources.
-    #
-    # +join_source+:: 'public' or 'private'
-    # +category+:: key into site.data[join_source] specifying collection
-    # +key_field+:: primary key for site.data[join_source][category] objects
-    def join_data_from_source(join_source, category, key_field)
-      unless @data.member? category
-        @data[category] = @data[join_source][category]
-
-      else
-        joined_data = {}
-        @data[category].each {|i| joined_data[i[key_field]] = i}
-
-        @data[join_source][category].each do |v|
-          k = v[key_field]
-          if joined_data.member?(k)
-            joined_data[k].merge!(v)
-          else
-            joined_data[k] = v
-          end
-        end
-        @data[category] = joined_data.values
-
-      end
-      @data[join_source].delete category
+      JoinerImpl.join_data category, key_field, @data, @data['private']
     end
 
     # Converts a list of hash objects within +site.data[+'category'] into a
