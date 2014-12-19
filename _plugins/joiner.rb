@@ -15,6 +15,15 @@ module Hub
     # +site+:: Jekyll site data object
     def self.join_data(site)
       impl = JoinerImpl.new site
+      impl.create_team_by_email_index
+
+      private_data = site.data['private']
+      if impl.public_mode
+        JoinerImpl.remove_data private_data, 'private'
+      else
+        JoinerImpl.promote_data private_data, 'private'
+      end
+
       impl.join_team_data
       impl.join_project_data
 
@@ -48,24 +57,21 @@ module Hub
     # Joins public and private team data, filters out non-18F PIFs, and builds
     # the +team_by_email+ index used to join snippet data.
     def join_team_data
-      @data['team'].each {|i| i['18f'] = true}
-      join_public_data('team', 'name')
-      remove_team_members
-      create_team_by_email_index
       join_private_data('team', 'name')
       convert_to_hash('team', 'name')
       assign_team_member_images
     end
 
-    # Removes private data from the collection. Private data is any item
-    # mapped to the "private:" key of a hash.
-    # +collection+:: Hash or Array from which to strip private information
-    def self.remove_private_data(collection)
+    # Recursively strips information from +collection+ matching +key+.
+    #
+    # +collection+:: Hash or Array from which to strip information
+    # +key+:: key determining data to be stripped from +collection+
+    def self.remove_data(collection, key)
       if collection.instance_of? ::Hash
-        collection.delete 'private' if collection.member? 'private'
-        collection.each_value {|i| remove_private_data i}
+        collection.delete key
+        collection.each_value {|i| remove_data i, key}
       elsif collection.instance_of? ::Array
-        collection.each {|i| remove_private_data i}
+        collection.each {|i| remove_data i, key}
         collection.delete_if {|i| i.empty?}
       end
     end
@@ -108,34 +114,31 @@ module Hub
       end
     end
 
-    # Promotes private data within the collection to the same level as the
-    # subcollection containing the private data. Private data is any item
-    # mapped to the "private:" key of a hash. All "private:" key-value pairs
-    # will be deleted.
+    # Recursively promotes data within the +collection+ matching +key+ to the
+    # same level as +key+ itself. After promotion, each +key+ reference will
+    # be deleted.
     #
-    # Private hash data (other than Array values) will overwrite any
-    # corresponding data in its non-private counterpart, if one exists.
-    # Private Array items will be appended to existing Array items.
-    #
-    # +collection+:: Hash or Array from which to promote private information
-    def self.promote_private_data(collection)
+    # +collection+:: Hash or Array from which to promote information
+    # +key+:: key determining data to be promoted within +collection+
+    def self.promote_data(collection, key)
       if collection.instance_of? ::Hash
-        if collection.member? 'private'
-          private_data = collection['private']
-          collection.delete 'private'
-          deep_merge collection, private_data
+        if collection.member? key
+          data_to_promote = collection[key]
+          collection.delete key
+          deep_merge collection, data_to_promote
         end
+        collection.each_value {|i| promote_data i, key}
 
       elsif collection.instance_of? ::Array
         collection.each do |i|
-          # If the Array entry is a hash with 'private' as the only key,
+          # If the Array entry is a hash that contains only the target key,
           # then that key should map to an Array to be promoted.
-          if i.instance_of? ::Hash and i.keys == ['private']
-            private_data = i['private']
-            i.delete 'private'
-            deep_merge collection, private_data
+          if i.instance_of? ::Hash and i.keys == [key]
+            data_to_promote = i[key]
+            i.delete key
+            deep_merge collection, data_to_promote
           else
-            promote_private_data i
+            promote_data i, key
           end
         end
 
@@ -143,78 +146,111 @@ module Hub
       end
     end
 
-    # Joins public and private project data.
-    def join_project_data
-      join_public_data('projects', 'name')
-
-      # For now, we don't actually join in any private data from
-      # site.data['private']['projects'].
-      @data['projects'].each {|p| p['dashboard'] = true}
+    # Raised by join_data() if an error is encountered.
+    class JoinError < ::Exception
     end
 
-    # Removes non-18F PIFs.
-    def remove_team_members
-      @data['team'].delete_if {|i| !i.member? '18f' or !i['18f']}
+    # Joins objects in +lhs[category]+ with data from +rhs[category]+. If the
+    # object collections are of type Array of Hash, key_field will be used as
+    # the primary key; otherwise key_field is ignored.
+    #
+    # Raises JoinError if an error is encountered.
+    #
+    # +category+:: determines member of +lhs+ to join with +rhs+
+    # +key_field+:: if specified, primary key for Array of joined objects
+    # +lhs+:: joined data sink of type Hash (left-hand side)
+    # +rhs+:: joined data source of type Hash (right-hand side)
+    def self.join_data(category, key_field, lhs, rhs)
+      rhs_data = rhs[category]
+      return unless rhs_data
+
+      lhs_data = lhs[category]
+      if !(lhs_data and [::Hash, ::Array].include? lhs_data.class)
+        lhs[category] = rhs_data
+      elsif lhs_data.instance_of? ::Hash
+        self.deep_merge lhs_data, rhs_data
+      else
+        self.join_array_data key_field, lhs_data, rhs_data
+      end
+    end
+
+    # Raises JoinError if +h+ is not a Hash, or if
+    # +key_field+ is absent from any element of +lhs+ or +rhs+.
+    def self.assert_is_hash_with_key(h, key, error_prefix)
+      if !h.instance_of? ::Hash
+        raise JoinError.new("#{error_prefix} is not a Hash: #{h}")
+      elsif !h.member? key
+        raise JoinError.new("#{error_prefix} missing \"#{key}\": #{h}")
+      end
+    end
+
+    # Joins data in the +lhs+ Array with data from the +rhs+ Array based on
+    # +key_field+. Both +lhs+ and +rhs+ should be of type Array of Hash.
+    # Performs a deep_merge on matching objects; assigns values from +rhs+ to
+    # +lhs+ if no corresponding object yet exists in lhs.
+    #
+    # Raises JoinError if either lhs or rhs is not an Array of Hash, or if
+    # +key_field+ is absent from any element of +lhs+ or +rhs+.
+    #
+    # +key_field+:: primary key for joined objects
+    # +lhs+:: joined data sink (left-hand side)
+    # +rhs+:: joined data source (right-hand side)
+    def self.join_array_data(key_field, lhs, rhs)
+      unless lhs.instance_of? ::Array and rhs.instance_of? ::Array
+        raise JoinError.new("Both lhs (#{lhs.class}) and " +
+          "rhs (#{rhs.class}) must be an Array of Hash")
+      end
+
+      lhs_index = {}
+      lhs.each do |i|
+        self.assert_is_hash_with_key(i, key_field, "LHS element")
+        lhs_index[i[key_field]] = i
+      end
+
+      rhs.each do |i|
+        self.assert_is_hash_with_key(i, key_field, "RHS element")
+        key = i[key_field]
+        if lhs_index.member? key
+          deep_merge lhs_index[key], i
+        else
+          lhs << i
+        end
+      end
+    end
+
+    # Joins public and private project data.
+    def join_project_data
+      join_private_data('projects', 'name')
     end
 
     # Creates +self.team_by_email+, a hash of email address => username to use
     # as an index into +site.data[+'team'] when joining snippet data.
+    #
+    # MUST be called before remove_data, or else private email addresses will
+    # be inaccessible and snippets will not be joined.
     def create_team_by_email_index
-      @data['private']['team'].each do |i|
-        @team_by_email[i['email']] = i['name'] if i.member? 'email'
-      end
-    end
-
-    # Wrapper around join_data_from_source for public data.
-    # +category+:: key into +site.data[+'public'] specifying data collection
-    # +key_field+:: primary key for +site.data[+'public'][category] objects
-    def join_public_data(category, key_field)
-      if @data['public'].member? category
-        join_data_from_source('public', category, key_field)
-      end
-    end
-
-    # Wrapper around join_data_from_source for private data; will omit private
-    # data entirely when running in public mode.
-    # +category+:: key into +site.data[+'private'] specifying data collection
-    # +key_field+:: primary key for +site.data[+'private'][category] objects
-    def join_private_data(category, key_field)
-      unless @public_mode or !@data['private'].member? category
-        join_data_from_source('private', category, key_field)
-      end
-    end
-
-    # Joins data from the +join_source+ subhash of +site.data+ (i.e. +public+
-    # or +private+) so that appears directly within +site.data+. Deletes
-    # site.data[join_source][category] when finished.
-    #
-    # Note: It's possible the current algorithm may need to be updated to
-    # handle parallel bits of information contained in both public and private
-    # data sources.
-    #
-    # +join_source+:: 'public' or 'private'
-    # +category+:: key into site.data[join_source] specifying collection
-    # +key_field+:: primary key for site.data[join_source][category] objects
-    def join_data_from_source(join_source, category, key_field)
-      unless @data.member? category
-        @data[category] = @data[join_source][category]
-
-      else
-        joined_data = {}
-        @data[category].each {|i| joined_data[i[key_field]] = i}
-
-        @data[join_source][category].each do |v|
-          k = v[key_field]
-          if joined_data.member?(k)
-            joined_data[k].merge!(v)
-          else
-            joined_data[k] = v
+      team = @data['private']['team']
+      team.each do |i|
+        # A Hash containing only a 'private' property is a list of team
+        # members whose information is completely private.
+        if i.keys == ['private']
+          i['private'].each do |private_member|
+            email = private_member['email']
+            @team_by_email[email] = private_member['name'] if email
           end
+        else
+          email = i['email']
+          email = i['private']['email'] if !email and i.member? 'private'
+          @team_by_email[email] = i['name'] if email
         end
-        @data[category] = joined_data.values
-
       end
-      @data[join_source].delete category
+    end
+
+    # Joins data from +site.data[+'private'] into +site.data+.
+    # +category+:: key into +site.data[+'private'] specifying data collection
+    # +key_field+:: if specified, primary key for Array of joined objects
+    def join_private_data(category, key_field)
+      JoinerImpl.join_data category, key_field, @data, @data['private']
     end
 
     # Converts a list of hash objects within +site.data[+'category'] into a

@@ -87,6 +87,7 @@ module Hub
       return unless working_group.member? member_type
 
       wg_members = working_group[member_type].map {|i| team_members[i]}
+      wg_members.compact!
       working_group[member_type] = wg_members
 
       wg_members.each do |member|

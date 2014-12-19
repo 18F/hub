@@ -84,21 +84,21 @@ module Hub
     end
   end
 
-  class PromotePrivateDataTest < ::Minitest::Test
+  class PromoteDataTest < ::Minitest::Test
     def test_ignore_if_not_a_collection
-      assert_nil JoinerImpl.promote_private_data 27
-      assert_nil JoinerImpl.promote_private_data 'foobar'
-      assert_nil JoinerImpl.promote_private_data :msb
-      assert_nil JoinerImpl.promote_private_data true
+      assert_nil JoinerImpl.promote_data 27, 'private'
+      assert_nil JoinerImpl.promote_data 'foobar', 'private'
+      assert_nil JoinerImpl.promote_data :msb, 'private'
+      assert_nil JoinerImpl.promote_data true, 'private'
     end
 
     def test_no_effect_on_empty_collections
       hash_data = {}
-      JoinerImpl.promote_private_data hash_data
+      JoinerImpl.promote_data hash_data, 'private'
       assert_empty hash_data
 
       array_data = []
-      JoinerImpl.promote_private_data array_data
+      JoinerImpl.promote_data array_data, 'private'
       assert_empty array_data
     end
 
@@ -115,7 +115,7 @@ module Hub
         'full_name' => 'Mike Bland',
       }
 
-      JoinerImpl.promote_private_data data
+      JoinerImpl.promote_data data, 'private'
       assert_equal expected, data
     end
 
@@ -130,7 +130,7 @@ module Hub
         {'name' => 'foobar'},
       ]
 
-      JoinerImpl.promote_private_data data
+      JoinerImpl.promote_data data, 'private'
       assert_equal expected, data
     end
 
@@ -166,44 +166,336 @@ module Hub
         },
       ]
 
-      JoinerImpl.promote_private_data data
+      JoinerImpl.promote_data data, 'private'
+      assert_equal expected, data
+    end
+
+    def test_promote_private_data_in_hash_at_different_depths
+      data = {
+        'team' => [
+          {'name' => 'mbland',
+           'private' => {'email' => 'michael.bland@gsa.gov'}},
+          {'private' => [
+            {'name' => 'foobar', 'email' => 'foo.bar@gsa.gov'},
+            ],
+          },
+        ],
+        'projects' => [
+          {'name' => 'hub', 'private' => {'repo' => '18F/hub'}},
+          {'private' => [
+            {'name' => 'snippets', 'repo' => '18F/hub'},
+            ],
+          },
+        ],
+      }
+
+      expected = {
+        'team' => [
+          {'name' => 'mbland','email' => 'michael.bland@gsa.gov'},
+          {'name' => 'foobar', 'email' => 'foo.bar@gsa.gov'},
+        ],
+        'projects' => [
+          {'name' => 'hub', 'repo' => '18F/hub'},
+          {'name' => 'snippets', 'repo' => '18F/hub'},
+        ],
+      }
+
+      JoinerImpl.promote_data data, 'private'
       assert_equal expected, data
     end
   end
 
   class RemovePrivateDataTest < ::Minitest::Test
     def test_ignore_if_not_a_collection
-      assert_nil JoinerImpl.remove_private_data 27
-      assert_nil JoinerImpl.remove_private_data 'foobar'
-      assert_nil JoinerImpl.remove_private_data :msb
-      assert_nil JoinerImpl.remove_private_data true
+      assert_nil JoinerImpl.remove_data 27, 'private'
+      assert_nil JoinerImpl.remove_data 'foobar', 'private'
+      assert_nil JoinerImpl.remove_data :msb, 'private'
+      assert_nil JoinerImpl.remove_data true, 'private'
     end
 
     def test_ignore_empty_collections
-      assert_equal({}, JoinerImpl.remove_private_data({}))
-      assert_equal([], JoinerImpl.remove_private_data([]))
+      assert_equal({}, JoinerImpl.remove_data({}, 'private'))
+      assert_equal([], JoinerImpl.remove_data([], 'private'))
     end
 
     def test_remove_top_level_private_data_from_hash
       assert_equal({'name' => 'mbland', 'full_name' => 'Mike Bland'},
-        JoinerImpl.remove_private_data(
+        JoinerImpl.remove_data(
           {'name' => 'mbland', 'full_name' => 'Mike Bland',
-           'private' => {'email' => 'michael.bland@gsa.gov'}}))
+           'private' => {'email' => 'michael.bland@gsa.gov'}}, 'private'))
     end
 
     def test_remove_top_level_private_data_from_array
       assert_equal([{'name' => 'mbland', 'full_name' => 'Mike Bland'}],
-        JoinerImpl.remove_private_data(
+        JoinerImpl.remove_data(
           [{'name' => 'mbland', 'full_name' => 'Mike Bland'},
-           {'private' => {'name' => 'foobar'}}]))
+           {'private' => {'name' => 'foobar'}}], 'private'))
     end
 
     def test_remove_private_data_from_object_array_at_different_depths
       assert_equal([{'name' => 'mbland', 'full_name' => 'Mike Bland'}],
-        JoinerImpl.remove_private_data(
+        JoinerImpl.remove_data(
           [{'name' => 'mbland', 'full_name' => 'Mike Bland',
             'private' => {'email' => 'michael.bland@gsa.gov'}},
-           {'private' => [{'name' => 'foobar'}]}]))
+           {'private' => [{'name' => 'foobar'}]}], 'private'))
+    end
+  end
+
+  class JoinArrayDataTest < ::Minitest::Test
+    def test_empty_arrays
+      assert_empty JoinerImpl.join_array_data('unused', [], [])
+    end
+
+    def test_assert_raises_if_lhs_and_rhs_are_not_arrays
+      assert_raises JoinerImpl::JoinError do
+        assert_empty JoinerImpl.join_array_data('unused', [], {})
+      end
+
+      assert_raises JoinerImpl::JoinError do
+        assert_empty JoinerImpl.join_array_data('unused', {}, [])
+      end
+
+      assert_raises JoinerImpl::JoinError do
+        assert_empty JoinerImpl.join_array_data('unused', {}, {})
+      end
+    end
+
+    def test_assert_raises_if_key_field_is_missing
+      assert_raises JoinerImpl::JoinError do
+        assert_empty JoinerImpl.join_array_data('key', [{'key'=>true}], [{}])
+      end
+
+      assert_raises JoinerImpl::JoinError do
+        assert_empty JoinerImpl.join_array_data('key', [{}], [{'key'=>true}])
+      end
+    end
+
+    def test_leave_lhs_alone_if_rhs_is_empty
+      lhs = [{'key'=>true}]
+      rhs = []
+      JoinerImpl.join_array_data('key', lhs, rhs)
+      assert_equal [{'key'=>true}], lhs
+    end
+
+    def test_lhs_matches_rhs_if_lhs_is_empty
+      lhs = []
+      rhs = [{'key'=>true}]
+      JoinerImpl.join_array_data('key', lhs, rhs)
+      assert_equal [{'key'=>true}], lhs
+    end
+
+    def test_join_single_item
+      lhs = [
+        {'name' => 'mbland',
+         'full_name' => 'Mike Bland',
+         'languages' => ['C++'],
+        },
+      ]
+      rhs = [
+        {'name' => 'mbland',
+         'email' => 'michael.bland@gsa.gov',
+         'languages' => ['Python', 'Ruby'],
+        },
+      ]
+      expected = [
+        {'name' => 'mbland',
+         'full_name' => 'Mike Bland',
+         'email' => 'michael.bland@gsa.gov',
+         'languages' => ['C++', 'Python', 'Ruby'],
+        },
+      ]
+      JoinerImpl.join_array_data('name', lhs, rhs)
+      assert_equal expected, lhs
+    end
+
+    def test_join_multiple_items
+      lhs = [
+        {'name' => 'mbland',
+         'full_name' => 'Mike Bland',
+         'languages' => ['C++'],
+        },
+        {'name' => 'foobar',
+         'full_name' => 'Foo Bar',
+        },
+      ]
+      rhs = [
+        {'name' => 'foobar',
+         'email' => 'Foo.Bar@gsa.gov',
+        },
+        {'name' => 'mbland',
+         'email' => 'michael.bland@gsa.gov',
+         'languages' => ['Python', 'Ruby'],
+        },
+        {'name' => 'bazquux',
+         'full_name' => 'Baz Quux',
+         'email' => 'baz.quux@gsa.gov',
+        },
+      ]
+      expected = [
+        {'name' => 'mbland',
+         'full_name' => 'Mike Bland',
+         'email' => 'michael.bland@gsa.gov',
+         'languages' => ['C++', 'Python', 'Ruby'],
+        },
+        {'name' => 'foobar',
+         'full_name' => 'Foo Bar',
+         'email' => 'Foo.Bar@gsa.gov',
+        },
+        {'name' => 'bazquux',
+         'full_name' => 'Baz Quux',
+         'email' => 'baz.quux@gsa.gov',
+        },
+      ]
+      JoinerImpl.join_array_data('name', lhs, rhs)
+      assert_equal expected, lhs
+    end
+
+  end
+
+  class CreateTeamByEmailIndexTest < ::Minitest::Test
+    def setup
+      @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
+      @team = []
+      @site.data['private'] = {'team' => @team}
+      @impl = JoinerImpl.new(@site)
+    end
+
+    def test_empty_team
+      @impl.create_team_by_email_index
+      assert_empty @impl.team_by_email
+    end
+
+    def test_single_user_index
+      @team << {'name' => 'mbland', 'email' => 'michael.bland@gsa.gov'}
+      @impl.create_team_by_email_index
+      assert_equal({'michael.bland@gsa.gov' => 'mbland'}, @impl.team_by_email)
+    end
+
+    def test_single_user_with_private_email_index
+      @team << {
+        'name' => 'mbland', 'private' => {'email' => 'michael.bland@gsa.gov'},
+      }
+      @impl.create_team_by_email_index
+      assert_equal({'michael.bland@gsa.gov' => 'mbland'}, @impl.team_by_email)
+    end
+
+    def test_single_private_user_index
+      @team << {
+        'private' => [
+          {'name' => 'mbland', 'email' => 'michael.bland@gsa.gov'},
+        ],
+      }
+      @impl.create_team_by_email_index
+      assert_equal({'michael.bland@gsa.gov' => 'mbland'}, @impl.team_by_email)
+    end
+
+    def test_multiple_user_index
+      @team << {'name' => 'mbland', 'email' => 'michael.bland@gsa.gov'}
+      @team << {
+        'name' => 'foobar', 'private' => {'email' => 'foo.bar@gsa.gov'},
+      }
+      @team << {
+        'private' => [
+          {'name' => 'bazquux', 'email' => 'baz.quux@gsa.gov'},
+        ],
+      }
+
+      expected = {
+        'michael.bland@gsa.gov' => 'mbland',
+        'foo.bar@gsa.gov' => 'foobar',
+        'baz.quux@gsa.gov' => 'bazquux',
+      }
+      @impl.create_team_by_email_index
+      assert_equal expected, @impl.team_by_email
+    end
+
+    def test_ignore_users_without_email
+      @team << {'name' => 'mbland'}
+      @team << {'name' => 'foobar', 'private' => {}}
+      @team << {'private' => [{'name' => 'bazquux'}]}
+
+      @impl.create_team_by_email_index
+      assert_empty @impl.team_by_email
+    end
+  end
+
+  class JoinDataTest < ::Minitest::Test
+    def setup
+      @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
+    end
+
+    def test_ignore_if_rhs_empty
+      lhs = {'team' => [{'name' => 'mbland'}]}
+      rhs = {}
+      JoinerImpl.join_data 'team', 'name', lhs, rhs
+      assert_equal({'team' => [{'name' => 'mbland'}]}, lhs)
+    end
+
+    def test_assign_value_if_lhs_empty
+      lhs = {}
+      rhs = {'team' => [{'name' => 'mbland'}]}
+      JoinerImpl.join_data 'team', 'name', lhs, rhs
+      assert_equal rhs, lhs
+    end
+
+    def test_overwrite_nonmergeable_values
+      lhs = {'team' => 'mbland'}
+      rhs = {'team' => 'foobar'}
+      JoinerImpl.join_data 'team', 'name', lhs, rhs
+      assert_equal rhs, lhs
+    end
+
+    def test_join_hashes_via_deep_merge
+      lhs = {'team' => {
+        'mbland' => {'languages' => ['C++']},
+        'foobar' => {'full_name' => 'Foo Bar'},
+        },
+      }
+
+      rhs = {
+        'team' => {
+          'mbland' => {'languages' => ['Python', 'Ruby']},
+          'foobar' => {'email' => 'foo.bar@gsa.gov'},
+          'bazquux' => {'email' => 'baz.quux@gsa.gov'},
+        },
+      }
+
+      expected = {
+        'team' => {
+          'mbland' => {'languages' => ['C++', 'Python', 'Ruby']},
+          'foobar' => {
+            'full_name' => 'Foo Bar', 'email' => 'foo.bar@gsa.gov'},
+          'bazquux' => {'email' => 'baz.quux@gsa.gov'},
+        },
+      }
+
+      JoinerImpl.join_data 'team', 'name', lhs, rhs
+      assert_equal expected, lhs
+    end
+
+    def test_join_arrays_of_hashes
+      lhs = {'team' => [
+        {'name' => 'mbland', 'languages' => ['C++']},
+        {'name' => 'foobar', 'full_name' => 'Foo Bar'},
+        ],
+      }
+      rhs = {
+        'team' => [
+          {'name' => 'mbland', 'languages' => ['Python', 'Ruby']},
+          {'name' => 'foobar', 'email' => 'foo.bar@gsa.gov'},
+          {'name' => 'bazquux', 'email' => 'baz.quux@gsa.gov'},
+        ],
+      }
+      expected = {
+        'team' => [
+          {'name' => 'mbland', 'languages' => ['C++', 'Python', 'Ruby']},
+          {'name' => 'foobar', 'full_name' => 'Foo Bar',
+           'email' => 'foo.bar@gsa.gov'},
+          {'name' => 'bazquux', 'email' => 'baz.quux@gsa.gov'},
+        ],
+      }
+      JoinerImpl.join_data 'team', 'name', lhs, rhs
+      assert_equal expected, lhs
     end
   end
 
