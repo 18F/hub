@@ -46,13 +46,44 @@ $ npm install hookshot
 $ npm install minimist
 $ npm install -g forever
 
-INITIAL CLONING
----------------
+INITIAL CLONING AND BUILD
+-------------------------
 Before deploying, ssh into each deployment host and clone the repo based on
 the appropriate branch:
 
 $ ssh 18f-hub
 $ git clone https://github.com/18F/hub.git --branch BRANCH hub-BRANCH
+
+Then install the proper Ruby environment (on /usr/local/, since the file
+system serving the home directory has noexec set as a mount option):
+
+$ sudo mkdir /usr/local/rbenv
+$ sudo chown ubuntu /usr/local/rbenv
+$ git clone https://github.com/sstephenson/rbenv.git /usr/local/rbenv
+$ echo 'export RBENV_ROOT=/usr/local/rbenv' >> ~/.bashrc
+$ echo 'export PATH="$RBENV_ROOT/bin:$PATH"' >> ~/.bashrc
+$ echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+
+[log out, then back in]
+$ cd $RBENV_ROOT
+$ git pull
+$ git clone https://github.com/sstephenson/ruby-build.git \
+  $RBENV_ROOT/plugins/ruby-build
+$ rbenv rehash
+$ rbenv install -l
+[pick a version, then...]
+
+$ rbenv install 2.1.5
+[time passes...]
+
+$ rbenv global 2.1.5
+$ gem install bundler
+$ cd $HOME/hub-BRANCH
+$ bundle
+[time passes...]
+
+$ git submodule init
+$ bundle exec jekyll b --config _config.yml,_config_public.yml
 
 LAUNCH
 ------
@@ -74,9 +105,11 @@ BRANCH = fabric.api.env.get('branch', 'staging-public')
 SETTINGS = {
   'staging-public': {
     'port': 4001, 'host': '18f-hub', 'home': '/home/ubuntu',
+    'config': '_config.yml,_config_public.yml'
   },
   'production-public': {
     'port': 4002, 'host': '18f-site', 'home': '/home/site',
+    'config': '_config.yml,_config_public.yml'
   },
 }[BRANCH]
 
@@ -86,7 +119,8 @@ BRANCH_REPO = "%s/hub-%s" % (SETTINGS['home'], BRANCH)
 fabric.api.env.use_ssh_config = True
 fabric.api.env.hosts = [SETTINGS['host']]
 
-COMMAND = "cd %s && git pull && jekyll build >> %s" % (BRANCH_REPO, LOG)
+COMMAND = "cd %s && git pull && bundle exec jekyll b --config %s >> %s" % (
+  BRANCH_REPO, SETTINGS['config'], LOG)
 
 def start():
   fabric.api.run(
