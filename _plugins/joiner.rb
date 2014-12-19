@@ -62,13 +62,13 @@ module Hub
       assign_team_member_images
     end
 
-    # Recursively removes data from +collection+ matching +key+.
+    # Recursively strips information from +collection+ matching +key+.
     #
     # +collection+:: Hash or Array from which to strip information
     # +key+:: key determining data to be stripped from +collection+
     def self.remove_data(collection, key)
       if collection.instance_of? ::Hash
-        collection.delete key if collection.member? key
+        collection.delete key
         collection.each_value {|i| remove_data i, key}
       elsif collection.instance_of? ::Array
         collection.each {|i| remove_data i, key}
@@ -221,10 +221,6 @@ module Hub
     # Joins public and private project data.
     def join_project_data
       join_private_data('projects', 'name')
-
-      # For now, we don't actually join in any private data from
-      # site.data['private']['projects'].
-      @data['projects'].each {|p| p['dashboard'] = true}
     end
 
     # Creates +self.team_by_email+, a hash of email address => username to use
