@@ -499,6 +499,30 @@ module Hub
     end
   end
 
+  class JoinProjectDataTest < ::Minitest::Test
+    def setup
+      @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
+      @site.data['private'] = {}
+      @site.data['private']['projects'] = [
+        {'name' => 'MSB-USA', 'status' => 'Hold'}
+      ]
+    end
+
+    def test_join_project
+      @impl = JoinerImpl.new(@site)
+      @impl.join_project_data
+      assert_equal([{'name' => 'MSB-USA', 'status' => 'Hold'}],
+        @site.data['projects'])
+    end
+
+    def test_hide_hold_projects_in_public_mode
+      @site.config['public'] = true
+      @impl = JoinerImpl.new(@site)
+      @impl.join_project_data
+      assert_empty @site.data['projects']
+    end
+  end
+
   class RedactionTest < ::Minitest::Test
     def setup
       @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
