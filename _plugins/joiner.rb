@@ -343,11 +343,7 @@ module Hub
     # +published+:: array of snippets to publish
     def publish_snippet(snippet, published)
       ['last-week', 'this-week'].each do |field|
-        text = snippet[field]
-        if text == nil
-          snippet[field] = ''
-          next
-        end
+        text = snippet[field] || ''
         redact! text
         text.gsub!(/^\n\n+/m, '')
 
