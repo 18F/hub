@@ -499,6 +499,382 @@ module Hub
     end
   end
 
+  class RedactionTest < ::Minitest::Test
+    def setup
+      @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
+    end
+
+    def test_empty_string
+      text = ''
+      JoinerImpl.new(@site).redact! text
+      assert_empty text
+      @site.config['public'] = true
+      JoinerImpl.new(@site).redact! text
+      assert_empty text
+    end
+
+    def test_unredacted_string
+      text = 'Hello, World!'
+      JoinerImpl.new(@site).redact! text
+      assert_equal 'Hello, World!', text
+      @site.config['public'] = true
+      JoinerImpl.new(@site).redact! text
+      assert_equal 'Hello, World!', text
+    end
+
+    def test_redacted_string_private_mode
+      text = 'H{{ell}}o, Wor{{l}}d!'
+      JoinerImpl.new(@site).redact! text
+      assert_equal 'Hello, World!', text
+    end
+
+    def test_redacted_string_public_mode
+      text = 'H{{ell}}o, Wor{{l}}d!'
+      @site.config['public'] = true
+      JoinerImpl.new(@site).redact! text
+      assert_equal 'Ho, Word!', text
+    end
+
+    def test_multiline_redacted_string_private_mode
+      text = "He{{llo,\nWor}}ld!"
+      JoinerImpl.new(@site).redact! text
+      assert_equal "Hello,\nWorld!", text
+    end
+
+    def test_multiline_redacted_string_public_mode
+      text = "He{{llo,\nWor}}ld!"
+      @site.config['public'] = true
+      JoinerImpl.new(@site).redact! text
+      assert_equal "Held!", text
+    end
+  end
+
+  class PublishSnippetTest < ::Minitest::Test
+    def setup
+      @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
+      @impl = JoinerImpl.new(@site)
+    end
+
+    def make_snippet(last_week, this_week)
+      {'last-week' => last_week.join("\n"),
+       'this-week' => this_week.join("\n"),
+      }
+    end
+
+    def test_publish_nothing_if_snippet_hash_is_empty
+      snippet = {}
+      published = []
+      @impl.publish_snippet snippet, published
+      assert_empty published
+    end
+
+    def test_publish_nothing_if_snippet_fields_are_empty
+      published = []
+      @impl.publish_snippet make_snippet([], []), published
+      assert_empty published
+    end
+
+    def test_last_week
+      snippet = make_snippet ['- Did stuff'], []
+      published = []
+      @impl.publish_snippet snippet, published
+      assert_equal [snippet], published
+    end
+
+    def test_this_week
+      snippet = make_snippet [], ['- Will do stuff']
+      published = []
+      @impl.publish_snippet snippet, published
+      assert_equal [snippet], published
+    end
+
+    def test_last_week_and_this_week
+      snippet = make_snippet ['- Did stuff'], ['- Will do stuff']
+      published = []
+      @impl.publish_snippet snippet, published
+      assert_equal [snippet], published
+    end
+
+    def test_fix_item_markers_missing_spaces
+      snippet = make_snippet ['-Did stuff'], ['*Will do stuff']
+      published = []
+      @impl.publish_snippet snippet, published
+      assert_equal [snippet], published
+    end
+
+    def test_compress_newlines
+      snippet = make_snippet(
+        ['- Did stuff', '', '- Did more stuff', ''],
+        ['- Will do stuff', '', '- Will do more stuff', '']
+      )
+      published = []
+      expected = [make_snippet(
+        ['- Did stuff', '- Did more stuff'],
+        ['- Will do stuff', '- Will do more stuff']
+      )]
+      @impl.publish_snippet snippet, published
+      assert_equal expected, published
+    end
+
+    def test_add_item_markers_to_plaintext
+      snippet = make_snippet(
+        ['Did stuff', 'Did more stuff'],
+        ['Will do stuff', 'Will do more stuff']
+      )
+      published = []
+      expected = [make_snippet(
+        ['- Did stuff', '- Did more stuff'],
+        ['- Will do stuff', '- Will do more stuff']
+      )]
+      @impl.publish_snippet snippet, published
+      assert_equal expected, published
+    end
+
+    def test_convert_headline_markers
+      snippet = make_snippet(
+        ['# Hub', '- Did Hub stuff'],
+        ['# Hub', '- Will do more Hub stuff']
+      )
+      published = []
+      expected = [make_snippet(
+        ["#{JoinerImpl::HEADLINE} Hub", '- Did Hub stuff'],
+        ["#{JoinerImpl::HEADLINE} Hub", '- Will do more Hub stuff']
+      )]
+      @impl.publish_snippet snippet, published
+      assert_equal expected, published
+    end
+
+    def test_convert_jesse_style
+      snippet = make_snippet ['::: Jesse style :::', 'Jesse did stuff'], []
+      published = []
+      expected = [make_snippet(
+        ["#{JoinerImpl::HEADLINE} Jesse style", '- Jesse did stuff'], []
+      )]
+      @impl.publish_snippet snippet, published
+      assert_equal expected, published
+    end
+
+    def test_convert_elaine_style
+      snippet = make_snippet ['*** Elaine style', '-Elaine did stuff'], []
+      published = []
+      expected = [make_snippet(
+        ["#{JoinerImpl::HEADLINE} Elaine style", '- Elaine did stuff'], []
+      )]
+      @impl.publish_snippet snippet, published
+      assert_equal expected, published
+    end
+
+    def test_insert_headline_markers
+      snippet = make_snippet(
+        ['Hub', '- Did Hub stuff'],
+        ['Hub', '- Will do more Hub stuff']
+      )
+      published = []
+      expected = [make_snippet(
+        ["#{JoinerImpl::HEADLINE} Hub", '- Did Hub stuff'],
+        ["#{JoinerImpl::HEADLINE} Hub", '- Will do more Hub stuff']
+      )]
+      @impl.publish_snippet snippet, published
+      assert_equal expected, published
+    end
+
+    def test_redaction_in_private_mode
+      snippet = make_snippet(
+        ['# Hub',
+         '- Did{{ Hub}} stuff',
+         '',
+         '{{# Secret stuff',
+         '- Did some secret stuff}}',
+         '',
+         '# Snippets',
+         '{{- Did some redacted snippets}}',
+         '- Did my snippets',
+        ],
+        ['# Hub', '- Will do more{{ Hub}} stuff']
+      )
+      published = []
+      expected = [make_snippet(
+        ["#{JoinerImpl::HEADLINE} Hub",
+         '- Did Hub stuff',
+         "#{JoinerImpl::HEADLINE} Secret stuff",
+         '- Did some secret stuff',
+         "#{JoinerImpl::HEADLINE} Snippets",
+         '- Did some redacted snippets',
+         '- Did my snippets',
+         ],
+        ["#{JoinerImpl::HEADLINE} Hub", '- Will do more Hub stuff']
+      )]
+      @impl.publish_snippet snippet, published
+      assert_equal expected, published
+    end
+
+    def test_redaction_in_public_mode
+      snippet = make_snippet(
+        ['# Hub',
+         '- Did{{ Hub}} stuff',
+         '',
+         '{{# Secret stuff',
+         '- Did some secret stuff}}',
+         '',
+         '# Snippets',
+         '{{- Did some redacted snippets}}',
+         '- Did my snippets',
+        ],
+        ['# Hub', '- Will do more{{ Hub}} stuff']
+      )
+      published = []
+      expected = [make_snippet(
+        ["#{JoinerImpl::HEADLINE} Hub",
+         '- Did stuff',
+         "#{JoinerImpl::HEADLINE} Snippets",
+         '- Did my snippets',
+         ],
+        ["#{JoinerImpl::HEADLINE} Hub", '- Will do more stuff']
+      )]
+
+      @site.config['public'] = true
+      @impl = JoinerImpl.new(@site)
+      @impl.publish_snippet snippet, published
+      assert_equal expected, published
+    end
+  end
+
+  class JoinSnippetDataTest < ::Minitest::Test
+    def setup
+      @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
+      @site.data['private'] = {}
+      @site.data['private']['snippets'] = {'v1' => {}, 'v2' => {}, 'v3' => {}}
+      @site.data['private']['team'] = []
+      @impl = JoinerImpl.new(@site)
+      @expected = {}
+    end
+
+    def set_team(team_list)
+      @site.data['private']['team'] = team_list
+      @impl.create_team_by_email_index
+      @impl.join_private_data('team', 'name')
+      @impl.convert_to_hash('team', 'name')
+    end
+
+    def add_snippet(version, timestamp, name, full_name,
+      email, public_or_private, last_week, this_week, expected: true)
+      snippets = @site.data['private']['snippets'][version]
+      unless snippets.member? timestamp
+        snippets[timestamp] = []
+      end
+      collection = snippets[timestamp]
+
+      case version
+      when "v1"
+        collection << {
+          'Timestamp' => timestamp,
+          'Username' => email,
+          'Name' => full_name,
+          'Snippets' => last_week
+        }
+      when "v2"
+        unless ['Private', ''].include? public_or_private
+          raise Exception.new("Invalide public_or_private for v2: "+
+            "#{public_or_private}")
+        end
+        collection << {
+          'Timestamp' => timestamp,
+          'Public vs. Private' => public_or_private,
+          'Last Week' => last_week,
+          'This Week' => this_week,
+          'Username' => email,
+        }
+      when "v3"
+        unless ['Public', ''].include? public_or_private
+          raise Exception.new("Invalide public_or_private for v3: "+
+            "#{public_or_private}")
+        end
+        collection << {
+          'Timestamp' => timestamp,
+          'Public' => public_or_private,
+          'Username' => email,
+          'Last week' => last_week,
+          'This week' => this_week,
+        }
+      else
+        raise Exception.new "Unknown version: #{version}"
+      end
+
+      if expected
+        snippet = collection.last
+        s = {}
+        snippet.each {|k,v| s[Canonicalizer.canonicalize k] = v}
+        s['name'] = name
+        s['full_name'] = full_name
+        s['version'] = version
+        unless @expected.member? timestamp
+          @expected[timestamp] = []
+        end
+        @expected[timestamp] << s
+      end
+    end
+
+    def test_empty_snippet_data
+      set_team([])
+      @impl.join_snippet_data
+      assert_empty @site.data['snippets']
+      assert_nil @site.data['private']['snippets']
+    end
+
+    def test_publish_nothing_if_no_team
+      set_team([])
+      add_snippet('v1', '20141218', 'mbland', 'Mike Bland',
+        'michael.bland@gsa.gov', 'unused', '- Did stuff', 'unused',
+        expected:false)
+      add_snippet('v2', '20141225', 'mbland', 'Mike Bland',
+        'michael.bland@gsa.gov', '', '- Did stuff', '', expected:false)
+      add_snippet('v3', '20141231', 'mbland', 'Mike Bland',
+        'michael.bland@gsa.gov', 'Public', '- Did stuff', '', expected:false)
+      @impl.join_snippet_data
+      assert_empty @site.data['snippets']
+      assert_nil @site.data['private']['snippets']
+    end
+
+    def test_publish_all_snippets_internally
+      set_team([
+        {'name' => 'mbland', 'full_name' => 'Mike Bland',
+         'email' => 'michael.bland@gsa.gov'},
+      ])
+      add_snippet('v1', '20141218', 'mbland', 'Mike Bland',
+        'michael.bland@gsa.gov', 'unused', '- Did stuff', 'unused')
+      add_snippet('v2', '20141225', 'mbland', 'Mike Bland',
+        'michael.bland@gsa.gov', '', '- Did stuff', '')
+      add_snippet('v3', '20141231', 'mbland', 'Mike Bland',
+        'michael.bland@gsa.gov', 'Public', '- Did stuff', '')
+      @impl.join_snippet_data
+      assert_equal @expected, @site.data['snippets']
+      assert_nil @site.data['private']['snippets']
+    end
+
+    def test_publish_only_public_v3_snippets_in_public_mode
+      @site.config['public'] = true
+      @impl = JoinerImpl.new(@site)
+
+      set_team([
+        {'name' => 'mbland', 'full_name' => 'Mike Bland',
+         'email' => 'michael.bland@gsa.gov'},
+      ])
+      add_snippet('v1', '20141218', 'mbland', 'Mike Bland',
+        'michael.bland@gsa.gov', 'unused', '- Did stuff', 'unused',
+        expected:false)
+      add_snippet('v2', '20141225', 'mbland', 'Mike Bland',
+        'michael.bland@gsa.gov', '', '- Did stuff', '', expected:false)
+      add_snippet('v3', '20141231', 'mbland', 'Mike Bland',
+        'michael.bland@gsa.gov', 'Public', '- Did stuff', '')
+      add_snippet('v3', '20150107', 'mbland', 'Mike Bland',
+        'michael.bland@gsa.gov', '', '- Did stuff', '', expected:false)
+
+      @impl.join_snippet_data
+      assert_equal @expected, @site.data['snippets']
+      assert_nil @site.data['private']['snippets']
+    end
+  end
+
   class ImportGuestUsersTest < ::Minitest::Test
     def setup
       @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS

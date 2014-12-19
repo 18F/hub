@@ -304,7 +304,7 @@ module Hub
             s['full_name'] = member['full_name']
             s['version'] = version
             if version == 'v2'
-              publish_v2_snippet(s, published)
+              publish_snippet(s, published) unless @public_mode
             elsif version == 'v3'
               publish_v3_snippet(s, published)
             else
@@ -317,16 +317,6 @@ module Hub
 
       site.data['snippets'] = result
       site.data['private'].delete 'snippets'
-    end
-
-    # Parses and publishes a snippet in v2 format. Filters out private
-    # snippets and snippets rendered empty after redaction.
-    # +snippet+:: snippet hash in v2 format
-    # +published+:: array of snippets to publish
-    def publish_v2_snippet(snippet, published)
-      is_private = snippet['public-vs.-private'] == 'Private'
-      return if @public_mode and is_private
-      publish_snippet(snippet, published)
     end
 
     # Parses and publishes a snippet in v3 format. Filters out private
@@ -345,12 +335,11 @@ module Hub
 
     # Parses and publishes a snippet. Filters out snippets rendered empty
     # after redaction.
-    # +snippet+:: snippet hash
+    # +snippet+:: snippet hash with two fields: +last-week+ and +this-week+
     # +published+:: array of snippets to publish
     def publish_snippet(snippet, published)
       ['last-week', 'this-week'].each do |field|
-        text = snippet[field]
-        next if text == nil
+        text = snippet[field] || ''
         redact! text
         text.gsub!(/^\n\n+/m, '')
 
@@ -382,7 +371,7 @@ module Hub
         snippet[field] = parsed.join("\n")
       end
 
-      is_empty = snippet['last-week'].empty? and snippet['this-week'].empty?
+      is_empty = snippet['last-week'].empty? && snippet['this-week'].empty?
       published << snippet unless is_empty
     end
 
