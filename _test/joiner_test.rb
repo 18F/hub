@@ -511,8 +511,7 @@ module Hub
     def test_join_project
       @impl = JoinerImpl.new(@site)
       @impl.join_project_data
-      assert_equal(
-        [{'name' => 'MSB-USA', 'status' => 'Hold', 'dashboard' => true}],
+      assert_equal([{'name' => 'MSB-USA', 'status' => 'Hold'}],
         @site.data['projects'])
     end
 
