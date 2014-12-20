@@ -81,11 +81,10 @@ Host 18f-hub
 
 #### Remote: Node.js
 
-On Eric Mill's advice, for Ubuntu, download the latest Node binary and install
-it directly on the machine; don't use `apt-get`.
+On Eric Mill's advice, for Ubuntu, download the latest Node binary and install it directly on the machine; don't use `apt-get`. You can find the link to the latest version at https://nodejs.org/download/ (the latest was `v0.10.34` at the time of writing).
 ```
 $ ssh 18f-hub
-$ wget http://nodejs.org/dist/v1.10.34/node-v0.10.34-linux-x64.tar.gz
+$ wget http://nodejs.org/dist/v0.10.34/node-v0.10.34-linux-x64.tar.gz
 $ gzip -dc node-v0.10.34-linux-x64.tar.gz | tar xf -
 $ sudo cp node-v0.10.34-linux-x64/bin/node /usr/local/bin
 ```
