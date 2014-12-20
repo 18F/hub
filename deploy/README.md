@@ -130,10 +130,12 @@ $ rbenv global [VERSION]
 #### Remote: Initial cloning and build
 
 Before deploying, clone the repo on the remote host based on the appropriate branch, then perform the first build to ensure that everything is installed properly, including the [hookshot.js](hookshot.js) script.
+
+In the examples below, replace `[BRANCH]` with the name of the repository branch used to trigger the automated deployment.
 ```
 $ ssh 18f-hub
-$ git clone https://github.com/18F/hub.git --branch BRANCH hub-BRANCH
-$ cd $HOME/hub-BRANCH
+$ git clone https://github.com/18F/hub.git --branch [BRANCH] hub-[BRANCH]
+$ cd $HOME/hub-[BRANCH]
 $ if [ -a deploy/hookshot.js ]; then echo "OK"; else echo "missing"; fi
 OK
 
@@ -149,9 +151,9 @@ $ bundle exec jekyll b --config _config.yml,_config_public.yml
 
 In this directory (which contains [fabfile.py](fabfile.py)), you can manage the remote `hookshot` server using the `fab` command.
 ```
-$ fab start --set branch=BRANCH
-$ fab stop --set branch=BRANCH
-$ fab restart --set branch=BRANCH
+$ fab start --set branch=[BRANCH]
+$ fab stop --set branch=[BRANCH]
+$ fab restart --set branch=[BRANCH]
 ```
 
 #### Remote: Nginx
