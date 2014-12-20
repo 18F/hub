@@ -49,8 +49,8 @@ The automated deployment of the public Hub is accomplished by:
 
 - cloning the Hub's GitHub repository on the deployment host to track a specific deployment branch;
 - using `fabric` to launch a `hookshot` server on the deployment host, configured using [fabfile.py](fabfile.py);
-- configuring `nginx` with a reverse proxy block to forward requests to the local `hookshot` server; and
-- configuring the Webhook on GitHub to send a request to the deployment host wheever updates are pushed.
+- configuring `nginx` on the deployment host to reverse-proxy requests to the local `hookshot` server; and
+- configuring the Webhook on GitHub to send a request to the deployment host whenever updates are pushed.
 
 Provisioning the deployment environment still requires manual work at the moment. You need to set up `fabric` and `ssh` on your local machine; install `node`, `ruby` and several `npm` packages on the remote machine; and prepare a clone of the Hub repository on the remote machine.
 
