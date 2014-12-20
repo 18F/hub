@@ -161,3 +161,5 @@ $ fab restart --set branch=[BRANCH]
 The Hub-specific config, [/etc/nginx/vhosts/hub.conf](etc/nginx/vhosts/hub.conf), must contain a reverse-proxy block for forwarding GitHub Webhook requests to the `hookshot` server. The port of the `proxy_pass` directive must match the corresponding `port` property associated with the branch as configured in [fabfile.py](fabfile.py).
 
 #### GitHub: Configure Webhook
+
+[GitHub Webhooks](https://help.github.com/articles/about-webhooks/) are requests that are delivered by GitHub to a URL of your choosing based upon certain repository events. The [Webhooks level up](https://github.com/blog/1778-webhooks-level-up) blog post gives a good high-level introduction, with pictures. The [Webhooks API docs](https://developer.github.com/webhooks/) go into greater detail; note the **Creating webhooks** and **Configuring your server** sections in the section guide on the right of the page.
