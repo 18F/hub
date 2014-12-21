@@ -143,6 +143,27 @@ module Hub
     end
   end
 
+  class JoinDataTest < ::Minitest::Test
+    def setup
+      @site = DummyTestSite.new
+    end
+
+    def test_join_team_data_from_private_source
+      @site.data['team'] = [
+        {'name' => 'mbland', 'full_name' => 'Mike Bland'},
+      ]
+      @site.data['private']['team'] = [
+        {'name' => 'mbland', 'email' => 'michael.bland@gsa.gov'},
+      ]
+      impl = JoinerImpl.new(@site)
+      impl.join_data 'team', 'name'
+      assert_equal(
+        [{'name' => 'mbland', 'full_name' => 'Mike Bland',
+          'email' => 'michael.bland@gsa.gov'}],
+        @site.data['team'])
+    end
+  end
+
   class JoinProjectDataTest < ::Minitest::Test
     def setup
       @site = DummyTestSite.new
@@ -419,8 +440,8 @@ module Hub
     def set_team(team_list)
       @site.data['private']['team'] = team_list
       @impl.create_team_by_email_index
-      @impl.join_private_data('team', 'name')
-      @impl.convert_to_hash('team', 'name')
+      @impl.join_data 'team', 'name'
+      @impl.convert_to_hash 'team', 'name'
     end
 
     def add_snippet(version, timestamp, name, full_name,

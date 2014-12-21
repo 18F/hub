@@ -23,10 +23,10 @@ module Hub
       impl.join_team_data
       impl.join_project_data
 
-      impl.join_private_data('departments', 'name')
-      impl.join_private_data('email_groups', 'name')
-      impl.join_private_data('nav_links', 'name')
-      impl.join_private_data('working_groups', 'name')
+      impl.join_data 'departments', 'name'
+      impl.join_data 'email_groups', 'name'
+      impl.join_data 'nav_links', 'name'
+      impl.join_data 'working_groups', 'name'
 
       impl.join_snippet_data
       impl.join_project_status
@@ -57,14 +57,14 @@ module Hub
     # Joins public and private team data, filters out non-18F PIFs, and builds
     # the +team_by_email+ index used to join snippet data.
     def join_team_data
-      join_private_data('team', 'name')
-      convert_to_hash('team', 'name')
+      join_data 'team', 'name'
+      convert_to_hash 'team', 'name'
       assign_team_member_images
     end
 
     # Joins public and private project data.
     def join_project_data
-      join_private_data('projects', 'name')
+      join_data 'projects', 'name'
 
       if @public_mode
         @data['projects'].delete_if {|p| p['status'] == 'Hold'}
@@ -107,12 +107,12 @@ module Hub
       end
     end
 
-
-    # Joins data from +site.data[+'private'] into +site.data+.
-    # +category+:: key into +site.data[+'private'] specifying data collection
+    # Joins data from +site.data[@source]+ (where +@source+ is +'private'+ or
+    # +'public'+) into +site.data+, if it exists.
+    # +category+:: key into +site.data[source]+ specifying data collection
     # +key_field+:: if specified, primary key for Array of joined objects
-    def join_private_data(category, key_field)
-      HashJoiner.join_data category, key_field, @data, @data['private']
+    def join_data(category, key_field)
+      HashJoiner.join_data category, key_field, @data, @join_source
     end
 
     # Converts a list of hash objects within +site.data[+'category'] into a
