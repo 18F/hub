@@ -47,7 +47,7 @@ module Hub
 
   # Implements Joiner operations.
   class JoinerImpl
-    attr_reader :site, :data, :public_mode, :team_by_email
+    attr_reader :site, :data, :public_mode, :team_by_email, :source
 
     # +site+:: Jekyll site data object
     def initialize(site)
@@ -55,6 +55,8 @@ module Hub
       @data = site.data
       @public_mode = site.config['public']
       @team_by_email = {}
+      private_data = site.data['private'] || {}
+      @source = private_data.empty? ? 'public' : 'private'
     end
 
     # Joins public and private team data, filters out non-18F PIFs, and builds
@@ -80,7 +82,8 @@ module Hub
     # MUST be called before remove_data, or else private email addresses will
     # be inaccessible and snippets will not be joined.
     def create_team_by_email_index
-      team = @data['private']['team']
+      source = @data[@source] || {}
+      team = source['team'] || []
       team.each do |i|
         # A Hash containing only a 'private' property is a list of team
         # members whose information is completely private.
