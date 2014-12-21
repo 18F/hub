@@ -1,4 +1,5 @@
 require 'hash-joiner'
+require_relative 'canonicalizer'
 
 module Hub
 

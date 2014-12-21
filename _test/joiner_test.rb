@@ -1,5 +1,6 @@
 require_relative "../_plugins/joiner"
 require_relative "page"
+require_relative "site"
 
 require "jekyll"
 require "jekyll/site"
@@ -8,7 +9,7 @@ require "minitest/autorun"
 module Hub
   class CreateTeamByEmailIndexTest < ::Minitest::Test
     def setup
-      @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
+      @site = DummyTestSite.new
       @team = []
       @site.data['private'] = {'team' => @team}
       @impl = JoinerImpl.new(@site)
@@ -75,8 +76,8 @@ module Hub
 
   class JoinProjectDataTest < ::Minitest::Test
     def setup
-      @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
-      @site.data['private'] = {}
+      @site = DummyTestSite.new
+      @site.data['private']['team'] = {}
       @site.data['private']['projects'] = [
         {'name' => 'MSB-USA', 'status' => 'Hold'}
       ]
@@ -99,7 +100,7 @@ module Hub
 
   class RedactionTest < ::Minitest::Test
     def setup
-      @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
+      @site = DummyTestSite.new
     end
 
     def test_empty_string
@@ -149,7 +150,7 @@ module Hub
 
   class PublishSnippetTest < ::Minitest::Test
     def setup
-      @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
+      @site = DummyTestSite.new
       @impl = JoinerImpl.new(@site)
     end
 
@@ -339,8 +340,7 @@ module Hub
 
   class JoinSnippetDataTest < ::Minitest::Test
     def setup
-      @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
-      @site.data['private'] = {}
+      @site = DummyTestSite.new
       @site.data['private']['snippets'] = {'v1' => {}, 'v2' => {}, 'v3' => {}}
       @site.data['private']['team'] = []
       @impl = JoinerImpl.new(@site)
@@ -475,7 +475,8 @@ module Hub
 
   class ImportGuestUsersTest < ::Minitest::Test
     def setup
-      @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
+      @site = DummyTestSite.new
+      @site.data.delete 'private'
     end
 
     def test_no_private_data
@@ -483,7 +484,6 @@ module Hub
     end
 
     def test_no_hub_data
-      @site.data['private'] = {}
       assert_nil JoinerImpl.new(@site).import_guest_users
       assert_nil @site.data['guest_users']
     end
@@ -508,7 +508,7 @@ module Hub
 
   class FilterPrivatePagesTest < ::Minitest::Test
     def setup
-      @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
+      @site = DummyTestSite.new
       @all_page_names = []
       @public_page_names = []
     end
