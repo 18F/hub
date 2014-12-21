@@ -18,13 +18,7 @@ module Hub
     # +site+:: Jekyll site data object
     def self.join_data(site)
       impl = JoinerImpl.new site
-
-      private_data = site.data['private']
-      if impl.public_mode
-        HashJoiner.remove_data private_data, 'private'
-      else
-        HashJoiner.promote_data private_data, 'private'
-      end
+      impl.setup_join_source
 
       impl.join_team_data
       impl.join_project_data
@@ -56,6 +50,7 @@ module Hub
       @team_by_email = {}
       private_data = site.data['private'] || {}
       @source = private_data.empty? ? 'public' : 'private'
+      @join_source = site.data[@source]
       create_team_by_email_index
     end
 
@@ -99,6 +94,19 @@ module Hub
         end
       end
     end
+
+    # Prepares +site.data[@source]+ prior to joining its data with
+    # +site.data+. All data nested within +'private'+ attributes will be
+    # stripped when @public_mode is +true+, and will be promoted to the same
+    # level as its parent when @public_mode is +false+.
+    def setup_join_source
+      if @public_mode
+        HashJoiner.remove_data @join_source, 'private'
+      else
+        HashJoiner.promote_data @join_source, 'private'
+      end
+    end
+
 
     # Joins data from +site.data[+'private'] into +site.data+.
     # +category+:: key into +site.data[+'private'] specifying data collection
