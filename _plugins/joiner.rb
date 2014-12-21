@@ -18,7 +18,6 @@ module Hub
     # +site+:: Jekyll site data object
     def self.join_data(site)
       impl = JoinerImpl.new site
-      impl.create_team_by_email_index
 
       private_data = site.data['private']
       if impl.public_mode
@@ -57,6 +56,7 @@ module Hub
       @team_by_email = {}
       private_data = site.data['private'] || {}
       @source = private_data.empty? ? 'public' : 'private'
+      create_team_by_email_index
     end
 
     # Joins public and private team data, filters out non-18F PIFs, and builds

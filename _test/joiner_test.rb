@@ -30,26 +30,41 @@ module Hub
       @site = DummyTestSite.new
       @team = []
       @site.data['private'] = {'team' => @team}
-      @impl = JoinerImpl.new(@site)
+    end
+
+    def test_nonexistent_join_source
+      @site.data.delete 'private'
+      @site.data.delete 'public'
+      impl = JoinerImpl.new(@site)
+      assert_equal 'public', impl.source
+      assert_empty impl.team_by_email
+    end
+
+    def test_nonexistent_team
+      @site.data.delete 'private'
+      impl = JoinerImpl.new(@site)
+      assert_equal 'public', impl.source
+      assert_empty impl.team_by_email
     end
 
     def test_empty_team
-      @impl.create_team_by_email_index
-      assert_empty @impl.team_by_email
+      impl = JoinerImpl.new(@site)
+      assert_equal 'private', impl.source
+      assert_empty impl.team_by_email
     end
 
     def test_single_user_index
       @team << {'name' => 'mbland', 'email' => 'michael.bland@gsa.gov'}
-      @impl.create_team_by_email_index
-      assert_equal({'michael.bland@gsa.gov' => 'mbland'}, @impl.team_by_email)
+      impl = JoinerImpl.new(@site)
+      assert_equal({'michael.bland@gsa.gov' => 'mbland'}, impl.team_by_email)
     end
 
     def test_single_user_with_private_email_index
       @team << {
         'name' => 'mbland', 'private' => {'email' => 'michael.bland@gsa.gov'},
       }
-      @impl.create_team_by_email_index
-      assert_equal({'michael.bland@gsa.gov' => 'mbland'}, @impl.team_by_email)
+      impl = JoinerImpl.new(@site)
+      assert_equal({'michael.bland@gsa.gov' => 'mbland'}, impl.team_by_email)
     end
 
     def test_single_private_user_index
@@ -58,8 +73,8 @@ module Hub
           {'name' => 'mbland', 'email' => 'michael.bland@gsa.gov'},
         ],
       }
-      @impl.create_team_by_email_index
-      assert_equal({'michael.bland@gsa.gov' => 'mbland'}, @impl.team_by_email)
+      impl = JoinerImpl.new(@site)
+      assert_equal({'michael.bland@gsa.gov' => 'mbland'}, impl.team_by_email)
     end
 
     def test_multiple_user_index
@@ -78,8 +93,8 @@ module Hub
         'foo.bar@gsa.gov' => 'foobar',
         'baz.quux@gsa.gov' => 'bazquux',
       }
-      @impl.create_team_by_email_index
-      assert_equal expected, @impl.team_by_email
+      impl = JoinerImpl.new(@site)
+      assert_equal expected, impl.team_by_email
     end
 
     def test_ignore_users_without_email
@@ -87,8 +102,8 @@ module Hub
       @team << {'name' => 'foobar', 'private' => {}}
       @team << {'private' => [{'name' => 'bazquux'}]}
 
-      @impl.create_team_by_email_index
-      assert_empty @impl.team_by_email
+      impl = JoinerImpl.new(@site)
+      assert_empty impl.team_by_email
     end
   end
 
