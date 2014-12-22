@@ -18,6 +18,7 @@ GEM
     execjs (2.2.2)
     fast-stemmer (1.0.2)
     ffi (1.9.6)
+    hash-joiner (0.0.0)
     hitimes (1.2.2)
     jekyll (2.5.2)
       classifier-reborn (~> 2.0)
@@ -75,5 +76,6 @@ PLATFORMS
 DEPENDENCIES
   RedCloth
   bourbon
+  hash-joiner
   jekyll
   jekyll-sitemap
