@@ -4,10 +4,16 @@
   {% include head.html %}
 </head>
 <body itemscope itemtype="http://schema.org/WebPage">
-<section class="container bare">
+  <div class="hub-header">
+    <div class="stage-bug">
+      <span>This site is in alpha. <a href="https://18f.gsa.gov/dashboard/stages/">Learn more here.</a></span>
+    </div>
 {% unless site.public %}
-<!--# include virtual="{{ site.baseurl }}/auth/$http_x_forwarded_email/index.html" -->{% endunless %}
+    <!--# include virtual="{{ site.baseurl }}/auth/$http_x_forwarded_email/index.html" -->
+{% endunless %}
+  </div>
 
+<section class="container bare">
   <div class="bare-logo" role="banner" itemscope itemtype="http://schema.org/WPHeader">
     <a href="{{ site.baseurl }}/">
       <i class="icon-18f-logo"></i>

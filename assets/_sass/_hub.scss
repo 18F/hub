@@ -72,9 +72,14 @@
   margin-right: 5px;
 }
 
+.hub-header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+
 .auth-include {
   position: absolute;
-  top: 0;
   right: 0;
   margin-right: 10px;
   margin-top: 10px;
@@ -110,4 +115,15 @@ div.index-entry {
 div.edit-info {
   margin-top: 1em;
   margin-bottom: 1em;
+}
+
+.stage-bug {
+  width: 100%;
+	display: block;
+  background: #f3f3f3;
+  color: #333;
+  border: 1px solid #d9d9d9;
+  border-top: none;
+  text-align: center;
+  padding: .5em 0;
 }
