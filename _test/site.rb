@@ -1,5 +1,5 @@
 require "jekyll"
-require "jekyll/page"
+require "jekyll/site"
 
 module Hub
   class DummyTestSite < ::Jekyll::Site
