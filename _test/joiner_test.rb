@@ -1,36 +1,70 @@
 require_relative "../_plugins/joiner"
 require_relative "page"
+require_relative "site"
 
 require "jekyll"
 require "jekyll/site"
 require "minitest/autorun"
 
 module Hub
+  class SelectJoinSourceTest < ::Minitest::Test
+    def setup
+      @site = DummyTestSite.new
+    end
+
+    def test_select_private_source
+      @site.data['private'] = 'has private data'
+      impl = JoinerImpl.new @site
+      assert_equal 'private', impl.source
+    end
+
+    def test_select_public_source
+      @site.data.delete 'private'
+      impl = JoinerImpl.new @site
+      assert_equal 'public', impl.source
+    end
+  end
+
   class CreateTeamByEmailIndexTest < ::Minitest::Test
     def setup
-      @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
+      @site = DummyTestSite.new
       @team = []
       @site.data['private'] = {'team' => @team}
-      @impl = JoinerImpl.new(@site)
+    end
+
+    def test_nonexistent_join_source
+      @site.data.delete 'private'
+      @site.data.delete 'public'
+      impl = JoinerImpl.new(@site)
+      assert_equal 'public', impl.source
+      assert_empty impl.team_by_email
+    end
+
+    def test_nonexistent_team
+      @site.data.delete 'private'
+      impl = JoinerImpl.new(@site)
+      assert_equal 'public', impl.source
+      assert_empty impl.team_by_email
     end
 
     def test_empty_team
-      @impl.create_team_by_email_index
-      assert_empty @impl.team_by_email
+      impl = JoinerImpl.new(@site)
+      assert_equal 'private', impl.source
+      assert_empty impl.team_by_email
     end
 
     def test_single_user_index
       @team << {'name' => 'mbland', 'email' => 'michael.bland@gsa.gov'}
-      @impl.create_team_by_email_index
-      assert_equal({'michael.bland@gsa.gov' => 'mbland'}, @impl.team_by_email)
+      impl = JoinerImpl.new(@site)
+      assert_equal({'michael.bland@gsa.gov' => 'mbland'}, impl.team_by_email)
     end
 
     def test_single_user_with_private_email_index
       @team << {
         'name' => 'mbland', 'private' => {'email' => 'michael.bland@gsa.gov'},
       }
-      @impl.create_team_by_email_index
-      assert_equal({'michael.bland@gsa.gov' => 'mbland'}, @impl.team_by_email)
+      impl = JoinerImpl.new(@site)
+      assert_equal({'michael.bland@gsa.gov' => 'mbland'}, impl.team_by_email)
     end
 
     def test_single_private_user_index
@@ -39,8 +73,8 @@ module Hub
           {'name' => 'mbland', 'email' => 'michael.bland@gsa.gov'},
         ],
       }
-      @impl.create_team_by_email_index
-      assert_equal({'michael.bland@gsa.gov' => 'mbland'}, @impl.team_by_email)
+      impl = JoinerImpl.new(@site)
+      assert_equal({'michael.bland@gsa.gov' => 'mbland'}, impl.team_by_email)
     end
 
     def test_multiple_user_index
@@ -59,8 +93,8 @@ module Hub
         'foo.bar@gsa.gov' => 'foobar',
         'baz.quux@gsa.gov' => 'bazquux',
       }
-      @impl.create_team_by_email_index
-      assert_equal expected, @impl.team_by_email
+      impl = JoinerImpl.new(@site)
+      assert_equal expected, impl.team_by_email
     end
 
     def test_ignore_users_without_email
@@ -68,15 +102,72 @@ module Hub
       @team << {'name' => 'foobar', 'private' => {}}
       @team << {'private' => [{'name' => 'bazquux'}]}
 
-      @impl.create_team_by_email_index
-      assert_empty @impl.team_by_email
+      impl = JoinerImpl.new(@site)
+      assert_empty impl.team_by_email
+    end
+  end
+
+  class SetupJoinSourceTest < ::Minitest::Test
+    def setup
+      @site = DummyTestSite.new
+      @site.data['private']['team'] = [
+        {'name' => 'mbland', 'full_name' => 'Mike Bland',
+         'private' => {'email' => 'michael.bland@gsa.gov'}
+        },
+        {'private' => [
+          {'name' => 'foobar', 'full_name' => 'Foo Bar'},
+          ],
+        },
+      ]
+    end
+
+    def test_remove_private_data
+      @site.config['public'] = true
+      impl = JoinerImpl.new(@site)
+      impl.setup_join_source
+      assert_equal(
+        [{'name' => 'mbland', 'full_name' => 'Mike Bland'}],
+        @site.data['private']['team'])
+    end
+
+    def test_promote_private_data
+      impl = JoinerImpl.new(@site)
+      impl.setup_join_source
+      assert_equal(
+        [{'name' => 'mbland', 'full_name' => 'Mike Bland',
+          'email' => 'michael.bland@gsa.gov',
+         },
+         {'name' => 'foobar', 'full_name' => 'Foo Bar'},
+        ],
+        @site.data['private']['team'])
+    end
+  end
+
+  class JoinDataTest < ::Minitest::Test
+    def setup
+      @site = DummyTestSite.new
+    end
+
+    def test_join_team_data_from_private_source
+      @site.data['team'] = [
+        {'name' => 'mbland', 'full_name' => 'Mike Bland'},
+      ]
+      @site.data['private']['team'] = [
+        {'name' => 'mbland', 'email' => 'michael.bland@gsa.gov'},
+      ]
+      impl = JoinerImpl.new(@site)
+      impl.join_data 'team', 'name'
+      assert_equal(
+        [{'name' => 'mbland', 'full_name' => 'Mike Bland',
+          'email' => 'michael.bland@gsa.gov'}],
+        @site.data['team'])
     end
   end
 
   class JoinProjectDataTest < ::Minitest::Test
     def setup
-      @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
-      @site.data['private'] = {}
+      @site = DummyTestSite.new
+      @site.data['private']['team'] = {}
       @site.data['private']['projects'] = [
         {'name' => 'MSB-USA', 'status' => 'Hold'}
       ]
@@ -99,7 +190,7 @@ module Hub
 
   class RedactionTest < ::Minitest::Test
     def setup
-      @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
+      @site = DummyTestSite.new
     end
 
     def test_empty_string
@@ -149,7 +240,7 @@ module Hub
 
   class PublishSnippetTest < ::Minitest::Test
     def setup
-      @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
+      @site = DummyTestSite.new
       @impl = JoinerImpl.new(@site)
     end
 
@@ -339,8 +430,7 @@ module Hub
 
   class JoinSnippetDataTest < ::Minitest::Test
     def setup
-      @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
-      @site.data['private'] = {}
+      @site = DummyTestSite.new
       @site.data['private']['snippets'] = {'v1' => {}, 'v2' => {}, 'v3' => {}}
       @site.data['private']['team'] = []
       @impl = JoinerImpl.new(@site)
@@ -350,8 +440,8 @@ module Hub
     def set_team(team_list)
       @site.data['private']['team'] = team_list
       @impl.create_team_by_email_index
-      @impl.join_private_data('team', 'name')
-      @impl.convert_to_hash('team', 'name')
+      @impl.join_data 'team', 'name'
+      @impl.convert_to_hash 'team', 'name'
     end
 
     def add_snippet(version, timestamp, name, full_name,
@@ -475,7 +565,8 @@ module Hub
 
   class ImportGuestUsersTest < ::Minitest::Test
     def setup
-      @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
+      @site = DummyTestSite.new
+      @site.data.delete 'private'
     end
 
     def test_no_private_data
@@ -483,7 +574,6 @@ module Hub
     end
 
     def test_no_hub_data
-      @site.data['private'] = {}
       assert_nil JoinerImpl.new(@site).import_guest_users
       assert_nil @site.data['guest_users']
     end
@@ -508,7 +598,7 @@ module Hub
 
   class FilterPrivatePagesTest < ::Minitest::Test
     def setup
-      @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
+      @site = DummyTestSite.new
       @all_page_names = []
       @public_page_names = []
     end

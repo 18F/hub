@@ -1,4 +1,5 @@
 require 'hash-joiner'
+require_relative 'canonicalizer'
 
 module Hub
 
@@ -17,22 +18,15 @@ module Hub
     # +site+:: Jekyll site data object
     def self.join_data(site)
       impl = JoinerImpl.new site
-      impl.create_team_by_email_index
-
-      private_data = site.data['private']
-      if impl.public_mode
-        HashJoiner.remove_data private_data, 'private'
-      else
-        HashJoiner.promote_data private_data, 'private'
-      end
+      impl.setup_join_source
 
       impl.join_team_data
       impl.join_project_data
 
-      impl.join_private_data('departments', 'name')
-      impl.join_private_data('email_groups', 'name')
-      impl.join_private_data('nav_links', 'name')
-      impl.join_private_data('working_groups', 'name')
+      impl.join_data 'departments', 'name'
+      impl.join_data 'email_groups', 'name'
+      impl.join_data 'nav_links', 'name'
+      impl.join_data 'working_groups', 'name'
 
       impl.join_snippet_data
       impl.join_project_status
@@ -46,7 +40,7 @@ module Hub
 
   # Implements Joiner operations.
   class JoinerImpl
-    attr_reader :site, :data, :public_mode, :team_by_email
+    attr_reader :site, :data, :public_mode, :team_by_email, :source
 
     # +site+:: Jekyll site data object
     def initialize(site)
@@ -54,19 +48,23 @@ module Hub
       @data = site.data
       @public_mode = site.config['public']
       @team_by_email = {}
+      private_data = site.data['private'] || {}
+      @source = private_data.empty? ? 'public' : 'private'
+      @join_source = site.data[@source]
+      create_team_by_email_index
     end
 
     # Joins public and private team data, filters out non-18F PIFs, and builds
     # the +team_by_email+ index used to join snippet data.
     def join_team_data
-      join_private_data('team', 'name')
-      convert_to_hash('team', 'name')
+      join_data 'team', 'name'
+      convert_to_hash 'team', 'name'
       assign_team_member_images
     end
 
     # Joins public and private project data.
     def join_project_data
-      join_private_data('projects', 'name')
+      join_data 'projects', 'name'
 
       if @public_mode
         @data['projects'].delete_if {|p| p['status'] == 'Hold'}
@@ -79,7 +77,8 @@ module Hub
     # MUST be called before remove_data, or else private email addresses will
     # be inaccessible and snippets will not be joined.
     def create_team_by_email_index
-      team = @data['private']['team']
+      source = @data[@source] || {}
+      team = source['team'] || []
       team.each do |i|
         # A Hash containing only a 'private' property is a list of team
         # members whose information is completely private.
@@ -96,11 +95,24 @@ module Hub
       end
     end
 
-    # Joins data from +site.data[+'private'] into +site.data+.
-    # +category+:: key into +site.data[+'private'] specifying data collection
+    # Prepares +site.data[@source]+ prior to joining its data with
+    # +site.data+. All data nested within +'private'+ attributes will be
+    # stripped when @public_mode is +true+, and will be promoted to the same
+    # level as its parent when @public_mode is +false+.
+    def setup_join_source
+      if @public_mode
+        HashJoiner.remove_data @join_source, 'private'
+      else
+        HashJoiner.promote_data @join_source, 'private'
+      end
+    end
+
+    # Joins data from +site.data[@source]+ (where +@source+ is +'private'+ or
+    # +'public'+) into +site.data+, if it exists.
+    # +category+:: key into +site.data[source]+ specifying data collection
     # +key_field+:: if specified, primary key for Array of joined objects
-    def join_private_data(category, key_field)
-      HashJoiner.join_data category, key_field, @data, @data['private']
+    def join_data(category, key_field)
+      HashJoiner.join_data category, key_field, @data, @join_source
     end
 
     # Converts a list of hash objects within +site.data[+'category'] into a
