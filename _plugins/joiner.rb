@@ -159,7 +159,8 @@ module Hub
           all_snippets.each do |snippet|
             s = {}
             snippet.each {|k,v| s[Canonicalizer.canonicalize k] = v}
-            member = team[@team_by_email[s['username']]]
+            username = s['username']
+            member = team[username] || team[@team_by_email[username]]
             next unless member
 
             s['name'] = member['name']

@@ -137,5 +137,25 @@ module Hub
       assert_equal @expected, @site.data['snippets']
       assert_nil @site.data['private']['snippets']
     end
+
+    # This tests the case where we're publishing snippets imported into
+    # _data/public using _data/import-public.rb. That script will substitute
+    # the original snippets' email usernames with the corresponding Hub
+    # username.
+    def test_publish_v3_snippets_with_hub_username_instead_of_email_address
+      @site.config['public'] = true
+      @impl = JoinerImpl.new(@site)
+
+      set_team([
+        {'name' => 'mbland', 'full_name' => 'Mike Bland',
+         'email' => 'michael.bland@gsa.gov'},
+      ])
+      add_snippet('v3', '20141231', 'mbland', 'Mike Bland', 'mbland',
+        'Public', '- Did stuff', '')
+
+      @impl.join_snippet_data
+      assert_equal @expected, @site.data['snippets']
+      assert_nil @site.data['private']['snippets']
+    end
   end
 end
