@@ -104,7 +104,7 @@ module Hub
       endpoint_info = []
       ['Languages', 'Technologies', 'Specialties'].each do |category|
         category_index = site.data['skills'][category]
-        next if category_index.empty?
+        next if category_index.nil? || category_index.empty?
         skills = {}
         category_index.each do |skill, members|
           skills[skill] = members.map {|i| i['name']}
