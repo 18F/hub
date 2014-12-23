@@ -27,7 +27,9 @@ module Hub
       private_root = File.join(site.source, site.config['private_data_path'])
       img_dir = site.config['team_img_dir']
 
-      d = Dir.open(File.join(private_root, img_dir))
+      source_dir = File.join(private_root, img_dir)
+      return unless Dir.exists? source_dir
+      d = Dir.open(source_dir)
       d.each do |filename|
         next if ['.', '..'].include? filename
         site.static_files << ::Jekyll::StaticFile.new(

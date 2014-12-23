@@ -153,7 +153,7 @@ module Hub
       team = @data['team']
       result = {}
 
-      @data['private']['snippets'].each do |version, collection|
+      @data[@source]['snippets'].each do |version, collection|
         collection.each do |timestamp, all_snippets|
           published = []
           all_snippets.each do |snippet|
@@ -179,7 +179,7 @@ module Hub
       end
 
       site.data['snippets'] = result
-      site.data['private'].delete 'snippets'
+      site.data[@source].delete 'snippets'
     end
 
     # Parses and publishes a snippet in v3 format. Filters out private
@@ -253,18 +253,18 @@ module Hub
     # Joins project status information into +site.data[+'project_status'].
     def join_project_status
       unless @public_mode
-        @data['project_status'] = @data['private']['project_status']
+        @data['project_status'] = @data[@source]['project_status']
       end
-      @data['private'].delete 'project_status'
+      @data[@source].delete 'project_status'
     end
 
     # Imports the guest_users list into the top-level site.data object.
     def import_guest_users
-      private_data = site.data['private'] || {}
+      private_data = site.data[@source] || {}
       hub_data = private_data['hub'] || {}
       if hub_data.member? 'guest_users'
-        site.data['guest_users'] = site.data['private']['hub']['guest_users']
-        site.data['private']['hub'].delete 'guest_users'
+        site.data['guest_users'] = site.data[@source]['hub']['guest_users']
+        site.data[@source]['hub'].delete 'guest_users'
       end
     end
 
