@@ -1,0 +1,38 @@
+---
+- name: Documentation
+  leads:
+  - mbland
+  members:
+  - mbland
+  - jamie
+  - blacktm
+  - ori
+  - marco
+  - afeld
+  - brethauer
+  - michelle
+  - robert
+- name: Diversity
+- name: Dev Community
+- name: Events
+- name: Hiring
+  leads:
+  - jtag
+  - jamie
+  members:
+  - yuda
+  - josh
+  - robert
+  - kaitlin
+- name: Onboarding
+- name: Government user interface guidelines
+  members:
+  - erica
+  - jen
+  - jtag
+  - manger
+  - marco
+  - micahsaul
+  - mhz
+  - shawn
+  - yuda
