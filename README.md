@@ -14,22 +14,27 @@ The primary maintainer (for now) is @mbland. The goal is to eventually hand owne
 
 You will need Ruby ( > version 2.0 is a good idea). You may also consider using a Ruby version manager such as [rbenv](https://github.com/sstephenson/rbenv) to help ensure that Ruby version upgrades don't mean all your gems will need to be rebuilt.
 
+To run your own local instance within a minute or two:
+
 ```
 $ git clone git@github.com:18F/hub.git
 $ cd hub
-
-# Initialize the _data/public and _data/private submodules
-$ git submodule init
-$ git submodule update --remote
-
-# If bundler isn't yet installed
 $ gem install bundler
-
 $ bundle
 $ bundle exec jekyll serve
 ```
 
-By default this will build the site in "private mode", whereby information from [_data/private](_data/private) is incorporated. To build in "public mode" so that this information doesn't appear:
+#### Instructions for 18F team members
+
+18F team members will also want to initialize the [18F/data-private](https://github.com/18F/data-private) and [18F/hub-pages-private](https://github.com/18F/hub-pages-private) submodule after cloning:
+
+```
+# Initialize the _data/private and pages/private submodules
+$ git submodule init
+$ git submodule update --remote
+```
+
+By default, `bundle exec jekyll serve` will build the site in "private mode", whereby information from [_data/private](_data/private) is incorporated if it is available. Not all data in `_data/private` is actually private, but data that should not be shared outside the team is marked by nesting it within `private:` attributes. To build in "public mode" so that information marked as private doesn't appear in the generated site:
 
 ```
 $ bundle exec jekyll serve --config _config.yml,_config_public.yml
