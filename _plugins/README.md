@@ -59,7 +59,3 @@ The remaining plugins use the joined, canonicalized, cross-linked data to genera
 ### Filters
 
 [filters.rb](filters.rb) contains Hub-specific Liquid template filters used in page templates.
-
-### News index generation
-
-[news_index.rb](news_index.rb) generates archive listings for items in the [_posts](../_posts) directory. _TODO(mbland): Still a work-in-progress._
