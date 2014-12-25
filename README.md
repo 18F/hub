@@ -1,20 +1,18 @@
 ## 18F Hub
 
-The Hub is a Jekyll-based website that helps 18F organize its internal information and explore the connections between team members, projects, and skill sets. It takes less than a minute to set up a hands-on demo, which we hope will inspire other teams to develop their own Hubs, publish snippets, and organize working groups.
+[The 18F Hub](https://18f.gsa.gov/hub) is a [Jekyll](http://jekyllrb.com/)-based documentation platform that aims to help [18F](https://github.com/18F) and other development teams organize and easily share their information, and to enable easy exploration of the connections between team members, projects, and skill sets. It aims to serve as the go-to place for all of a team's working information, whether that information is integrated into the Hub directly or provided as links to other sources. It also serves as a lightweight tool that other teams can experiment with and deploy with a minimum of setup.
 
-The Hub serves as the go-to place for all team-internal information, whether that information is integrated into the Hub directly or provided as links to Google Drive documents, Google Sites, GitHub READMEs and microsites, Slack conversations, etc.
+See the [18F blog post announcing the Hub](https://18f.gsa.gov/2014/12/23/hub/) for more details about the vision behind the Hub and the goals it aims to achieve.
 
-* Main internal Hub: https://hub.18f.us/
-* Public Hub staging area: https://hub.18f.us/hub/ 
-* Main Git repository: https://github.com/18F/hub
-
-The primary maintainer (for now) is @mbland. The goal is to eventually hand ownership over to the Documentation Working Group as a whole.
+The main Git repository is https://github.com/18F/hub and the primary maintainer (for now) is [@mbland](https://github.com/mbland). The goal is to eventually hand ownership over to the [Documentation Working Group](https://18f.gsa.gov/hub/wg/documentation), or to the 18F team as a whole.
 
 ### Generating the site/hosting locally
 
-You will need Ruby ( > version 2.0 is a good idea). You may also consider using a Ruby version manager such as [rbenv](https://github.com/sstephenson/rbenv) to help ensure that Ruby version upgrades don't mean all your gems will need to be rebuilt.
+It takes less than a minute to set up a hands-on demo, which we hope will inspire other teams to develop their own Hubs, publish [snippets](https://18f.gsa.gov/2014/12/17/snippets/), and organize working groups/guilds/grouplets.
 
-To run your own local instance within a minute or two:
+You will need [Ruby](https://www.ruby-lang.org) ( > version 2.0 is a good idea). You may also consider using a Ruby version manager such as [rbenv](https://github.com/sstephenson/rbenv) to help ensure that Ruby version upgrades don't mean all your [gems](https://rubygems.org/) will need to be rebuilt.
+
+To run your own local instance:
 
 ```
 $ git clone git@github.com:18F/hub.git
@@ -24,9 +22,11 @@ $ bundle
 $ bundle exec jekyll serve
 ```
 
-#### Instructions for 18F team members
+### Instructions for 18F team members
 
-18F team members will also want to initialize the [18F/data-private](https://github.com/18F/data-private) and [18F/hub-pages-private](https://github.com/18F/hub-pages-private) submodule after cloning:
+The internal 18F Hub is hosted at https://hub.18f.us/ and the public Hub staging area is hosted at https://hub.18f.us/hub.
+
+18F team members will want to initialize the [18F/data-private](https://github.com/18F/data-private) and [18F/hub-pages-private](https://github.com/18F/hub-pages-private) submodules after cloning:
 
 ```
 # Initialize the _data/private and pages/private submodules
@@ -34,11 +34,13 @@ $ git submodule init
 $ git submodule update --remote
 ```
 
-By default, `bundle exec jekyll serve` will build the site in "private mode", whereby information from [_data/private](_data/private) is incorporated if it is available. Not all data in `_data/private` is actually private, but data that should not be shared outside the team is marked by nesting it within `private:` attributes. To build in "public mode" so that information marked as private doesn't appear in the generated site:
+By default, `bundle exec jekyll serve` will build the site with data from [_data/private](_data/private) if it is available. Not all data in `_data/private` is actually private, but data that should not be shared outside the team is marked by nesting it within `private:` attributes. To build in "public mode" so that information marked as private doesn't appear in the generated site:
 
 ```
 $ bundle exec jekyll serve --config _config.yml,_config_public.yml
 ```
+
+See the [Data README](_data/README.md) for instructions on how to import data into [_data/public](_data/public) for deployment to the Public Hub.
 
 ### Documentation
 
@@ -49,7 +51,7 @@ In addition to this README, there is also:
 
 ### Contributing
 
-Just fork [18F/hub](https://github.com/18F/hub) and start sending pull requests! Feel free to ping @mbland with any questions you may have, especially if the current documentation should've addressed your needs, but didn't.
+Just fork [18F/hub](https://github.com/18F/hub) and start sending pull requests! Feel free to ping [@mbland](https://github.com/mbland) with any questions you may have, especially if the current documentation should've addressed your needs, but didn't.
 
 ### Public domain
 

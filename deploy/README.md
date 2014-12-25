@@ -2,15 +2,19 @@
 
 ### publish.sh
 
-Not much to see here; after regenerating the site with Jekyll, [publish.sh](publish.sh) just `rsync`s it to `hub.18f.us`. Ask Mike Bland to help add your public key to `authorized_keys`.
+Not much to see here; after regenerating the site with Jekyll, [publish.sh](publish.sh) just `rsync`s it to `hub.18f.us`. [publish-prod.sh](publish-prod.sh) does the same thing for the Public Hub. Ask Mike Bland or Eric Mill to help add your public key to `authorized_keys`.
+
+**NOTE:** _Once automated deployments are configured, these scripts will likely be deleted, or possibly replaced with a script enabling one to run a local development instance._
 
 ### AWS
 
 https://hub.18f.us/ is running as an AWS EC2 instance named `18f-hub` based on 18F's `m3.medium` image. The AWS Elastic IP of the instance is assigned to the `hub.18f.us` subdomain via the AWS Route 53 panel. The associated AWS Security Group restricts access to the SSH, HTTP, and HTTPS ports (22, 80, and 443), but those ports are reachable from any source IP address.
 
+The Public Hub is served directly from https://18f.gsa.gov/.
+
 ### Nginx
 
-[/etc/nginx/nginx.conf](etc/nginx/nginx.conf) is the stock 18F nginx config that comes with the image, modified to include the Hub-specific config, [/etc/nginx/vhosts/hub.conf](etc/nginx/vhosts/hub.conf), further described in the Google Auth Proxy section below:
+For the internal Hub, [/etc/nginx/nginx.conf](etc/nginx/nginx.conf) is the stock 18F nginx config that comes with the image, modified to include the Hub-specific config, [/etc/nginx/vhosts/hub.conf](etc/nginx/vhosts/hub.conf), further described in the Google Auth Proxy section below:
 
 ```
   ##
@@ -21,31 +25,39 @@ https://hub.18f.us/ is running as an AWS EC2 instance named `18f-hub` based on 1
   include /etc/nginx/vhosts/hub.conf;
 ```
 
+For the public Hub, see the `location /hub` block within the [18f.gsa.gov 18f-site.conf Nginx config file](https://github.com/18F/18f.gsa.gov/blob/staging/deploy/18f-site.conf).
+
 ### SSL
 
-[/etc/nginx/vhosts/hub.conf](etc/nginx/vhosts/hub.conf) is configured to use SSL as per the [18F baseline nginx TLS config](https://github.com/18F/tls-standards/tree/master/configuration/nginx). Contact Eric Mill for access to the private key.
+For the internal hub, [/etc/nginx/vhosts/hub.conf](etc/nginx/vhosts/hub.conf) is configured to use SSL as per the [18F baseline nginx TLS config](https://github.com/18F/tls-standards/tree/master/configuration/nginx). Contact Eric Mill for access to the private key.
+
+The public Hub is served by the same web server as https://18f.gsa.gov and doesn't require its own configuration.
 
 ### Google Auth Proxy
 
+_This pertains to the internal Hub only._
+
 The [etc](etc) and [usr](usr) subdirectory trees contain the files needed to configure Nginx and the [Google Auth Proxy](https://github.com/bitly/google_auth_proxy) in concert to ensure only 18F team members can access the Hub. The current version of `google_auth_proxy` running on `hub.18f.us` is 1.0; the latest version can be downloaded from: https://github.com/bitly/google_auth_proxy/releases and unpacked on the Hub machine as `/usr/local/18f/bin/google_auth_proxy`.
 
-[/etc/init.d/google_auth_proxy](etc/init.d/google_auth_proxy): Enables the `google_auth_proxy` service to be started and stopped like any other standard service, via `sudo service google_auth_proxy [start|stop|restart]`.
+* [/etc/init.d/google_auth_proxy](etc/init.d/google_auth_proxy): Enables the `google_auth_proxy` service to be started and stopped like any other standard service, via `sudo service google_auth_proxy [start|stop|restart]`.
 
-[/etc/nginx/vhosts/hub.conf](etc/nginx/vhosts/hub.conf): All `http://` requests are permanently redirected (301) to the `https://` equivalent by the first `server` block. The second `server` block, listening for `https://` requests, is configured to forward all requests (except for the logo used for the Google OAuth consent screen) to the `google_auth_proxy` service. The content of the site is ultimately served by the final `server` block, accessible only by the running `google_auth_proxy` instance on the localhost, given the AWS Security Group port restrictions.
+* [/etc/nginx/vhosts/hub.conf](etc/nginx/vhosts/hub.conf): All `http://` requests are permanently redirected (301) to the `https://` equivalent by the first `server` block. The second `server` block, listening for `https://` requests, is configured to forward all requests (except for the logo used for the Google OAuth consent screen) to the `google_auth_proxy` service. The content of the site is ultimately served by the final `server` block, accessible only by the running `google_auth_proxy` instance on the localhost, given the AWS Security Group port restrictions.
 
-*Notice the `port_in_redirect off;` line in the third `server` block:* Without this line, permanent redirects from directory URLs _without_ a trailing slash to directory URLs _with_ a trailing slash will include the local server's port, which will cause the redirect to fail.
+  *Notice the `port_in_redirect off;` line in the third `server` block:* Without this line, permanent redirects from directory URLs _without_ a trailing slash to directory URLs _with_ a trailing slash will include the local server's port, which will cause the redirect to fail.
 
-[/usr/local/18f/bin/google_auth_proxy.sh](usr/local/18f/bin/google_auth_proxy.sh): A shim that allows the `google_auth_proxy` logs to be captured in `/var/log/google_auth_proxy/access.log`.
+* [/usr/local/18f/bin/google_auth_proxy.sh](usr/local/18f/bin/google_auth_proxy.sh): A shim that allows the `google_auth_proxy` logs to be captured in `/var/log/google_auth_proxy/access.log`.
 
-[/usr/local/18f/etc/google_auth_proxy.cfg](usr/local/18f/etc/google_auth_proxy.cfg): The configuration file for the `google_auth_proxy`, specified as a command line flag by [/etc/init.d/google_auth_proxy](etc/init.d/google_auth_proxy). The `client_id` and `client_secret` fields have been redacted from the repository. Currently they come from Mike Bland's personal account, since https://console.developers.google.com/ is currently disabled for the gsa.gov domain. A dedicated, shared `18f-hub-admin@gsa.gov` account would be ideal. For progress on this front, see 18F DevOps issues [60](https://github.com/18F/DevOps/issues/60) and [79](https://github.com/18F/DevOps/issues/79).
+* [/usr/local/18f/etc/google_auth_proxy.cfg](usr/local/18f/etc/google_auth_proxy.cfg): The configuration file for the `google_auth_proxy`, specified as a command line flag by [/etc/init.d/google_auth_proxy](etc/init.d/google_auth_proxy). The `client_id` and `client_secret` fields have been redacted from the repository. Currently they come from Mike Bland's personal account, since https://console.developers.google.com/ is currently disabled for the gsa.gov domain. A dedicated, shared `18f-hub-admin@gsa.gov` account would be ideal. For progress on this front, see 18F DevOps issues [60](https://github.com/18F/DevOps/issues/60) and [79](https://github.com/18F/DevOps/issues/79).
 
-*Notice the `authenticated_emails_file` setting, and that `google_apps_domains` has been commented out.* Access is granted to the union of these two sets, i.e. to everyone in the `authenticated_emails_file` _or_ in the `google_apps_domains`.
+  *Notice the `authenticated_emails_file` setting, and that `google_apps_domains` has been commented out.* Access is granted to the union of these two sets, i.e. to everyone in the `authenticated_emails_file` _or_ in the `google_apps_domains`.
 
-The `authenticated_emails_file` is the list of Google Apps-authenticated users authorized to access the hub. It is currently generated by the [auth.rb](../_plugins/auth.rb) plugin. Whenever team member email address information is updated in [_data/private/team.yml](../_data/private/team.yml), a new version of this file will be generated, and the `google_auth_proxy` will need to be restarted via: `sudo service google_auth_proxy`.
+* The `authenticated_emails_file` is the list of Google Apps-authenticated users authorized to access the hub. It is currently generated by the [auth.rb](../_plugins/auth.rb) plugin. Whenever team member email address information is updated in [_data/private/team.yml](../_data/private/team.yml), a new version of this file will be generated, and the `google_auth_proxy` will need to be restarted via: `sudo service google_auth_proxy`.
 
 ### Preparing for automated deployment
 
-The automated deployment of the public Hub is accomplished by:
+**NOTE:** _Automated deployment is not yet completely in-place for either the internal or public Hubs, but will be very soon._
+
+The automated deployment of the Hub is accomplished by:
 
 - cloning the Hub's GitHub repository on the deployment host to track a specific deployment branch;
 - using `fabric` to launch a `hookshot` server on the deployment host, configured using [fabfile.py](fabfile.py);
