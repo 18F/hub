@@ -42,6 +42,12 @@ $ bundle exec jekyll serve --config _config.yml,_config_public.yml
 
 See the [Data README](_data/README.md) for instructions on how to import data into [_data/public](_data/public) for deployment to the Public Hub.
 
+#### Advanced Local Dev Environment
+
+If you have [Vagrant](https://www.vagrantup.com/) and [Ansible](http://www.ansible.com/home) installed, you can launch a local development server running [Nginx](http://nginx.org/) by running `vagrant up`. The server will be accessible at `localhost:8080` for the internal version, and `localhost:8080/hub` for the public version.
+
+For the internal version of the site, the dev server will default to setting the Nginx `$authenticated_user` variable (used by [_layouts/bare.html](_layouts/bare.html)) to the `authenticated_user` value in [deploy/ansible/playbook.yml](deploy/ansible/playbook.yml). You can also change this for a single page by adding `?user=[AUTHENTICATED_USER]` to the URL.
+
 ### Documentation
 
 In addition to this README, there is also:
