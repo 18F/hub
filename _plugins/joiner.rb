@@ -148,38 +148,67 @@ module Hub
     end
 
     # Joins snippet data into +site.data[+'snippets'] and filters out snippets
-    # from team members not appearing in +team_by_email+.
+    # from team members not appearing in +site.data[+'team'] or
+    # +team_by_email+.
+    #
+    # Snippet data is expected to be stored in files matching the pattern:
+    # +_data/+@source/snippets/[version]/[YYYYMMDD].csv
+    #
+    # resulting in the initial structure:
+    # +site.data[@source][snippets][version][YYYYMMDD] = Array<Hash>
+    #
+    # After this function returns, the new structure will be:
+    # +site.data[snippets][YYYYMMDD] = Array<Hash>
+    #
+    # and +'version'+ is a property of each +Hash+ in the +Array<Hash>+
+    # containing snippet data.
     def join_snippet_data
-      team = @data['team']
       result = {}
+      team = @data['team']
 
       @data[@source]['snippets'].each do |version, collection|
         collection.each do |timestamp, all_snippets|
-          published = []
+          joined = []
           all_snippets.each do |snippet|
-            s = {}
-            snippet.each {|k,v| s[Canonicalizer.canonicalize k] = v}
-            username = s['username']
+            Canonicalizer.canonicalize_hash_keys snippet
+            username = snippet['username']
             member = team[username] || team[@team_by_email[username]]
-            next unless member
 
-            s['name'] = member['name']
-            s['full_name'] = member['full_name']
-            s['version'] = version
-            if version == 'v2'
-              publish_snippet(s, published) unless @public_mode
-            elsif version == 'v3'
-              publish_v3_snippet(s, published)
-            else
-              published << s unless @public_mode
+            if member
+              snippet['name'] = member['name']
+              snippet['full_name'] = member['full_name']
+              snippet['version'] = version
+              joined << snippet
             end
           end
-          result[timestamp] = published unless published.empty?
+          result[timestamp] = joined unless joined.empty?
         end
       end
-
       site.data['snippets'] = result
       site.data[@source].delete 'snippets'
+      publish_snippet_data
+    end
+
+    # Processes +site.data[+'snippets'] entries for publication. Any snippets
+    # that should not appear when in +public_mode+ are removed from
+    # +site.data[+'snippets'].
+    def publish_snippet_data
+      result = {}
+      @data['snippets'].each do |timestamp, all_snippets|
+        published = []
+        all_snippets.each do |snippet|
+          version = snippet['version']
+          if version == 'v2'
+            publish_snippet(snippet, published) unless @public_mode
+          elsif version == 'v3'
+            publish_v3_snippet(snippet, published)
+          else
+            published << snippet unless @public_mode
+          end
+        end
+        result[timestamp] = published unless published.empty?
+      end
+      site.data['snippets'] = result
     end
 
     # Parses and publishes a snippet in v3 format. Filters out private
@@ -203,6 +232,8 @@ module Hub
     def publish_snippet(snippet, published)
       ['last-week', 'this-week'].each do |field|
         text = snippet[field] || ''
+        text.gsub!(/^::: (.*) :::$/, "#{HEADLINE} \\1") # For jtag. ;-)
+        text.gsub!(/^\*\*\*/, HEADLINE) # For elaine. ;-)
         redact! text
 
         parsed = []
@@ -212,8 +243,6 @@ module Hub
           line.rstrip!
           # Convert headline markers.
           line.sub!(/^(#+)/, HEADLINE)
-          line.sub!(/^::: (.*) :::$/, "#{HEADLINE} \\1") # For jtag. ;-)
-          line.sub!(/^\*\*\*/, HEADLINE) # For elaine. ;-)
 
           # Add item markers for those who used plaintext and didn't add them;
           # add headline markers for those who defined different sections and
