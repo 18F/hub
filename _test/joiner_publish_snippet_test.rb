@@ -118,6 +118,7 @@ module Hub
       expected = [make_snippet(
         ["#{JoinerImpl::HEADLINE} Jesse style", '- Jesse did stuff'], nil
       )]
+      @impl.set_markdown_snippet_munger Joiner::MARKDOWN_SNIPPET_MUNGER
       @impl.publish_snippet snippet, published
       assert_equal expected, published
     end
@@ -128,6 +129,7 @@ module Hub
       expected = [make_snippet(
         ["#{JoinerImpl::HEADLINE} Elaine style", '- Elaine did stuff'], nil
       )]
+      @impl.set_markdown_snippet_munger Joiner::MARKDOWN_SNIPPET_MUNGER
       @impl.publish_snippet snippet, published
       assert_equal expected, published
     end

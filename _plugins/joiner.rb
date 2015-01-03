@@ -28,6 +28,7 @@ module Hub
       impl.join_data 'nav_links', 'name'
       impl.join_data 'working_groups', 'name'
 
+      impl.set_markdown_snippet_munger MARKDOWN_SNIPPET_MUNGER
       impl.join_snippet_data SNIPPET_VERSIONS
       impl.join_project_status
       impl.import_guest_users
@@ -35,6 +36,13 @@ module Hub
 
       site.data.delete 'public'
       site.data.delete 'private'
+    end
+
+    MARKDOWN_SNIPPET_MUNGER = Proc.new do |text|
+      # For jtag. ;-)
+      text.gsub!(/^::: (.*) :::$/, "#{JoinerImpl::HEADLINE} \\1")
+      # For elaine. ;-)
+      text.gsub!(/^\*\*\*/, JoinerImpl::HEADLINE)
     end
 
     # Used to standardize snippet data of different versions before joining
@@ -91,6 +99,16 @@ module Hub
       @source = private_data.empty? ? 'public' : 'private'
       @join_source = site.data[@source]
       create_team_by_email_index
+    end
+
+    # Sets the code block that will be called for snippet text after redaction
+    # and before Markdown preparation, to modify the snippet text object
+    # in-place. Will not be called if Markdown is unsupported for the
+    # particular snippet version.
+    #
+    # @param block [Proc] code block that takes a single String parameter
+    def set_markdown_snippet_munger(block)
+      @markdown_snippet_munger = block
     end
 
     # Joins public and private team data, filters out non-18F PIFs, and builds
@@ -261,16 +279,15 @@ module Hub
 
     # Parses and publishes a snippet. Filters out snippets rendered empty
     # after redaction.
-    # +snippet+:: snippet hash with two fields: +last-week+ and +this-week+
-    # +published+:: array of snippets to publish
+    # @param snippet [Hash<String,String>] snippet hash with two fields:
+    #   +last-week+ and +this-week+
+    # @param published [Array<Hash<String,String>>] array of published snippets
     def publish_snippet(snippet, published)
       ['last-week', 'this-week'].each do |field|
         text = snippet[field] || ''
         redact! text
         if snippet['markdown']
-          # TODO(mbland): Hoist these team member-specific hacks out
-          text.gsub!(/^::: (.*) :::$/, "#{HEADLINE} \\1") # For jtag. ;-)
-          text.gsub!(/^\*\*\*/, HEADLINE) # For elaine. ;-)
+          @markdown_snippet_munger.yield text if @markdown_snippet_munger
           text = prepare_markdown text
         end
         snippet[field] = text.empty? ? nil : text
