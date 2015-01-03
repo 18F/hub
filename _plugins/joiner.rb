@@ -1,5 +1,5 @@
 require 'hash-joiner'
-require_relative 'canonicalizer'
+require_relative 'snippets_version'
 
 module Hub
 
@@ -28,7 +28,7 @@ module Hub
       impl.join_data 'nav_links', 'name'
       impl.join_data 'working_groups', 'name'
 
-      impl.join_snippet_data
+      impl.join_snippet_data SNIPPET_VERSIONS
       impl.join_project_status
       impl.import_guest_users
       impl.filter_private_pages
@@ -36,6 +36,45 @@ module Hub
       site.data.delete 'public'
       site.data.delete 'private'
     end
+
+    # Used to standardize snippet data of different versions before joining
+    # and publishing.
+    SNIPPET_VERSIONS = {
+      'v1' => Snippets::Version.new(
+        version_name:'v1',
+        field_map:{
+          'Username' => 'username',
+          'Timestamp' => 'timestamp',
+          'Name' => 'full_name',
+          'Snippets' => 'last-week',
+          'No This Week' => 'this-week',
+        }
+      ),
+      'v2' => Snippets::Version.new(
+        version_name:'v2',
+        field_map:{
+          'Timestamp' => 'timestamp',
+          'Public vs. Private' => 'public',
+          'Last Week' => 'last-week',
+          'This Week' => 'this-week',
+          'Username' => 'username',
+        },
+        markdown_supported: true
+      ),
+      'v3' => Snippets::Version.new(
+        version_name:'v3',
+        field_map:{
+          'Timestamp' => 'timestamp',
+          'Public' => 'public',
+          'Username' => 'username',
+          'Last week' => 'last-week',
+          'This week' => 'this-week',
+        },
+        public_field: 'public',
+        public_value: 'Public',
+        markdown_supported: true
+      ),
+    }
   end
 
   # Implements Joiner operations.
@@ -147,6 +186,10 @@ module Hub
       end
     end
 
+    # Raised by +join_snippet_data+ if the snippet version is unknown.
+    class SnippetVersionError < ::Exception
+    end
+
     # Joins snippet data into +site.data[+'snippets'] and filters out snippets
     # from team members not appearing in +site.data[+'team'] or
     # +team_by_email+.
@@ -162,22 +205,28 @@ module Hub
     #
     # and +'version'+ is a property of each +Hash+ in the +Array<Hash>+
     # containing snippet data.
-    def join_snippet_data
+    #
+    # @raise [SnippetVersionError] if any snippets correspond to versions not
+    #   in +snippet_versions+
+    def join_snippet_data(snippet_versions)
       result = {}
       team = @data['team']
 
       @data[@source]['snippets'].each do |version, collection|
+        snippet_version = snippet_versions[version]
+        unless snippet_version
+          raise SnippetVersionError.new("Unknown snippet version: #{version}")
+        end
         collection.each do |timestamp, all_snippets|
           joined = []
           all_snippets.each do |snippet|
-            Canonicalizer.canonicalize_hash_keys snippet
+            snippet_version.standardize snippet
             username = snippet['username']
             member = team[username] || team[@team_by_email[username]]
 
             if member
               snippet['name'] = member['name']
               snippet['full_name'] = member['full_name']
-              snippet['version'] = version
               joined << snippet
             end
           end
@@ -197,28 +246,13 @@ module Hub
       @data['snippets'].each do |timestamp, all_snippets|
         published = []
         all_snippets.each do |snippet|
-          version = snippet['version']
-          if version == 'v2'
-            publish_snippet(snippet, published) unless @public_mode
-          elsif version == 'v3'
-            publish_v3_snippet(snippet, published)
-          else
-            published << snippet unless @public_mode
+          unless @public_mode and !snippet['public']
+            publish_snippet(snippet, published)
           end
         end
         result[timestamp] = published unless published.empty?
       end
       site.data['snippets'] = result
-    end
-
-    # Parses and publishes a snippet in v3 format. Filters out private
-    # snippets and snippets rendered empty after redaction.
-    # +snippet+:: snippet hash in v3 format
-    # +published+:: array of snippets to publish
-    def publish_v3_snippet(snippet, published)
-      is_private = snippet['public'] != 'Public'
-      return if @public_mode and is_private
-      publish_snippet(snippet, published)
     end
 
     # Used to convert snippet headline markers to h4, since the layout uses
@@ -232,6 +266,7 @@ module Hub
     def publish_snippet(snippet, published)
       ['last-week', 'this-week'].each do |field|
         text = snippet[field] || ''
+        # TODO(mbland): Hoist these team member-specific hacks out
         text.gsub!(/^::: (.*) :::$/, "#{HEADLINE} \\1") # For jtag. ;-)
         text.gsub!(/^\*\*\*/, HEADLINE) # For elaine. ;-)
         redact! text
@@ -259,10 +294,11 @@ module Hub
           line.sub!(/^[-*]([^ ])/, '- \1')
           parsed << line unless line.empty?
         end
-        snippet[field] = parsed.join("\n")
+        snippet[field] = parsed.empty? ? nil : parsed.join("\n")
       end
 
-      is_empty = snippet['last-week'].empty? && snippet['this-week'].empty?
+      is_empty = (snippet['last-week'] || '').empty? && (
+        snippet['this-week'] || '').empty?
       published << snippet unless is_empty
     end
 

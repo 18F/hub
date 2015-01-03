@@ -11,8 +11,8 @@ module Hub
     end
 
     def make_snippet(last_week, this_week)
-      {'last-week' => last_week.join("\n"),
-       'this-week' => this_week.join("\n"),
+      {'last-week' => last_week ? last_week.join("\n") : last_week,
+       'this-week' => this_week ? this_week.join("\n") : this_week,
       }
     end
 
@@ -100,20 +100,20 @@ module Hub
     end
 
     def test_convert_jesse_style
-      snippet = make_snippet ['::: Jesse style :::', 'Jesse did stuff'], []
+      snippet = make_snippet ['::: Jesse style :::', 'Jesse did stuff'], nil
       published = []
       expected = [make_snippet(
-        ["#{JoinerImpl::HEADLINE} Jesse style", '- Jesse did stuff'], []
+        ["#{JoinerImpl::HEADLINE} Jesse style", '- Jesse did stuff'], nil
       )]
       @impl.publish_snippet snippet, published
       assert_equal expected, published
     end
 
     def test_convert_elaine_style
-      snippet = make_snippet ['*** Elaine style', '-Elaine did stuff'], []
+      snippet = make_snippet ['*** Elaine style', '-Elaine did stuff'], nil
       published = []
       expected = [make_snippet(
-        ["#{JoinerImpl::HEADLINE} Elaine style", '- Elaine did stuff'], []
+        ["#{JoinerImpl::HEADLINE} Elaine style", '- Elaine did stuff'], nil
       )]
       @impl.publish_snippet snippet, published
       assert_equal expected, published
