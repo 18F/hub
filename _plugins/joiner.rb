@@ -204,7 +204,6 @@ module Hub
       ['last-week', 'this-week'].each do |field|
         text = snippet[field] || ''
         redact! text
-        text.gsub!(/^\n\n+/m, '')
 
         parsed = []
         uses_item_markers = (text =~ /^[-*]/)
@@ -243,10 +242,9 @@ module Hub
     # remove the markers.
     def redact!(text)
       if @public_mode
-        text.gsub!(/\{\{.*?\}\}/m,'')
+        text.gsub!(/\n?\{\{.*?\}\}/m,'')
       else
-        text.gsub!(/\{\{/,'')
-        text.gsub!(/\}\}/,'')
+        text.gsub!(/(\{\{|\}\})/,'')
       end
     end
 

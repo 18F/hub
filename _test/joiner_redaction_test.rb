@@ -41,17 +41,39 @@ module Hub
     end
 
     def test_multiline_redacted_string_private_mode
-      text = "He{{llo,\nWor}}ld!"
+      text = [
+        '- Did stuff{{ including private details}}',
+        '{{- Did secret stuff}}',
+        '- Did more stuff',
+        '{{- Did more secret stuff',
+        '- Yet more secret stuff}}',
+      ].join('\n')
+      expected = [
+        '- Did stuff including private details',
+        '- Did secret stuff',
+        '- Did more stuff',
+        '- Did more secret stuff',
+        '- Yet more secret stuff',
+      ].join('\n')
       JoinerImpl.new(@site).redact! text
-      assert_equal "Hello,\nWorld!", text
+      assert_equal expected, text
     end
 
     def test_multiline_redacted_string_public_mode
-      text = "He{{llo,\nWor}}ld!"
+      text = [
+        '- Did stuff{{ including private details}}',
+        '{{- Did secret stuff}}',
+        '- Did more stuff',
+        '{{- Did more secret stuff',
+        '- Yet more secret stuff}}',
+      ].join("\n")
+      expected = [
+        '- Did stuff',
+        '- Did more stuff',
+      ].join("\n")
       @site.config['public'] = true
       JoinerImpl.new(@site).redact! text
-      assert_equal "Held!", text
+      assert_equal expected, text
     end
   end
-
 end
