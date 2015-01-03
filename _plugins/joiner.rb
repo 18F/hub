@@ -204,10 +204,6 @@ module Hub
       end
     end
 
-    # Raised by +join_snippet_data+ if the snippet version is unknown.
-    class SnippetVersionError < ::Exception
-    end
-
     # Joins snippet data into +site.data[+'snippets'] and filters out snippets
     # from team members not appearing in +site.data[+'team'] or
     # +team_by_email+.
@@ -221,38 +217,29 @@ module Hub
     # After this function returns, the new structure will be:
     # +site.data[snippets][YYYYMMDD] = Array<Hash>
     #
-    # and +'version'+ is a property of each +Hash+ in the +Array<Hash>+
-    # containing snippet data.
-    #
-    # @raise [SnippetVersionError] if any snippets correspond to versions not
-    #   in +snippet_versions+
+    # and each individual snippet will have been converted to a standardized
+    # format defined by ::Snippets::Version.
     def join_snippet_data(snippet_versions)
-      result = {}
+      standardized = ::Snippets::Version.standardize_versions(
+        @data[@source]['snippets'], snippet_versions)
       team = @data['team']
+      result = {}
+      standardized.each do |timestamp, snippets|
+        joined = []
+        snippets.each do |snippet|
+          username = snippet['username']
+          member = team[username] || team[@team_by_email[username]]
 
-      @data[@source]['snippets'].each do |version, collection|
-        snippet_version = snippet_versions[version]
-        unless snippet_version
-          raise SnippetVersionError.new("Unknown snippet version: #{version}")
-        end
-        collection.each do |timestamp, all_snippets|
-          joined = []
-          all_snippets.each do |snippet|
-            snippet_version.standardize snippet
-            username = snippet['username']
-            member = team[username] || team[@team_by_email[username]]
-
-            if member
-              snippet['name'] = member['name']
-              snippet['full_name'] = member['full_name']
-              joined << snippet
-            end
+          if member
+            snippet['name'] = member['name']
+            snippet['full_name'] = member['full_name']
+            joined << snippet
           end
-          result[timestamp] = joined unless joined.empty?
         end
+        result[timestamp] = joined unless joined.empty?
       end
-      site.data['snippets'] = result
-      site.data[@source].delete 'snippets'
+      @data['snippets'] = result
+      @data[@source].delete 'snippets'
       publish_snippet_data
     end
 
