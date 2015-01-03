@@ -266,35 +266,14 @@ module Hub
     def publish_snippet(snippet, published)
       ['last-week', 'this-week'].each do |field|
         text = snippet[field] || ''
-        # TODO(mbland): Hoist these team member-specific hacks out
-        text.gsub!(/^::: (.*) :::$/, "#{HEADLINE} \\1") # For jtag. ;-)
-        text.gsub!(/^\*\*\*/, HEADLINE) # For elaine. ;-)
         redact! text
-
-        parsed = []
-        uses_item_markers = (text =~ /^[-*]/)
-
-        text.each_line do |line|
-          line.rstrip!
-          # Convert headline markers.
-          line.sub!(/^(#+)/, HEADLINE)
-
-          # Add item markers for those who used plaintext and didn't add them;
-          # add headline markers for those who defined different sections and
-          # didn't add them.
-          if line =~ /^([A-Za-z0-9])/
-            unless uses_item_markers
-              line = "- #{line}"
-            else
-              line = "#{HEADLINE} #{line}"
-            end
-          end
-
-          # Fixup item markers missing a space.
-          line.sub!(/^[-*]([^ ])/, '- \1')
-          parsed << line unless line.empty?
+        if snippet['markdown']
+          # TODO(mbland): Hoist these team member-specific hacks out
+          text.gsub!(/^::: (.*) :::$/, "#{HEADLINE} \\1") # For jtag. ;-)
+          text.gsub!(/^\*\*\*/, HEADLINE) # For elaine. ;-)
+          text = prepare_markdown text
         end
-        snippet[field] = parsed.empty? ? nil : parsed.join("\n")
+        snippet[field] = text.empty? ? nil : text
       end
 
       is_empty = (snippet['last-week'] || '').empty? && (
@@ -311,6 +290,34 @@ module Hub
       else
         text.gsub!(/(\{\{|\}\})/,'')
       end
+    end
+
+    # Processes snippet text in Markdown format to smooth out any anomalies
+    # before rendering. Also translates arbitrary plaintext to Markdown.
+    #
+    # @param text [String] snippet text
+    # @return [String]
+    def prepare_markdown(text)
+      parsed = []
+      uses_item_markers = (text =~ /^[-*]/)
+
+      text.each_line do |line|
+        line.rstrip!
+        # Convert headline markers.
+        line.sub!(/^(#+)/, HEADLINE)
+
+        # Add item markers for those who used plaintext and didn't add them;
+        # add headline markers for those who defined different sections and
+        # didn't add them.
+        if line =~ /^([A-Za-z0-9])/
+          line = uses_item_markers ? "#{HEADLINE} #{line}" : "- #{line}"
+        end
+
+        # Fixup item markers missing a space.
+        line.sub!(/^[-*]([^ ])/, '- \1')
+        parsed << line unless line.empty?
+      end
+      parsed.join("\n")
     end
 
     # Joins project status information into +site.data[+'project_status'].

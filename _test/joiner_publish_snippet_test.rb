@@ -13,6 +13,7 @@ module Hub
     def make_snippet(last_week, this_week)
       {'last-week' => last_week ? last_week.join("\n") : last_week,
        'this-week' => this_week ? this_week.join("\n") : this_week,
+       'markdown' => true,
       }
     end
 
@@ -27,6 +28,18 @@ module Hub
       published = []
       @impl.publish_snippet make_snippet([], []), published
       assert_empty published
+    end
+
+    def test_publish_as_is_if_markdown_not_supported
+      snippet = make_snippet(
+        ['Last week:', '- Did Hub stuff',
+         'This week:', '- Will do more Hub stuff'],
+        nil,
+      )
+      snippet['markdown'] = false
+      published = []
+      @impl.publish_snippet snippet, published
+      assert_equal [snippet], published
     end
 
     def test_last_week
