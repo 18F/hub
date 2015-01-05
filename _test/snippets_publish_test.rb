@@ -14,6 +14,7 @@
 #
 # @author Mike Bland (michael.bland@gsa.gov)
 
+require_relative "test_helper"
 require_relative "../_plugins/snippets"
 require_relative "site"
 
