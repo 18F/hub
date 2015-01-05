@@ -1,5 +1,6 @@
-{% if s.version == 'v1' %}
-<pre class='snippets-v1'>{{ s.snippets }}</pre>
+{% unless s.markdown == true %}
+<pre class='snippets-no-md'>{{ s.last-week }}{% if s.this-week %}<br/>
+{{ s.this-week }}{% endif %}</pre>
 {% else %}
 <div class='snippets'>
 <h3>Last Week</h3>
@@ -9,4 +10,4 @@
 <div>{{ s.this-week | markdownify }}</div>
 {% endif %}
 </div>
-{% endif %}
+{% endunless %}

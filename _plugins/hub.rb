@@ -13,6 +13,7 @@ module Hub
     # for the Hub.
     def generate(site)
       Joiner.join_data(site)
+      Snippets.publish(site)
       CrossReferencer.build_xrefs(site.data)
       Canonicalizer.canonicalize_data(site.data)
       PrivateAssets.copy_to_site(site)
