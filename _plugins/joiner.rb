@@ -28,7 +28,6 @@ module Hub
       impl.join_data 'nav_links', 'name'
       impl.join_data 'working_groups', 'name'
 
-      impl.set_markdown_snippet_munger MARKDOWN_SNIPPET_MUNGER
       impl.join_snippet_data SNIPPET_VERSIONS
       impl.join_project_status
       impl.import_guest_users
@@ -36,13 +35,6 @@ module Hub
 
       site.data.delete 'public'
       site.data.delete 'private'
-    end
-
-    MARKDOWN_SNIPPET_MUNGER = Proc.new do |text|
-      # For jtag. ;-)
-      text.gsub!(/^::: (.*) :::$/, "#{JoinerImpl::HEADLINE} \\1")
-      # For elaine. ;-)
-      text.gsub!(/^\*\*\*/, JoinerImpl::HEADLINE)
     end
 
     # Used to standardize snippet data of different versions before joining
@@ -99,16 +91,6 @@ module Hub
       @source = private_data.empty? ? 'public' : 'private'
       @join_source = site.data[@source]
       create_team_by_email_index
-    end
-
-    # Sets the code block that will be called for snippet text after redaction
-    # and before Markdown preparation, to modify the snippet text object
-    # in-place. Will not be called if Markdown is unsupported for the
-    # particular snippet version.
-    #
-    # @param block [Proc] code block that takes a single String parameter
-    def set_markdown_snippet_munger(block)
-      @markdown_snippet_munger = block
     end
 
     # Joins public and private team data, filters out non-18F PIFs, and builds
@@ -240,88 +222,6 @@ module Hub
       end
       @data['snippets'] = result
       @data[@source].delete 'snippets'
-      publish_snippet_data
-    end
-
-    # Processes +site.data[+'snippets'] entries for publication. Any snippets
-    # that should not appear when in +public_mode+ are removed from
-    # +site.data[+'snippets'].
-    def publish_snippet_data
-      result = {}
-      @data['snippets'].each do |timestamp, all_snippets|
-        published = []
-        all_snippets.each do |snippet|
-          unless @public_mode and !snippet['public']
-            publish_snippet(snippet, published)
-          end
-        end
-        result[timestamp] = published unless published.empty?
-      end
-      site.data['snippets'] = result
-    end
-
-    # Used to convert snippet headline markers to h4, since the layout uses
-    # h3.
-    HEADLINE = "\n####"
-
-    # Parses and publishes a snippet. Filters out snippets rendered empty
-    # after redaction.
-    # @param snippet [Hash<String,String>] snippet hash with two fields:
-    #   +last-week+ and +this-week+
-    # @param published [Array<Hash<String,String>>] array of published snippets
-    def publish_snippet(snippet, published)
-      ['last-week', 'this-week'].each do |field|
-        text = snippet[field] || ''
-        redact! text
-        if snippet['markdown']
-          @markdown_snippet_munger.yield text if @markdown_snippet_munger
-          text = prepare_markdown text
-        end
-        snippet[field] = text.empty? ? nil : text
-      end
-
-      is_empty = (snippet['last-week'] || '').empty? && (
-        snippet['this-week'] || '').empty?
-      published << snippet unless is_empty
-    end
-
-    # Parses "{{" and "}}" redaction markers. For public snippets, will redact
-    # everything between each set of markers. For internal snippets, will only
-    # remove the markers.
-    def redact!(text)
-      if @public_mode
-        text.gsub!(/\n?\{\{.*?\}\}/m,'')
-      else
-        text.gsub!(/(\{\{|\}\})/,'')
-      end
-    end
-
-    # Processes snippet text in Markdown format to smooth out any anomalies
-    # before rendering. Also translates arbitrary plaintext to Markdown.
-    #
-    # @param text [String] snippet text
-    # @return [String]
-    def prepare_markdown(text)
-      parsed = []
-      uses_item_markers = (text =~ /^[-*]/)
-
-      text.each_line do |line|
-        line.rstrip!
-        # Convert headline markers.
-        line.sub!(/^(#+)/, HEADLINE)
-
-        # Add item markers for those who used plaintext and didn't add them;
-        # add headline markers for those who defined different sections and
-        # didn't add them.
-        if line =~ /^([A-Za-z0-9])/
-          line = uses_item_markers ? "#{HEADLINE} #{line}" : "- #{line}"
-        end
-
-        # Fixup item markers missing a space.
-        line.sub!(/^[-*]([^ ])/, '- \1')
-        parsed << line unless line.empty?
-      end
-      parsed.join("\n")
     end
 
     # Joins project status information into +site.data[+'project_status'].

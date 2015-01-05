@@ -70,11 +70,7 @@ module Hub
         Joiner::SNIPPET_VERSIONS[version].standardize s
         s['name'] = name
         s['full_name'] = full_name
-        s['last-week'] = nil if last_week.empty?
-        s['this-week'] = nil if this_week.empty?
-        unless @expected.member? timestamp
-          @expected[timestamp] = []
-        end
+        @expected[timestamp] = [] unless @expected.member? timestamp
         @expected[timestamp] << s
       end
     end
@@ -96,7 +92,7 @@ module Hub
       assert_equal "Unknown snippet version: v1", error.to_s
     end
 
-    def test_publish_nothing_if_no_team
+    def test_joined_snippets_are_empty_if_no_team
       set_team([])
       add_snippet('v1', '20141218', 'mbland', 'Mike Bland',
         'michael.bland@gsa.gov', 'unused', '- Did stuff', '',
@@ -110,7 +106,7 @@ module Hub
       assert_nil @site.data['private']['snippets']
     end
 
-    def test_publish_all_snippets_internally
+    def test_join_all_snippets
       set_team([
         {'name' => 'mbland', 'full_name' => 'Mike Bland',
          'email' => 'michael.bland@gsa.gov'},
@@ -126,34 +122,11 @@ module Hub
       assert_nil @site.data['private']['snippets']
     end
 
-    def test_publish_only_public_v3_snippets_in_public_mode
-      @site.config['public'] = true
-      @impl = JoinerImpl.new(@site)
-
-      set_team([
-        {'name' => 'mbland', 'full_name' => 'Mike Bland',
-         'email' => 'michael.bland@gsa.gov'},
-      ])
-      add_snippet('v1', '20141218', 'mbland', 'Mike Bland',
-        'michael.bland@gsa.gov', 'unused', '- Did stuff', '',
-        expected:false)
-      add_snippet('v2', '20141225', 'mbland', 'Mike Bland',
-        'michael.bland@gsa.gov', '', '- Did stuff', '', expected:false)
-      add_snippet('v3', '20141231', 'mbland', 'Mike Bland',
-        'michael.bland@gsa.gov', 'Public', '- Did stuff', '')
-      add_snippet('v3', '20150107', 'mbland', 'Mike Bland',
-        'michael.bland@gsa.gov', '', '- Did stuff', '', expected:false)
-
-      @impl.join_snippet_data Joiner::SNIPPET_VERSIONS
-      assert_equal @expected, @site.data['snippets']
-      assert_nil @site.data['private']['snippets']
-    end
-
     # This tests the case where we're publishing snippets imported into
     # _data/public using _data/import-public.rb. That script will substitute
     # the original snippets' email usernames with the corresponding Hub
     # username.
-    def test_publish_v3_snippets_with_hub_username_instead_of_email_address
+    def test_join_snippets_with_hub_username_instead_of_email_address
       @site.config['public'] = true
       @impl = JoinerImpl.new(@site)
 
