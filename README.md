@@ -1,5 +1,9 @@
 ## 18F Hub
 
+[![Build Status](https://travis-ci.org/18F/hub.svg?branch=doc-update)](https://travis-ci.org/18F/hub)
+[![Code Climate](https://codeclimate.com/github/18F/hub/badges/gpa.svg)](https://codeclimate.com/github/18F/hub)
+[![Test Coverage](https://codeclimate.com/github/18F/hub/badges/coverage.svg)](https://codeclimate.com/github/18F/hub)
+
 [The 18F Hub](https://18f.gsa.gov/hub) is a [Jekyll](http://jekyllrb.com/)-based documentation platform that aims to help [18F](https://github.com/18F) and other development teams organize and easily share their information, and to enable easy exploration of the connections between team members, projects, and skill sets. It aims to serve as the go-to place for all of a team's working information, whether that information is integrated into the Hub directly or provided as links to other sources. It also serves as a lightweight tool that other teams can experiment with and deploy with a minimum of setup.
 
 See the [18F blog post announcing the Hub](https://18f.gsa.gov/2014/12/23/hub/) for more details about the vision behind the Hub and the goals it aims to achieve.
@@ -51,7 +55,13 @@ In addition to this README, there is also:
 
 ### Contributing
 
-Just fork [18F/hub](https://github.com/18F/hub) and start sending pull requests! Feel free to ping [@mbland](https://github.com/mbland) with any questions you may have, especially if the current documentation should've addressed your needs, but didn't.
+1. Fork the repo ( https://github.com/18F/hub/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
+
+Feel free to ping [@mbland](https://github.com/mbland) with any questions you may have, especially if the current documentation should've addressed your needs, but didn't.
 
 ### Public domain
 
