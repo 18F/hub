@@ -1,6 +1,6 @@
 ## 18F Hub
 
-[![Build Status](https://travis-ci.org/18F/hub.svg?branch=doc-update)](https://travis-ci.org/18F/hub)
+[![Build Status](https://travis-ci.org/18F/hub.svg?branch=master)](https://travis-ci.org/18F/hub)
 [![Code Climate](https://codeclimate.com/github/18F/hub/badges/gpa.svg)](https://codeclimate.com/github/18F/hub)
 [![Test Coverage](https://codeclimate.com/github/18F/hub/badges/coverage.svg)](https://codeclimate.com/github/18F/hub)
 
