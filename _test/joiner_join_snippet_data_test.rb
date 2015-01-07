@@ -1,8 +1,8 @@
 require_relative "../_plugins/joiner"
-require_relative "../_plugins/snippets_version"
 require_relative "site"
 
 require "minitest/autorun"
+require "weekly_snippets/version"
 
 module Hub
   class JoinSnippetDataTest < ::Minitest::Test
@@ -86,7 +86,7 @@ module Hub
       set_team([])
       add_snippet('v1', '20141218', 'mbland', 'Mike Bland',
         'michael.bland@gsa.gov', 'unused', '- Did stuff', '')
-      error = assert_raises ::Snippets::Version::UnknownVersionError do
+      error = assert_raises ::WeeklySnippets::Version::UnknownVersionError do
         @impl.join_snippet_data({})
       end
       assert_equal "Unknown snippet version: v1", error.to_s
