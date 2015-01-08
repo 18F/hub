@@ -1,5 +1,5 @@
 require 'hash-joiner'
-require_relative 'canonicalizer'
+require_relative 'snippets_version'
 
 module Hub
 
@@ -28,7 +28,7 @@ module Hub
       impl.join_data 'nav_links', 'name'
       impl.join_data 'working_groups', 'name'
 
-      impl.join_snippet_data
+      impl.join_snippet_data SNIPPET_VERSIONS
       impl.join_project_status
       impl.import_guest_users
       impl.filter_private_pages
@@ -36,6 +36,45 @@ module Hub
       site.data.delete 'public'
       site.data.delete 'private'
     end
+
+    # Used to standardize snippet data of different versions before joining
+    # and publishing.
+    SNIPPET_VERSIONS = {
+      'v1' => Snippets::Version.new(
+        version_name:'v1',
+        field_map:{
+          'Username' => 'username',
+          'Timestamp' => 'timestamp',
+          'Name' => 'full_name',
+          'Snippets' => 'last-week',
+          'No This Week' => 'this-week',
+        }
+      ),
+      'v2' => Snippets::Version.new(
+        version_name:'v2',
+        field_map:{
+          'Timestamp' => 'timestamp',
+          'Public vs. Private' => 'public',
+          'Last Week' => 'last-week',
+          'This Week' => 'this-week',
+          'Username' => 'username',
+        },
+        markdown_supported: true
+      ),
+      'v3' => Snippets::Version.new(
+        version_name:'v3',
+        field_map:{
+          'Timestamp' => 'timestamp',
+          'Public' => 'public',
+          'Username' => 'username',
+          'Last week' => 'last-week',
+          'This week' => 'this-week',
+        },
+        public_field: 'public',
+        public_value: 'Public',
+        markdown_supported: true
+      ),
+    }
   end
 
   # Implements Joiner operations.
@@ -148,106 +187,41 @@ module Hub
     end
 
     # Joins snippet data into +site.data[+'snippets'] and filters out snippets
-    # from team members not appearing in +team_by_email+.
-    def join_snippet_data
+    # from team members not appearing in +site.data[+'team'] or
+    # +team_by_email+.
+    #
+    # Snippet data is expected to be stored in files matching the pattern:
+    # +_data/+@source/snippets/[version]/[YYYYMMDD].csv
+    #
+    # resulting in the initial structure:
+    # +site.data[@source][snippets][version][YYYYMMDD] = Array<Hash>
+    #
+    # After this function returns, the new structure will be:
+    # +site.data[snippets][YYYYMMDD] = Array<Hash>
+    #
+    # and each individual snippet will have been converted to a standardized
+    # format defined by ::Snippets::Version.
+    def join_snippet_data(snippet_versions)
+      standardized = ::Snippets::Version.standardize_versions(
+        @data[@source]['snippets'], snippet_versions)
       team = @data['team']
       result = {}
+      standardized.each do |timestamp, snippets|
+        joined = []
+        snippets.each do |snippet|
+          username = snippet['username']
+          member = team[username] || team[@team_by_email[username]]
 
-      @data[@source]['snippets'].each do |version, collection|
-        collection.each do |timestamp, all_snippets|
-          published = []
-          all_snippets.each do |snippet|
-            s = {}
-            snippet.each {|k,v| s[Canonicalizer.canonicalize k] = v}
-            username = s['username']
-            member = team[username] || team[@team_by_email[username]]
-            next unless member
-
-            s['name'] = member['name']
-            s['full_name'] = member['full_name']
-            s['version'] = version
-            if version == 'v2'
-              publish_snippet(s, published) unless @public_mode
-            elsif version == 'v3'
-              publish_v3_snippet(s, published)
-            else
-              published << s unless @public_mode
-            end
+          if member
+            snippet['name'] = member['name']
+            snippet['full_name'] = member['full_name']
+            joined << snippet
           end
-          result[timestamp] = published unless published.empty?
         end
+        result[timestamp] = joined unless joined.empty?
       end
-
-      site.data['snippets'] = result
-      site.data[@source].delete 'snippets'
-    end
-
-    # Parses and publishes a snippet in v3 format. Filters out private
-    # snippets and snippets rendered empty after redaction.
-    # +snippet+:: snippet hash in v3 format
-    # +published+:: array of snippets to publish
-    def publish_v3_snippet(snippet, published)
-      is_private = snippet['public'] != 'Public'
-      return if @public_mode and is_private
-      publish_snippet(snippet, published)
-    end
-
-    # Used to convert snippet headline markers to h4, since the layout uses
-    # h3.
-    HEADLINE = "\n####"
-
-    # Parses and publishes a snippet. Filters out snippets rendered empty
-    # after redaction.
-    # +snippet+:: snippet hash with two fields: +last-week+ and +this-week+
-    # +published+:: array of snippets to publish
-    def publish_snippet(snippet, published)
-      ['last-week', 'this-week'].each do |field|
-        text = snippet[field] || ''
-        redact! text
-        text.gsub!(/^\n\n+/m, '')
-
-        parsed = []
-        uses_item_markers = (text =~ /^[-*]/)
-
-        text.each_line do |line|
-          line.rstrip!
-          # Convert headline markers.
-          line.sub!(/^(#+)/, HEADLINE)
-          line.sub!(/^::: (.*) :::$/, "#{HEADLINE} \\1") # For jtag. ;-)
-          line.sub!(/^\*\*\*/, HEADLINE) # For elaine. ;-)
-
-          # Add item markers for those who used plaintext and didn't add them;
-          # add headline markers for those who defined different sections and
-          # didn't add them.
-          if line =~ /^([A-Za-z0-9])/
-            unless uses_item_markers
-              line = "- #{line}"
-            else
-              line = "#{HEADLINE} #{line}"
-            end
-          end
-
-          # Fixup item markers missing a space.
-          line.sub!(/^[-*]([^ ])/, '- \1')
-          parsed << line unless line.empty?
-        end
-        snippet[field] = parsed.join("\n")
-      end
-
-      is_empty = snippet['last-week'].empty? && snippet['this-week'].empty?
-      published << snippet unless is_empty
-    end
-
-    # Parses "{{" and "}}" redaction markers. For public snippets, will redact
-    # everything between each set of markers. For internal snippets, will only
-    # remove the markers.
-    def redact!(text)
-      if @public_mode
-        text.gsub!(/\{\{.*?\}\}/m,'')
-      else
-        text.gsub!(/\{\{/,'')
-        text.gsub!(/\}\}/,'')
-      end
+      @data['snippets'] = result
+      @data[@source].delete 'snippets'
     end
 
     # Joins project status information into +site.data[+'project_status'].
