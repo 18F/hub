@@ -51,7 +51,8 @@ REMOTE_REPO_DIR = "%s/hub" % SETTINGS['home']
 fabric.api.env.use_ssh_config = True
 fabric.api.env.hosts = [SETTINGS['host']]
 
-COMMAND = "cd %s && git pull && bundle exec jekyll b --config %s >> %s" % (
+COMMAND = ("cd %s && git pull && "
+  "/usr/local/rbenv/shims/bundle exec jekyll b --config %s >> %s") % (
   REMOTE_REPO_DIR, SETTINGS['config'], LOG)
 
 def start():
