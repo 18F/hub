@@ -14,7 +14,7 @@
 #
 # @author Mike Bland (michael.bland@gsa.gov)
 
-require_relative 'snippets_publisher'
+require 'weekly_snippets/publisher'
 
 module Hub
   class Snippets
@@ -28,7 +28,7 @@ module Hub
     end
 
     def self.publish(site)
-      publisher = ::Snippets::Publisher.new(
+      publisher = ::WeeklySnippets::Publisher.new(
         headline: HEADLINE, public_mode: site.config['public'],
         markdown_snippet_munger: MARKDOWN_SNIPPET_MUNGER)
       site.data['snippets'] = publisher.publish site.data['snippets']
