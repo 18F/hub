@@ -1,0 +1,3 @@
+---
+- include: nginx.yml
+#- include: google_auth_proxy.yml

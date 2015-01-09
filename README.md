@@ -1,5 +1,9 @@
 ## 18F Hub
 
+[![Build Status](https://travis-ci.org/18F/hub.svg?branch=master)](https://travis-ci.org/18F/hub)
+[![Code Climate](https://codeclimate.com/github/18F/hub/badges/gpa.svg)](https://codeclimate.com/github/18F/hub)
+[![Test Coverage](https://codeclimate.com/github/18F/hub/badges/coverage.svg)](https://codeclimate.com/github/18F/hub)
+
 [The 18F Hub](https://18f.gsa.gov/hub) is a [Jekyll](http://jekyllrb.com/)-based documentation platform that aims to help [18F](https://github.com/18F) and other development teams organize and easily share their information, and to enable easy exploration of the connections between team members, projects, and skill sets. It aims to serve as the go-to place for all of a team's working information, whether that information is integrated into the Hub directly or provided as links to other sources. It also serves as a lightweight tool that other teams can experiment with and deploy with a minimum of setup.
 
 See the [18F blog post announcing the Hub](https://18f.gsa.gov/2014/12/23/hub/) for more details about the vision behind the Hub and the goals it aims to achieve.
@@ -42,6 +46,12 @@ $ bundle exec jekyll serve --config _config.yml,_config_public.yml
 
 See the [Data README](_data/README.md) for instructions on how to import data into [_data/public](_data/public) for deployment to the Public Hub.
 
+#### Advanced Local Dev Environment
+
+If you have [Vagrant](https://www.vagrantup.com/) and [Ansible](http://www.ansible.com/home) installed, you can launch a local development server running [Nginx](http://nginx.org/) by running `vagrant up`. The server will be accessible at `localhost:8080` for the internal version, and `localhost:8080/hub` for the public version.
+
+For the internal version of the site, the dev server will default to setting the Nginx `$authenticated_user` variable (used by [_layouts/bare.html](_layouts/bare.html)) to the `authenticated_user` value in [deploy/ansible/playbook.yml](deploy/ansible/playbook.yml). You can also change this for a single page by adding `?user=[AUTHENTICATED_USER]` to the URL.
+
 ### Documentation
 
 In addition to this README, there is also:
@@ -51,7 +61,13 @@ In addition to this README, there is also:
 
 ### Contributing
 
-Just fork [18F/hub](https://github.com/18F/hub) and start sending pull requests! Feel free to ping [@mbland](https://github.com/mbland) with any questions you may have, especially if the current documentation should've addressed your needs, but didn't.
+1. Fork the repo ( https://github.com/18F/hub/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
+
+Feel free to ping [@mbland](https://github.com/mbland) with any questions you may have, especially if the current documentation should've addressed your needs, but didn't.
 
 ### Public domain
 

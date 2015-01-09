@@ -1,8 +1,19 @@
 - name: Public Sites
   links:
-    - text: 18f.gsa.gov
-      url: https://18f.gsa.gov/
-    - text: Dashboard
-      url: https://18f.gsa.gov/dashboard/
-    - text: GitHub repos
-      url: https://github.com/18F
+  - text: 18f.gsa.gov
+    url: https://18f.gsa.gov/
+  - text: Dashboard
+    url: https://18f.gsa.gov/dashboard/
+  - text: GitHub repos
+    url: https://github.com/18F
+
+- name: Hub Ops
+  links:
+  - text: Repo
+    url: https://github.com/18F/hub/
+  - text: Issues
+    url: https://github.com/18F/hub/issues
+  - text: Doc WG issues
+    url: https://trello.com/b/cI4LmXOj/wg-documentation
+  - text: Deployment
+    url: https://github.com/18F/hub/blob/master/deploy/README.md
