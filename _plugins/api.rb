@@ -73,8 +73,12 @@ module Hub
         'Index of team members by location code', data)
     end
 
+    def self.pages(site)
+      site.pages.select {|page| page.path.start_with?('pages/') }
+    end
+
     def self.generate_pages_endpoint(site)
-      data = site.pages.map do |page|
+      data = pages(site).map do |page|
         {
           title: page.data['title'],
           url: page.url,
