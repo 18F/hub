@@ -1,8 +1,10 @@
 <div class="nav-section">
   <a href="{{ site.baseurl }}/about">About</a><br/>
   <a href="{{ site.baseurl }}/#updates">Updates</a><br/>
-  <a href="{{ site.baseurl }}/docs">Docs</a>{% unless site.public %}<br/>
-  <a href="{{ site.baseurl }}/private/docs">Private Docs</a>{% endunless %}
+  <a href="{{ site.baseurl }}/docs">Docs</a><br/>{% unless site.public %}
+  <a href="{{ site.baseurl }}/private/docs">Private Docs</a><br/>
+  <a href="https://github.com/18F/data-private/blob/master/README.md#how-to-update-this-data">Edit data</a><br/>{% endunless %}
+  <a href="{{ site.baseurl }}/api">API</a>
 </div>
 <div class="nav-section">
   <strong>Team</strong><br/>{% if site.data.team %}
