@@ -9,7 +9,7 @@
       <span>This site is in alpha. <a href="https://18f.gsa.gov/dashboard/stages/">Learn more here.</a></span>
     </div>
 {% unless site.public %}
-    <!--# include virtual="{{ site.baseurl }}/auth/$http_x_forwarded_email/index.html" -->
+    <!--# include virtual="{{ site.baseurl }}/auth/$authenticated_user/index.html" -->
 {% endunless %}
   </div>
 

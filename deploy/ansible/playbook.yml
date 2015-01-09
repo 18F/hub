@@ -1,0 +1,21 @@
+---
+# Based upon:
+# http://adamcod.es/2014/09/23/vagrant-ansible-quickstart-tutorial.html
+- hosts: all
+  sudo: true
+  vars:
+    hub_root: /vagrant
+    authenticated_user: michael.bland@gsa.gov
+  pre_tasks:
+    - name: Update apt cache
+      apt: update_cache=yes
+    - name: Make 18F bin
+      file:
+        dest=/usr/local/18f/bin
+        state=directory
+    - name: Make 18F etc
+      file:
+        dest=/usr/local/18f/etc
+        state=directory
+  roles:
+    - dev

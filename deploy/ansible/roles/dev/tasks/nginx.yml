@@ -1,0 +1,22 @@
+---
+- name: Install Nginx
+  apt: name=nginx state=present
+- name: Copy Hub Nginx config
+  template:
+    src=hub.conf.j2
+    dest=/etc/nginx/sites-available/hub.conf
+  notify:
+    - Reload Nginx
+- name: Remove default virtual host
+  file:
+    path=/etc/nginx/sites-enabled/default
+    state=absent
+  notify:
+    - Reload Nginx
+- name: Enable Hub virtual host
+  file:
+    src=/etc/nginx/sites-available/hub.conf
+    dest=/etc/nginx/sites-enabled/hub
+    state=link
+  notify:
+    - Reload Nginx

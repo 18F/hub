@@ -12,6 +12,7 @@ exclude:
 - deploy
 - pages/README.md
 - pages/private/README.md
+- vendor
 
 permalink: pretty
 tag_dir: tags
