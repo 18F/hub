@@ -15,7 +15,7 @@
 # @author Mike Bland (michael.bland@gsa.gov)
 
 require 'hash-joiner'
-require_relative 'snippets_version'
+require 'weekly_snippets/version'
 
 module Hub
 
@@ -56,7 +56,7 @@ module Hub
     # Used to standardize snippet data of different versions before joining
     # and publishing.
     SNIPPET_VERSIONS = {
-      'v1' => Snippets::Version.new(
+      'v1' => ::WeeklySnippets::Version.new(
         version_name:'v1',
         field_map:{
           'Username' => 'username',
@@ -66,7 +66,7 @@ module Hub
           'No This Week' => 'this-week',
         }
       ),
-      'v2' => Snippets::Version.new(
+      'v2' => ::WeeklySnippets::Version.new(
         version_name:'v2',
         field_map:{
           'Timestamp' => 'timestamp',
@@ -77,7 +77,7 @@ module Hub
         },
         markdown_supported: true
       ),
-      'v3' => Snippets::Version.new(
+      'v3' => ::WeeklySnippets::Version.new(
         version_name:'v3',
         field_map:{
           'Timestamp' => 'timestamp',
@@ -216,9 +216,9 @@ module Hub
     # +site.data[snippets][YYYYMMDD] = Array<Hash>
     #
     # and each individual snippet will have been converted to a standardized
-    # format defined by ::Snippets::Version.
+    # format defined by ::WeeklySnippets::Version.
     def join_snippet_data(snippet_versions)
-      standardized = ::Snippets::Version.standardize_versions(
+      standardized = ::WeeklySnippets::Version.standardize_versions(
         @data[@source]['snippets'], snippet_versions)
       team = @data['team']
       result = {}
