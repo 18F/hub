@@ -4,3 +4,4 @@ _site_public
 .DS_Store
 *.log
 .*.swp
+.vagrant
