@@ -1,7 +1,7 @@
 module Hub
 
   # Contains Hub-specific Liquid filters.
-  module Filter
+  module Filters
 
     # Breaks a YYYYMMDD timestamp into a hyphenated version: YYYY-MM-DD
     # +timestamp+:: timestamp in the form YYYYMMDD
@@ -24,4 +24,4 @@ module Hub
   end
 end
 
-Liquid::Template.register_filter(Hub::Filter)
+Liquid::Template.register_filter(Hub::Filters)
