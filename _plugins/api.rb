@@ -2,18 +2,23 @@ module Hub
 
   # Functions for generating JSON objects as part of an API
   class Api
+    # This is a hack to allow the module functions to be used
+    class Filterer
+      include Liquid::StandardFilters
+    end
 
     # Generates all of the Hub's API endpoints.
     # +site+:: Jekyll site object
     def self.generate_api(site)
-       endpoint_info = [
+      endpoint_info = [
         generate_team_endpoint(site),
         generate_team_authentication_endpoint(site),
         generate_locations_endpoint(site),
+        generate_pages_endpoint(site),
         generate_projects_endpoint(site),
         generate_departments_endpoint(site),
         generate_working_groups_endpoint(site),
-        ]
+      ]
       endpoint_info.concat generate_skills_endpoints(site)
       endpoint_info = endpoint_info.select {|i| i and !i.empty?}
       generate_api_index(site, endpoint_info) unless endpoint_info.empty?
@@ -66,6 +71,17 @@ module Hub
       end
       generate_endpoint(site, 'locations', 'Locations',
         'Index of team members by location code', data)
+    end
+
+    def self.generate_pages_endpoint(site)
+      data = site.pages.map do |page|
+        {
+          title: page.data['title'],
+          url: page.url,
+          body: Filterer.new.strip_html(page.content)
+        }
+      end
+      generate_endpoint(site, 'pages', 'Pages', 'Page data', data)
     end
 
     def self.generate_projects_endpoint(site)
