@@ -23,6 +23,8 @@ module Hub
   # ::Jekyll::Page::initialize will try to open the page specified by
   # File.join(base, dir, filename) directly. 
   class Page < ::Jekyll::Page
+    private_class_method :new
+
     def initialize(site, dir, filename, layout, title)
       @site = site
       @base = site.source
@@ -32,6 +34,20 @@ module Hub
       self.process(filename)
       self.read_yaml(File.join(site.source, '_layouts'), layout)
       self.data['title'] = "#{title} - 18F Hub"
+    end
+
+    # Creates a +Hub::Page+ object and adds it to +site.pages+.
+    #
+    # @param site [Jekyll::Site] Jekyll site object
+    # @param page_dir [String] directory containing the generated page
+    # @param filename [String] generated page file name
+    # @param layout [String] Jekyll page layout for the generated page
+    # @param title [String] page title
+    # @return [Hub::Page]
+    def self.generate(site, page_dir, filename, layout, title)
+      page = new(site, page_dir, filename, layout, title)
+      site.pages << page
+      page
     end
   end
 end
