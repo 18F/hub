@@ -17,14 +17,8 @@
 module Hub
   class Departments
     def self.generate_pages(site)
-      return unless site.data.member? 'departments'
-      site.data['departments'].each do |department|
-        canonicalized_name = Canonicalizer.canonicalize(department['name'])
-        page = Page.generate(site,
-          File.join('departments', canonicalized_name),
-          'index.html', 'department.html', department['name'])
-        page.data['department'] = department
-      end
+      Page.generate_pages_from_array(site, 'departments', 'department',
+        'name', 'name')
     end
   end
 end

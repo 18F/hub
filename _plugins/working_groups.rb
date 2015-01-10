@@ -17,14 +17,9 @@
 module Hub
   class WorkingGroups
     def self.generate_pages(site)
-      return unless site.data.member? 'working_groups'
-      site.data['working_groups'].each do |working_group|
-        wg_name = working_group['name']
-        canonicalized_name = Canonicalizer.canonicalize(wg_name)
-        page = Page.generate(site, File.join('wg', canonicalized_name),
-          'index.html', 'working_group.html', "#{wg_name} Working Group")
-        page.data['working_group'] = working_group
-      end
+      Page.generate_pages_from_array(site, 'working_groups', 'working_group',
+        'name', 'name', collection_dir: 'wg',
+        title_format: '%s Working Group')
     end
   end
 end

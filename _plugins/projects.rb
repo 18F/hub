@@ -17,12 +17,8 @@
 module Hub
   class Projects
     def self.generate_pages(site)
-      return unless site.data.member? 'projects'
-      site.data['projects'].each do |project|
-        page = Page.generate(site, File.join('projects', project['name']),
-          'index.html', 'project.html', project['project'])
-        page.data['project'] = project
-      end
+      Page.generate_pages_from_array(site, 'projects', 'project', 'name',
+        'project')
     end
   end
 end
