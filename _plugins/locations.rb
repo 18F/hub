@@ -17,8 +17,8 @@
 module Hub
   class Locations
     def self.generate_pages(site)
-      return unless site.data.member? 'locations'
-      site.data['locations'].each do |location_code, team_members|
+      locations = site.data['locations'] || {}
+      locations.each do |location_code, team_members|
         page = Page.generate(site, File.join('locations', location_code),
           'index.html', 'location.html', location_code)
         page.data['location'] = location_code

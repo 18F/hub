@@ -17,8 +17,8 @@
 module Hub
   class Team
     def self.generate_pages(site)
-      return unless site.data.member? 'team'
-      site.data['team'].each do |username, team_member|
+      team = site.data['team'] || {}
+      team.each do |username, team_member|
         page = Page.generate(site, File.join('team', username),
           'index.html', 'team_member.html', team_member['full_name'])
         page.data['member'] = team_member

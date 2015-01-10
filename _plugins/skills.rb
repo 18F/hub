@@ -17,8 +17,8 @@
 module Hub
   class Skills
     def self.generate_pages(site)
-      return unless site.data.member? 'skills'
-      site.data['skills'].each do |category, category_xref|
+      skills = site.data['skills'] || {}
+      skills.each do |category, category_xref|
         generate_skills_pages(site, category, category_xref)
       end
     end
