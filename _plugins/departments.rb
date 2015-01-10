@@ -17,8 +17,8 @@
 module Hub
   class Departments
     def self.generate_pages(site)
-      Page.generate_pages_from_array(site, 'departments', 'department',
-        'name', 'name')
+      Page.generate_collection_item_pages(site, 'departments', 'department',
+        'name', primary_key: 'name')
     end
   end
 end

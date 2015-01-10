@@ -17,13 +17,10 @@
 module Hub
   class Team
     def self.generate_pages(site)
+      Page.generate_collection_item_pages(site, 'team', 'team_member',
+        'full_name')
       team = site.data['team'] || {}
-      team.each do |username, team_member|
-        page = Page.generate(site, File.join('team', username),
-          'index.html', 'team_member.html', team_member['full_name'])
-        page.data['member'] = team_member
-        generate_team_member_snippets_page(site, team_member)
-      end
+      team.each_value {|i| generate_team_member_snippets_page(site, i)}
       generate_team_member_index_page(site)
     end
 

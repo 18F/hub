@@ -17,8 +17,8 @@
 module Hub
   class Projects
     def self.generate_pages(site)
-      Page.generate_pages_from_array(site, 'projects', 'project', 'name',
-        'project')
+      Page.generate_collection_item_pages(site, 'projects', 'project',
+        'project', primary_key: 'name')
     end
   end
 end

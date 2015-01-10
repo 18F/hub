@@ -17,9 +17,9 @@
 module Hub
   class WorkingGroups
     def self.generate_pages(site)
-      Page.generate_pages_from_array(site, 'working_groups', 'working_group',
-        'name', 'name', collection_dir: 'wg',
-        title_format: '%s Working Group')
+      Page.generate_collection_item_pages(site, 'working_groups',
+        'working_group', 'name', primary_key: 'name',
+        collection_dir: 'wg', title_format: '%s Working Group')
     end
   end
 end
