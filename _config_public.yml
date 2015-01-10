@@ -1,4 +1,5 @@
 title: 18F Public Hub
+generated_page_title_format: '%s &mdash; 18F Public Hub'
 public: true
 destination: _site_public/hub
 baseurl: /hub

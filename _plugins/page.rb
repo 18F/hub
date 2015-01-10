@@ -14,6 +14,8 @@
 #
 # @author Mike Bland (michael.bland@gsa.gov)
 
+require_relative "canonicalizer"
+
 module Hub
   # Hub-specfic Page object that standardizes how pages are generated.
   #
@@ -38,7 +40,8 @@ module Hub
 
       self.process(filename)
       self.read_yaml(File.join(site.source, '_layouts'), layout)
-      self.data['title'] = "#{title} - 18F Hub"
+      title_format = site.config['generated_page_title_format'] || '%s'
+      self.data['title'] = title_format % title
     end
 
     # Creates a +Hub::Page+ object and adds it to +site.pages+.
