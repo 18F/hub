@@ -35,18 +35,13 @@ module Hub
     end
 
     def self.generate_pages(site)
-      return unless site.data.member? 'snippets'
-      site.data['snippets'].each do |timestamp, snippets|
-        generate_snippets_page(site, timestamp, snippets)
+      snippets = site.data['snippets'].each || {}
+      snippets.each do |timestamp, snippets|
+        page = Page.generate(site, 'snippets', "#{timestamp}.html",
+          "snippets.html",
+          "Snippets for #{Canonicalizer.hyphenate_yyyymmdd(timestamp)}")
+        page.data['snippets'] = snippets
       end
-    end
-
-    def self.generate_snippets_page(site, timestamp, snippets)
-      page = Page.new(site, 'snippets', "#{timestamp}.html",
-        "snippets.html",
-        "Snippets for #{Canonicalizer.hyphenate_yyyymmdd(timestamp)}")
-      page.data['snippets'] = snippets
-      site.pages << page
     end
   end
 end

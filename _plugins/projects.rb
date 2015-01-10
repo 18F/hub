@@ -17,16 +17,8 @@
 module Hub
   class Projects
     def self.generate_pages(site)
-      return unless site.data.member? 'projects'
-      projects = site.data['projects']
-      projects.each {|project| generate_project_page(site, project)}
-    end
-
-    def self.generate_project_page(site, project)
-      page = Page.new(site, File.join('projects', project['name']),
-        'index.html', 'project.html', project['project'])
-      page.data['project'] = project
-      site.pages << page
+      Page.generate_collection_item_pages(site, 'projects', 'project',
+        'project', primary_key: 'name')
     end
   end
 end
