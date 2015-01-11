@@ -19,10 +19,11 @@ require "jekyll/site"
 
 module Hub
   class DummyTestSite < ::Jekyll::Site
-    def initialize
-      @config = {}
+    def initialize(config: {})
+      @config = config
       @data = {'public' => {}, 'private' => {}}
       @pages = []
+      @source = @config['source']
     end
   end
 end

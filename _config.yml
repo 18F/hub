@@ -13,6 +13,7 @@ exclude:
 - pages/README.md
 - pages/private/README.md
 - vendor
+- go
 
 permalink: pretty
 tag_dir: tags
@@ -27,6 +28,7 @@ url: https://hub.18f.us
 # metadata
 title: 18F Hub
 description: "Team information, connections, and documentation"
+generated_page_title_format: '%s &mdash; 18F Hub'
 
 # private data
 private_data_path: _data/private
