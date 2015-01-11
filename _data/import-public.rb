@@ -28,6 +28,8 @@
 require 'csv'
 require 'jekyll'
 require 'jekyll/site'
+require 'weekly_snippets/publisher'
+require 'weekly_snippets/version'
 
 require_relative '../_plugins/joiner.rb'
 
@@ -59,22 +61,18 @@ Dir.foreach(snippet_dir) do |snippets|
   puts "#{source} => #{target}"
 
   CSV.open(target, 'w') do |outfile|
-    CSV.foreach(source) do |row|
-      # Skip header row and private snippets.
-      if row[0] == 'Timestamp'
-        outfile << row
-        next
-      end
-      next unless row[1] == 'Public'
-      row[2] = joiner_impl.team_by_email[row[2]]
+    data = CSV.read(source, :headers => true).map(&:to_hash)
+    outfile << data.first.keys
 
-      # Redact "Last week" and "This week" items
-      [row[3], row[4]].each do |section|
-        next unless section
-        section.gsub!(/\n?\{\{.*?\}\}/m,'')
-        section.gsub!(/^\n\n+/m, '')
+    publisher = ::WeeklySnippets::Publisher.new(
+      headline: 'unused', public_mode: true)
+    data.each do |snippet|
+      if snippet['Public']
+        snippet['Username'] = joiner_impl.team_by_email[snippet['Username']]
+        publisher.redact!(snippet['Last week'] || '')
+        publisher.redact!(snippet['This week'] || '')
+        outfile << snippet.values
       end
-      outfile << row
     end
   end
 end
