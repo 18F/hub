@@ -1,5 +1,21 @@
+# 18F Hub - Docs & connections between team members, projects, and skill sets
+#
+# Written in 2014 by Mike Bland (michael.bland@gsa.gov)
+# on behalf of the 18F team, part of the US General Services Administration:
+# https://18f.gsa.gov/
+#
+# To the extent possible under law, the author(s) have dedicated all copyright
+# and related and neighboring rights to this software to the public domain
+# worldwide. This software is distributed without any warranty.
+#
+# You should have received a copy of the CC0 Public Domain Dedication along
+# with this software. If not, see
+# <https://creativecommons.org/publicdomain/zero/1.0/>.
+#
+# @author Mike Bland (michael.bland@gsa.gov)
+
 require 'hash-joiner'
-require_relative 'snippets_version'
+require 'weekly_snippets/version'
 
 module Hub
 
@@ -40,7 +56,7 @@ module Hub
     # Used to standardize snippet data of different versions before joining
     # and publishing.
     SNIPPET_VERSIONS = {
-      'v1' => Snippets::Version.new(
+      'v1' => ::WeeklySnippets::Version.new(
         version_name:'v1',
         field_map:{
           'Username' => 'username',
@@ -50,7 +66,7 @@ module Hub
           'No This Week' => 'this-week',
         }
       ),
-      'v2' => Snippets::Version.new(
+      'v2' => ::WeeklySnippets::Version.new(
         version_name:'v2',
         field_map:{
           'Timestamp' => 'timestamp',
@@ -61,7 +77,7 @@ module Hub
         },
         markdown_supported: true
       ),
-      'v3' => Snippets::Version.new(
+      'v3' => ::WeeklySnippets::Version.new(
         version_name:'v3',
         field_map:{
           'Timestamp' => 'timestamp',
@@ -200,9 +216,9 @@ module Hub
     # +site.data[snippets][YYYYMMDD] = Array<Hash>
     #
     # and each individual snippet will have been converted to a standardized
-    # format defined by ::Snippets::Version.
+    # format defined by ::WeeklySnippets::Version.
     def join_snippet_data(snippet_versions)
-      standardized = ::Snippets::Version.standardize_versions(
+      standardized = ::WeeklySnippets::Version.standardize_versions(
         @data[@source]['snippets'], snippet_versions)
       team = @data['team']
       result = {}

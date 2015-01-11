@@ -1,0 +1,23 @@
+# HTTP server
+server {
+  listen 8080;
+  error_page 405 /404/index.html;
+
+  location / {
+      ssi on;
+      root   {{ hub_root }}/_site;
+      index  index.html;
+      default_type text/html;
+      set $authenticated_user "{{ authenticated_user }}";
+
+      if ($arg_user) {
+        set $authenticated_user $arg_user;
+      }
+  }
+
+  location /hub {
+      root   {{ hub_root }}/_site_public;
+      index  index.html;
+      default_type text/html;
+  }
+}

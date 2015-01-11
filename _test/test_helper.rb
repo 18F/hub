@@ -14,12 +14,5 @@
 #
 # @author Mike Bland (michael.bland@gsa.gov)
 
-module Hub
-  class WorkingGroups
-    def self.generate_pages(site)
-      Page.generate_collection_item_pages(site, 'working_groups',
-        'working_group', 'name', primary_key: 'name',
-        collection_dir: 'wg', title_format: '%s Working Group')
-    end
-  end
-end
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start

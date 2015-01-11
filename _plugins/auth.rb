@@ -1,3 +1,19 @@
+# 18F Hub - Docs & connections between team members, projects, and skill sets
+#
+# Written in 2014 by Mike Bland (michael.bland@gsa.gov)
+# on behalf of the 18F team, part of the US General Services Administration:
+# https://18f.gsa.gov/
+#
+# To the extent possible under law, the author(s) have dedicated all copyright
+# and related and neighboring rights to this software to the public domain
+# worldwide. This software is distributed without any warranty.
+#
+# You should have received a copy of the CC0 Public Domain Dedication along
+# with this software. If not, see
+# <https://creativecommons.org/publicdomain/zero/1.0/>.
+#
+# @author Mike Bland (michael.bland@gsa.gov)
+
 module Hub
   # Generates artifacts used by authenticated login features.
   class Auth
@@ -55,10 +71,9 @@ module Hub
     # +user+:: user hash
     # +layout+:: determines the layout of the HTML snippet
     def self.generate_user_authentication_include(site, user, layout)
-      page = Page.new(site, File.join('auth', user['email']), 'index.html',
-        layout, "#{user['full_name']} Authentication Include")
+      page = Page.generate(site, File.join('auth', user['email']),
+        'index.html', layout, "#{user['full_name']} Authentication Include")
       page.data['user'] = user
-      site.pages << page
     end
 
     # Generates the list of email addresses permitted to access the Hub after
@@ -67,12 +82,11 @@ module Hub
     # +team+:: array of team member hashes
     # +guests+ array of guest user hashes
     def self.generate_hub_authenticated_emails(site, team, guests)
-      page = Page.new(site, 'auth', 'hub-authenticated-emails.txt',
+      page = Page.generate(site, 'auth', 'hub-authenticated-emails.txt',
         'hub-authenticated-emails.txt', 'Authenticated Emails')
-      page.data['addrs'] = team.map {|i| i['email']}
-      page.data['addrs'].concat(guests.map {|i| i['email']})
-      page.data['addrs'].sort!
-      site.pages << page
+      addrs = team.map {|i| i['email']}
+      addrs.concat(guests.map {|i| i['email']})
+      page.data['addrs'] = addrs.sort!
     end
   end
 end

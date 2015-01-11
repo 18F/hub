@@ -1,7 +1,7 @@
 ---
 layout: bare
 ---
-<div>{% assign member = page.member %}
+<div>{% assign member = page.team_member %}
 <img class="img-circle team-img bio-clip" src="{{ site.baseurl }}/{{ member.image }}" alt="Photo of {{ member.full_name }}">
 <h1>{{ member.full_name }}</h1>
 <p>{% if member.email %}email: <a href="mailto:{{ member.email }}">{{ member.email }}</a><br/>{% endif %}
