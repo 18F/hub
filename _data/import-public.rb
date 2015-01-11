@@ -26,35 +26,19 @@
 # Date:   2014-12-22
 
 require 'csv'
-require 'hash-joiner'
 require 'jekyll'
 require 'jekyll/site'
-require 'safe_yaml'
 
 require_relative '../_plugins/joiner.rb'
-
-Dir.mkdir('public') unless Dir.exists? 'public'
 
 YAML_FILES = [
   'departments.yml',
   'projects.yml',
   'team.yml',
   'working_groups.yml',
-]
+].map {|i| "private/#{i}"}.join ' '
 
-YAML_FILES.each do |yaml_file|
-  source = File.join('private', yaml_file)
-  data = SafeYAML.load_file(source, :safe=>true)
-  unless data
-    puts "Failed to parse #{source}"
-    exit 1
-  end
-
-  target = File.join('public', yaml_file)
-  data = HashJoiner.remove_data data, 'private'
-  puts "#{source} => #{target}"
-  open(target, 'w') {|outfile| outfile.puts data.to_yaml}
-end
+exit $?.exitstatus unless system("filter-yaml-files #{YAML_FILES}")
 
 site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
 site.read_data('.')
