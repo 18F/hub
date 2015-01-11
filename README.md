@@ -21,10 +21,13 @@ To run your own local instance:
 ```
 $ git clone git@github.com:18F/hub.git
 $ cd hub
-$ gem install bundler
-$ bundle
-$ bundle exec jekyll serve
+$ ./go init
+$ ./go serve
 ```
+
+This will check that your Ruby version is supported, install the [Bundler gem](http://bundler.io/) if it is not yet installed, install all the gems needed by the Hub, and launch a running instance on `http://localhost:4000`.
+
+After going through these steps, run `./go` to see a list of available commands.The `test`, `serve`, and `serve_public` commands are the most common for route development.
 
 ### Instructions for 18F team members
 
@@ -38,10 +41,10 @@ $ git submodule init
 $ git submodule update --remote
 ```
 
-By default, `bundle exec jekyll serve` will build the site with data from [_data/private](_data/private) if it is available. Not all data in `_data/private` is actually private, but data that should not be shared outside the team is marked by nesting it within `private:` attributes. To build in "public mode" so that information marked as private doesn't appear in the generated site:
+By default, `./go serve` will build the site with data from [_data/private](_data/private) if it is available. Not all data in `_data/private` is actually private, but data that should not be shared outside the team is marked by nesting it within `private:` attributes. To build in "public mode" so that information marked as private doesn't appear in the generated site, execute:
 
 ```
-$ bundle exec jekyll serve --config _config.yml,_config_public.yml
+$ ./go serve_public
 ```
 
 See the [Data README](_data/README.md) for instructions on how to import data into [_data/public](_data/public) for deployment to the Public Hub.
@@ -49,6 +52,8 @@ See the [Data README](_data/README.md) for instructions on how to import data in
 #### Advanced Local Dev Environment
 
 If you have [Vagrant](https://www.vagrantup.com/) and [Ansible](http://www.ansible.com/home) installed, you can launch a local development server running [Nginx](http://nginx.org/) by running `vagrant up`. The server will be accessible at `localhost:8080` for the internal version, and `localhost:8080/hub` for the public version.
+
+During development, running `./go build` will generate both the internal and public versions of the Hub, and both versions will be served by the local Nginx instance immediately.
 
 For the internal version of the site, the dev server will default to setting the Nginx `$authenticated_user` variable (used by [_layouts/bare.html](_layouts/bare.html)) to the `authenticated_user` value in [deploy/ansible/playbook.yml](deploy/ansible/playbook.yml). You can also change this for a single page by adding `?user=[AUTHENTICATED_USER]` to the URL.
 
