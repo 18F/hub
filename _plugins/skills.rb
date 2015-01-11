@@ -14,6 +14,8 @@
 #
 # @author Mike Bland (michael.bland@gsa.gov)
 
+require 'team_hub/page'
+
 module Hub
   class Skills
     def self.generate_pages(site)
@@ -33,7 +35,7 @@ module Hub
     def self.generate_skills_page(site, category, skill, team_members)
       dir = File.join(Canonicalizer.canonicalize(category),
         Canonicalizer.canonicalize(skill))
-      page = Page.generate(site, dir, 'index.html', 'skills.html',
+      page = ::TeamHub::Page.generate(site, dir, 'index.html', 'skills.html',
         "#{category}: #{skill}")
       page.data['category'] = category
       page.data['skill_name'] = skill
@@ -41,8 +43,9 @@ module Hub
     end
 
     def self.generate_skills_index_page(site, category, category_xref)
-      page = Page.generate(site, Canonicalizer.canonicalize(category),
-        'index.html', 'skills_index.html', category)
+      page = ::TeamHub::Page.generate(site,
+        Canonicalizer.canonicalize(category), 'index.html',
+        'skills_index.html', category)
       page.data['category'] = category
       page.data['skills'] = category_xref.to_a.sort!
     end

@@ -14,13 +14,15 @@
 #
 # @author Mike Bland (michael.bland@gsa.gov)
 
+require 'team_hub/page'
+
 module Hub
   class Locations
     def self.generate_pages(site)
       locations = site.data['locations'] || {}
       locations.each do |location_code, team_members|
-        page = Page.generate(site, File.join('locations', location_code),
-          'index.html', 'location.html', location_code)
+        page = ::TeamHub::Page.generate(site, File.join('locations',
+          location_code), 'index.html', 'location.html', location_code)
         page.data['location'] = location_code
         page.data['members'] = team_members
       end

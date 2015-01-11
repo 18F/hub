@@ -74,6 +74,10 @@ GEM
       multi_json (~> 1.0)
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
+    team_hub (0.0.1)
+      hash-joiner
+      jekyll
+      weekly_snippets
     thor (0.19.1)
     timers (4.0.1)
       hitimes
@@ -94,4 +98,5 @@ DEPENDENCIES
   jekyll-sitemap
   minitest
   rake
+  team_hub
   weekly_snippets
