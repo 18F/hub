@@ -13,6 +13,7 @@ exclude:
 - pages/README.md
 - pages/private/README.md
 - vendor
+- go
 
 permalink: pretty
 tag_dir: tags
