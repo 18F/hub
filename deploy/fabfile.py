@@ -32,21 +32,19 @@ import fabric.api
 # Specifies the hook to manage, based on the name of the corresponding branch
 # within https://github.com/18F/hub. Defaults to internal; override with:
 #   fab [command] --set branch=production-public"
-BRANCH = fabric.api.env.get('branch', 'staging-public')
+BRANCH = fabric.api.env.get('branch', 'master')
+
+INTERNAL_BUILD_CMD = "/usr/local/rbenv/shims/bundle exec jekyll b"
+PUBLIC_BUILD_CMD = (INTERNAL_BUILD_CMD + " --config _config.yml,_config_public.yml")
 
 SETTINGS = {
   'master': {
-    'port': 4000, 'host': '18f-hub',
-    'home': '/home/ubuntu/production-internal',
-    'config': '_config.yml'
-  },
-  'staging-public': {
-    'port': 4001, 'host': '18f-hub', 'home': '/home/ubuntu/staging-public',
-    'config': '_config.yml,_config_public.yml'
+    'port': 4000, 'host': '18f-hub', 'home': '/home/ubuntu',
+    'cmd': '%s && %s' % (INTERNAL_BUILD_CMD, PUBLIC_BUILD_CMD)
   },
   'production-public': {
     'port': 4002, 'host': '18f-site', 'home': '/home/site/production',
-    'config': '_config.yml,_config_public.yml'
+    'cmd': INTERNAL_BUILD_CMD
   },
 }[BRANCH]
 
@@ -56,11 +54,8 @@ REMOTE_REPO_DIR = "%s/hub" % SETTINGS['home']
 fabric.api.env.use_ssh_config = True
 fabric.api.env.hosts = [SETTINGS['host']]
 
-COMMAND = ("cd %s && git pull && "
-  "git submodule update --remote && "
-  "/usr/local/rbenv/shims/bundle && "
-  "/usr/local/rbenv/shims/bundle exec jekyll b --config %s >> %s") % (
-  REMOTE_REPO_DIR, SETTINGS['config'], LOG)
+COMMAND = "cd %s && git pull && git submodule update --remote && %s >> %s" % (
+  REMOTE_REPO_DIR, SETTINGS['cmd'], LOG)
 
 def start():
   fabric.api.run(
