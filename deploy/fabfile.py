@@ -33,7 +33,8 @@ import fabric.api
 #   fab [command] --set instance=public"
 INSTANCE = fabric.api.env.get('instance', 'internal')
 
-BUILD_CMD = "/usr/local/rbenv/shims/bundle exec jekyll b"
+BUNDLE_CMD = "/usr/local/rbenv/shims/bundle"
+BUILD_CMD = "%s && %s exec jekyll b" % (BUNDLE_CMD, BUNDLE_CMD)
 PUBLIC_BUILD_CMD = BUILD_CMD + " --config _config.yml,_config_public.yml"
 
 SETTINGS = {
