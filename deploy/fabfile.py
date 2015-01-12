@@ -58,6 +58,7 @@ fabric.api.env.hosts = [SETTINGS['host']]
 
 COMMAND = ("cd %s && git pull && "
   "git submodule update --remote && "
+  "/usr/local/rbenv/shims/bundle && "
   "/usr/local/rbenv/shims/bundle exec jekyll b --config %s >> %s") % (
   REMOTE_REPO_DIR, SETTINGS['config'], LOG)
 
