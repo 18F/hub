@@ -14,11 +14,13 @@
 #
 # @author Mike Bland (michael.bland@gsa.gov)
 
+require 'team_hub/page'
+
 module Hub
   class Projects
     def self.generate_pages(site)
-      Page.generate_collection_item_pages(site, 'projects', 'project',
-        'project', primary_key: 'name')
+      ::TeamHub::Page.generate_collection_item_pages(site, 'projects',
+        'project', 'project', primary_key: 'name')
     end
   end
 end

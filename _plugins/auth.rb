@@ -14,6 +14,8 @@
 #
 # @author Mike Bland (michael.bland@gsa.gov)
 
+require 'team_hub/page'
+
 module Hub
   # Generates artifacts used by authenticated login features.
   class Auth
@@ -71,7 +73,7 @@ module Hub
     # +user+:: user hash
     # +layout+:: determines the layout of the HTML snippet
     def self.generate_user_authentication_include(site, user, layout)
-      page = Page.generate(site, File.join('auth', user['email']),
+      page = ::TeamHub::Page.generate(site, File.join('auth', user['email']),
         'index.html', layout, "#{user['full_name']} Authentication Include")
       page.data['user'] = user
     end
@@ -82,8 +84,9 @@ module Hub
     # +team+:: array of team member hashes
     # +guests+ array of guest user hashes
     def self.generate_hub_authenticated_emails(site, team, guests)
-      page = Page.generate(site, 'auth', 'hub-authenticated-emails.txt',
-        'hub-authenticated-emails.txt', 'Authenticated Emails')
+      page = ::TeamHub::Page.generate(site, 'auth',
+        'hub-authenticated-emails.txt', 'hub-authenticated-emails.txt',
+        'Authenticated Emails')
       addrs = team.map {|i| i['email']}
       addrs.concat(guests.map {|i| i['email']})
       page.data['addrs'] = addrs.sort!

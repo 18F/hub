@@ -5,6 +5,7 @@ gem 'RedCloth'
 gem 'bourbon'
 gem 'jekyll-sitemap'
 gem 'hash-joiner'
+gem 'team_hub'
 gem 'weekly_snippets'
 
 group :test do

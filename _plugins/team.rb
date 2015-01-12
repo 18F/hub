@@ -14,11 +14,13 @@
 #
 # @author Mike Bland (michael.bland@gsa.gov)
 
+require 'team_hub/page'
+
 module Hub
   class Team
     def self.generate_pages(site)
-      Page.generate_collection_item_pages(site, 'team', 'team_member',
-        'full_name')
+      ::TeamHub::Page.generate_collection_item_pages(site, 'team',
+        'team_member', 'full_name')
       team = site.data['team'] || {}
       team.each_value {|i| generate_team_member_snippets_page(site, i)}
       generate_team_member_index_page(site)
@@ -26,7 +28,7 @@ module Hub
 
     def self.generate_team_member_snippets_page(site, team_member)
       if team_member.member? 'snippets'
-        page = Page.generate(site, File.join('snippets',
+        page = ::TeamHub::Page.generate(site, File.join('snippets',
           team_member['name']), 'index.html', 'team_member_snippets.html',
           "#{team_member['full_name']} - Snippets")
         page.data['member'] = team_member
@@ -34,8 +36,8 @@ module Hub
     end
 
     def self.generate_team_member_index_page(site)
-      page = Page.generate(site, 'team', 'index.html', 'team_index.html',
-        'Team')
+      page = ::TeamHub::Page.generate(site, 'team', 'index.html',
+        'team_index.html', 'Team')
       team_members = site.data['team'].values
       page.data['members'] = Canonicalizer.sort_by_last_name! team_members
     end

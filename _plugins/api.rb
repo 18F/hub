@@ -14,6 +14,8 @@
 #
 # @author Mike Bland (michael.bland@gsa.gov)
 
+require 'team_hub/page'
+
 module Hub
 
   # Functions for generating JSON objects as part of an API
@@ -39,8 +41,8 @@ module Hub
     # +site+:: Jekyll site object
     # +endpoint_info+:: a list of [endpoint, title, description] elements
     def self.generate_api_index(site, endpoint_info)
-      page = Page.generate(site, 'api', 'index.html', 'api_index.html',
-        'API Endpoint Index')
+      page = ::TeamHub::Page.generate(site, 'api', 'index.html',
+        'api_index.html', 'API Endpoint Index')
       page.data['endpoints'] = endpoint_info.map do |i|
         {'endpoint' => i[0], 'title' => i[1], 'description' => i[2]}
       end
@@ -166,7 +168,7 @@ module Hub
     def self.generate_endpoint(site, endpoint, title, description, data)
       return if data.empty?
       api_endpoint = File.join('api', endpoint)
-      page = Page.generate(site, api_endpoint, 'index.html',
+      page = ::TeamHub::Page.generate(site, api_endpoint, 'index.html',
         'api.json', "API: #{title}")
       page.data['json'] = JSON.generate(data)
       return [endpoint, title, description]

@@ -14,6 +14,7 @@
 #
 # @author Mike Bland (michael.bland@gsa.gov)
 
+require 'team_hub/page'
 require 'weekly_snippets/publisher'
 
 module Hub
@@ -37,7 +38,7 @@ module Hub
     def self.generate_pages(site)
       snippets = site.data['snippets'].each || {}
       snippets.each do |timestamp, snippets|
-        page = Page.generate(site, 'snippets', "#{timestamp}.html",
+        page = ::TeamHub::Page.generate(site, 'snippets', "#{timestamp}.html",
           "snippets.html",
           "Snippets for #{Canonicalizer.hyphenate_yyyymmdd(timestamp)}")
         page.data['snippets'] = snippets
