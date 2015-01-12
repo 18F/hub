@@ -35,6 +35,11 @@ import fabric.api
 BRANCH = fabric.api.env.get('branch', 'staging-public')
 
 SETTINGS = {
+  'master': {
+    'port': 4000, 'host': '18f-hub',
+    'home': '/home/ubuntu/production-internal',
+    'config': '_config.yml'
+  },
   'staging-public': {
     'port': 4001, 'host': '18f-hub', 'home': '/home/ubuntu/staging-public',
     'config': '_config.yml,_config_public.yml'
@@ -52,6 +57,7 @@ fabric.api.env.use_ssh_config = True
 fabric.api.env.hosts = [SETTINGS['host']]
 
 COMMAND = ("cd %s && git pull && "
+  "git submodule update --remote && "
   "/usr/local/rbenv/shims/bundle exec jekyll b --config %s >> %s") % (
   REMOTE_REPO_DIR, SETTINGS['config'], LOG)
 
