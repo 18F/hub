@@ -139,6 +139,26 @@ $ rbenv install [VERSION]
 $ rbenv global [VERSION]
 ```
 
+#### Remote: GitHub access
+
+In order to access the private submodules, the remote user will need SSH access to GitHub. First you'll need to generate a key for the remote user if `$HOME/.ssh/id_rsa.pub` doesn't yet exist. Enter the following, and do not supply a passphrase when prompted:
+
+```
+$ ssh-keygen -b 2048 -t rsa -C "18F Hub internal deployment key"
+```
+
+This will generate `$HOME/.ssh/id_rsa.pub`. Copy this key and [add it to your list of SSH keys](https://github.com/settings/ssh).
+
+#### Remote: Git configuration
+
+The remote user's git configuration needs to be set to the following to enable automated updates to the Hub's private submodules (via GitHub webhooks, discussed at the end of this document):
+
+```
+$ git config --global push.default simple
+$ git config --global user.name "18F Hub automated deployment"
+$ git config --global user.email "18f@gsa.gov"
+```
+
 #### Remote: Initial cloning and build
 
 Before deploying, clone the repo on the remote host based on the appropriate branch, then perform the first build to ensure that everything is installed properly, including the [hookshot.js](hookshot.js) script.
@@ -163,10 +183,19 @@ $ bundle exec jekyll b --config _config.yml,_config_public.yml
 
 In this directory (which contains [fabfile.py](fabfile.py)), you can manage the remote `hookshot` server using the `fab` command.
 ```
-$ fab start --set branch=[BRANCH]
-$ fab stop --set branch=[BRANCH]
-$ fab restart --set branch=[BRANCH]
+$ fab start --set instance=[INSTANCE_NAME]
+$ fab stop --set instance=[INSTANCE_NAME]
+$ fab restart --set instance=[INSTANCE_NAME]
 ```
+
+`INSTANCE_NAME` corresponds to one of the keys to the `SETTINGS` dictionary in
+`fabfile.py`:
+- `internal`: regenerates the internal Hub and staging instance of the public
+  Hub
+- `submodules`: automatically updates the internal Hub and staging instance of
+  the public Hub to use the current tip of the `master` branch of each private
+  submodule
+- `public`: regenerates the production instance of the public Hub
 
 #### Remote: Nginx
 
@@ -175,3 +204,5 @@ The Hub-specific config, [/etc/nginx/vhosts/hub.conf](etc/nginx/vhosts/hub.conf)
 #### GitHub: Configure Webhook
 
 [GitHub Webhooks](https://help.github.com/articles/about-webhooks/) are requests that are delivered by GitHub to a URL of your choosing based upon certain repository events. The [Webhooks level up](https://github.com/blog/1778-webhooks-level-up) blog post gives a good high-level introduction, with pictures. The [Webhooks API docs](https://developer.github.com/webhooks/) go into greater detail; note the **Creating webhooks** and **Configuring your server** sections in the section guide on the right of the page.
+
+The [18F Hub](https://github.com/18F/hub) webhook ensures that updates to the internal Hub and staging instance of the public Hub are automatically deployed; automatic deployment of the production instance of the public Hub is forthcoming. The [data-private](https://github.com/18F/data-private) and [hub-pages-private](https://github.com/18F/hub-pages-private) webhooks ensure that changes to those repositories are propagated immediately to the internal Hub and staging instance of the public Hub.
