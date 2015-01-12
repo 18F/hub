@@ -49,7 +49,7 @@ SETTINGS = {
   },
   'public': {
     'host': '18f-site', 'port': 4002, 'home': '/home/site/production',
-    'branch': 'production-public', 'cmd': BUILD_CMD
+    'branch': 'production-public', 'cmd': PUBLIC_BUILD_CMD
   },
 }[INSTANCE]
 
