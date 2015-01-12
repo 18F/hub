@@ -53,6 +53,12 @@
 
     li {
       margin-bottom: 0.25em;
+
+      ul {
+        li {
+          padding-left: 2em;
+        }
+      }
     }
   }
 }
