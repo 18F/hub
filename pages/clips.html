@@ -1,0 +1,11 @@
+---
+permalink: clips/
+---
+<h1>New Clips</h1>
+
+{% for c in site.data.clips %}
+<div class="index-entry">
+<strong>{{ c.date }}</strong><br/>
+<a href="{{ c.url }}">{{ c.article }}</a>
+</div>
+{% endfor %}
