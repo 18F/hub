@@ -44,7 +44,8 @@ SETTINGS = {
   'submodules': {
     'host': '18f-hub', 'port': 4001, 'home': '/home/ubuntu',
     'branch': 'master',
-    'cmd': ('cd _data && ./import-public.rb && cd .. && '
+    'cmd': ('cd _data && '
+      '/usr/local/rbenv/shims/ruby ./import-public.rb && cd .. && '
       'git add _data/private _data/public/ pages/private && '
       'git commit -m \'Private submodule update\' && git push')
   },
