@@ -125,29 +125,9 @@
   first_name: Chris
   last_name: Cairns
   pif-round: 2
-  bio: is a Presidential Innovation Fellow working on the 21st Century Financial Systems
-    project at the Department of the Treasury. Chris is focused on about leveraging
-    new technologies to drive innovative change. Chris was a founding member of True
-    North Equities, a private equity firm that acquires and operates innovative small
-    businesses focused on public-sector markets. At True North Equities, he served
-    as Director of Strategy and Technology and as interim COO of a member company,
-    where he commercialized a DARPA-funded line of medical injury simulation products.
-    These products are now used around the world at over 20 Army Medical Simulation
-    Training Centers to train combat medics, helping to save American and Allied lives.
-    Chris previously served as a Senior IT Program Manager at the Department of Homeland
-    Security’s US Immigration and Customs Enforcement (ICE), earning a CIO’s distinguished
-    Special Achievement award for his leadership overseeing an IT Strategy & Management
-    Program of over $20 million. Prior to ICE, Chris held various strategy and technology
-    roles at SAIC, IBM, and Unisys. At IBM and Unisys, he pioneered multiple technology-driven
-    market offerings, including Integrated Emergency Management and Real-Time Infrastructure.
-    He graduated summa cum laude from The Pennsylvania State University, where he
-    earned multiple Bachelors Degrees, was awarded a Boren National Security Scholarship,
-    and was inducted into The Phi Beta Kappa Society. Chris is an avid Ruby on Rails
-    developer and holds two pending software patents related to crowdsourcing collective
-    intelligence. In 2007, he applied the theory of constraints to place 3rd in the
-    US Army Gaming Championship – Command & Conquer 3 (Xbox 360). Chris grew up in
-    Waterford, PA, and currently lives in Arlington, VA, with his wife and son.
-  project: 21st Century Financial Systems
+  bio: Managing Director of 18F Consulting, former Round 2 Presidential Innovation
+    Fellow, full-stack developer, entrepreneur.
+  project: 18F Consulting
 - name: dave
   full_name: Dave Caraway
   first_name: Dave
@@ -406,6 +386,7 @@
   - Object-Oriented Design
   - Distributed Systems
   - Ad-Hoc Organization and Leadership
+  - 18F Hub
 - name: mhz
   full_name: Michelle Hertzfeld
   first_name: Michelle
@@ -447,10 +428,22 @@
     team, he also manages 18F's security and privacy compliance programs. Noah was
     previously a founder of the Technology + Innovation team at the Consumer Financial
     Protectoin Bureau.
+- name: ori
+  full_name: Ori Hoffer
+  email: ori.hoffer@gsa.gov
+  slack: ori
+  location: DCA
+  18f: true
+  bio: Ori is the communications manager for 18F. If you're doing a story on us, please
+    contact me and I'll help get things coordinated.
 - name: papazian
   full_name: Chris Papazian
   first_name: Chris
   last_name: Papazian
+- name: pia
+  full_name: Pia Scott
+  first_name: Pia
+  last_name: Scott
 - name: raphy
   full_name: Raphael Villas
   first_name: Raphael
@@ -536,6 +529,10 @@
   full_name: Shawn Allen
   first_name: Shawn
   last_name: Allen
+- name: stephanierivera
+  full_name: Stephanie Rivera
+  location: SFO
+  18f: true
 - name: theresa
   full_name: Theresa Summa
   first_name: Theresa
@@ -552,11 +549,3 @@
   full_name: John Yuda
   first_name: John
   last_name: Yuda
-- name: ori
-  full_name: Ori Hoffer
-  email: ori.hoffer@gsa.gov
-  slack: ori
-  location: DCA
-  18f: true
-  bio: Ori is the communications manager for 18F. If you're doing a story on us, please
-    contact me and I'll help get things coordinated.
