@@ -49,8 +49,8 @@
   github:
   - 18F/foia
   - 18F/foia-hub
-  description: A new portal to search for and submit FOIA requests and a scalable
-    infrastructure for agencies.
+  description: A new tool to search for the correct agency or office to make a FOIA
+    request.
   partner:
   - Department of Justice
   partners: 'Also participating: FOIA agency task force.'
@@ -78,12 +78,12 @@
   - 18F/FEC
   description: Redesigning how the FEC shares the information they collect and the
     regulations they enforce, both as structured data and in robust, human-readable
-    formats through a new FEC.gov.
+    formats.
   partner:
   - Federal Election Commission
   partners: 
-  impact: The FEC collects data about elections that affect all 318 million Americans
-    every 2 years.
+  impact: The FEC collects data about how campaigns are financed that affect all 318
+    million Americans every 2 years.
   stage: discovery
   milestones:
   - 'June 2014: Project Discovery stage started'
