@@ -25,7 +25,9 @@ Work on long-term product vision statement for DoL",
 Forked eRegs with the intent to adapt it to more fully load FEC regs.
 Started to chase down some bugs in eRegs.","Continue chasing down eRegs bugs and generally massaging it into parsing FEC regs more fully.
 Continue exploration of AOs and MURs and how they connect to each other and the regs."
-12/9/2014 14:21:32,Public,jackie,"FOIA
+12/9/2014 14:21:32,Public,jackie,"
+
+FOIA
 * Worked on and merged two PRs relating to reports data
 * Tickets created:
     * Clean up tickets on main FOIA repo
@@ -82,6 +84,8 @@ MISC
 - Code static committee page
 - Finish designing district page
 - Code style guide
+
+
 ### Other
 - Gov UI Component spike
 "

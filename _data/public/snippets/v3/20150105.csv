@@ -39,8 +39,12 @@ Support v0.1 of DAP prototype "
 - finished the first [hourglass](https://github.com/18F/hourglass/) sprint with front-end fixes and automated test scaffolding
 - refactored the [.gov screenshots](https://github.com/shawnbot/dotgov-screenshots/tree/node-js) capture process using node and [PhantomJS](http://phantomjs.org/), eliminating the external url2png dependency",
 1/5/2015 20:18:49,Public,eric,"Worked on getting Sendak set up on my computer and in my head. Helped rewrite some documentation for it.
+
+
 Miscellaneous FOIA tasks, including finishing up the long overdue replies to FOIA officers we emailed in November.
-","Figuring out what what HTTPS resources and advice we can offer the rest of the federal government.
+","
+
+Figuring out what what HTTPS resources and advice we can offer the rest of the federal government.
 
 FOIA team planning and post-holiday catchup and refocusing."
 1/7/2015 9:02:53,Public,jackie,"#### 18F Training Fellows
