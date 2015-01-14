@@ -83,8 +83,6 @@ $ ssh 18f-hub sudo service google_auth_proxy restart
 
 ### Preparing for automated deployment
 
-**NOTE:** _Automated deployment is not yet in-place for the production instance of the public Hub, but will be very soon._
-
 The automated deployment of the Hub is accomplished by:
 
 - cloning the Hub's GitHub repository on the deployment host to track a specific deployment branch;
@@ -216,4 +214,8 @@ The Hub-specific config, [/etc/nginx/vhosts/hub.conf](etc/nginx/vhosts/hub.conf)
 
 [GitHub Webhooks](https://help.github.com/articles/about-webhooks/) are requests that are delivered by GitHub to a URL of your choosing based upon certain repository events. The [Webhooks level up](https://github.com/blog/1778-webhooks-level-up) blog post gives a good high-level introduction, with pictures. The [Webhooks API docs](https://developer.github.com/webhooks/) go into greater detail; note the **Creating webhooks** and **Configuring your server** sections in the section guide on the right of the page.
 
-The [18F Hub](https://github.com/18F/hub) webhook ensures that updates to the internal Hub and staging instance of the public Hub are automatically deployed; automatic deployment of the production instance of the public Hub is forthcoming. The [data-private](https://github.com/18F/data-private) and [hub-pages-private](https://github.com/18F/hub-pages-private) webhooks ensure that changes to those repositories are propagated immediately to the internal Hub and staging instance of the public Hub.
+The [18F Hub](https://github.com/18F/hub) webhooks ensure that updates to the internal Hub, the staging instance of the public Hub, and the production instance of the public Hub are automatically deployed:
+- For the internal and staging Hubs, changes committed to the `master` branch are deployed immediately.
+- For the public Hub, [open a pull request to merge the `master` branch into `production-public` branch](https://github.com/18F/hub/compare/production-public...master). Merging the pull request will trigger the webhook that will initiate deployment.
+
+The [data-private](https://github.com/18F/data-private) and [hub-pages-private](https://github.com/18F/hub-pages-private) webhooks ensure that changes to those repositories are propagated immediately to the internal Hub and staging instance of the public Hub. Those changes will not appear in the production instance of the public Hub until they are merged into the `production-public` branch.
