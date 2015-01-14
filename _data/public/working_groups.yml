@@ -13,8 +13,18 @@
   - michelle
   - robert
 - name: Diversity
+  members:
+  - jackie
 - name: Dev Community
-- name: Events
+  members:
+  - jackie
+- name: Training and Education
+  members:
+  - jackie
+  - sarah
+  - annalee
+  - elaine
+  - brethauer
 - name: Hiring
   leads:
   - jtag
