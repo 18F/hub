@@ -84,7 +84,7 @@ GEM
       hitimes
     toml (0.1.2)
       parslet (~> 1.5.0)
-    weekly_snippets (0.0.1)
+    weekly_snippets (0.0.2)
     yajl-ruby (1.1.0)
 
 PLATFORMS
