@@ -25,14 +25,6 @@
 # @author Mike Bland (michael.bland@gsa.gov)
 # Date:   2014-12-22
 
-require 'csv'
-require 'jekyll'
-require 'jekyll/site'
-require 'weekly_snippets/publisher'
-require 'weekly_snippets/version'
-
-require_relative '../_plugins/joiner.rb'
-
 YAML_FILES = [
   'departments.yml',
   'projects.yml',
@@ -41,38 +33,3 @@ YAML_FILES = [
 ].map {|i| "private/#{i}"}.join ' '
 
 exit $?.exitstatus unless system("filter-yaml-files #{YAML_FILES}")
-
-site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
-site.read_data('.')
-joiner_impl = ::Hub::JoinerImpl.new site
-
-snippet_dir = 'private'
-target_dir = 'public'
-['snippets', 'v3'].each do |subdir|
-  snippet_dir = File.join(snippet_dir, subdir)
-  target_dir = File.join(target_dir, subdir)
-  Dir.mkdir(target_dir) unless Dir.exists? target_dir
-end
-
-Dir.foreach(snippet_dir) do |snippets|
-  next if ['.', '..'].include? snippets
-  source = File.join(snippet_dir, snippets)
-  target = File.join('public', 'snippets', 'v3', snippets)
-  puts "#{source} => #{target}"
-
-  CSV.open(target, 'w') do |outfile|
-    data = CSV.read(source, :headers => true).map(&:to_hash)
-    outfile << data.first.keys
-
-    publisher = ::WeeklySnippets::Publisher.new(
-      headline: 'unused', public_mode: true)
-    data.each do |snippet|
-      if snippet['Public']
-        snippet['Username'] = joiner_impl.team_by_email[snippet['Username']]
-        publisher.redact!(snippet['Last week'] || '')
-        publisher.redact!(snippet['This week'] || '')
-        outfile << snippet.values
-      end
-    end
-  end
-end
