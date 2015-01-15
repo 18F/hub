@@ -33,14 +33,23 @@ import fabric.api
 #   fab [command] --set instance=public"
 INSTANCE = fabric.api.env.get('instance', 'internal')
 
-BUNDLE_CMD = "/usr/local/rbenv/shims/bundle"
-BUILD_CMD = "%s && %s exec jekyll b" % (BUNDLE_CMD, BUNDLE_CMD)
-PUBLIC_BUILD_CMD = BUILD_CMD + " --config _config.yml,_config_public.yml"
+INTERNAL_BUNDLE_CMD = "/usr/local/rbenv/shims/bundle"
+PUBLIC_BUNDLE_CMD = "/opt/install/rbenv/shims/bundle"
+PUBLIC_CONFIG = " --config _config.yml,_config_public.yml"
+
+BUILD_CMD = "exec jekyll b"
+INTERNAL_BUILD_CMD = "%s && %s %s && %s %s %s" % (
+  INTERNAL_BUNDLE_CMD,
+  INTERNAL_BUNDLE_CMD, BUILD_CMD,
+  INTERNAL_BUNDLE_CMD, BUILD_CMD, PUBLIC_CONFIG)
+PUBLIC_BUILD_CMD = "%s && %s %s %s" % (
+  PUBLIC_BUNDLE_CMD,
+  PUBLIC_BUNDLE_CMD, BUILD_CMD, PUBLIC_CONFIG)
 
 SETTINGS = {
   'internal': {
     'host': '18f-hub', 'port': 4000, 'home': '/home/ubuntu',
-    'branch': 'master', 'cmd': '%s && %s' % (BUILD_CMD, PUBLIC_BUILD_CMD)
+    'branch': 'master', 'cmd': INTERNAL_BUILD_CMD
   },
   'submodules': {
     'host': '18f-hub', 'port': 4001, 'home': '/home/ubuntu',

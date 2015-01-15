@@ -1,0 +1,72 @@
+Timestamp,Public,Username,Last week,This week
+1/12/2015 11:46:19,Public,mbland,"Hub:
+- Circulated Hub Ownership doc
+- Extracted [weekly_snippets](https://rubygems.org/gems/weekly_snippets)
+  ([#34](https://github.com/18F/hub/pull/34)) and
+  [team_hub](https://rubygems.org/gems/team_hub)
+  ([#50](https://github.com/18F/hub/pull/50),
+   [#52](https://github.com/18F/hub/pull/52)) gems
+  - Thanks to Alan deLevie for teaching me how to properly set up gems,
+    particularly when it comes to Travis CI and Code Climate integration
+- [Setup Travis CI](https://travis-ci.org/18F/hub)
+  ([#33](https://github.com/18F/hub/pull/33))
+- Improved data editing interface
+  ([data-private#16](https://github.com/18F/data-private/pull/16),
+   [#39](https://github.com/18F/hub/pull/39))
+- Info design session with Aidan Feldman and Michelle Hertzfeld (opened
+  [#40](https://github.com/18F/hub/issues/40),
+  [#41](https://github.com/18F/hub/issues/41),
+  [#42](https://github.com/18F/hub/issues/42),
+  [18f.gsa.gov#455](https://github.com/18F/18f.gsa.gov/issues/455))
+- ./go script to abstract development steps 
+  ([#51](https://github.com/18F/hub/pull/51))
+- automated deployment to internal instances
+  ([#36](https://github.com/18F/hub/pull/36),
+   [#37](https://github.com/18F/hub/pull/37))
+- Deprecated [data-public](https://github.com/18F/data-public) and triaged all
+  remaining [hub-original](https://github.com/18F/hub-original) issues
+- Chat with Jackie Kazil about Midas+Hub integration, Webmaker, etc.
+- Worked with Greg Boone on Dashboard data import
+- hash-joiner: filter-yaml-files executable
+  [#6](https://github.com/18F/hash-joiner/pull/6)
+
+Misc:
+- Documentation Working Group: weekly meeting","- Hub: finish recruiting owners; pick at extracting gems
+- Ramp up Practice department
+
+Carried over:
+- Grade 2014Q4 Objectives and Key Results; draft 2015Q1 OKRs
+- Study [USDS Playbook](https://playbook.cio.gov/) and
+  [TechFAR Handbook](https://playbook.cio.gov/techfar/)
+- Continue development of Practice Dev Team vision
+- Continue development of ""Unit Testing Perspectives"" doc
+- Draft Working Groups/Guild post"
+1/12/2015 11:57:29,Public,boone,"- Worked on and published blog posts
+- Added the `data-private` submodule to Dashboard
+- Worked with Mike on automated deployments for Hub
+- Began updating deploy script for Dashboard
+- With the 18f-site team, drew out design mandates from the affinity diagram","- Begin auditing content for 18f-site
+- Finish blogging guide and process
+- Publish the dub-subsetter post
+- Finish automated deployment and hub integration work for Dashboard"
+1/13/2015 4:02:14,Public,afeld,"* moved C2 configuration away from multiple generated files to environment variables (yay 12Factor!)
+* upgrading C2 to roadie-rails for CSS inlining in mail
+    * ended up contributing to roadie and roadie-rails
+* progress on OSS maintainer guidelines
+* collecting and organizing information to be moved into the Hub
+* experimenting with adding search to the Hub
+* investigated PaaS options for 18F to move to
+    * deployed C2 to Elastic Beanstalk as an experiment","* review PaaS options with the DevOps team
+* get search working in the Hub
+* demo C2 to NCR service center users
+* interviews
+* rethinking the C2 schema/endpoints"
+1/13/2015 10:39:40,Public,leah,"took over product management for USCIS ICAM (research project, read issues, support backlog grooming), conducted candidate interview, started working on about text & UX testing plan for analytics data release",
+1/13/2015 11:35:04,Public,gray,"* Building out the paid tier for /Developer Program.  
+* HTTPS policy brainstorming 
+* 3 Agency API consults ","* Planning We The People Developer Engagement
+* Planning February API Usability session
+* Continued outreach within 18F to ensure API consistency 
+* API meetup 
+* Feedback for OMB websites memo
+* 1 Agency API consult"
