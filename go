@@ -88,6 +88,34 @@ def ci_build
   build
 end
 
+AUTOMATED_DEPLOY_PULL_CMD = "git pull && git submodule update --remote"
+INTERNAL_BUNDLE_CMD = "/usr/local/rbenv/shims/bundle"
+PUBLIC_BUNDLE_CMD = "/opt/install/rbenv/shims/bundle"
+JEKYLL_BUILD_CMD = "exec jekyll b"
+JEKYLL_PUBLIC_CONFIG = "--config _config.yml,_config_public.yml"
+
+def deploy_submodules
+  exec_cmd(AUTOMATED_DEPLOY_PULL_CMD + ' && cd _data && ' +
+    '/usr/local/rbenv/shims/ruby ./import-public.rb && cd .. && ' +
+    'git add _data/private _data/public/ pages/private && ' +
+    'git commit -m \'Private submodule update\' && git push')
+end
+
+def deploy_internal
+  exec_cmd("%s && %s && %s %s && %s %s %s" % [
+    AUTOMATED_DEPLOY_PULL_CMD,
+    INTERNAL_BUNDLE_CMD,
+    INTERNAL_BUNDLE_CMD, JEKYLL_BUILD_CMD,
+    INTERNAL_BUNDLE_CMD, JEKYLL_BUILD_CMD, JEKYLL_PUBLIC_CONFIG])
+end
+
+def deploy_public
+  exec_cmd("%s && %s && %s %s %s" % [
+    AUTOMATED_DEPLOY_PULL_CMD,
+    PUBLIC_BUNDLE_CMD,
+    PUBLIC_BUNDLE_CMD, JEKYLL_BUILD_CMD, JEKYLL_PUBLIC_CONFIG])
+end
+
 COMMANDS = {
   :init => 'Set up the Hub dev environment',
   :update_gems => 'Execute Bundler to update gem set',
@@ -98,19 +126,32 @@ COMMANDS = {
   :ci_build => 'Runs tests and builds both Hub versions',
 }
 
+AUTOMATED_DEPLOYMENT_COMMANDS = {
+  :deploy_submodules => 'Commits automated submodule updates',
+  :deploy_internal => 'Deploys the internal and staging Hub instances',
+  :deploy_public => 'Deploys the public Hub instance',
+}
+
+COMMAND_SECTIONS = [
+  {:section => 'Development commands',
+   :commands => COMMANDS},
+  {:section => 'Automated deployment commands used by deploy/fabfile.py',
+   :commands => AUTOMATED_DEPLOYMENT_COMMANDS},
+]
+
 def usage(exitstatus: 0)
   puts <<EOF
 Usage: #{$0} [options] [command]
 
 options:
   -h,--help  Show this help
-
-commands:
 EOF
 
-  padding = COMMANDS.keys.max_by {|i| i.size}.size + 2
-  COMMANDS.each do |name, desc|
-    puts "  %-#{padding}s#{desc}" % name
+  COMMAND_SECTIONS.each do |command_section|
+    puts "\n#{command_section[:section]}:"
+    commands = command_section[:commands]
+    padding = commands.keys.max_by {|i| i.size}.size + 2
+    commands.each {|name, desc| puts "  %-#{padding}s#{desc}" % name}
   end
   exit exitstatus
 end
@@ -120,7 +161,8 @@ command = ARGV.shift
 usage if ['-h', '--help'].include? command
 
 command = command.to_sym
-unless COMMANDS.member? command
+ALL_GO_COMMANDS = COMMAND_SECTIONS.map {|i| i[:commands].keys}.flatten
+unless ALL_GO_COMMANDS.member? command
   puts "Unknown option or command: #{command}"
   usage(exitstatus: 1)
 end

@@ -35,33 +35,22 @@ INSTANCE = fabric.api.env.get('instance', 'internal')
 
 INTERNAL_BUNDLE_CMD = "/usr/local/rbenv/shims/bundle"
 PUBLIC_BUNDLE_CMD = "/opt/install/rbenv/shims/bundle"
-PUBLIC_CONFIG = " --config _config.yml,_config_public.yml"
-
-BUILD_CMD = "exec jekyll b"
-INTERNAL_BUILD_CMD = "%s && %s %s && %s %s %s" % (
-  INTERNAL_BUNDLE_CMD,
-  INTERNAL_BUNDLE_CMD, BUILD_CMD,
-  INTERNAL_BUNDLE_CMD, BUILD_CMD, PUBLIC_CONFIG)
-PUBLIC_BUILD_CMD = "%s && %s %s %s" % (
-  PUBLIC_BUNDLE_CMD,
-  PUBLIC_BUNDLE_CMD, BUILD_CMD, PUBLIC_CONFIG)
 
 SETTINGS = {
   'internal': {
     'host': '18f-hub', 'port': 4000, 'home': '/home/ubuntu',
-    'branch': 'master', 'cmd': INTERNAL_BUILD_CMD
+    'branch': 'master',
+    'cmd': "%s ./go deploy_internal " % INTERNAL_BUNDLE_CMD,
   },
   'submodules': {
     'host': '18f-hub', 'port': 4001, 'home': '/home/ubuntu',
     'branch': 'master',
-    'cmd': ('cd _data && '
-      '/usr/local/rbenv/shims/ruby ./import-public.rb && cd .. && '
-      'git add _data/private _data/public/ pages/private && '
-      'git commit -m \'Private submodule update\' && git push')
+    'cmd': "%s ./go deploy_submodules " % INTERNAL_BUNDLE_CMD,
   },
   'public': {
     'host': '18f-site', 'port': 4002, 'home': '/home/site/production',
-    'branch': 'production-public', 'cmd': PUBLIC_BUILD_CMD
+    'branch': 'production-public',
+    'cmd': "%s ./go deploy_public " % PUBLIC_BUNDLE_CMD,
   },
 }[INSTANCE]
 
@@ -71,8 +60,7 @@ REMOTE_REPO_DIR = "%s/hub" % SETTINGS['home']
 fabric.api.env.use_ssh_config = True
 fabric.api.env.hosts = [SETTINGS['host']]
 
-COMMAND = "cd %s && git pull && git submodule update --remote && %s >> %s" % (
-  REMOTE_REPO_DIR, SETTINGS['cmd'], LOG)
+COMMAND = "cd %s && %s >> %s" % (REMOTE_REPO_DIR, SETTINGS['cmd'], LOG)
 
 def start():
   fabric.api.run(
