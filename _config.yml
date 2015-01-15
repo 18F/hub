@@ -32,6 +32,7 @@ generated_page_title_format: '%s &mdash; 18F Hub'
 
 # private data
 private_data_path: _data/private
+private_pages_path: pages/private
 
 # team member images
 team_img_dir: assets/images/team

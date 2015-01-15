@@ -25,6 +25,7 @@ module Hub
   class FilterPrivatePagesTest < ::Minitest::Test
     def setup
       @site = DummyTestSite.new
+      @site.config['private_pages_path'] = 'pages/private'
       @all_page_names = []
       @public_page_names = []
     end
