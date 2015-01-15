@@ -5,5 +5,10 @@ Rake::TestTask.new do |t|
   t.test_files = FileList['_test/*test.rb']
 end
 
+base = File.dirname __FILE__
+ENV['TEST_DATADIR'] = File.join(base, '_test', 'data')
+ENV['TEST_TMPDIR'] = File.join(base, '_test', 'tmp')
+system "/bin/rm -rf #{ENV['TEST_TMPDIR']}/*"
+
 desc "Run HashJoiner tests"
 task :default => :test
