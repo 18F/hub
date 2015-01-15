@@ -25,16 +25,19 @@
 # Date:   2014-12-22
 
 require 'csv'
-require 'jekyll'
-require 'jekyll/site'
+require 'safe_yaml'
 require 'weekly_snippets/publisher'
 require 'weekly_snippets/version'
 
 require_relative '../_plugins/joiner.rb'
 
-site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
-site.read_data('.')
-joiner_impl = ::Hub::JoinerImpl.new site
+team_filename = File.join('private', 'team.yml')
+team = SafeYAML.load_file(team_filename, :safe=>true)
+unless team
+  puts "Failed to parse #{team_fileanme}"
+  exit 1
+end
+team_by_email = ::Hub::JoinerImpl.create_team_by_email_index team
 
 snippet_dir = 'private'
 target_dir = 'public'
@@ -58,7 +61,7 @@ Dir.foreach(snippet_dir) do |snippets|
       headline: 'unused', public_mode: true)
     data.each do |snippet|
       if snippet['Public']
-        snippet['Username'] = joiner_impl.team_by_email[snippet['Username']]
+        snippet['Username'] = team_by_email[snippet['Username']]
         publisher.redact!(snippet['Last week'] || '')
         publisher.redact!(snippet['This week'] || '')
         outfile << snippet.values
