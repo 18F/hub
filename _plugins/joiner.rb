@@ -102,10 +102,9 @@ module Hub
       @site = site
       @data = site.data
       @public_mode = site.config['public']
-      @team_by_email = {}
       private_data = site.data['private'] || {}
       @source = private_data.empty? ? 'public' : 'private'
-      @join_source = site.data[@source]
+      @join_source = site.data[@source] || {}
       create_team_by_email_index
     end
 
@@ -132,22 +131,30 @@ module Hub
     # MUST be called before remove_data, or else private email addresses will
     # be inaccessible and snippets will not be joined.
     def create_team_by_email_index
-      source = @data[@source] || {}
-      team = source['team'] || []
+      team = @join_source['team'] || []
+      @team_by_email = self.class.create_team_by_email_index team
+    end
+
+    # Creates an index of team member information keyed by email address.
+    # @param team [Array<Hash>] contains individual team member information 
+    # @return [Hash<String, Hash>] email address => team member
+    def self.create_team_by_email_index(team)
+      team_by_email = {}
       team.each do |i|
         # A Hash containing only a 'private' property is a list of team
         # members whose information is completely private.
         if i.keys == ['private']
           i['private'].each do |private_member|
             email = private_member['email']
-            @team_by_email[email] = private_member['name'] if email
+            team_by_email[email] = private_member['name'] if email
           end
         else
           email = i['email']
           email = i['private']['email'] if !email and i.member? 'private'
-          @team_by_email[email] = i['name'] if email
+          team_by_email[email] = i['name'] if email
         end
       end
+      team_by_email
     end
 
     # Prepares +site.data[@source]+ prior to joining its data with
