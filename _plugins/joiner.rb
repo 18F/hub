@@ -108,8 +108,8 @@ module Hub
       create_team_by_email_index
     end
 
-    # Joins public and private team data, filters out non-18F PIFs, and builds
-    # the +team_by_email+ index used to join snippet data.
+    # Joins team member data, converts site.data[team] to a hash of
+    # username => team_member, and assigns team member images.
     def join_team_data
       join_data 'team', 'name'
       convert_to_hash 'team', 'name'
