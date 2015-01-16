@@ -14,7 +14,7 @@ The main Git repository is https://github.com/18F/hub and the primary maintainer
 
 It takes less than a minute to set up a hands-on demo, which we hope will inspire other teams to develop their own Hubs, publish [snippets](https://18f.gsa.gov/2014/12/17/snippets/), and organize working groups/guilds/grouplets.
 
-You will need [Ruby](https://www.ruby-lang.org) ( > version 2.0 is a good idea). You may also consider using a Ruby version manager such as [rbenv](https://github.com/sstephenson/rbenv) to help ensure that Ruby version upgrades don't mean all your [gems](https://rubygems.org/) will need to be rebuilt.
+You will need [Ruby](https://www.ruby-lang.org) ( > version 2.1.5 ). You may also consider using a Ruby version manager such as [rbenv](https://github.com/sstephenson/rbenv) to help ensure that Ruby version upgrades don't mean all your [gems](https://rubygems.org/) will need to be rebuilt.
 
 To run your own local instance:
 
