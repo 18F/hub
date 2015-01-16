@@ -31,13 +31,17 @@ require 'weekly_snippets/version'
 
 require_relative '../_plugins/joiner.rb'
 
-team_filename = File.join('private', 'team.yml')
-team = SafeYAML.load_file(team_filename, :safe=>true)
-unless team
-  puts "Failed to parse #{team_fileanme}"
-  exit 1
+def load_team_data
+  team_data_filename = File.join('private', 'team.yml')
+  team_data = SafeYAML.load_file(team_data_filename, :safe=>true)
+  unless team_data
+    puts "Failed to parse #{team_data_filename}"
+    exit 1
+  end
+  team_data
 end
-team_by_email = ::Hub::JoinerImpl.create_team_by_email_index team
+
+team_by_email = ::Hub::JoinerImpl.create_team_by_email_index load_team_data
 
 snippet_dir = 'private'
 target_dir = 'public'
