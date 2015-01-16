@@ -5,3 +5,4 @@ _site_public
 *.log
 .*.swp
 .vagrant
+_test/tmp
