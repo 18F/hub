@@ -18,7 +18,7 @@
 #
 # ----
 #
-# ./go script: unified development environment interface 
+# ./go script: unified development environment interface
 #
 # Inspired by:
 # http://www.thoughtworks.com/insights/blog/praise-go-script-part-i
@@ -55,32 +55,35 @@ def init
     exec_cmd 'gem install bundler'
     puts "Bundler installed; installing gems"
   end
-  update_gems
+  exec_cmd 'bundle install'
 end
 
 def update_gems
-  exec_cmd 'bundle'
+  exec_cmd 'bundle update'
+  exec_cmd 'git add Gemfile.lock'
 end
 
 def test
   exec_cmd 'bundle exec rake test'
 end
 
+JEKYLL_BUILD_CMD = "exec jekyll build --trace"
+JEKYLL_SERVE_CMD = "exec jekyll serve --trace"
+JEKYLL_PUBLIC_CONFIG = "--config _config.yml,_config_public.yml"
+
 def serve
-  exec 'bundle exec jekyll serve --trace'
+  exec "bundle #{JEKYLL_SERVE_CMD}"
 end
 
 def serve_public
-  exec('bundle exec jekyll serve --trace ' +
-    '--config _config.yml,_config_public.yml')
+  exec "bundle #{JEKYLL_SERVE_CMD} #{JEKYLL_PUBLIC_CONFIG}"
 end
 
 def build
   puts 'Building internal version...'
-  exec_cmd('bundle exec jekyll b --trace')
+  exec_cmd "bundle #{JEKYLL_BUILD_CMD}"
   puts 'Building public version...'
-  exec_cmd('bundle exec jekyll b --trace ' +
-    '--config _config.yml,_config_public.yml')
+  exec_cmd "bundle #{JEKYLL_BUILD_CMD} #{JEKYLL_PUBLIC_CONFIG}"
 end
 
 def ci_build
@@ -88,15 +91,98 @@ def ci_build
   build
 end
 
-COMMANDS = {
-  :init => 'Set up the Hub dev environment',
-  :update_gems => 'Execute Bundler to update gem set',
-  :test => 'Execute automated tests',
-  :serve => 'Serves the internal hub at localhost:4000',
-  :serve_public => 'Serves the public hub at localhost:4000/hub/',
-  :build => 'Builds the internal and external versions of the Hub',
-  :ci_build => 'Runs tests and builds both Hub versions',
-}
+def deploy(deploy_commands)
+  exec_cmd(['git pull',
+            'git submodule update --remote',
+           ].concat(deploy_commands).join(' && '))
+end
+
+def deploy_submodules
+  deploy([
+    'cd _data',
+    '/usr/local/rbenv/shims/ruby ./import-public.rb',
+    'cd ..',
+    'git add _data/private _data/public/ pages/private',
+    'git commit -m \'Private submodule update\'',
+    'git push',
+  ])
+end
+
+def deploy_internal
+  bundle_cmd = "/usr/local/rbenv/shims/bundle"
+  deploy([
+    "#{bundle_cmd} install",
+    "#{bundle_cmd} #{JEKYLL_BUILD_CMD}",
+    "#{bundle_cmd} #{JEKYLL_BUILD_CMD} #{JEKYLL_PUBLIC_CONFIG}",
+  ])
+end
+
+def deploy_public
+  bundle_cmd = "/opt/install/rbenv/shims/bundle"
+  deploy([
+    "#{bundle_cmd} install",
+    "#{bundle_cmd} #{JEKYLL_BUILD_CMD} #{JEKYLL_PUBLIC_CONFIG}",
+  ])
+end
+
+# Groups a set of commands by common function.
+class CommandGroup
+  attr_accessor :description, :commands
+  private_class_method :new
+  @@groups = Array.new
+
+  # @param description [String] short description of the group
+  # @param commands [Hash<Symbol,String>] mapping from command function name
+  #   to a brief description; each key must be the name of a function in this
+  #   script
+  def initialize(description, commands)
+    @description = description
+    @commands = commands
+  end
+
+  def to_s
+    padding = @commands.keys.max_by {|i| i.size}.size + 2
+    ["\n#{@description}"].concat(
+      @commands.map {|name, desc| "  %-#{padding}s#{desc}" % name}).join("\n")
+  end
+
+  def self.add_group(description, commands)
+    @@groups << new(description, commands)
+  end
+
+  def self.groups
+    @@groups
+  end
+
+  def self.check_command_exists(command_symbol)
+    all_commands = @@groups.map {|i| i.commands.keys}.flatten
+    unless all_commands.member? command_symbol
+      puts "Unknown option or command: #{command_symbol}"
+      usage(exitstatus: 1)
+    end
+  end
+end
+
+CommandGroup.add_group(
+  'Development commands',
+  {
+    :init => 'Set up the Hub dev environment',
+    :update_gems => 'Execute Bundler to update gem set',
+    :test => 'Execute automated tests',
+    :serve => 'Serves the internal hub at localhost:4000',
+    :serve_public => 'Serves the public hub at localhost:4000/hub/',
+    :build => 'Builds the internal and external versions of the Hub',
+    :ci_build => 'Runs tests and builds both Hub versions',
+  })
+
+CommandGroup.add_group(
+  'Automated deployment commands used by deploy/fabfile.py',
+  {
+    :deploy_submodules => 'Commits automated submodule updates',
+    :deploy_internal => 'Deploys the internal and staging Hub instances',
+    :deploy_public => 'Deploys the public Hub instance',
+  }
+)
 
 def usage(exitstatus: 0)
   puts <<EOF
@@ -104,14 +190,8 @@ Usage: #{$0} [options] [command]
 
 options:
   -h,--help  Show this help
-
-commands:
 EOF
-
-  padding = COMMANDS.keys.max_by {|i| i.size}.size + 2
-  COMMANDS.each do |name, desc|
-    puts "  %-#{padding}s#{desc}" % name
-  end
+  CommandGroup.groups.each {|s| puts s}
   exit exitstatus
 end
 
@@ -120,8 +200,5 @@ command = ARGV.shift
 usage if ['-h', '--help'].include? command
 
 command = command.to_sym
-unless COMMANDS.member? command
-  puts "Unknown option or command: #{command}"
-  usage(exitstatus: 1)
-end
+CommandGroup.check_command_exists command
 send command
