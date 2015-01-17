@@ -25,7 +25,7 @@ module Hub
     # site generation time.
     # +site+:: Jekyll site object
     def self.copy_to_site(site)
-      copy_team_images(site)
+      copy_directory_to_site site, site.config['team_img_dir']
     end
 
     # Determines whether or not a private asset is present.
@@ -34,13 +34,6 @@ module Hub
     def self.exists? (site, relative_path)
       File.exists? File.join(
         site.source, site.config['private_data_path'], relative_path)
-    end
-
-    # Copies team image files from +site.config[+'private_data_path'] to the
-    # generated site directory.
-    # +site+:: Jekyll site object
-    def self.copy_team_images(site)
-      copy_directory_to_site site, site.config['team_img_dir']
     end
 
     # Copies a directory of private data assets into the generated site.
