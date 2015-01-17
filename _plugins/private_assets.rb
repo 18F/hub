@@ -40,16 +40,22 @@ module Hub
     # generated site directory.
     # +site+:: Jekyll site object
     def self.copy_team_images(site)
-      private_root = File.join(site.source, site.config['private_data_path'])
-      img_dir = site.config['team_img_dir']
+      copy_directory_to_site site, site.config['team_img_dir']
+    end
 
-      source_dir = File.join(private_root, img_dir)
+    # Copies a directory of private data assets into the generated site.
+    # @param site [Jekyll::Site] Jekyll site object
+    # @param dir_to_copy [string] directory within
+    #   site.config['private_data_path'] to copy into the generated site
+    def self.copy_directory_to_site(site, dir_to_copy)
+      private_root = File.join(site.source, site.config['private_data_path'])
+      source_dir = File.join(private_root, dir_to_copy)
       return unless Dir.exists? source_dir
       d = Dir.open(source_dir)
       d.each do |filename|
         next if ['.', '..'].include? filename
         site.static_files << ::Jekyll::StaticFile.new(
-          site, private_root, img_dir, filename)
+          site, private_root, dir_to_copy, filename)
       end
     end
   end

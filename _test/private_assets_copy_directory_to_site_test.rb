@@ -22,15 +22,15 @@ require_relative "temp_file_helper"
 require "minitest/autorun"
 
 module Hub
-  class PrivateAssetsCopyTeamImagesTest < ::Minitest::Test
+  class PrivateAssetsCopyDirectoryToSiteTest < ::Minitest::Test
     def setup
       config = {
         'source' => ENV['TEST_TMPDIR'],
         'private_data_path' => File.join('private_assets', 'private_images'),
-        'team_img_dir' => File.join('assets', 'images', 'team')
       }
       @site = DummyTestSite.new(config: config)
       @site.static_files = []
+      @source_dir = File.join('assets', 'images', 'team')
       @temp_file_helper = TempFileHelper.new
     end
 
@@ -38,15 +38,27 @@ module Hub
       @temp_file_helper.teardown
     end
 
-    def test_private_team_images_copied_over
+    def test_private_source_dir_does_not_exist
+      PrivateAssets.copy_directory_to_site @site, @source_dir
+      assert_empty @site.static_files
+    end
+
+    def test_private_source_dir_is_empty
+      @temp_file_helper.mkdir(File.join(@site.config['private_data_path'],
+        @source_dir))
+      PrivateAssets.copy_directory_to_site @site, @source_dir
+      assert_empty @site.static_files
+    end
+
+    def test_private_assets_copied_over
       img_files = ['mbland', 'afeld', 'gboone'].map {|i| "#{i}.jpg"}
       img_files.each do |filename|
         @temp_file_helper.mkfile(File.join(@site.config['private_data_path'],
-            @site.config['team_img_dir'], filename))
+            @source_dir, filename))
       end
 
-      PrivateAssets.copy_team_images @site
-      expected = img_files.map {|f| File.join @site.config['team_img_dir'], f}
+      PrivateAssets.copy_directory_to_site @site, @source_dir
+      expected = img_files.map {|f| File.join @source_dir, f}
       actual = @site.static_files.map {|f| File.join f.relative_path}
       assert_equal expected.sort, actual.sort
     end
