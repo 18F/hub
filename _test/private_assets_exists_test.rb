@@ -17,9 +17,9 @@
 require_relative "test_helper"
 require_relative "../_plugins/private_assets"
 require_relative "site"
-require_relative "temp_file_helper"
 
 require "minitest/autorun"
+require "test_temp_file_helper"
 
 module Hub
   class PrivateAssetsExistsTest < ::Minitest::Test
@@ -30,7 +30,7 @@ module Hub
       }
       @site = DummyTestSite.new(config: config)
       @testdir = File.join config['source'], config['private_data_path']
-      @temp_file_helper = TempFileHelper.new
+      @temp_file_helper = ::TestTempFileHelper::TempFileHelper.new
       @temp_file_helper.mkdir @site.config['private_data_path']
     end
 

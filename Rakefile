@@ -1,15 +1,15 @@
 require 'rake/testtask'
+require 'test_temp_file_helper/rake'
 
 Rake::TestTask.new do |t|
   t.libs << '_test'
   t.test_files = FileList['_test/*test.rb']
 end
 
-base = File.dirname __FILE__
-ENV['TEST_DATADIR'] = File.join(base, '_test', 'data')
-ENV['TEST_TMPDIR'] = File.join(base, '_test', 'tmp')
-system "/bin/rm -rf #{ENV['TEST_TMPDIR']}/*"
-Dir.mkdir ENV['TEST_TMPDIR'] unless File.exists? ENV['TEST_TMPDIR']
+TestTempFileHelper::SetupTestEnvironmentTask.new do |t|
+  t.base_dir = File.dirname __FILE__
+  t.tmp_dir = File.join '_test', 'tmp'
+end
 
 desc "Run HashJoiner tests"
 task :default => :test
