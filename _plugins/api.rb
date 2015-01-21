@@ -14,6 +14,7 @@
 #
 # @author Mike Bland (michael.bland@gsa.gov)
 
+require 'liquid'
 require_relative 'filters'
 require 'team_hub/page'
 
@@ -109,7 +110,9 @@ module Hub
           body: get_output(page)
         }
       end
-      generate_endpoint(site, 'pages', 'Pages', 'Page data', data)
+      generate_endpoint(site, 'pages', 'Pages', 'Page data', {
+        entries: data
+      })
     end
 
     def self.generate_projects_endpoint(site)
