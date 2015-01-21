@@ -33,24 +33,24 @@ import fabric.api
 #   fab [command] --set instance=public"
 INSTANCE = fabric.api.env.get('instance', 'internal')
 
-INTERNAL_BUNDLE_CMD = "/usr/local/rbenv/shims/bundle"
-PUBLIC_BUNDLE_CMD = "/opt/install/rbenv/shims/bundle"
+INTERNAL_RUBY_CMD = "/usr/local/rbenv/shims/ruby"
+PUBLIC_RUBY_CMD = "/opt/install/rbenv/shims/ruby"
 
 SETTINGS = {
   'internal': {
     'host': '18f-hub', 'port': 4000, 'home': '/home/ubuntu',
     'branch': 'master',
-    'cmd': "%s ./go deploy_internal " % INTERNAL_BUNDLE_CMD,
+    'cmd': "%s ./go deploy_internal " % INTERNAL_RUBY_CMD,
   },
   'submodules': {
     'host': '18f-hub', 'port': 4001, 'home': '/home/ubuntu',
     'branch': 'master',
-    'cmd': "%s ./go deploy_submodules " % INTERNAL_BUNDLE_CMD,
+    'cmd': "%s ./go deploy_submodules " % INTERNAL_RUBY_CMD,
   },
   'public': {
     'host': '18f-site', 'port': 4002, 'home': '/home/site/production',
     'branch': 'production-public',
-    'cmd': "%s ./go deploy_public " % PUBLIC_BUNDLE_CMD,
+    'cmd': "%s ./go deploy_public " % PUBLIC_RUBY_CMD,
   },
 }[INSTANCE]
 
