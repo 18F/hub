@@ -93,11 +93,21 @@ module Hub
         'Index of team members by location code', data)
     end
 
+    # Based off of
+    # https://github.com/jekyll/jekyll/blob/v2.5.2/test/test_page.rb#L10-L13
+    # Modifies `page`
+    def self.do_render(site, page)
+      layout = Jekyll::Layout.new(site, '_layouts', 'simple.html')
+      layouts = Hash.new(layout)
+      page.render(layouts, site.site_payload)
+    end
+
     def self.pages(site)
       site.pages.select {|page| %w(.html .md).include?(page.ext) }
     end
 
-    def self.get_output(page)
+    def self.get_output(site, page)
+      do_render(site, page)
       filterer = Filterer.new
       filterer.condense(filterer.strip_html(page.content))
     end
@@ -107,7 +117,7 @@ module Hub
         {
           title: page.data['title'],
           url: page.url,
-          body: get_output(page)
+          body: get_output(site, page)
         }
       end
       generate_endpoint(site, 'pages', 'Pages', 'Page data', {
