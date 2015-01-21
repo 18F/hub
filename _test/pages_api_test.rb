@@ -22,10 +22,10 @@ module Hub
   class PagesApiTest < ::Minitest::Test
     # before all
     # TODO isolate the tests better
-    `bundle exec jekyll build`
+    `bundle exec jekyll build --destination _test/tmp`
     FILES = {
-      plugin: File.join(Dir.pwd, '_site', 'api', 'pages', 'index.html'),
-      templated: File.join(Dir.pwd, '_site', 'api', 'pages.json')
+      plugin: File.join(Dir.pwd, '_test', 'tmp', 'api', 'pages', 'index.html'),
+      templated: File.join(Dir.pwd, '_test', 'tmp', 'api', 'pages.json')
     }
 
     def read_json(path)
