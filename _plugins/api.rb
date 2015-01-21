@@ -1,3 +1,5 @@
+require_relative 'filters'
+
 module Hub
 
   # Functions for generating JSON objects as part of an API
@@ -5,6 +7,7 @@ module Hub
     # This is a hack to allow the module functions to be used
     class Filterer
       include Liquid::StandardFilters
+      include Hub::Filters
     end
 
     # Generates all of the Hub's API endpoints.
@@ -77,12 +80,17 @@ module Hub
       site.pages.select {|page| %w(.html .md).include?(page.ext) }
     end
 
+    def self.get_output(page)
+      filterer = Filterer.new
+      filterer.condense(filterer.strip_html(page.content))
+    end
+
     def self.generate_pages_endpoint(site)
       data = pages(site).map do |page|
         {
           title: page.data['title'],
           url: page.url,
-          body: Filterer.new.strip_html(page.content)
+          body: get_output(page)
         }
       end
       generate_endpoint(site, 'pages', 'Pages', 'Page data', data)
