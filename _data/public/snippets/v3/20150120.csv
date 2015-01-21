@@ -1,0 +1,82 @@
+Timestamp,Public,Username,Last week,This week
+1/20/2015 11:21:37,Public,mbland,"Hub:
+- Automated deployment (tons of thanks to Greg Boone!):
+  [#53](https://github.com/18F/hub/pull/53);
+  [#54](https://github.com/18F/hub/pull/54);
+  [#57](https://github.com/18F/hub/pull/57);
+  [#58](https://github.com/18F/hub/pull/58);
+  [#59](https://github.com/18F/hub/pull/59);
+  [#61](https://github.com/18F/hub/pull/61);
+  [18f.gsa.gov #463](https://github.com/18F/18f.gsa.gov/pull/463)
+- Gray Brooks's clips page:
+  [#60](https://github.com/18F/hub/pull/60);
+  [#62](https://github.com/18F/hub/pull/62)
+- [snippets fix](https://github.com/18F/weekly_snippets/pull/2)
+- Other minor cleanups:
+  [#56](https://github.com/18F/hub/pull/56);
+  [#64](https://github.com/18F/hub/pull/64);
+  [#65](https://github.com/18F/hub/pull/65);
+  [#66](https://github.com/18F/hub/pull/66)
+- Gem extraction:
+  [#67](https://github.com/18F/hub/pull/67);
+  [`team_hub` #1](https://github.com/18F/team_hub/pull/1);
+  [`test_temp_file_helper`](https://rubygems.org/gems/test_temp_file_helper)
+  ([GitHub repo](https://github.com/18F/test_temp_file_helper))
+- Dashboard issues and code reviews:
+  [#179](https://github.com/18F/dashboard/pull/179);
+  [#180](https://github.com/18F/dashboard/pull/180);
+  [#181](https://github.com/18F/dashboard/pull/181)
+- Dan Hammer helped recruit Bosco So to set up PIF Hub
+
+Misc:
+- Graded 2014 Q4 Objectives and Key Results; updated my 18F Résumé; drafted
+  2015 Q1 OKRs
+- Documentation Working Group: weekly meeting
+- Emailed Jen Tress and Ric Miller about Doc WG/Hiring/Team Ops collaboration;
+  will follow-up week of 2015-01-26","- Practice Dev Team vision, business case
+- ""Unit Testing Perspectives"" doc
+- Working Groups blog post
+- Hub: continue gem extraction; work with others to stand up instances for
+  other teams; document issues"
+1/20/2015 11:40:49,Public,leah,"* product management for a USCIS project
+* product management and ux testing for analytics.usa.gov",
+1/20/2015 15:58:27,Public,eric,"Worked on a public analytics dashboard for the Digital Analytics Program.
+","More dashboard work.
+
+Work/hack session on Sendak.
+
+Building out some resources on HTTPS deployment for agencies.
+"
+1/20/2015 16:17:37,Public,blacktm,"- Signed IAA with Navy Reserve to prototype concept for a mobile experience reservists will use to report for duty, travel, etc.
+- Conducted technical architecture review with their CIO and his deputies.
+- Started writing user stories for first sprint.","- Will interview actual reservists on orders at Pentagon to understand the tasks and journeys to complete reserve duties.
+- Currently building public microsite for the Navy Reserve project.
+- Readying prototype, implementing first set of user stories for demo next week."
+1/20/2015 16:18:18,Public,robert,"Kicked off Navy Reserve Project at Pentagon
+Struggled and failed to deploy DB2 prototype to AWS instance
+Planned upcoming SSA hackathon
+Worked on Protosketching blog post
+Defended open source and Agile contracting to DoLabor
+Read McKinsey Report
+Developed overall SSA recommendation document",
+1/20/2015 18:25:16,Public,jackie,"### 18F Trainees
+* Presented financial plan and timeline to Greg and Hilary
+* Discussed next steps
+* Started comms discussions
+
+### Accessibility/508 training Day
+* Started gathering speaker list
+* Talked to lawyers about outside speakers and outside attendees
+* Elaine gathered a list of 508 listservs	
+
+### Misc
+* Hub- Made updates to working groups
+* Hub- Made minor update to setup in Readme. ",
+1/21/2015 12:21:22,Public,gray,"Supporting analytics.usa.gov project 
+Worked on .gov HTTPS policy brainstrom 
+Welcomed VA digital service 
+Coding gsa.gov/data alternative ","Ensuring DAP implementation on 18F projects 
+Coordination of All hands events 
+API briefing for OCSIT 
+Working on team policies, re: our website content 
+Supporting gsa hackathon planning "
