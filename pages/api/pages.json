@@ -8,8 +8,7 @@ permalink: /api/pages.json
     {
       "title": "{{ article.title }}",
       "url": "{{ site.baseurl }}{{ article.url }}",
-      "body": "{{ article.content | strip_html | condense | replace: '\', '\\\\' | replace: '"', '\\"' }}",
-      "excerpt": "{{ article.content | strip_html | condense | truncate: 140, '…' | replace: '\', '\\' | replace: '"', '\\"' }} "
+      "body": "{{ article.content | strip_html | condense | replace: '\', '\\\\' | replace: '"', '\\"' }}"
     }{% unless forloop.last %},{% endunless %}
     {% endfor %}
   ]
