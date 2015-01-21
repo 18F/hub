@@ -17,9 +17,9 @@
 require_relative "test_helper"
 require_relative "../_plugins/private_assets"
 require_relative "site"
-require_relative "temp_file_helper"
 
 require "minitest/autorun"
+require "test_temp_file_helper"
 
 module Hub
   class PrivateAssetsCopyDirectoryToSiteTest < ::Minitest::Test
@@ -31,7 +31,7 @@ module Hub
       @site = DummyTestSite.new(config: config)
       @site.static_files = []
       @source_dir = File.join('assets', 'images', 'team')
-      @temp_file_helper = TempFileHelper.new
+      @temp_file_helper = ::TestTempFileHelper::TempFileHelper.new
     end
 
     def teardown

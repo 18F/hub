@@ -12,4 +12,5 @@ group :test do
   gem 'rake'
   gem 'minitest'
   gem 'codeclimate-test-reporter'
+  gem 'test_temp_file_helper'
 end
