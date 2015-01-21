@@ -33,9 +33,13 @@ module Hub
       JSON.parse(contents)
     end
 
-    def homepage_data(path)
+    def entries_data(path)
       json = read_json(path)
-      pages = json['entries']
+      json['entries']
+    end
+
+    def homepage_data(path)
+      pages = entries_data(path)
       pages.find{|page| page['url'] == '/' }
     end
 
@@ -52,10 +56,19 @@ module Hub
       end
     end
 
-    def test_renders_templates
+    def test_inserts_content
       FILES.each do |type, path|
         homepage = homepage_data(path)
         assert_includes(homepage['body'], 'Team information')
+      end
+    end
+
+    def test_removes_liquid_tags
+      FILES.each do |type, path|
+        pages = entries_data(path)
+        pages.each do |page|
+          refute_includes(page['body'], '{%')
+        end
       end
     end
   end
