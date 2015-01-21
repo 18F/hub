@@ -1,5 +1,21 @@
+# 18F Hub - Docs & connections between team members, projects, and skill sets
+#
+# Written in 2014 by Mike Bland (michael.bland@gsa.gov)
+# on behalf of the 18F team, part of the US General Services Administration:
+# https://18f.gsa.gov/
+#
+# To the extent possible under law, the author(s) have dedicated all copyright
+# and related and neighboring rights to this software to the public domain
+# worldwide. This software is distributed without any warranty.
+#
+# You should have received a copy of the CC0 Public Domain Dedication along
+# with this software. If not, see
+# <https://creativecommons.org/publicdomain/zero/1.0/>.
+#
+# @author Mike Bland (michael.bland@gsa.gov)
+
 require 'hash-joiner'
-require_relative 'snippets_version'
+require 'weekly_snippets/version'
 
 module Hub
 
@@ -40,7 +56,7 @@ module Hub
     # Used to standardize snippet data of different versions before joining
     # and publishing.
     SNIPPET_VERSIONS = {
-      'v1' => Snippets::Version.new(
+      'v1' => ::WeeklySnippets::Version.new(
         version_name:'v1',
         field_map:{
           'Username' => 'username',
@@ -50,7 +66,7 @@ module Hub
           'No This Week' => 'this-week',
         }
       ),
-      'v2' => Snippets::Version.new(
+      'v2' => ::WeeklySnippets::Version.new(
         version_name:'v2',
         field_map:{
           'Timestamp' => 'timestamp',
@@ -61,7 +77,7 @@ module Hub
         },
         markdown_supported: true
       ),
-      'v3' => Snippets::Version.new(
+      'v3' => ::WeeklySnippets::Version.new(
         version_name:'v3',
         field_map:{
           'Timestamp' => 'timestamp',
@@ -86,15 +102,14 @@ module Hub
       @site = site
       @data = site.data
       @public_mode = site.config['public']
-      @team_by_email = {}
-      private_data = site.data['private'] || {}
+      private_data = @data['private'] || {}
       @source = private_data.empty? ? 'public' : 'private'
-      @join_source = site.data[@source]
+      @join_source = @data[@source] || {}
       create_team_by_email_index
     end
 
-    # Joins public and private team data, filters out non-18F PIFs, and builds
-    # the +team_by_email+ index used to join snippet data.
+    # Joins team member data, converts site.data[team] to a hash of
+    # username => team_member, and assigns team member images.
     def join_team_data
       join_data 'team', 'name'
       convert_to_hash 'team', 'name'
@@ -116,22 +131,30 @@ module Hub
     # MUST be called before remove_data, or else private email addresses will
     # be inaccessible and snippets will not be joined.
     def create_team_by_email_index
-      source = @data[@source] || {}
-      team = source['team'] || []
+      team = @join_source['team'] || []
+      @team_by_email = self.class.create_team_by_email_index team
+    end
+
+    # Creates an index of team member information keyed by email address.
+    # @param team [Array<Hash>] contains individual team member information 
+    # @return [Hash<String, Hash>] email address => team member
+    def self.create_team_by_email_index(team)
+      team_by_email = {}
       team.each do |i|
         # A Hash containing only a 'private' property is a list of team
         # members whose information is completely private.
         if i.keys == ['private']
           i['private'].each do |private_member|
             email = private_member['email']
-            @team_by_email[email] = private_member['name'] if email
+            team_by_email[email] = private_member['name'] if email
           end
         else
           email = i['email']
           email = i['private']['email'] if !email and i.member? 'private'
-          @team_by_email[email] = i['name'] if email
+          team_by_email[email] = i['name'] if email
         end
       end
+      team_by_email
     end
 
     # Prepares +site.data[@source]+ prior to joining its data with
@@ -200,10 +223,10 @@ module Hub
     # +site.data[snippets][YYYYMMDD] = Array<Hash>
     #
     # and each individual snippet will have been converted to a standardized
-    # format defined by ::Snippets::Version.
+    # format defined by ::WeeklySnippets::Version.
     def join_snippet_data(snippet_versions)
-      standardized = ::Snippets::Version.standardize_versions(
-        @data[@source]['snippets'], snippet_versions)
+      standardized = ::WeeklySnippets::Version.standardize_versions(
+        @join_source['snippets'], snippet_versions)
       team = @data['team']
       result = {}
       standardized.each do |timestamp, snippets|
@@ -221,32 +244,32 @@ module Hub
         result[timestamp] = joined unless joined.empty?
       end
       @data['snippets'] = result
-      @data[@source].delete 'snippets'
+      @join_source.delete 'snippets'
     end
 
     # Joins project status information into +site.data[+'project_status'].
     def join_project_status
       unless @public_mode
-        @data['project_status'] = @data[@source]['project_status']
+        @data['project_status'] = @join_source['project_status']
       end
-      @data[@source].delete 'project_status'
+      @join_source.delete 'project_status'
     end
 
     # Imports the guest_users list into the top-level site.data object.
     def import_guest_users
-      private_data = site.data[@source] || {}
-      hub_data = private_data['hub'] || {}
+      hub_data = @join_source['hub'] || {}
       if hub_data.member? 'guest_users'
-        site.data['guest_users'] = site.data[@source]['hub']['guest_users']
-        site.data[@source]['hub'].delete 'guest_users'
+        @data['guest_users'] = @join_source['hub']['guest_users']
+        @join_source['hub'].delete 'guest_users'
       end
     end
 
     # Filters out private pages when generating the public Hub.
     def filter_private_pages
       if @public_mode
+        private_pages_path = "/#{@site.config['private_pages_path']}"
         @site.pages.delete_if do |p|
-          p.relative_path.start_with? '/pages/private'
+          p.relative_path.start_with? private_pages_path
         end
       end
     end

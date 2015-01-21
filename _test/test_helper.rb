@@ -14,13 +14,5 @@
 #
 # @author Mike Bland (michael.bland@gsa.gov)
 
-require 'team_hub/page'
-
-module Hub
-  class Departments
-    def self.generate_pages(site)
-      ::TeamHub::Page.generate_collection_item_pages(site, 'departments',
-        'department', 'name', primary_key: 'name')
-    end
-  end
-end
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start

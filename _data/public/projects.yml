@@ -49,8 +49,8 @@
   github:
   - 18F/foia
   - 18F/foia-hub
-  description: A new portal to search for and submit FOIA requests and a scalable
-    infrastructure for agencies.
+  description: A new tool to search for the correct agency or office to make a FOIA
+    request.
   partner:
   - Department of Justice
   partners: 'Also participating: FOIA agency task force.'
@@ -78,12 +78,12 @@
   - 18F/FEC
   description: Redesigning how the FEC shares the information they collect and the
     regulations they enforce, both as structured data and in robust, human-readable
-    formats through a new FEC.gov.
+    formats.
   partner:
   - Federal Election Commission
   partners: 
-  impact: The FEC collects data about elections that affect all 318 million Americans
-    every 2 years.
+  impact: The FEC collects data about how campaigns are financed that affect all 318
+    million Americans every 2 years.
   stage: discovery
   milestones:
   - 'June 2014: Project Discovery stage started'
@@ -165,7 +165,7 @@
   contact:
   - fbopen@gsa.gov
   stack: Python, JavaScript/Node
-  team: alison, leah, mhz, kaitlin, diego
+  team: alison, mhz, kaitlin, diego
   licenses:
     fbopen: Public Domain (CC0)
   links:
@@ -317,15 +317,22 @@
   contact:
   - myusa@gsa.gov
   stack: Rails, Bootstrap, JavaScript, Chef
-  team: joe, nienhuis, yoz, papazian, diego
+  team: joe, yoz, papazian, diego
   licenses:
     myusa: Public Domain (CC0)
   links:
   - https://my.usa.gov
   status: 
-- project: MyUSCIS
-  name: myuscis
+- project: USCIS projects
+  name: uscis
   client:
   - U.S. Citizenship and Immigration Services
-  contact: john.yuda@gsa.gov
+  contact: 18f-uscis-projects@gsa.gov
   stage: alpha
+  description: 'We are helping to reimage and modernize immigration and visa processes:
+    building tools that improve the applicant process, providing clear and simple
+    information to the public, and creating new tools that make the processing of
+    immigration forms faster and more efficient.'
+  impact: Every year, hundreds of thousands of individuals travel to the United States
+    in pursuit of work, education, leisure, or with the hope of becoming a US resident
+    or citizen.
