@@ -120,6 +120,7 @@
   full_name: Catherine Devlin
   first_name: Catherine
   last_name: Devlin
+  location: DAY
 - name: chrisc
   full_name: Chris Cairns
   first_name: Chris
@@ -148,6 +149,7 @@
   full_name: Eric Mill
   first_name: Eric
   last_name: Mill
+  location: DCA
   email: eric.mill@gsa.gov
 - name: erica
   full_name: Erica Deahl
@@ -384,24 +386,26 @@
   last_name: Hertzfeld
   pif-round: 2
   project: Open Data Initiatives
-  bio: is a Presidential Innovation Fellow working on Open Data Initiatives at the
-    Department of the Interior. Michelle is a science communicator. From teaching
-    ranchers to use satellite imagery to improve land management, to creating digital
-    interfaces that facilitate access to weather data, she bridges the divide between
-    data and understanding with structure, intelligence, and empathy. She has worked
-    with clients ranging from small businesses to government agencies and international
-    organizations, helping them strategize both offline and online user experiences
-    to reach business and project goals. Most recently, she lent her user interface
-    expertise to international data-sharing projects at the National Oceanic and Atmospheric
+  bio: was a Round 2 Presidential Innovation Fellow working on Open Data Initiatives
+    at the Department of the Interior, and is now a UX Developer at 18F. In general,
+    though, Michelle is a science communicator. From teaching ranchers to use satellite
+    imagery to improve land management, to creating digital interfaces that facilitate
+    access to weather data, she bridges the divide between data and understanding
+    with structure, intelligence, and empathy. She has worked with clients ranging
+    from small businesses to government agencies and international organizations,
+    helping them strategize both offline and online user experiences to reach business
+    and project goals. Before serving as a Fellow, she lent her user interface expertise
+    to international data-sharing projects at the National Oceanic and Atmospheric
     Administration’s Satellite and Information Service. Her abilities include both
-    front-end web development skills in HTML5, CSS3, and Javascript, and user-centered
-    design with strong opinions about typography and color. Michelle lives in Silver
-    Spring, Maryland, where she arrived from Arizona via grad school in Indiana, and
-    has dual degrees in Environmental Policy and Mandarin.
+    front-end web development skills in HTML5, CSS3, and JavaScript, and user-centered
+    design with strong opinions about typography and color. She has dual degrees in
+    Environmental Policy and Mandarin.
+  location: TUS
 - name: micahsaul
   full_name: Micah Saul
   first_name: Micah
   last_name: Saul
+  location: SFO
 - name: michelle
   full_name: Michelle Hood
   first_name: Michelle
