@@ -74,7 +74,7 @@ module Hub
     end
 
     def self.pages(site)
-      site.pages.select {|page| page.path.start_with?('pages/') }
+      site.pages.select {|page| %w(.html .md).include?(page.ext) }
     end
 
     def self.generate_pages_endpoint(site)
