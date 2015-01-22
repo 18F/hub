@@ -46,18 +46,13 @@ ul {
   a {
     color: white;
     text-decoration: none;
-    padding: 15px;
+    padding: 28px 15px 5px 15px;
     &:hover, &:focus {
       text-decoration: underline;
       background: $dark-gray;
     }
-    i {
-      font-size: 2em;
-      margin-top: 20px;
-      color: white;
-      &:hover, &:focus {
-        color: $dark-gray;
-      }
+    img {
+      width: 45px;
     }
   }
   a:first-of-type {
