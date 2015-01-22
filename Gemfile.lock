@@ -79,7 +79,7 @@ GEM
       hash-joiner
       jekyll
       weekly_snippets
-    test_temp_file_helper (0.0.1)
+    test_temp_file_helper (0.0.2)
       rake (~> 10.0)
     thor (0.19.1)
     timers (4.0.1)
