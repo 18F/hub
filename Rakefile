@@ -1,5 +1,4 @@
 require 'rake/testtask'
-require 'test_temp_file_helper/rake'
 
 Rake::TestTask.new do |t|
   t.libs << '_test'
