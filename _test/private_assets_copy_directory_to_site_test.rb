@@ -24,14 +24,14 @@ require "test_temp_file_helper"
 module Hub
   class PrivateAssetsCopyDirectoryToSiteTest < ::Minitest::Test
     def setup
+      @temp_file_helper = ::TestTempFileHelper::TempFileHelper.new
       config = {
-        'source' => ENV['TEST_TMPDIR'],
+        'source' => @temp_file_helper.tmpdir,
         'private_data_path' => File.join('private_assets', 'private_images'),
       }
       @site = DummyTestSite.new(config: config)
       @site.static_files = []
       @source_dir = File.join('assets', 'images', 'team')
-      @temp_file_helper = ::TestTempFileHelper::TempFileHelper.new
     end
 
     def teardown
