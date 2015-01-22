@@ -27,6 +27,47 @@ ul {
   }
 }
 
+.nav {
+  float: left;
+  width: 100%;
+  height: 66px;
+  padding-top: 10px;
+  background: $blue;
+  ul {
+    width: 100%;
+    list-style: none;
+    position: absolute;
+    float: left;
+  }
+  li {
+    display: inline-block;
+    font-weight: 500;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    &:hover, &:focus {
+      text-decoration: underline;
+      background: $dark-gray;
+    }
+    i {
+      font-size: 2em;
+      margin-top: 20px;
+      color: white;
+      &:hover, &:focus {
+        color: $dark-gray;
+      }
+    }
+  }
+  a:first-of-type {
+    &:hover, &:focus {
+      text-decoration: none;
+      background: none;
+    }
+  }
+}
+
 // News Template
 //********************************************************
 .news {
@@ -84,11 +125,6 @@ ul {
   width: 50px;
   height: auto;
   margin-right: 5px;
-}
-
-.hub-header {
-  width: 100%;
-  top: 0;
 }
 
 .auth-include {
