@@ -11,8 +11,8 @@ permalink: projects/
 
 {% for proj in site.data.projects %}
 <div class="index-entry">
-<strong><a href="{{ site.baseurl }}/projects/{{ proj.name }}">{{ proj.project }}</a></strong><br/>
-{% if proj.description %}{{ proj.description }}<br/>{% endif %}
-{% if proj.team %}{% assign member_separator = ', ' %}{% assign members = proj.team %}Team: {% include team_members_short.html %}<br/>{% endif %}
+	<h2><a href="{{ site.baseurl }}/projects/{{ proj.name }}">{{ proj.project }}</a></h2>
+	<p>{% if proj.description %}{{ proj.description }}{% endif %}</p>
+	<p>{% if proj.team %}{% assign member_separator = ', ' %}{% assign members = proj.team %}Team: {% include team_members_short.html %}{% endif %}</p>
 </div>
 {% endfor %}
