@@ -36,12 +36,14 @@ module Hub
 
     def initialize(site_data)
       @site_data = site_data
+      @team = {}
+      @site_data['team'].each {|i| @team[i['name']] = i}
     end
 
     # Cross-references geographic locations with team members.
     def xref_locations_and_team_members
       locations = {}
-      @site_data['team'].each do |unused_name, member|
+      @site_data['team'].each do |member|
         member_location = member['location']
         if member_location
           unless locations.member? member_location
@@ -57,8 +59,6 @@ module Hub
     # Cross-references projects with team members. Replaces string-based
     # site_data['projects']['team'] values with team member hashes.
     def xref_projects_and_team_members
-      team = @site_data['team']
-
       @site_data['projects'].each do |p|
         p['team'] = '' unless p.member? 'team'
         expanded_team = []
@@ -66,8 +66,8 @@ module Hub
         p['team'].split(/, ?/).each do |username|
           # If some team members' info is private, they will not be listed in
           # team and will not appear as part of the project.
-          if team.member? username
-            member = team[username]
+          if @team.member? username
+            member = @team[username]
             member['projects'] = [] unless member.member? 'projects'
             member['projects'] << p
             expanded_team << member
@@ -80,14 +80,13 @@ module Hub
 
     # Cross-references working groups with team members.
     def xref_working_groups_and_team_members
-      team_members = @site_data['team']
       return unless @site_data.member? 'working_groups'
       working_groups = @site_data['working_groups']
       all_wg_members = {}
 
       working_groups.each do |wg|
         ['leads', 'members'].each do |member_type|
-          add_group_to_members(wg, member_type, team_members, all_wg_members)
+          add_group_to_members(wg, member_type, all_wg_members)
         end
       end
 
@@ -98,11 +97,10 @@ module Hub
     end
 
     # Adds a working group cross-reference to each working group team member.
-    def add_group_to_members(working_group, member_type,
-      team_members, all_wg_members)
+    def add_group_to_members(working_group, member_type, all_wg_members)
       return unless working_group.member? member_type
 
-      wg_members = working_group[member_type].map {|i| team_members[i]}
+      wg_members = working_group[member_type].map {|i| @team[i]}
       wg_members.compact!
       working_group[member_type] = wg_members
 
@@ -119,12 +117,11 @@ module Hub
     # site.data['snippets_latest'].
     def xref_snippets_and_team_members
       return unless @site_data.member? 'snippets'
-      team = @site_data['team']
       members_with_snippets = []
 
       @site_data['snippets'].each do |timestamp, snippets|
         snippets.each do |snippet|
-          member = team[snippet['name']]
+          member = @team[snippet['name']]
           member['snippets'] = [] unless member.member? 'snippets'
           member['snippets'] << snippet
           members_with_snippets << member
@@ -147,7 +144,7 @@ module Hub
         'Specialties' => Hash.new {|h,k| h[k] = Array.new},
       }
 
-      @site_data['team'].each do |unused_name, member|
+      @site_data['team'].each do |member|
         skills.each do |category, category_xref|
           add_skill_xref_if_present(category.downcase, member, category_xref)
         end

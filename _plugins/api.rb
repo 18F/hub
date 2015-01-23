@@ -50,7 +50,7 @@ module Hub
 
     def self.generate_team_endpoint(site)
       return unless site.data.member? 'team'
-      team = site.data['team'].values
+      team = site.data['team']
       return if team.empty?
       fields = ['first_name', 'last_name', 'full_name', 'image',
          'pif-round', 'bio', 'email', 'slack', 'location',
@@ -64,7 +64,7 @@ module Hub
 
     def self.generate_team_authentication_endpoint(site)
       return unless site.data.member? 'team'
-      team = site.data['team'].values.select {|i| i.member? 'email'}
+      team = site.data['team'].select {|i| i.member? 'email'}
       return if team.empty?
       fields = ['name', 'full_name', 'image']
       data = create_filtered_hash(team, 'email', fields, {})

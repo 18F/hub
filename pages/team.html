@@ -1,0 +1,9 @@
+---
+layout: bare
+permalink: /team/
+---
+<h1>&lt; team /&gt;</h1>
+<br/>
+<p>{% assign members = site.data.team %}{{ members.size }} members:</p>
+<br/>
+{% include team_members.html %}

@@ -21,6 +21,7 @@ module Hub
 
     # Canonicalizes the order and names of certain fields within site_data.
     def self.canonicalize_data(site_data)
+      sort_by_last_name! site_data['team']
       canonicalize_locations(site_data)
       canonicalize_projects(site_data)
       canonicalize_working_groups(site_data)
