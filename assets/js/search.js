@@ -4,6 +4,7 @@ var ngHub = angular.module('hubSearch', []);
 ngHub.factory('pages', function($http, $q) {
   return {
     get: function() {
+      // TODO fix against site.baseurl
       return $http.get('api/v1/pages.json').
         then(function(response) {
           if (angular.isObject(response.data)) {
@@ -25,6 +26,6 @@ ngHub.filter('unsafe', function($sce) { return $sce.trustAsHtml; });
 
 ngHub.controller('SearchController', ['$scope', 'pages', function($scope, Pages) {
   Pages.get().then(function(data) {
-    $scope.entries = data.entries;
+    $scope.pages = data.entries;
   });
 }]);

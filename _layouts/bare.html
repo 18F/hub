@@ -25,9 +25,9 @@
     {% raw %}
       <div>
         <input placeholder="Search" ng-model="searchText"/>
-        <ul ng-hide="!searchText">
-          <li ng-repeat="pageData in entries | filter:searchText">
-            <span ng-bind-html="pageData.title | unsafe"></span>
+        <ul ng-show="searchText && searchText.length > 1">
+          <li ng-repeat="page in pages | filter:searchText">
+            <a href="{{page.url}}" ng-bind-html="page.title | unsafe"></a>
           </li>
         </ul>
       </div>
