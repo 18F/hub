@@ -22,8 +22,9 @@ module Hub
   class PagesApiTest < ::Minitest::Test
     # before all
     # TODO isolate the tests better
-    `bundle exec jekyll build --destination _test/tmp`
-    PATH = File.join(Dir.pwd, '_test', 'tmp', 'api', 'pages.json')
+    BUILD_DIR = File.join(Dir.pwd, '_test', 'tmp')
+    `bundle exec jekyll build --destination #{BUILD_DIR}`
+    PATH = File.join(BUILD_DIR, 'api', 'v1', 'pages.json')
 
     def read_json(path)
       contents = File.read(path)
