@@ -14,20 +14,12 @@
 #
 # @author Mike Bland (michael.bland@gsa.gov)
 
-require 'liquid'
-require_relative 'filters'
 require 'team_hub/page'
 
 module Hub
 
   # Functions for generating JSON objects as part of an API
   class Api
-    # This is a hack to allow the module functions to be used
-    class Filterer
-      include Liquid::StandardFilters
-      include Hub::Filters
-    end
-
     # Generates all of the Hub's API endpoints.
     # +site+:: Jekyll site object
     def self.generate_api(site)
@@ -35,7 +27,6 @@ module Hub
         generate_team_endpoint(site),
         generate_team_authentication_endpoint(site),
         generate_locations_endpoint(site),
-        generate_pages_endpoint(site),
         generate_projects_endpoint(site),
         generate_departments_endpoint(site),
         generate_working_groups_endpoint(site),
@@ -91,38 +82,6 @@ module Hub
       end
       generate_endpoint(site, 'locations', 'Locations',
         'Index of team members by location code', data)
-    end
-
-    # Based off of
-    # https://github.com/jekyll/jekyll/blob/v2.5.2/test/test_page.rb#L10-L13
-    # Modifies `page`
-    def self.do_render(site, page)
-      layout = Jekyll::Layout.new(site, '_layouts', 'simple.html')
-      layouts = Hash.new(layout)
-      page.render(layouts, site.site_payload)
-    end
-
-    def self.pages(site)
-      site.pages.select {|page| %w(.html .md).include?(page.ext) }
-    end
-
-    def self.get_output(site, page)
-      do_render(site, page)
-      filterer = Filterer.new
-      filterer.condense(filterer.strip_html(page.content))
-    end
-
-    def self.generate_pages_endpoint(site)
-      data = pages(site).map do |page|
-        {
-          title: page.data['title'],
-          url: page.url,
-          body: get_output(site, page)
-        }
-      end
-      generate_endpoint(site, 'pages', 'Pages', 'Page data', {
-        entries: data
-      })
     end
 
     def self.generate_projects_endpoint(site)

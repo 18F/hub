@@ -24,7 +24,6 @@ module Hub
     # TODO isolate the tests better
     `bundle exec jekyll build --destination _test/tmp`
     FILES = {
-      plugin: File.join(Dir.pwd, '_test', 'tmp', 'api', 'pages', 'index.html'),
       templated: File.join(Dir.pwd, '_test', 'tmp', 'api', 'pages.json')
     }
 
