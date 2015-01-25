@@ -21,19 +21,22 @@
     {% include nav.html %}
   </div>
 
-  <div class="bare-content" role="main" itemscope itemprop="mainContentOfPage">
+  <div ng-app="hubSearch" ng-controller="SearchController" class="bare-content" role="main" itemscope itemprop="mainContentOfPage">
     {% raw %}
-      <div ng-app="hubSearch" ng-controller="SearchController">
+      <div>
         <input placeholder="Search" ng-model="searchText"/>
-        <ul>
+        <ul ng-hide="!searchText">
           <li ng-repeat="pageData in entries | filter:searchText">
             {{pageData.title}}
           </li>
         </ul>
       </div>
+      <div ng-hide="searchText">
+        {% endraw %}
+          {{ content }}{% include edit_link.html %}
+        {% raw %}
+      </div>
     {% endraw %}
-
-    {{ content }}{% include edit_link.html %}
   </div>
 </section>
 
