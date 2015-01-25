@@ -1,3 +1,8 @@
+PATH
+  remote: ../jekyll_pages_api
+  specs:
+    jekyll_pages_api (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -99,6 +104,7 @@ DEPENDENCIES
   hash-joiner
   jekyll
   jekyll-sitemap
+  jekyll_pages_api!
   minitest
   rake
   team_hub

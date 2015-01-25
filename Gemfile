@@ -8,6 +8,10 @@ gem 'hash-joiner'
 gem 'team_hub'
 gem 'weekly_snippets'
 
+group :jekyll_plugins do
+  gem 'jekyll_pages_api', path: '../jekyll_pages_api'
+end
+
 group :test do
   gem 'rake'
   gem 'minitest'
