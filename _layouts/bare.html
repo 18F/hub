@@ -22,6 +22,17 @@
   </div>
 
   <div class="bare-content" role="main" itemscope itemprop="mainContentOfPage">
+    {% raw %}
+      <div ng-app="hubSearch" ng-controller="SearchController">
+        <input placeholder="Search" ng-model="searchText"/>
+        <ul>
+          <li ng-repeat="pageData in entries | filter:searchText">
+            {{pageData.title}}
+          </li>
+        </ul>
+      </div>
+    {% endraw %}
+
     {{ content }}{% include edit_link.html %}
   </div>
 </section>
