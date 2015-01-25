@@ -27,6 +27,7 @@ module Hub
         generate_team_endpoint(site),
         generate_team_authentication_endpoint(site),
         generate_locations_endpoint(site),
+        generate_pages_endpoint(site),
         generate_projects_endpoint(site),
         generate_departments_endpoint(site),
         generate_working_groups_endpoint(site),
@@ -82,6 +83,11 @@ module Hub
       end
       generate_endpoint(site, 'locations', 'Locations',
         'Index of team members by location code', data)
+    end
+
+    def self.generate_pages_endpoint(site)
+      # see pages_api.rb
+      ['v1/pages.json', 'Pages', "Page metadata and content"]
     end
 
     def self.generate_projects_endpoint(site)
