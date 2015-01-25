@@ -1,5 +1,6 @@
 require 'liquid'
 require_relative 'filters'
+require_relative 'jekyll/page_without_a_file'
 
 class PagesApi
   # This is a hack to allow the module functions to be used
@@ -39,20 +40,17 @@ class PagesApi
     }
   end
 
-  def dest_dir
-    File.join(self.site.dest, 'api')
-  end
+  def page
+    # based on https://github.com/jekyll/jekyll-sitemap/blob/v0.7.0/lib/jekyll-sitemap.rb#L51-L54
+    page = Jekyll::PageWithoutAFile.new(self.site, File.dirname(__FILE__), 'api', 'pages.json')
+    page.content = self.data.to_json
+    page.data['layout'] = nil
+    page.render(Hash.new, self.site.site_payload)
 
-  def dest_file
-    File.join(self.dest_dir, 'pages.json')
+    page
   end
 
   def generate
-    FileUtils.mkdir_p(self.dest_dir)
-    File.open(self.dest_file, 'w') do |file|
-      file << self.data.to_json
-    end
-    # so that it doesn't get swept up by the Jekyll::Site::Cleaner
-    self.site.keep_files << File.join('api', 'pages.json')
+    self.site.pages << self.page
   end
 end
