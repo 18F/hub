@@ -24,13 +24,13 @@ require "test_temp_file_helper"
 module Hub
   class PrivateAssetsExistsTest < ::Minitest::Test
     def setup
+      @temp_file_helper = ::TestTempFileHelper::TempFileHelper.new
       config = {
-        'source' => ENV['TEST_TMPDIR'],
+        'source' => @temp_file_helper.tmpdir,
         'private_data_path' => 'private_assets',
       }
       @site = DummyTestSite.new(config: config)
       @testdir = File.join config['source'], config['private_data_path']
-      @temp_file_helper = ::TestTempFileHelper::TempFileHelper.new
       @temp_file_helper.mkdir @site.config['private_data_path']
     end
 

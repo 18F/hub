@@ -197,7 +197,7 @@ module Hub
       img_dir = site.config['team_img_dir']
       missing = File.join(img_dir, site.config['missing_team_member_img'])
 
-      site.data['team'].each do |name, member|
+      @data['team'].each do |name, member|
         img = File.join(img_dir, "#{name}.jpg")
 
         if (File.exists? File.join(base, img) or
