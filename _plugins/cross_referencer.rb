@@ -147,13 +147,8 @@ module Hub
     def xref_locations_and_team_members
       locations = {}
       @site_data['team'].each do |member|
-        member_location = member['location']
-        if member_location
-          unless locations.member? member_location
-            locations[member_location] = []
-          end
-          locations[member_location] << member
-        end
+        code = member['location']
+        (locations[code] || locations[code] = Array.new) << member if code
       end
       locations = locations.to_a
       @site_data['locations'] = locations.sort! unless locations.empty?
