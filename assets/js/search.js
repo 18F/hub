@@ -20,6 +20,9 @@ ngHub.factory('pages', function($http, $q) {
   };
 });
 
+// http://stackoverflow.com/a/19705096/358804
+ngHub.filter('unsafe', function($sce) { return $sce.trustAsHtml; });
+
 ngHub.controller('SearchController', ['$scope', 'pages', function($scope, Pages) {
   Pages.get().then(function(data) {
     $scope.entries = data.entries;

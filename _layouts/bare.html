@@ -27,14 +27,14 @@
         <input placeholder="Search" ng-model="searchText"/>
         <ul ng-hide="!searchText">
           <li ng-repeat="pageData in entries | filter:searchText">
-            {{pageData.title}}
+            <span ng-bind-html="pageData.title | unsafe"></span>
           </li>
         </ul>
       </div>
       <div ng-hide="searchText">
-        {% endraw %}
+    {% endraw %}
           {{ content }}{% include edit_link.html %}
-        {% raw %}
+    {% raw %}
       </div>
     {% endraw %}
   </div>
