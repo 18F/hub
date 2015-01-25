@@ -29,6 +29,17 @@ module Hub
       impl.xref_skills_and_team_members
     end
 
+    # Creates an index of +collection+ items based on +key+.
+    #
+    # @param collection [Array<Hash>] collection from which to build an index
+    # @param key [String] property used to build the index
+    # @return [Hash]
+    def self.create_index(collection, key)
+      index = {}
+      collection.each {|i| (index[i[key]] ||= Array.new) << i if i[key]}
+      index
+    end
+
     # Creates cross-references between Hash objects in +sources+ and Hash
     # objects in +targets+.
     #
@@ -145,13 +156,8 @@ module Hub
     # The resulting site.data['locations'] collection will be an Array of
     # [location code, Array<Hash> of team members].
     def xref_locations_and_team_members
-      locations = {}
-      @site_data['team'].each do |member|
-        code = member['location']
-        (locations[code] || locations[code] = Array.new) << member if code
-      end
-      locations = locations.to_a
-      @site_data['locations'] = locations.sort! unless locations.empty?
+      locations = CrossReferencer.create_index(@site_data['team'], 'location')
+      @site_data['locations'] = locations.to_a.sort! unless locations.empty?
     end
 
     # Cross-references projects with team members. Replaces string-based
