@@ -23,51 +23,37 @@ module Hub
     # before all
     # TODO isolate the tests better
     `bundle exec jekyll build --destination _test/tmp`
-    FILES = {
-      templated: File.join(Dir.pwd, '_test', 'tmp', 'api', 'pages.json')
-    }
+    PATH = File.join(Dir.pwd, '_test', 'tmp', 'api', 'pages.json')
 
     def read_json(path)
       contents = File.read(path)
       JSON.parse(contents)
     end
 
-    def entries_data(path)
-      json = read_json(path)
+    def entries_data
+      json = read_json(PATH)
       json['entries']
     end
 
-    def homepage_data(path)
-      pages = entries_data(path)
-      pages.find{|page| page['url'] == '/' }
+    def homepage_data
+      entries_data.find{|page| page['url'] == '/' }
     end
 
     def test_files_exist
-      FILES.each do |type, path|
-        assert(File.exist?(path), "#{type} file doesn't exist: #{path}")
-      end
+      assert(File.exist?(PATH), "JSON file doesn't exist.")
     end
 
     def test_properties
-      FILES.each do |type, path|
-        homepage = homepage_data(path)
-        assert_includes(homepage['body'], 'Snippets')
-      end
+      assert_includes(homepage_data['body'], 'Snippets')
     end
 
     def test_inserts_content
-      FILES.each do |type, path|
-        homepage = homepage_data(path)
-        assert_includes(homepage['body'], 'Team information')
-      end
+      assert_includes(homepage_data['body'], 'Team information')
     end
 
     def test_removes_liquid_tags
-      FILES.each do |type, path|
-        pages = entries_data(path)
-        pages.each do |page|
-          refute_includes(page['body'], '{%')
-        end
+      entries_data.each do |page|
+        refute_includes(page['body'], '{%')
       end
     end
   end
