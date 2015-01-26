@@ -1,8 +1,10 @@
-PATH
-  remote: ../jekyll_pages_api
+GIT
+  remote: https://github.com/18F/jekyll_pages_api.git
+  revision: a46270f8fafde51d22661409b9ad169dd11b741f
   specs:
     jekyll_pages_api (0.0.1)
       htmlentities (~> 4.3)
+      jekyll (~> 2.0)
 
 GEM
   remote: https://rubygems.org/

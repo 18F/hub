@@ -40,22 +40,20 @@ module Hub
       entries_data.find{|page| page['url'] == '/' }
     end
 
+    def homepage_body
+      homepage_data['body']
+    end
+
     def test_files_exist
       assert(File.exist?(PATH), "JSON file doesn't exist.")
     end
 
     def test_properties
-      assert_includes(homepage_data['body'], 'Snippets')
+      assert_includes(homepage_body, 'Snippets')
     end
 
     def test_inserts_content
-      assert_includes(homepage_data['body'], 'Team information')
-    end
-
-    def test_removes_liquid_tags
-      entries_data.each do |page|
-        refute_includes(page['body'], '{%')
-      end
+      assert_includes(homepage_body, 'Team information')
     end
   end
 end
