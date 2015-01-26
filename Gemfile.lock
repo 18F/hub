@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/18F/jekyll_pages_api.git
-  revision: a46270f8fafde51d22661409b9ad169dd11b741f
+  revision: 6df7299eca91ad22de2fdad837b3e6efc954f50e
   specs:
     jekyll_pages_api (0.0.1)
       htmlentities (~> 4.3)
