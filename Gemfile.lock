@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/18F/jekyll_pages_api.git
+  revision: 6df7299eca91ad22de2fdad837b3e6efc954f50e
+  specs:
+    jekyll_pages_api (0.0.1)
+      htmlentities (~> 4.3)
+      jekyll (~> 2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -24,6 +32,7 @@ GEM
     hash-joiner (0.0.3)
       safe_yaml
     hitimes (1.2.2)
+    htmlentities (4.3.3)
     jekyll (2.5.3)
       classifier-reborn (~> 2.0)
       colorator (~> 0.1)
@@ -46,10 +55,10 @@ GEM
     jekyll-sass-converter (1.3.0)
       sass (~> 3.2)
     jekyll-sitemap (0.7.0)
-    jekyll-watch (1.2.0)
+    jekyll-watch (1.2.1)
       listen (~> 2.7)
     kramdown (1.5.0)
-    liquid (2.6.1)
+    liquid (2.6.2)
     listen (2.8.5)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
@@ -99,6 +108,7 @@ DEPENDENCIES
   hash-joiner
   jekyll
   jekyll-sitemap
+  jekyll_pages_api!
   minitest
   rake
   team_hub
