@@ -1,4 +1,4 @@
-var ngHub = angular.module('hubSearch', []);
+var ngHub = angular.module('hubSearch', ['LiveSearch']);
 
 ngHub.factory('pagesPromise', function($http, $q) {
   // TODO fix against site.baseurl
@@ -44,13 +44,18 @@ ngHub.factory('pagesSearch', function($filter, pagesByUrl, pageIndex) {
     angular.forEach(results, function(result) {
       var page = pagesByUrl[result.ref];
       result.page = page;
+      // make top-level attribute available for LiveSearch
+      result.title = page.title;
     });
     return results;
   };
 });
 
-ngHub.controller('SearchController', ['$scope', 'pagesSearch', function($scope, pagesSearch) {
-  $scope.$watch('searchText', function() {
-    $scope.results = pagesSearch($scope.searchText);
-  });
-}]);
+ngHub.controller('SearchController', function($scope, $q, pagesSearch) {
+  $scope.searchCallback = function(params) {
+    var defer = $q.defer();
+    var results = pagesSearch(params.query);
+    defer.resolve(results);
+    return defer.promise;
+  };
+});

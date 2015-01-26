@@ -24,12 +24,11 @@
   <div ng-app="hubSearch" ng-controller="SearchController" class="bare-content" role="main" itemscope itemprop="mainContentOfPage">
     {% raw %}
       <div>
-        <input placeholder="Search" ng-model="searchText"/>
-        <ul ng-show="searchText">
-          <li ng-repeat="result in results">
-            <a href="{{result.page.url}}">{{result.page.title}}</a>
-          </li>
-        </ul>
+        <live-search id="search1" type="text"
+          live-search-callback="searchCallback"
+          live-search-item-template="<a href='{{result.page.url}}'>{{result.page.title}}</a>"
+          live-search-select="title"
+          ng-model="searchText" ></live-search>
       </div>
       <div ng-hide="searchText">
     {% endraw %}
