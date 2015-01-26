@@ -52,13 +52,26 @@ ngHub.factory('pagesSearch', function(pagesByUrl, pageIndex) {
   };
 });
 
-ngHub.controller('SearchController', function($scope, $q, pagesSearch) {
+ngHub.controller('SearchController', function($scope, $document, $q, pagesSearch) {
   var selectedResult = function() {
     // TODO find a less hacky way to retrieve this
     var selectionScope = angular.element('.searchresultspopup').scope();
     var resultIndex = selectionScope.selectedIndex;
     return selectionScope.results[resultIndex];
   };
+
+  // https://github.com/angular/angular.js/blob/54ddca537/docs/app/src/search.js#L198-L206
+  var FORWARD_SLASH_KEYCODE = 191;
+  angular.element($document[0].body).on('keydown', function(event) {
+    if (event.keyCode === FORWARD_SLASH_KEYCODE) {
+      var input = angular.element('#search1')[0];
+      if (document.activeElement !== input) {
+        event.stopPropagation();
+        event.preventDefault();
+        input.focus();
+      }
+    }
+  });
 
   $scope.searchKeyDown = function($event) {
     if ($event.keyCode === 13) { // ENTER
