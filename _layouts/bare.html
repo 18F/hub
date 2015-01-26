@@ -27,7 +27,7 @@
         <input placeholder="Search" ng-model="searchText"/>
         <ul ng-show="searchText">
           <li ng-repeat="result in results">
-            <a href="{{result.page.url}}" ng-bind-html="result.page.title | unsafe"></a>
+            <a href="{{result.page.url}}">{{result.page.title}}</a>
           </li>
         </ul>
       </div>

@@ -2,6 +2,7 @@ PATH
   remote: ../jekyll_pages_api
   specs:
     jekyll_pages_api (0.0.1)
+      htmlentities (~> 4.3)
 
 GEM
   remote: https://rubygems.org/
@@ -29,6 +30,7 @@ GEM
     hash-joiner (0.0.3)
       safe_yaml
     hitimes (1.2.2)
+    htmlentities (4.3.3)
     jekyll (2.5.3)
       classifier-reborn (~> 2.0)
       colorator (~> 0.1)

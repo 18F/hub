@@ -49,9 +49,6 @@ ngHub.factory('pagesSearch', function($filter, pagesByUrl, pageIndex) {
   };
 });
 
-// http://stackoverflow.com/a/19705096/358804
-ngHub.filter('unsafe', function($sce) { return $sce.trustAsHtml; });
-
 ngHub.controller('SearchController', ['$scope', 'pagesSearch', function($scope, pagesSearch) {
   $scope.$watch('searchText', function() {
     $scope.results = pagesSearch($scope.searchText);
