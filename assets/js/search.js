@@ -46,7 +46,7 @@ ngHub.factory('pagesSearch', function(pagesByUrl, pageIndex) {
       var page = pagesByUrl[result.ref];
       result.page = page;
       // make top-level attribute available for LiveSearch
-      result.title = page.title;
+      result.displayTitle = page.title || page.url;
     });
     return results;
   };
