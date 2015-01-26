@@ -25,7 +25,7 @@
     {% raw %}
       <div>
         <input placeholder="Search" ng-model="searchText"/>
-        <ul ng-show="searchText && searchText.length > 1">
+        <ul ng-show="searchText">
           <li ng-repeat="result in results">
             <a href="{{result.page.url}}" ng-bind-html="result.page.title | unsafe"></a>
           </li>

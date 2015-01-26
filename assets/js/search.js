@@ -21,9 +21,11 @@ ngHub.factory('pagesByUrl', function(pagesPromise) {
 
 ngHub.factory('pageIndex', function(pagesPromise) {
   var index = lunr(function() {
-    this.field('title', {boost: 10})
-    this.field('body')
     this.ref('url');
+
+    this.field('title', {boost: 10});
+    this.field('url', {boost: 5});
+    this.field('body');
   });
 
   pagesPromise.then(function(docs) {
@@ -38,6 +40,7 @@ ngHub.factory('pageIndex', function(pagesPromise) {
 ngHub.factory('pagesSearch', function($filter, pagesByUrl, pageIndex) {
   return function(term) {
     var results = pageIndex.search(term);
+    results = $filter('limitTo')(results, 20);
     angular.forEach(results, function(result) {
       var page = pagesByUrl[result.ref];
       result.page = page;
