@@ -37,7 +37,9 @@ module Hub
 
     def self.canonicalize_projects(site_data)
       if site_data.member? 'projects'
-        site_data['projects'].each {|p| sort_by_last_name! p['team']}
+        site_data['projects'].each do |p|
+          sort_by_last_name! p['team'] if p['team']
+        end
       end
     end
 
