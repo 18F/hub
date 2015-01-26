@@ -51,6 +51,20 @@ ngHub.factory('pagesSearch', function(pagesByUrl, pageIndex) {
 });
 
 ngHub.controller('SearchController', function($scope, $q, pagesSearch) {
+  var selectedResult = function() {
+    // TODO find a less hacky way to retrieve this
+    var selectionScope = angular.element('.searchresultspopup').scope();
+    var resultIndex = selectionScope.selectedIndex;
+    return selectionScope.results[resultIndex];
+  };
+
+  $scope.searchKeyDown = function($event) {
+    if ($event.keyCode === 13) { // ENTER
+      var result = selectedResult();
+      window.location = result.page.url;
+    }
+  };
+
   $scope.searchCallback = function(params) {
     var defer = $q.defer();
     var results = pagesSearch(params.query);
