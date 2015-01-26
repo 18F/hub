@@ -1,8 +1,8 @@
 var ngHub = angular.module('hubSearch', ['LiveSearch']);
 
 ngHub.factory('pagesPromise', function($http, $q) {
-  // TODO fix against site.baseurl
-  return $http.get('api/v1/pages.json').then(function(response) {
+  // TODO use site.baseurl
+  return $http.get('/api/v1/pages.json').then(function(response) {
     return response.data.entries;
   });
 });
@@ -37,10 +37,9 @@ ngHub.factory('pageIndex', function(pagesPromise) {
   return index;
 });
 
-ngHub.factory('pagesSearch', function($filter, pagesByUrl, pageIndex) {
+ngHub.factory('pagesSearch', function(pagesByUrl, pageIndex) {
   return function(term) {
     var results = pageIndex.search(term);
-    results = $filter('limitTo')(results, 20);
     angular.forEach(results, function(result) {
       var page = pagesByUrl[result.ref];
       result.page = page;
