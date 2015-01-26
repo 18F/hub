@@ -2,6 +2,7 @@
   "name": "hub",
   "private": true,
   "dependencies": {
-    "angular": "~1.3.10"
+    "angular": "~1.3.10",
+    "lunr.js": "~0.5.7"
   }
 }
