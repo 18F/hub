@@ -1,20 +1,16 @@
 var ngHub = angular.module('hubSearch', []);
 
-ngHub.factory('pages', function($http, $q) {
+ngHub.factory('pagesPromise', function($http, $q) {
   // TODO fix against site.baseurl
-  var promise = $http.get('api/v1/pages.json');
-  return {
-    get: function() {
-      return promise;
-    }
-  };
+  return $http.get('api/v1/pages.json').then(function(response) {
+    return response.data.entries;
+  });
 });
 
-ngHub.factory('pagesByUrl', function(pages) {
+ngHub.factory('pagesByUrl', function(pagesPromise) {
   var result = {};
 
-  pages.get().then(function(response) {
-    var docs = response.data.entries;
+  pagesPromise.then(function(docs) {
     angular.forEach(docs, function(doc) {
       result[doc.url] = doc;
     });
@@ -23,15 +19,14 @@ ngHub.factory('pagesByUrl', function(pages) {
   return result;
 });
 
-ngHub.factory('pageIndex', function(pages) {
+ngHub.factory('pageIndex', function(pagesPromise) {
   var index = lunr(function() {
     this.field('title', {boost: 10})
     this.field('body')
     this.ref('url');
   });
 
-  pages.get().then(function(response) {
-    var docs = response.data.entries;
+  pagesPromise.then(function(docs) {
     angular.forEach(docs, function(page) {
       index.add(page);
     });
