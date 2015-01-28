@@ -38,7 +38,7 @@ module Hub
 
       @member = {'name' => 'mbland'}
       @member_image = "#{@member['name']}.jpg"
-      @site.data['team'] = {@member['name'] => @member}
+      @site.data['team'] = [@member]
 
       @joiner = JoinerImpl.new @site
     end
