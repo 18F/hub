@@ -35,7 +35,6 @@ module Hub
       @site.data['private']['team'] = team_list
       @impl.create_team_by_email_index
       @impl.join_data 'team', 'name'
-      @impl.convert_to_hash 'team', 'name'
     end
 
     def add_snippet(version, timestamp, name, full_name,

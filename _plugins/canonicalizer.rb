@@ -21,6 +21,7 @@ module Hub
 
     # Canonicalizes the order and names of certain fields within site_data.
     def self.canonicalize_data(site_data)
+      sort_by_last_name! site_data['team']
       canonicalize_locations(site_data)
       canonicalize_projects(site_data)
       canonicalize_working_groups(site_data)
@@ -36,7 +37,9 @@ module Hub
 
     def self.canonicalize_projects(site_data)
       if site_data.member? 'projects'
-        site_data['projects'].each {|p| sort_by_last_name! p['team']}
+        site_data['projects'].each do |p|
+          sort_by_last_name! p['team'] if p['team']
+        end
       end
     end
 
