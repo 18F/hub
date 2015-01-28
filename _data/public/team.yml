@@ -120,6 +120,7 @@
   full_name: Catherine Devlin
   first_name: Catherine
   last_name: Devlin
+  location: DAY
 - name: chrisc
   full_name: Chris Cairns
   first_name: Chris
@@ -132,10 +133,12 @@
   full_name: David Best
   first_name: David
   last_name: Best
+  location: DAY
 - name: dhcole
   full_name: Dave Cole
   first_name: Dave
   last_name: Cole
+  location: PHL
 - name: diego
   full_name: Diego Lapiduz
   first_name: Diego
@@ -148,6 +151,7 @@
   full_name: Eric Mill
   first_name: Eric
   last_name: Mill
+  location: DCA
   email: eric.mill@gsa.gov
 - name: erica
   full_name: Erica Deahl
@@ -176,6 +180,7 @@
   full_name: Gray Brooks
   first_name: Gray
   last_name: Brooks
+  location: DCA
 - name: greg
   full_name: Greg Godbout
   first_name: Greg
@@ -378,30 +383,37 @@
   - Distributed Systems
   - Ad-Hoc Organization and Leadership
   - 18F Hub
+- name: meghana
+  full_name: Meghana Khandekar
+  first_name: Meghana
+  last_name: Khandekar
+  location: DCA
 - name: mhz
   full_name: Michelle Hertzfeld
   first_name: Michelle
   last_name: Hertzfeld
   pif-round: 2
   project: Open Data Initiatives
-  bio: is a Presidential Innovation Fellow working on Open Data Initiatives at the
-    Department of the Interior. Michelle is a science communicator. From teaching
-    ranchers to use satellite imagery to improve land management, to creating digital
-    interfaces that facilitate access to weather data, she bridges the divide between
-    data and understanding with structure, intelligence, and empathy. She has worked
-    with clients ranging from small businesses to government agencies and international
-    organizations, helping them strategize both offline and online user experiences
-    to reach business and project goals. Most recently, she lent her user interface
-    expertise to international data-sharing projects at the National Oceanic and Atmospheric
+  bio: was a Round 2 Presidential Innovation Fellow working on Open Data Initiatives
+    at the Department of the Interior, and is now a UX Developer at 18F. In general,
+    though, Michelle is a science communicator. From teaching ranchers to use satellite
+    imagery to improve land management, to creating digital interfaces that facilitate
+    access to weather data, she bridges the divide between data and understanding
+    with structure, intelligence, and empathy. She has worked with clients ranging
+    from small businesses to government agencies and international organizations,
+    helping them strategize both offline and online user experiences to reach business
+    and project goals. Before serving as a Fellow, she lent her user interface expertise
+    to international data-sharing projects at the National Oceanic and Atmospheric
     Administration’s Satellite and Information Service. Her abilities include both
-    front-end web development skills in HTML5, CSS3, and Javascript, and user-centered
-    design with strong opinions about typography and color. Michelle lives in Silver
-    Spring, Maryland, where she arrived from Arizona via grad school in Indiana, and
-    has dual degrees in Environmental Policy and Mandarin.
+    front-end web development skills in HTML5, CSS3, and JavaScript, and user-centered
+    design with strong opinions about typography and color. She has dual degrees in
+    Environmental Policy and Mandarin.
+  location: TUS
 - name: micahsaul
   full_name: Micah Saul
   first_name: Micah
   last_name: Saul
+  location: SFO
 - name: michelle
   full_name: Michelle Hood
   first_name: Michelle
@@ -410,6 +422,11 @@
   full_name: Moncef Belyamani
   first_name: Moncef
   last_name: Belyamani
+  location: DCA
+- name: nolson
+  full_name: Nathan Olson
+  first_name: Nathan
+  last_name: Olson
   location: DCA
 - name: nick
   full_name: Nick Bristow
@@ -525,6 +542,22 @@
   full_name: Shawn Allen
   first_name: Shawn
   last_name: Allen
+  location: SFO
+  languages:
+  - JavaScript
+  - Python
+  - HTML
+  - CSS
+  - SQL
+  technologies:
+  - D3
+  - Node
+  - Django
+  - Jekyll
+  specialties:
+  - data visualization
+  - maps
+  - APIs
 - name: stephanierivera
   full_name: Stephanie Rivera
   location: SFO
