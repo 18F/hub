@@ -86,7 +86,8 @@ module Hub
     end
 
     def self.generate_pages_endpoint(site)
-      # file created through jekyll_pages_api gem, so just need to return information for the index page
+      # file created through jekyll_pages_api gem, so just need to return
+      # information for the index page
       ['v1/pages.json', 'Pages', "Page metadata and content"]
     end
 
