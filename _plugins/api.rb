@@ -20,18 +20,18 @@ module Hub
 
   # Functions for generating JSON objects as part of an API
   class Api
-
     # Generates all of the Hub's API endpoints.
     # +site+:: Jekyll site object
     def self.generate_api(site)
-       endpoint_info = [
+      endpoint_info = [
         generate_team_endpoint(site),
         generate_team_authentication_endpoint(site),
         generate_locations_endpoint(site),
+        generate_pages_endpoint(site),
         generate_projects_endpoint(site),
         generate_departments_endpoint(site),
         generate_working_groups_endpoint(site),
-        ]
+      ]
       endpoint_info.concat generate_skills_endpoints(site)
       endpoint_info = endpoint_info.select {|i| i and !i.empty?}
       generate_api_index(site, endpoint_info) unless endpoint_info.empty?
@@ -50,7 +50,7 @@ module Hub
 
     def self.generate_team_endpoint(site)
       return unless site.data.member? 'team'
-      team = site.data['team'].values
+      team = site.data['team']
       return if team.empty?
       fields = ['first_name', 'last_name', 'full_name', 'image',
          'pif-round', 'bio', 'email', 'slack', 'location',
@@ -64,7 +64,7 @@ module Hub
 
     def self.generate_team_authentication_endpoint(site)
       return unless site.data.member? 'team'
-      team = site.data['team'].values.select {|i| i.member? 'email'}
+      team = site.data['team'].select {|i| i.member? 'email'}
       return if team.empty?
       fields = ['name', 'full_name', 'image']
       data = create_filtered_hash(team, 'email', fields, {})
@@ -83,6 +83,12 @@ module Hub
       end
       generate_endpoint(site, 'locations', 'Locations',
         'Index of team members by location code', data)
+    end
+
+    def self.generate_pages_endpoint(site)
+      # file created through jekyll_pages_api gem, so just need to return
+      # information for the index page
+      ['v1/pages.json', 'Pages', "Page metadata and content"]
     end
 
     def self.generate_projects_endpoint(site)

@@ -27,14 +27,12 @@ module Hub
     def setup
       @site = ::Jekyll::Site.new ::Jekyll::Configuration::DEFAULTS
 
-      @team = {
-        'mbland' => {
-          'email' => 'michael.bland@gsa.gov',
-          'full_name' => 'Mike Bland'},
-        'foobar' => {
-          'email' => 'foo.bar@notgsa.gov',
-          'full_name' => 'Foo Bar'},
-        }
+      @team = [
+        {'email' => 'michael.bland@gsa.gov',
+         'full_name' => 'Mike Bland'},
+        {'email' => 'foo.bar@notgsa.gov',
+         'full_name' => 'Foo Bar'},
+      ]
 
       @guests = [
         {'email' => 'mbland@acm.org',
@@ -94,7 +92,7 @@ module Hub
     def test_team_artifacts_generated
       @site.data['team'] = @team
       Auth.generate_artifacts @site
-      assert_equal([@team['mbland'], @team['foobar']], auth_include_users)
+      assert_equal([@team[0], @team[1]], auth_include_users)
 
       expected_emails = ['michael.bland@gsa.gov', 'foo.bar@notgsa.gov']
       assert_equal(user_include_files(expected_emails), auth_include_files)
@@ -116,7 +114,7 @@ module Hub
       @site.data['team'] = @team
       @site.data['guest_users'] = @guests
       Auth.generate_artifacts @site
-      assert_equal([@team['mbland'], @team['foobar'], @guests[0], @guests[1]],
+      assert_equal([@team[0], @team[1], @guests[0], @guests[1]],
         auth_include_users)
 
       expected_emails = [

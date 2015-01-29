@@ -11,6 +11,22 @@
   }
 }
 
+// Site-wide styles
+//********************************************************
+ul {
+  list-style: disc inside none;
+
+  li {
+    margin-bottom: 0.25em;
+
+    ul {
+      li {
+        padding-left: 2em;
+      }
+    }
+  }
+}
+
 // News Template
 //********************************************************
 .news {
@@ -46,20 +62,6 @@
   h4 {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
-  }
-
-  ul {
-    list-style: disc inside none;
-
-    li {
-      margin-bottom: 0.25em;
-
-      ul {
-        li {
-          padding-left: 2em;
-        }
-      }
-    }
   }
 }
 

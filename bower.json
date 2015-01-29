@@ -1,0 +1,15 @@
+{
+  "name": "hub",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.3.10",
+    "lunr.js": "~0.5.7",
+    "angular-livesearch": "https://github.com/mauriciogentile/angular-livesearch.git"
+  },
+  "install": {
+    "path": "assets/js/vendor",
+    "sources" : {
+      "angular-livesearch" : "bower_components/angular-livesearch/liveSearch.js"
+    }
+  }
+}

@@ -133,10 +133,12 @@
   full_name: David Best
   first_name: David
   last_name: Best
+  location: DAY
 - name: dhcole
   full_name: Dave Cole
   first_name: Dave
   last_name: Cole
+  location: PHL
 - name: diego
   full_name: Diego Lapiduz
   first_name: Diego
@@ -381,6 +383,11 @@
   - Distributed Systems
   - Ad-Hoc Organization and Leadership
   - 18F Hub
+- name: meghana
+  full_name: Meghana Khandekar
+  first_name: Meghana
+  last_name: Khandekar
+  location: DCA
 - name: mhz
   full_name: Michelle Hertzfeld
   first_name: Michelle
@@ -415,6 +422,11 @@
   full_name: Moncef Belyamani
   first_name: Moncef
   last_name: Belyamani
+  location: DCA
+- name: nolson
+  full_name: Nathan Olson
+  first_name: Nathan
+  last_name: Olson
   location: DCA
 - name: nick
   full_name: Nick Bristow
@@ -530,6 +542,22 @@
   full_name: Shawn Allen
   first_name: Shawn
   last_name: Allen
+  location: SFO
+  languages:
+  - JavaScript
+  - Python
+  - HTML
+  - CSS
+  - SQL
+  technologies:
+  - D3
+  - Node
+  - Django
+  - Jekyll
+  specialties:
+  - data visualization
+  - maps
+  - APIs
 - name: stephanierivera
   full_name: Stephanie Rivera
   location: SFO

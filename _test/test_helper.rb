@@ -16,3 +16,5 @@
 
 require "codeclimate-test-reporter"
 CodeClimate::TestReporter.start
+
+`rm -rf _test/tmp`

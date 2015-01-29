@@ -325,7 +325,7 @@
   status: 
 - project: USCIS projects
   name: uscis
-  client:
+  partner:
   - U.S. Citizenship and Immigration Services
   contact: 18f-uscis-projects@gsa.gov
   stage: alpha
@@ -336,3 +336,21 @@
   impact: Every year, hundreds of thousands of individuals travel to the United States
     in pursuit of work, education, leisure, or with the hope of becoming a US resident
     or citizen.
+- project: SBIR-EZ
+  name: sbirez
+  github:
+  - 18F/afsbirez
+  description: An application to simplify, streamline, and unify the Small Business
+    Innovation Research application process.
+  partner:
+  - Air Force
+  partners: 
+  impact: To encourage new small businesses to work with the Federal Government.
+  stage: alpha
+  milestones:
+  - 'May 2014: 18F began work on project'
+  contact:
+  - david.best@gsa.gov
+  stack: JavaScript, Python
+  licenses:
+    sbirez: Public Domain (CC0)

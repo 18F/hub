@@ -112,7 +112,6 @@ module Hub
     # username => team_member, and assigns team member images.
     def join_team_data
       join_data 'team', 'name'
-      convert_to_hash 'team', 'name'
       assign_team_member_images
     end
 
@@ -177,17 +176,6 @@ module Hub
       HashJoiner.join_data category, key_field, @data, @join_source
     end
 
-    # Converts a list of hash objects within +site.data[+'category'] into a
-    # hash of hash objects, using the value of +key_field+ from each object as
-    # the hash key for the new hash.
-    # +category+:: key into +site.data+ specifying collection
-    # +key_field+:: primary key for site.data[category] objects
-    def convert_to_hash(category, key_field)
-      h = {}
-      @data[category].each {|i| h[i[key_field]] = i}
-      @data[category] = h
-    end
-
     # Assigns the +image+ property of each team member based on the team
     # member's username and whether or not an image asset exists for that team
     # member. +site.config[+'missing_team_member_img'] is used as the default
@@ -197,8 +185,8 @@ module Hub
       img_dir = site.config['team_img_dir']
       missing = File.join(img_dir, site.config['missing_team_member_img'])
 
-      site.data['team'].each do |name, member|
-        img = File.join(img_dir, "#{name}.jpg")
+      site.data['team'].each do |member|
+        img = File.join(img_dir, "#{member['name']}.jpg")
 
         if (File.exists? File.join(base, img) or
             PrivateAssets.exists?(site, img))
@@ -227,7 +215,8 @@ module Hub
     def join_snippet_data(snippet_versions)
       standardized = ::WeeklySnippets::Version.standardize_versions(
         @join_source['snippets'], snippet_versions)
-      team = @data['team']
+      team = {}
+      @data['team'].each {|i| team[i['name']] = i}
       result = {}
       standardized.each do |timestamp, snippets|
         joined = []
