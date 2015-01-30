@@ -23,7 +23,7 @@ GEM
     coffee-script (2.3.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.8.0)
+    coffee-script-source (1.9.0)
     colorator (0.1)
     docile (1.1.5)
     execjs (2.2.2)
@@ -69,7 +69,7 @@ GEM
     parslet (1.5.0)
       blankslate (~> 2.0)
     posix-spawn (0.3.9)
-    pygments.rb (0.6.1)
+    pygments.rb (0.6.2)
       posix-spawn (~> 0.3.6)
       yajl-ruby (~> 1.2.0)
     rake (10.4.2)
@@ -84,7 +84,7 @@ GEM
       multi_json (~> 1.0)
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
-    team_hub (0.0.1)
+    team_hub (0.0.2)
       hash-joiner
       jekyll
       weekly_snippets

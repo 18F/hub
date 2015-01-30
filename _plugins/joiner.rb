@@ -15,6 +15,7 @@
 # @author Mike Bland (michael.bland@gsa.gov)
 
 require 'hash-joiner'
+require 'team_hub/private_assets'
 require 'weekly_snippets/version'
 
 module Hub
@@ -189,7 +190,7 @@ module Hub
         img = File.join(img_dir, "#{member['name']}.jpg")
 
         if (File.exists? File.join(base, img) or
-            PrivateAssets.exists?(site, img))
+            ::TeamHub::PrivateAssets.exists?(site, img))
           member['image'] = img
         else
           member['image'] = missing
