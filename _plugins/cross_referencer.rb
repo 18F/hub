@@ -170,36 +170,16 @@ module Hub
 
     # Cross-references working groups with team members.
     def xref_working_groups_and_team_members
-      return unless @site_data.member? 'working_groups'
-      working_groups = @site_data['working_groups']
-      all_wg_members = {}
-
-      working_groups.each do |wg|
-        ['leads', 'members'].each do |member_type|
-          add_group_to_members(wg, member_type, all_wg_members)
-        end
+      ['leads', 'members'].each do |member_type|
+        CrossReferencer.create_xrefs(
+          @site_data['working_groups'], member_type, @team, 'working_groups')
       end
 
-      all_wg_members.each do |unused_name, member|
-        member['working_groups'].sort_by! {|wg| wg['name']}
-        member['working_groups'].uniq! {|wg| wg['name']}
-      end
-    end
-
-    # Adds a working group cross-reference to each working group team member.
-    def add_group_to_members(working_group, member_type, all_wg_members)
-      return unless working_group.member? member_type
-
-      wg_members = working_group[member_type].map {|i| @team[i]}
-      wg_members.compact!
-      working_group[member_type] = wg_members
-
-      wg_members.each do |member|
-        unless member.member? 'working_groups'
-          member['working_groups'] = []
-        end
-        member['working_groups'] << working_group
-        all_wg_members[member['name']] = member
+      @team.values.each do |i|
+        working_groups = (i['working_groups'] || [])
+        working_groups.uniq! {|wg| wg['name']}
+        # TODO(mbland): move sort step into canonicalizer
+        working_groups.sort_by! {|wg| wg['name']}
       end
     end
 
