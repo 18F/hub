@@ -1,4 +1,5 @@
 ---
+# required for preprocessing by jekyll
 ---
 
 var ngHub = angular.module('hubSearch', ['LiveSearch']);
