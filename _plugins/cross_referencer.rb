@@ -203,32 +203,17 @@ module Hub
 
     # Cross-references skillsets with team members.
     def xref_skills_and_team_members
-      skills = {
-        'Languages' => Hash.new {|h,k| h[k] = Array.new},
-        'Technologies' => Hash.new {|h,k| h[k] = Array.new},
-        'Specialties' => Hash.new {|h,k| h[k] = Array.new},
-      }
+      skills = ['Languages', 'Technologies', 'Specialties']
+      skills = skills.map {|category| [category, Hash.new]}.to_h
 
-      @site_data['team'].each do |member|
-        skills.each do |category, category_xref|
-          add_skill_xref_if_present(category.downcase, member, category_xref)
+      @team.values.each do |i|
+        skills.each do |category, xref|
+          (i[category.downcase] || []).each {|s| (xref[s] ||= Array.new) << i}
         end
       end
 
-      skills.delete_if {|category,skill_xref| skill_xref.empty?}
+      skills.delete_if {|category, skill_xref| skill_xref.empty?}
       @site_data['skills'] = skills unless skills.empty?
-    end
-
-    # Adds a team member cross reference for each of a team member's skills.
-    # +category+:: category of skill (e.g. Languages, Technologies)
-    # +team_member+:: team member to add to skill cross-references
-    # +category_xref+:: hash representing a skill index for +category+
-    def add_skill_xref_if_present(category, team_member, category_xref)
-      if team_member.member? category
-        team_member[category].each do |skill|
-          category_xref[skill] << team_member
-        end
-      end
     end
   end
 end
