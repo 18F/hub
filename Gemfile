@@ -9,7 +9,8 @@ gem 'team_hub'
 gem 'weekly_snippets'
 
 group :jekyll_plugins do
-  gem 'jekyll_pages_api', git: 'https://github.com/18F/jekyll_pages_api.git'
+  gem 'jekyll-assets'
+  gem 'jekyll_pages_api'
 end
 
 group :test do

@@ -1,3 +1,7 @@
+//= require vendor/angular/angular
+//= require vendor/angular-livesearch/liveSearch
+//= require vendor/lunr.js/lunr
+
 var ngHub = angular.module('hubSearch', ['LiveSearch']);
 
 ngHub.factory('pagesPromise', function($http, $q) {
