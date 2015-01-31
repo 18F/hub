@@ -1,11 +1,7 @@
----
-# required for preprocessing by jekyll
----
-
 var ngHub = angular.module('hubSearch', ['LiveSearch']);
 
 ngHub.factory('pagesPromise', function($http, $q) {
-  return $http.get('{{site.baseurl}}/api/v1/pages.json').then(function(response) {
+  return $http.get(SITE_BASEURL + '/api/v1/pages.json').then(function(response) {
     return response.data.entries;
   });
 });
