@@ -25,7 +25,7 @@ module Hub
     # +site+:: Jekyll site object
     def self.generate_artifacts(site)
       return if site.config['public']
-      team = site.data['team'].values.select {|i| i.member? 'email'}
+      team = site.data['team'].select {|i| i.member? 'email'}
       guests = site.data['guest_users'] || []
       return if team.empty? and guests.empty?
 

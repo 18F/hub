@@ -290,7 +290,7 @@
   contact:
   - midas@gsa.gov
   stack: JavaScript (Node/Sails, Backbone), CSS, Chef
-  team: sarah, david, joe
+  team: sarah, david, joe, dhcole
   licenses:
     midas: Public Domain (CC0)
   links: https://midas.18f.us/
@@ -325,7 +325,7 @@
   status: 
 - project: USCIS projects
   name: uscis
-  client:
+  partner:
   - U.S. Citizenship and Immigration Services
   contact: 18f-uscis-projects@gsa.gov
   stage: alpha
