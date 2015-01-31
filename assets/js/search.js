@@ -9,6 +9,7 @@ ngHub.factory('pagesPromise', function($http, $q) {
 ngHub.factory('pagesByUrl', function(pagesPromise) {
   var result = {};
 
+  // populate asynchronously
   pagesPromise.then(function(docs) {
     angular.forEach(docs, function(doc) {
       result[doc.url] = doc;
@@ -27,6 +28,7 @@ ngHub.factory('pageIndex', function(pagesPromise) {
     this.field('body');
   });
 
+  // populate asynchronously
   pagesPromise.then(function(docs) {
     angular.forEach(docs, function(page) {
       index.add(page);
@@ -51,14 +53,22 @@ ngHub.factory('pagesSearch', function(pagesByUrl, pageIndex) {
 
 // based on https://github.com/angular/angular.js/blob/54ddca537/docs/app/src/search.js#L198-L206
 ngHub.factory('searchUi', function($document) {
+  var isForwardSlash = function(keyCode) {
+    return keyCode === 191;
+  };
+
+  var isInput = function(el) {
+    var tagName = el.tagName.toLowerCase();
+    return tagName === 'input';
+  };
+
   var giveSearchFocus = function() {
     var input = angular.element('#search1')[0];
     input.focus();
   };
 
   var onKeyDown = function(event) {
-    // forward slash
-    if (event.keyCode === 191 && document.activeElement.tagName !== 'INPUT') {
+    if (isForwardSlash(event.keyCode) && !isInput(document.activeElement)) {
       event.stopPropagation();
       event.preventDefault();
       giveSearchFocus();
@@ -82,8 +92,12 @@ ngHub.factory('searchUi', function($document) {
 ngHub.controller('SearchController', function($scope, $q, searchUi, pagesSearch) {
   searchUi.enableGlobalShortcut();
 
+  var isEnter = function(keyCode) {
+    return keyCode === 13;
+  }
+
   $scope.searchKeyDown = function($event) {
-    if ($event.keyCode === 13) { // ENTER
+    if (isEnter($event.keyCode)) {
       var result = searchUi.getSelectedResult();
       window.location = result.page.url;
     }
