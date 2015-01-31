@@ -186,15 +186,9 @@ module Hub
     # Cross-references snippets with team members. Also sets
     # site.data['snippets_latest'].
     def xref_snippets_and_team_members
-      return unless @site_data.member? 'snippets'
-      members_with_snippets = []
-
-      @site_data['snippets'].each do |timestamp, snippets|
+      (@site_data['snippets'] || []).each do |timestamp, snippets|
         snippets.each do |snippet|
-          member = @team[snippet['name']]
-          member['snippets'] = [] unless member.member? 'snippets'
-          member['snippets'] << snippet
-          members_with_snippets << member
+          (@team[snippet['name']]['snippets'] ||= Array.new) << snippet
         end
 
         # Since the snippets are naturally ordered in chronological order,
@@ -202,8 +196,9 @@ module Hub
         @site_data['snippets_latest'] = timestamp
       end
 
-      members_with_snippets.sort_by! {|i| i['name']}.uniq!
-      @site_data['snippets_team_members'] = members_with_snippets
+      @site_data['snippets_team_members'] = @team.values.map do |i|
+        i if i['snippets']
+      end.compact!
     end
 
     # Cross-references skillsets with team members.
