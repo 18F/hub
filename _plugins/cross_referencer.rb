@@ -176,10 +176,7 @@ module Hub
       end
 
       @team.values.each do |i|
-        working_groups = (i['working_groups'] || [])
-        working_groups.uniq! {|wg| wg['name']}
-        # TODO(mbland): move sort step into canonicalizer
-        working_groups.sort_by! {|wg| wg['name']}
+        (i['working_groups'] || []).uniq! {|wg| wg['name']}
       end
     end
 
