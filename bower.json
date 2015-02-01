@@ -13,5 +13,8 @@
       "angular-livesearch": "bower_components/angular-livesearch/liveSearch.js",
       "requirejs": "bower_components/requirejs/require.js"
     }
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.3.11"
   }
 }
