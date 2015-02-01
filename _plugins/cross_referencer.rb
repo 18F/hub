@@ -184,7 +184,7 @@ module Hub
     end
 
     # Cross-references snippets with team members. Also sets
-    # site.data['snippets_latest'].
+    # site.data['snippets_latest'] and @site_data['snippets_team_members'].
     def xref_snippets_and_team_members
       (@site_data['snippets'] || []).each do |timestamp, snippets|
         snippets.each do |snippet|
@@ -196,9 +196,9 @@ module Hub
         @site_data['snippets_latest'] = timestamp
       end
 
-      @site_data['snippets_team_members'] = @team.values.map do |i|
-        i if i['snippets']
-      end.compact!
+      @site_data['snippets_team_members'] = @team.values.select do |i|
+        i['snippets']
+      end unless (@site_data['snippets'] || []).empty?
     end
 
     # Cross-references skillsets with team members.
