@@ -65,7 +65,7 @@ module Hub
     # @param target_key [String] identifies the cross-referenced property from
     #   +targets+
     def self.create_xrefs(sources, source_key, targets, target_key)
-      sources.each do |source|
+      (sources || []).each do |source|
         (source[source_key] || []).map! do |target_id|
           target = targets[target_id]
           (target[target_key] ||= Array.new) << source if target
