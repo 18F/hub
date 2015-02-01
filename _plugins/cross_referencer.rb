@@ -24,7 +24,7 @@ module Hub
       impl = CrossReferencerImpl.new site_data
       impl.xref_locations_and_team_members
       impl.xref_projects_and_team_members
-      impl.xref_working_groups_and_team_members
+      impl.xref_groups_and_team_members 'working_groups', ['leads', 'members']
       impl.xref_snippets_and_team_members
       impl.xref_skills_and_team_members
     end
@@ -168,16 +168,18 @@ module Hub
       CrossReferencer.create_xrefs projects, 'team', @team, 'projects'
     end
 
-    # Cross-references working groups with team members.
-    def xref_working_groups_and_team_members
-      ['leads', 'members'].each do |member_type|
+    # Cross-references groups with team members.
+    #
+    # @param groups_name [String] site.data key identifying the group
+    #   collection, e.g. 'working_groups'
+    # @param member_type_list_names [Array<String>] names of the properties
+    #   identifying lists of members, e.g. ['leads', 'members']
+    def xref_groups_and_team_members(groups_name, member_type_list_names)
+      member_type_list_names.each do |member_type|
         CrossReferencer.create_xrefs(
-          @site_data['working_groups'], member_type, @team, 'working_groups')
+          @site_data[groups_name], member_type, @team, groups_name)
       end
-
-      @team.values.each do |i|
-        (i['working_groups'] || []).uniq! {|wg| wg['name']}
-      end
+      @team.values.each {|i| (i[groups_name] || []).uniq! {|g| g['name']}}
     end
 
     # Cross-references snippets with team members. Also sets
