@@ -14,6 +14,7 @@ group :jekyll_plugins do
 end
 
 group :test do
+  gem 'jasmine'
   gem 'rake'
   gem 'minitest'
   gem 'codeclimate-test-reporter'

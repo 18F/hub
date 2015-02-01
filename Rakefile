@@ -7,3 +7,5 @@ end
 
 desc "Run HashJoiner tests"
 task :default => :test
+require 'jasmine'
+load 'jasmine/tasks/jasmine.rake'
