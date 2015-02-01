@@ -26,7 +26,8 @@ module Hub
       impl.xref_projects_and_team_members
       impl.xref_groups_and_team_members 'working_groups', ['leads', 'members']
       impl.xref_snippets_and_team_members
-      impl.xref_skills_and_team_members
+      impl.xref_skills_and_team_members(
+        ['Languages', 'Technologies', 'Specialties'])
     end
 
     # Creates an index of +collection+ items based on +key+.
@@ -201,9 +202,12 @@ module Hub
     end
 
     # Cross-references skillsets with team members.
-    def xref_skills_and_team_members
-      skills = ['Languages', 'Technologies', 'Specialties']
-      skills = skills.map {|category| [category, Hash.new]}.to_h
+    #
+    # @param skills [Array<String>] list of skill categories; may be
+    #   capitalized, though the members of site.data['team'] pertaining to
+    #   each category should be lowercased
+    def xref_skills_and_team_members(categories)
+      skills = categories.map {|category| [category, Hash.new]}.to_h
 
       @team.values.each do |i|
         skills.each do |category, xref|
