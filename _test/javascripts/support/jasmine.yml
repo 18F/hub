@@ -73,7 +73,7 @@ src_dir:
 #
 # spec_dir: spec/javascripts
 #
-spec_dir:
+spec_dir: _test/javascripts
 
 # spec_helper
 #
@@ -121,4 +121,3 @@ boot_files:
 #
 # rack_options:
 #   server: 'thin'
-
