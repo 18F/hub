@@ -31,8 +31,10 @@ require 'weekly_snippets/version'
 
 require_relative '../_plugins/joiner.rb'
 
+DATA_DIR = File.dirname __FILE__
+
 def load_team_data
-  team_data_filename = File.join('private', 'team.yml')
+  team_data_filename = File.join(DATA_DIR, 'private', 'team.yml')
   team_data = SafeYAML.load_file(team_data_filename, :safe=>true)
   unless team_data
     puts "Failed to parse #{team_data_filename}"
@@ -43,8 +45,8 @@ end
 
 team_by_email = ::Hub::JoinerImpl.create_team_by_email_index load_team_data
 
-snippet_dir = 'private'
-target_dir = 'public'
+snippet_dir = File.join DATA_DIR, 'private'
+target_dir = DATA_DIR
 ['snippets', 'v3'].each do |subdir|
   snippet_dir = File.join(snippet_dir, subdir)
   target_dir = File.join(target_dir, subdir)
@@ -54,7 +56,7 @@ end
 Dir.foreach(snippet_dir) do |snippets|
   next if ['.', '..'].include? snippets
   source = File.join(snippet_dir, snippets)
-  target = File.join('public', 'snippets', 'v3', snippets)
+  target = File.join(DATA_DIR, 'snippets', 'v3', snippets)
   puts "#{source} => #{target}"
 
   CSV.open(target, 'w') do |outfile|
