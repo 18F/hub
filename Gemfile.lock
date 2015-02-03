@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/18F/jekyll_pages_api.git
-  revision: 6df7299eca91ad22de2fdad837b3e6efc954f50e
+  revision: ebe34affd93282a1f8fe7e36c1730d59932298f2
   specs:
-    jekyll_pages_api (0.0.1)
+    jekyll_pages_api (0.1.0)
       htmlentities (~> 4.3)
       jekyll (~> 2.0)
 
@@ -23,7 +23,7 @@ GEM
     coffee-script (2.3.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.8.0)
+    coffee-script-source (1.9.0)
     colorator (0.1)
     docile (1.1.5)
     execjs (2.2.2)
@@ -69,7 +69,7 @@ GEM
     parslet (1.5.0)
       blankslate (~> 2.0)
     posix-spawn (0.3.9)
-    pygments.rb (0.6.1)
+    pygments.rb (0.6.2)
       posix-spawn (~> 0.3.6)
       yajl-ruby (~> 1.2.0)
     rake (10.4.2)
@@ -78,13 +78,13 @@ GEM
       ffi (>= 0.5.0)
     redcarpet (3.2.2)
     safe_yaml (1.0.4)
-    sass (3.4.10)
+    sass (3.4.11)
     simplecov (0.9.1)
       docile (~> 1.1.0)
       multi_json (~> 1.0)
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
-    team_hub (0.0.1)
+    team_hub (0.0.2)
       hash-joiner
       jekyll
       weekly_snippets
