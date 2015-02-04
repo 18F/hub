@@ -25,11 +25,13 @@
 # @author Mike Bland (michael.bland@gsa.gov)
 # Date:   2014-12-22
 
+DATA_DIR = File.dirname __FILE__
 YAML_FILES = [
   'departments.yml',
   'projects.yml',
   'team.yml',
   'working_groups.yml',
-].map {|i| "private/#{i}"}.join ' '
+].map {|i| File.join(DATA_DIR, 'private', i)}.join ' '
 
-exit $?.exitstatus unless system("filter-yaml-files #{YAML_FILES}")
+exit $?.exitstatus unless system(
+  "filter-yaml-files -o #{DATA_DIR} #{YAML_FILES}")
