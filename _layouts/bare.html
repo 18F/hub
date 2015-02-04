@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   {% include head.html %}
 </head>
+
 <body itemscope itemtype="http://schema.org/WebPage">
   
   <div class="stage-bug">
@@ -12,16 +14,10 @@
   {% include nav-main.html %}
 
 {% unless site.public %}
-    <!--# include virtual="{{ site.baseurl }}/auth/$authenticated_user/index.html" -->
+    <!-- # include virtual="{{ site.baseurl }}/auth/$authenticated_user/index.html"  -->
 {% endunless %}
 
 <section class="container bare">
-  <div class="bare-logo" role="banner" itemscope itemtype="http://schema.org/WPHeader">
-    <!-- <a href="{{ site.baseurl }}/">
-      <i class="icon-18f-logo"></i>
-    </a> -->
-    <!-- {% include nav.html %} -->
-  </div>
 
   <div class="bare-content" role="main" itemscope itemprop="mainContentOfPage">
 
@@ -30,6 +26,7 @@
     {% include edit_link.html %}
     
   </div>
+
 </section>
 
   {% include footer.html %}
