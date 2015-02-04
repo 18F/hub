@@ -93,6 +93,10 @@ a:focus {
   text-decoration: none;
 }
 
+ul li {
+  list-style-type: none;
+}
+
 .hub-page-section {
   margin-top: 50px;
   h1 {
@@ -118,6 +122,10 @@ a:focus {
     padding-left: 20px;
     li {
       list-style-type: disc;
+      list-style-position: outside;
+      ul li {
+        padding-left: 0;
+      }
     }
     > li {
       margin-bottom: 20px;
