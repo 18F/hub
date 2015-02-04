@@ -4,12 +4,6 @@ permalink: projects/
 ---
 <h1>Projects</h1>
 
-<div>
-<strong>Latest Project Status Report:</strong>
-<a href="{{site.data.project_status.latest_url}}){{site.data.project_status.latest_date}}"></a><br/>
-<a href="{{site.data.project_status.all_updates_url}}">Read all project status updates</a>
-</div>
-
 {% for proj in site.data.projects %}
 <div class="index-entry">
 	<h2><a href="{{ site.baseurl }}/projects/{{ proj.name }}">{{ proj.project }}</a></h2>
