@@ -113,6 +113,23 @@ a:focus {
   margin-bottom: 1em;
 }
 
+.QandA {
+  ul {
+    padding-left: 20px;
+    li {
+      list-style-type: disc;
+    }
+    > li {
+      margin-bottom: 20px;
+      > ul li {
+        margin-bottom: 5px;
+        &:first-of-type {
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+}
 
 // Snippets
 //********************************************************
