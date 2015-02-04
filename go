@@ -105,10 +105,8 @@ end
 
 def deploy_submodules
   deploy([
-    'cd _data',
-    '/usr/local/rbenv/shims/ruby ./import-public.rb',
-    'cd ..',
-    'git add _data/private _data/public/ pages/private',
+    '/usr/local/rbenv/shims/ruby _data/import-public.rb',
+    'git add .',
     'git commit -m \'Private submodule update\'',
     'git push',
   ])
