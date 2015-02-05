@@ -92,4 +92,15 @@
   <link href="{{ site.baseurl }}/assets/css/ie8/ie.css" rel="stylesheet">
 <![endif]-->
 
+{% for sheet_url in page.stylesheets %}
+<link rel="stylesheet" href="{{ sheet_url }}">
+{% endfor %}
+
+<script>
+// export some helpful site-wide variables
+window.site = {
+  baseurl: "{{ site.baseurl }}"
+};
+</script>
+
 {% include ascii.html %}
