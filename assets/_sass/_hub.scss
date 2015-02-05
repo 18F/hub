@@ -2,6 +2,8 @@
 // hub.18F.gsa.gov CUSTOM SASS
 //********************************************************
 
+@import "_search";
+
 // Site-wide media queries
 //********************************************************
 .news {
@@ -207,6 +209,8 @@ ul li {
 //********************************************************
 
 .bare-content {
+  padding-top: 2em;
+
   h1 {
     margin-top: 0.5em;
     margin-bottom: 0.5em;

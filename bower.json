@@ -8,7 +8,7 @@
     "requirejs": "~2.1.15"
   },
   "install": {
-    "path": "assets/js/vendor",
+    "path": "_assets/javascripts/vendor",
     "sources": {
       "angular-livesearch": "bower_components/angular-livesearch/liveSearch.js",
       "requirejs": "bower_components/requirejs/require.js"
