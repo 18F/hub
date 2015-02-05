@@ -49,7 +49,7 @@ module Hub
     end
 
     def test_properties
-      assert_includes(homepage_body, 'Snippets')
+      assert_includes(homepage_body, 'snippets')
     end
 
     def test_inserts_content

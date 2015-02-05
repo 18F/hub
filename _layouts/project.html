@@ -1,17 +1,45 @@
 ---
 layout: bare
 ---
-{% assign proj = page.project %}<div>
-<h1>{{ proj.project }}</h1>
-{% if proj.description %}<p>
-{{ proj.description }}
-</p>{% endif %}{% unless proj.status == "Hold" %}
+{% assign proj = page.project %}
 
-<a href="https://18f.gsa.gov/dashboard/project/{{ proj.name }}">Public Dashboard</a><br/>{% endunless %}{% if proj.github and proj.github.length != 0 %}
+<div>
 
-<h2>GitHub Repos</h2>{% for repo in proj.github %}
-<a href="https://github.com/{{ repo }}">{{ repo }}</a><br/>{% endfor %}{% endif %}{% if proj.team and proj.team.length != 0 %}
+	<h1>{{ proj.project }}</h1>
 
-<h2>Team Members</h2>{% for i in proj.team %}
-<a href="{{ site.baseurl }}/team/{{ i.name }}">{{ i.full_name }}</a><br/>{% endfor %}{% endif %}
+	{% if proj.description %}
+		<p>
+		{{ proj.description }}
+		</p>
+	{% endif %}
+
+	{% unless proj.status == "Hold" %}
+	<p><a href="https://18f.gsa.gov/dashboard/project/{{ proj.name }}">Public Dashboard</a></p>{% endunless %}
+
+	{% if proj.github and proj.github.length != 0 %}
+	<section class="hub-page-section">
+
+		<h1>GitHub Repos</h1>
+		<ul>
+			{% for repo in proj.github %}
+				<li><a href="https://github.com/{{ repo }}">{{ repo }}</a></li>
+			{% endfor %}
+		</ul>
+
+	</section>
+	{% endif %}
+
+	{% if proj.team and proj.team.length != 0 %}
+	<section class="hub-page-section">
+
+	<h1>Team Members</h1>
+	<ul>
+		{% for i in proj.team %}
+			<li><a href="{{ site.baseurl }}/team/{{ i.name }}">{{ i.full_name }}</a></li>
+		{% endfor %}
+	</ul>
+
+	</section>
+	{% endif %}
+
 </div>
