@@ -6,7 +6,7 @@ server {
   location / {
       ssi on;
       root   {{ hub_root }}/_site;
-      index  index.html;
+      index  index.html api.json;
       default_type text/html;
       set $authenticated_user "{{ authenticated_user }}";
 
@@ -17,7 +17,7 @@ server {
 
   location /hub {
       root   {{ hub_root }}/_site_public;
-      index  index.html;
+      index  index.html api.json;
       default_type text/html;
   }
 }
