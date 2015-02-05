@@ -1,4 +1,8 @@
-## Advanced Local Dev Environment Using Vagrant and Ansible
+---
+title: Hub 101 - Advanced Local Dev Environment Using Vagrant and Ansible
+permalink: /101/vagrant-and-ansible/
+---
+# {{ page.title }}
 
 If you have [Vagrant](https://www.vagrantup.com/) and
 [Ansible](http://www.ansible.com/home) installed, you can launch a local

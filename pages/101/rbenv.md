@@ -1,4 +1,8 @@
-## Setting up the Ruby environment with `rbenv`
+---
+title: Hub 101 - Setting up the Ruby environment with `rbenv`
+permalink: /101/rbenv/
+---
+# {{ page.title }}
 
 Using [rbenv](https://github.com/sstephenson/rbenv) helps ensure a stable Ruby
 version during development. `rbenv` is also used to deploy the Hub and

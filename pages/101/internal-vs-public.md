@@ -1,11 +1,15 @@
-## Internal vs. Public Hubs
+---
+title: Hub 101 - Internal vs. Public Hubs
+permalink: /101/internal-vs-public/
+---
+# {{ page.title }}
 
 The Hub has the capability to filter out "internal" information to produce a
 "public" version of the Hub. This enables a team to expose as much of its
 information and structure to the world as possible while still keeping
 sensitive information visible only within the team.
 
-### How `_data/private` works
+## How `_data/private` works
 
 The `_data/private` directory is a mount point for the [18F
 data-private repository](https://github.com/18F/data-private) imported as a
@@ -17,12 +21,12 @@ deleting data marked as `private:` within the YAML files.
 **Note:** Files in `_data` corresponding to files in `_data/private` will be
 ignored if the `_data/private` submodule is available.
 
-See [git-submodules.md](git-submodules.md) for more information on how to work
+See [Git Submodules](git-submodules/) for more information on how to work
 with the `_data/private` submodule. The [hash-joiner
 Gem](https://rubygems.org/gems/hash-joiner) implements the `private:` data
 promotion/removal; follow the "Documentation" link on that page for details.
 
-### How `_data` works
+## How `_data` works
 
 If `_data/private` is empty, then files from `_data` will be used to generate
 both the "internal" and "public" versions of the Hub. The `_data` directory is
@@ -38,7 +42,7 @@ repository](https://github.com/18F/data-private) (via [GitHub
 Webooks](https://help.github.com/articles/about-webhooks/)), ensuring that
 `_data/public` remains fresh.
 
-### How `pages` and `pages/private` work
+## How `pages` and `pages/private` work
 
 All documents intended only for the internal Hub should be stored in
 `pages/private`. Documents that can be shared on the public Hub can be stored
@@ -75,7 +79,7 @@ conditional:
   {% endunless %}
 ```
 
-### Rationale
+## Rationale
 
 Partitioning the private team data into a separate private repository, mounted
 as a git submodule, accomplishes two objectives:

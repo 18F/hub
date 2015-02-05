@@ -1,4 +1,8 @@
-## Using the `./go` Script
+---
+title: Hub 101 - Using the `./go` Script
+permalink: /101/go/
+---
+# {{ page.title }}
 
 The `./go` script sets up the Hub development environment and contains the
 most common development commands. It was inspired by a pair of blog posts
@@ -16,7 +20,7 @@ basic information here should remain valid regardless. (The one exception to
 this might be whether or not we eventually pass arguments to individual `./go`
 commands.)
 
-### Initializing the environment
+## Initializing the environment
 
 Run the following to install the [Bundler gem](http://bundler.io/) and all the
 other gems currently required by the Hub:
@@ -37,11 +41,11 @@ and `pages/private` submodules:
 $ git submodule init
 $ git submodule update
 ```
-See [git-submodules.md](git-submodules.md) for more details.
+See [Git Submodules](git-submodules/) for more details.
 
-### Serving the Hub locally
+## Serving the Hub locally
 
-See [internal-vs-public.md](internal-vs-public.md) for the difference between
+See [Internal vs. Public Hubs](internal-vs-public/) for the difference between
 the "internal" and "public" versions of the Hub:
 
 ```shell
@@ -52,7 +56,7 @@ $ ./go serve
 $ ./go serve_public
 ```
 
-### Running the test suite
+## Running the test suite
 
 If you're working on the plugin code (in `_plugins`), you can run the entire
 test suite with:
@@ -61,7 +65,7 @@ test suite with:
 $ ./go test
 ```
 
-### Updating Gems
+## Updating Gems
 
 Whether you've added a new Gem requirement to the `Gemfile` or you wish to
 import new versions of existing gems, you can update the existing Gem set and
@@ -71,7 +75,7 @@ the `Gemfile.lock` file by running:
 $ ./go update_gems
 ```
 
-### Under the Hood
+## Under the Hood
 
 Each `./go` command corresponds to a function of the same name within the
 `./go` script. None of the commands take arguments currently; you may wish to
