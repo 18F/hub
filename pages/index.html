@@ -6,8 +6,9 @@ permalink: /
 
 <section>
 
+	<h2 id="updates">Updates</h2>
+
 	<div class="news">
-		<h2 id="updates">&lt; updates /&gt;</h2>
 		{% for post in site.posts limit:1 %}
 			<h3>{{ post.title }}</h3>
 			<p>{{ post.content }}</p>
@@ -17,20 +18,23 @@ permalink: /
 	{% if site.data.project_status %}
 		<div class="home-block">
 			<h3>Project status</h3>
-	  	<a href="{{site.data.project_status.latest_url}}">Latest: {{site.data.project_status.latest_date}}</a>
-	  	<br/>
-	  	<a href="{{site.data.project_status.all_updates_url}}">Read all project status updates</a>
+			<ul>
+				<li><a href="{{site.data.project_status.latest_url}}">Latest: {{site.data.project_status.latest_date}}</a></li>
+				<li><a href="{{site.data.project_status.all_updates_url}}">Read all</a></li>
+			</ul>
 		</div>
 	{% endif %}
 
 	{% if site.data.snippets %}
 		<div class="home-block">
 			<h3>People status (snippets)</h3>
-		  <a href="{{ site.baseurl }}/snippets/{{ site.data.snippets_latest }}">Latest: {{ site.data.snippets_latest | hyphenate_yyyymmdd }}</a>
-		  <br/>
-		  <a href="{{ site.baseurl }}/snippets/">Read all snippets</a>
+			<ul>
+				<li><a href="{{ site.baseurl }}/snippets/{{ site.data.snippets_latest }}">Latest: {{ site.data.snippets_latest | hyphenate_yyyymmdd }}</a></li>
+				<li><a href="{{ site.baseurl }}/snippets/">Read all</a></li>
+			</ul>
 		</div>
 	{% endif %}
 	
 	<!-- {% include twitter_favorites.html %} -->
+
 </section>
