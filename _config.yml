@@ -3,6 +3,7 @@ markdown: redcarpet
 redcarpet:
   extensions:
   - with_toc_data
+highlighter: rouge
 
 excerpt_separator: <!-- more -->
 exclude:
