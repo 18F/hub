@@ -14,6 +14,7 @@ permalink: /team/
   <a href="{{ site.baseurl }}/specialties"><li>Specialty</li></a>
 </ul>
 
-<p class="clear">{% assign members = site.data.team %}{{ members.size }} members:</p>
+{% assign members = site.data.team %}
+<p class="clear">{{ members.size }} members:</p>
 
 {% include team_members.html %}
