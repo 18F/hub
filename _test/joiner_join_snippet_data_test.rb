@@ -34,7 +34,7 @@ module Hub
     def set_team(team_list)
       @site.data['private']['team'] = team_list
       @impl.create_team_by_email_index
-      @impl.join_data 'team', 'name'
+      @impl.promote_private_data 'team'
     end
 
     def add_snippet(version, timestamp, name, full_name,
@@ -95,7 +95,6 @@ module Hub
       set_team([])
       @impl.join_snippet_data Joiner::SNIPPET_VERSIONS
       assert_empty @site.data['snippets']
-      assert_nil @site.data['private']['snippets']
     end
 
     def test_raise_if_snippet_version_unknown
@@ -119,7 +118,6 @@ module Hub
         'michael.bland@gsa.gov', 'Public', '- Did stuff', '', expected:false)
       @impl.join_snippet_data Joiner::SNIPPET_VERSIONS
       assert_empty @site.data['snippets']
-      assert_nil @site.data['private']['snippets']
     end
 
     def test_join_all_snippets
@@ -135,7 +133,6 @@ module Hub
         'michael.bland@gsa.gov', 'Public', '- Did stuff', '')
       @impl.join_snippet_data Joiner::SNIPPET_VERSIONS
       assert_equal @expected, @site.data['snippets']
-      assert_nil @site.data['private']['snippets']
     end
 
     # This tests the case where we're publishing snippets imported into
@@ -155,7 +152,6 @@ module Hub
 
       @impl.join_snippet_data Joiner::SNIPPET_VERSIONS
       assert_equal @expected, @site.data['snippets']
-      assert_nil @site.data['private']['snippets']
     end
   end
 end
