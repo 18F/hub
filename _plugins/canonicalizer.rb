@@ -75,20 +75,6 @@ module Hub
       s.downcase.gsub(/\s+/, '-')
     end
 
-    # Returns a canonicalized, URL-friendly substitute for the 'name' field of
-    # an arbitrary hash.
-    # +data+:: hash containing a 'name' field
-    def self.canonicalize_name(data)
-      self.canonicalize(data['name'])
-    end
-
-    # Sorts in-place an array of data hashes based on the 'name' field.
-    # Case-insensitive. Returns the sorted, original array object.
-    # +data+:: hash containing a 'name' field
-    def self.sort_by_name!(data)
-      data.sort_by! {|i| i['name'].downcase}
-    end
-
     # Sorts in-place an array of team member data hashes based on the team
     # members' last names. Returns the sorted, original array object.
     # +team+:: An array of team member data hashes
