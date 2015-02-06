@@ -79,7 +79,6 @@
             .enter()
             .append("g")
               .attr("class", "pin")
-              .attr("id", function(d) { return d.code; })
               .attr("transform", function(d) {
                 var p = proj(d.location).map(Math.round);
                 return "translate(" + p + ")";
@@ -110,27 +109,11 @@
         return [d.code, ": ", size(d), " member" + s].join("");
       }
 
-      pin.each(function(d) {
-        var on = rebind(activate, this, d),
-            off = rebind(deactivate, this, d),
-            setup = function(selection) {
-              selection
-                .on("mouseover", on)
-                .on("mouseout", off)
-                .on("focus", on)
-                .on("blur", off);
-            };
-
-        d3.select(this)
-          .call(setup);
-
-        var re = new RegExp("\\#" + this.id + "$");
-        d3.selectAll("a.location")
-          .filter(function() {
-            return !!this.href.match(re);
-          })
-          .call(setup);
-      });
+      pin
+        .on("mouseover", activate)
+        .on("mouseout", deactivate)
+        .on("focus", activate)
+        .on("blur", deactivate);
 
       function activate(d) {
         this.classList.add("on");
