@@ -20,7 +20,7 @@
   ];
 
   var urls = {
-    team: "/api/team/",
+    team: "/api/team/api.json",
     topology: "/assets/data/us-states.json"
   };
 
@@ -29,7 +29,7 @@
     .defer(d3.json, urls.topology)
     .await(function(error, team, topology) {
       map.classed("loading", false);
-      if (error) return showError(error);
+      if (error) return showError(error.statusText);
 
       status.text("");
 
@@ -148,9 +148,9 @@
       }
     });
 
-  function showError(req) {
+  function showError(error) {
     map.classed("error", true);
-    status.text("Error: " + req.statusText);
+    status.text("Error: " + error);
   }
 
   function rebind(fn, context) {
