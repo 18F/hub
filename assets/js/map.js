@@ -86,7 +86,7 @@
               }),
           link = pin.append("a")
             .attr("xlink:href", function(d) {
-              return [site.baseurl, "locations", d.code].join("/");
+              return "#" + d.code;
             }),
           circle = link.append("circle")
             .attr("aria-label", label)
