@@ -18,7 +18,7 @@ svg.map .pin circle {
 }
 
 svg.map .pin.on circle {
-  fill: red;
+  fill: #18f;
 }
 
 svg.map .pin .tip {
