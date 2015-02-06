@@ -78,6 +78,10 @@
 ================================================== -->
 <script src="{{ site.baseurl }}/assets/js/jquery-2.1.1.min.js"></script>
 <script src="{{ site.baseurl }}/assets/js/responsiveslides.min.js"></script>
+<script>
+  SITE_BASEURL = '{{site.baseurl}}';
+</script>
+{% javascript search %}
 
 <!-- IE
 ================================================== -->
@@ -87,5 +91,16 @@
   <script src="{{ site.baseurl }}/assets/js/ie8/respond.js"></script>
   <link href="{{ site.baseurl }}/assets/css/ie8/ie.css" rel="stylesheet">
 <![endif]-->
+
+{% for sheet_url in page.stylesheets %}
+<link rel="stylesheet" href="{{ sheet_url }}">
+{% endfor %}
+
+<script>
+// export some helpful site-wide variables
+window.site = {
+  baseurl: "{{ site.baseurl }}"
+};
+</script>
 
 {% include ascii.html %}

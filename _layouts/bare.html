@@ -19,12 +19,36 @@
 
 <section class="container bare">
 
-  <div class="bare-content" role="main" itemscope itemprop="mainContentOfPage">
+  <div ng-app="hubSearch" ng-controller="SearchController" class="bare-content" role="main" itemscope itemprop="mainContentOfPage">
+
+    {% raw %}
+
+      <div class="hub-search">
+        <live-search id="search1" type="text"
+          live-search-callback="searchCallback"
+          live-search-item-template="<a href='{{result.page.url}}'>{{result.page.title || result.page.url}}</a>"
+          live-search-select="displayTitle"
+          live-search-max-result-size="20"
+          ng-model="searchText"
+          ng-keydown="searchKeyDown($event)"
+          placeholder="Search – click or press '/'"
+        ></live-search>
+      </div>
+
+      <div ng-hide="searchText">
+
+    {% endraw %}
 
     {{ content }}
 
     {% include edit_link.html %}
-    
+
+    {% raw %}
+
+      </div>
+
+    {% endraw %}
+
   </div>
 
 </section>

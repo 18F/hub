@@ -42,10 +42,30 @@ Webooks](https://help.github.com/articles/about-webhooks/)), ensuring that
 
 All documents intended only for the internal Hub should be stored in
 `pages/private`. Documents that can be shared on the public Hub can be stored
-in `pages`. All `pages/private` pages are filtered out by the [`joiner.rb`
+in `pages`. Pages in either directory should contain a `permalink:` property
+in their front matter. For example:
+
+```yaml
+---
+title: About the 18F Hub
+permalink: /about/
+---
+```
+
+Pages in `pages/private` should ensure that this `permalink:` always begins
+with `/private/`. For example:
+
+```yaml
+---
+title: 18F Private Team Documentation
+permalink: /private/docs/
+---
+```
+
+All `pages/private` pages are filtered out by the [`joiner.rb`
 plugin](../_plugins/joiner.rb) when generating the public Hub. Sections of
-pages that link to documents in `pages/private` should be surrounded by the
-following
+pages outside `pages/private` that link to documents in `pages/private` should
+be surrounded by the following
 [Liquid](https://github.com/Shopify/liquid/wiki/Liquid-for-Designers)
 conditional:
 

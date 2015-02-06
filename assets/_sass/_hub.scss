@@ -2,6 +2,8 @@
 // hub.18F.gsa.gov CUSTOM SASS
 //********************************************************
 
+@import "_search";
+
 // Site-wide media queries
 //********************************************************
 .news {
@@ -86,6 +88,21 @@ ul {
   margin-bottom: 1.5em;
 }
 
+
+// Search
+//********************************************************
+.hub-search {
+  padding-bottom: 2em;
+  width: 400px;
+  input[type="text"] {
+    border-radius: 0;
+    font-size: 14px;
+    box-shadow: none;
+    color: #bbb;
+    border-color: #bbb;
+  }
+}
+
 // Site-wide
 //********************************************************
 a:hover,
@@ -103,6 +120,25 @@ ul li {
     @extend .h3;
   }
 }
+
+.hub-page-subnav {
+float: left;
+margin-bottom: 20px;
+  li {
+    display: inline-block;
+    padding: 10px;
+    margin-right: 3px;
+    border: 1px solid #bbb;
+    &:hover, &:focus {
+      background-color: #eee;
+    }
+  }
+}
+
+.clear { //forgive me this trespass, for it is late and I have no time
+  clear:left;
+}
+
 
 .index-entry {
   margin-top: 1em;

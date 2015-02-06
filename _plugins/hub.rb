@@ -18,6 +18,9 @@
 #
 # The Hub::Generator class contains the logic for all Hub-specific data
 # processing and page generation.
+
+require 'team_hub'
+
 module Hub
 
   # Processes site data, generates authorization artifacts, publishes an API,
@@ -32,7 +35,7 @@ module Hub
       Snippets.publish(site)
       CrossReferencer.build_xrefs(site.data)
       Canonicalizer.canonicalize_data(site.data)
-      PrivateAssets.copy_to_site(site)
+      ::TeamHub::PrivateAssets.copy_to_site(site)
       Auth.generate_artifacts(site)
       Api.generate_api(site)
 

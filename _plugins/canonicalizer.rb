@@ -50,6 +50,10 @@ module Hub
             sort_by_last_name! wg[member_type] if wg.member? member_type
           end
         end
+
+        site_data['team'].each do |member|
+          (member['working_groups'] || []).sort_by! {|wg| wg['name']}
+        end
       end
     end
 
