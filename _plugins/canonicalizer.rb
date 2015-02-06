@@ -91,12 +91,16 @@ module Hub
 
     # Sorts in-place an array of team member data hashes based on the team
     # members' last names. Returns the sorted, original array object.
-    # +team+:: An array of team member data hashes containing 'last_name'
+    # +team+:: An array of team member data hashes
     def self.sort_by_last_name!(team)
       team.sort_by! do |i|
-        n = i['full_name'].downcase.split(',')[0]
-        l = n.split.last
-        [l, n]
+        if i['last_name']
+          [i['last_name'].downcase, i['first_name'].downcase]
+        else
+          n = i['full_name'].downcase.split(',')[0]
+          l = n.split.last
+          [l, n]
+        end
       end
     end
 
