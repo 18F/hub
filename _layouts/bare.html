@@ -20,8 +20,10 @@
 <section class="container bare">
 
   <div ng-app="hubSearch" ng-controller="SearchController" class="bare-content" role="main" itemscope itemprop="mainContentOfPage">
+
     {% raw %}
-      <div>
+
+      <div class="hub-search">
         <live-search id="search1" type="text"
           live-search-callback="searchCallback"
           live-search-item-template="<a href='{{result.page.url}}'>{{result.page.title || result.page.url}}</a>"
@@ -32,14 +34,21 @@
           placeholder="Search – click or press '/'"
         ></live-search>
       </div>
-      <div ng-hide="searchText">
-    {% endraw %}
-      {{ content }}
 
-      {% include edit_link.html %}
-    {% raw %}
-      </div>
+      <div ng-hide="searchText">
+
     {% endraw %}
+
+    {{ content }}
+
+    {% include edit_link.html %}
+
+    {% raw %}
+
+      </div>
+
+    {% endraw %}
+
   </div>
 
 </section>
