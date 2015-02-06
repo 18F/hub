@@ -2,7 +2,6 @@ svg.map {
   display: block;
   width: 100%;
   min-height: 400px;
-  margin: 1em;
 }
 
 svg.map .background path {
