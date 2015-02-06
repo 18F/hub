@@ -121,6 +121,25 @@ ul li {
   }
 }
 
+.hub-page-subnav {
+float: left;
+margin-bottom: 20px;
+  li {
+    display: inline-block;
+    padding: 10px;
+    margin-right: 3px;
+    border: 1px solid #bbb;
+    &:hover, &:focus {
+      background-color: #eee;
+    }
+  }
+}
+
+.clear { //forgive me this trespass, for it is late and I have no time
+  clear:left;
+}
+
+
 .index-entry {
   margin-top: 1em;
   margin-bottom: 1em;
