@@ -38,8 +38,12 @@ module Hub
       ]
     end
 
+    def test_nil_collection
+      assert_empty CrossReferencer.create_xrefs nil, 'unused', {}, 'unused'
+    end
+
     def test_empty_collection
-      assert_empty CrossReferencer.create_xrefs([], 'unused', {}, 'unused')
+      assert_empty CrossReferencer.create_xrefs [], 'unused', {}, 'unused'
     end
 
     def test_create_xrefs

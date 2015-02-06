@@ -24,9 +24,10 @@ module Hub
       impl = CrossReferencerImpl.new site_data
       impl.xref_locations_and_team_members
       impl.xref_projects_and_team_members
-      impl.xref_working_groups_and_team_members
+      impl.xref_groups_and_team_members 'working_groups', ['leads', 'members']
       impl.xref_snippets_and_team_members
-      impl.xref_skills_and_team_members
+      impl.xref_skills_and_team_members(
+        ['Languages', 'Technologies', 'Specialties'])
     end
 
     # Creates an index of +collection+ items based on +key+.
@@ -65,7 +66,7 @@ module Hub
     # @param target_key [String] identifies the cross-referenced property from
     #   +targets+
     def self.create_xrefs(sources, source_key, targets, target_key)
-      sources.each do |source|
+      (sources || []).each do |source|
         (source[source_key] || []).map! do |target_id|
           target = targets[target_id]
           (target[target_key] ||= Array.new) << source if target
@@ -168,53 +169,26 @@ module Hub
       CrossReferencer.create_xrefs projects, 'team', @team, 'projects'
     end
 
-    # Cross-references working groups with team members.
-    def xref_working_groups_and_team_members
-      return unless @site_data.member? 'working_groups'
-      working_groups = @site_data['working_groups']
-      all_wg_members = {}
-
-      working_groups.each do |wg|
-        ['leads', 'members'].each do |member_type|
-          add_group_to_members(wg, member_type, all_wg_members)
-        end
+    # Cross-references groups with team members.
+    #
+    # @param groups_name [String] site.data key identifying the group
+    #   collection, e.g. 'working_groups'
+    # @param member_type_list_names [Array<String>] names of the properties
+    #   identifying lists of members, e.g. ['leads', 'members']
+    def xref_groups_and_team_members(groups_name, member_type_list_names)
+      member_type_list_names.each do |member_type|
+        CrossReferencer.create_xrefs(
+          @site_data[groups_name], member_type, @team, groups_name)
       end
-
-      all_wg_members.each do |unused_name, member|
-        member['working_groups'].sort_by! {|wg| wg['name']}
-        member['working_groups'].uniq! {|wg| wg['name']}
-      end
-    end
-
-    # Adds a working group cross-reference to each working group team member.
-    def add_group_to_members(working_group, member_type, all_wg_members)
-      return unless working_group.member? member_type
-
-      wg_members = working_group[member_type].map {|i| @team[i]}
-      wg_members.compact!
-      working_group[member_type] = wg_members
-
-      wg_members.each do |member|
-        unless member.member? 'working_groups'
-          member['working_groups'] = []
-        end
-        member['working_groups'] << working_group
-        all_wg_members[member['name']] = member
-      end
+      @team.values.each {|i| (i[groups_name] || []).uniq! {|g| g['name']}}
     end
 
     # Cross-references snippets with team members. Also sets
-    # site.data['snippets_latest'].
+    # site.data['snippets_latest'] and @site_data['snippets_team_members'].
     def xref_snippets_and_team_members
-      return unless @site_data.member? 'snippets'
-      members_with_snippets = []
-
-      @site_data['snippets'].each do |timestamp, snippets|
+      (@site_data['snippets'] || []).each do |timestamp, snippets|
         snippets.each do |snippet|
-          member = @team[snippet['name']]
-          member['snippets'] = [] unless member.member? 'snippets'
-          member['snippets'] << snippet
-          members_with_snippets << member
+          (@team[snippet['name']]['snippets'] ||= Array.new) << snippet
         end
 
         # Since the snippets are naturally ordered in chronological order,
@@ -222,38 +196,27 @@ module Hub
         @site_data['snippets_latest'] = timestamp
       end
 
-      members_with_snippets.sort_by! {|i| i['name']}.uniq!
-      @site_data['snippets_team_members'] = members_with_snippets
+      @site_data['snippets_team_members'] = @team.values.select do |i|
+        i['snippets']
+      end unless (@site_data['snippets'] || []).empty?
     end
 
     # Cross-references skillsets with team members.
-    def xref_skills_and_team_members
-      skills = {
-        'Languages' => Hash.new {|h,k| h[k] = Array.new},
-        'Technologies' => Hash.new {|h,k| h[k] = Array.new},
-        'Specialties' => Hash.new {|h,k| h[k] = Array.new},
-      }
+    #
+    # @param skills [Array<String>] list of skill categories; may be
+    #   capitalized, though the members of site.data['team'] pertaining to
+    #   each category should be lowercased
+    def xref_skills_and_team_members(categories)
+      skills = categories.map {|category| [category, Hash.new]}.to_h
 
-      @site_data['team'].each do |member|
-        skills.each do |category, category_xref|
-          add_skill_xref_if_present(category.downcase, member, category_xref)
+      @team.values.each do |i|
+        skills.each do |category, xref|
+          (i[category.downcase] || []).each {|s| (xref[s] ||= Array.new) << i}
         end
       end
 
-      skills.delete_if {|category,skill_xref| skill_xref.empty?}
+      skills.delete_if {|category, skill_xref| skill_xref.empty?}
       @site_data['skills'] = skills unless skills.empty?
-    end
-
-    # Adds a team member cross reference for each of a team member's skills.
-    # +category+:: category of skill (e.g. Languages, Technologies)
-    # +team_member+:: team member to add to skill cross-references
-    # +category_xref+:: hash representing a skill index for +category+
-    def add_skill_xref_if_present(category, team_member, category_xref)
-      if team_member.member? category
-        team_member[category].each do |skill|
-          category_xref[skill] << team_member
-        end
-      end
     end
   end
 end
