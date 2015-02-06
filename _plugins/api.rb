@@ -31,6 +31,7 @@ module Hub
         generate_projects_endpoint(site),
         generate_departments_endpoint(site),
         generate_working_groups_endpoint(site),
+        generate_org_endpoint(site),
       ]
       endpoint_info.concat generate_skills_endpoints(site)
       endpoint_info = endpoint_info.select {|i| i and !i.empty?}
@@ -118,6 +119,13 @@ module Hub
       data = create_filtered_hash(wg, 'name', fields, join_fields)
       generate_endpoint(site, 'working_groups', 'Working Groups',
         'Working group info, indexed by name', data)
+    end
+
+    def self.generate_org_endpoint(site)
+      org = site.data['org']
+      return if !org or org.empty?
+      generate_endpoint(site, 'org', 'Organization',
+        'Org chart, organized by team', org)
     end
 
     # Generates an endpoint for each skill category and returns a list of

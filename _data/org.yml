@@ -1,0 +1,24 @@
+name: 18F
+teams:
+- name: Delivery
+  teams:
+  - name: Engineering
+  - name: Product
+  - name: Practice
+  - name: Senior Product Design
+  - name: Staff & Projects
+  - name: Team Administration
+- name: Creative, Communication & Community
+  teams:
+  - name: Outreach
+  - name: Experience Design
+    teams:
+    - name: UX Design
+    - name: Visual Design
+    - name: Front End Design
+    - name: Content Design
+- name: PIF & Digital Services Teams
+- name: DevOps
+- name: Business Operations & Personnel
+- name: Consulting
+- name: Hiring Operations
