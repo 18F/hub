@@ -1,0 +1,36 @@
+// https://github.com/mauriciogentile/angular-livesearch/blob/1f4e357ab3b50701eeedcfb45c12cd901d612087/example/styles.css#L31-L65
+ul.searchresultspopup {
+  border: #a4bed4 1px solid;
+  margin-top: 0px;
+  padding: 0px;
+  z-index: 99999!important;
+  position: fixed;
+  background-color: white;
+  /*max-height:200px;*/
+  border-collapse: separate;
+  overflow-y: hidden;
+
+  li {
+    cursor: pointer;
+    padding-left: 1px;
+    text-align: left;
+    list-style: none;
+    line-height: 20px;
+    list-style-image: none;
+    list-style-position: outside;
+    list-style-type: none;
+  }
+
+  li.selected,
+  li:hover {
+    background-color: #ededed;
+  }
+
+  b {
+    color: blue;
+  }
+
+  strong {
+    color: green;
+  }
+}

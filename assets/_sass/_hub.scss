@@ -2,6 +2,8 @@
 // hub.18F.gsa.gov CUSTOM SASS
 //********************************************************
 
+@import "_search";
+
 // Site-wide media queries
 //********************************************************
 .news {
@@ -27,6 +29,45 @@ ul {
   }
 }
 
+.nav {
+  float: left;
+  width: 100%;
+  height: 66px;
+  padding-top: 10px;
+  margin-bottom: 25px;
+  background: $blue;
+  ul {
+    width: 100%;
+    list-style: none;
+    position: absolute;
+    float: left;
+  }
+  li {
+    display: inline-block;
+    font-weight: 500;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+    padding: 28px 15px 5px 15px;
+    &:hover, &:focus {
+      background: $dark-gray;
+    }
+    img {
+      width: 45px;
+    }
+  }
+  a:first-of-type {
+    &:hover, &:focus {
+      background: lighten($blue, 10%);
+    }
+  }
+}
+
+.nav-break {
+  margin-left: 120px;
+}
+
 // News Template
 //********************************************************
 .news {
@@ -45,6 +86,93 @@ ul {
 //********************************************************
 .nav-section {
   margin-bottom: 1.5em;
+}
+
+
+// Search
+//********************************************************
+.hub-search {
+  padding-bottom: 2em;
+  width: 400px;
+  input[type="text"] {
+    border-radius: 0;
+    font-size: 14px;
+    box-shadow: none;
+    color: #bbb;
+    border-color: #bbb;
+  }
+}
+
+// Site-wide
+//********************************************************
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+ul li {
+  list-style-type: none;
+}
+
+.hub-page-section {
+  margin-top: 50px;
+  h1 {
+    @extend .h3;
+  }
+}
+
+.hub-page-subnav {
+float: left;
+margin-bottom: 20px;
+  li {
+    display: inline-block;
+    padding: 10px;
+    margin-right: 3px;
+    border: 1px solid #bbb;
+    &:hover, &:focus {
+      background-color: #eee;
+    }
+  }
+}
+
+.clear { //forgive me this trespass, for it is late and I have no time
+  clear:left;
+}
+
+
+.index-entry {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  h1 {
+    @extend .h5;
+  }
+}
+
+.edit-info {
+  margin-top: 40px;
+  margin-bottom: 1em;
+}
+
+.QandA {
+  ul {
+    padding-left: 20px;
+    li {
+      list-style-type: disc;
+      list-style-position: outside;
+      ul li {
+        padding-left: 0;
+      }
+    }
+    > li {
+      margin-bottom: 20px;
+      > ul li {
+        margin-bottom: 5px;
+        &:first-of-type {
+          margin-top: 5px;
+        }
+      }
+    }
+  }
 }
 
 // Snippets
@@ -86,12 +214,6 @@ ul {
   margin-right: 5px;
 }
 
-.hub-header {
-  position: fixed;
-  width: 100%;
-  top: 0;
-}
-
 .auth-include {
   position: absolute;
   right: 0;
@@ -99,6 +221,12 @@ ul {
   margin-top: 10px;
   a {
     text-decoration: none;
+  }
+  a:link {
+    color: white;
+  }
+  a:visited {
+    color: white;
   }
   span {
     margin-right: 5px;
@@ -111,7 +239,7 @@ ul {
   }
 }
 
-// bare Layout
+// Bare Layout
 //********************************************************
 
 .bare-content {
@@ -119,16 +247,6 @@ ul {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
   }
-}
-
-div.index-entry {
-  margin-top: 1em;
-  margin-bottom: 1em;
-}
-
-div.edit-info {
-  margin-top: 1em;
-  margin-bottom: 1em;
 }
 
 .stage-bug {

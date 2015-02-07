@@ -174,7 +174,7 @@ module Hub
     def self.generate_endpoint(site, endpoint, title, description, data)
       return if data.empty?
       api_endpoint = File.join('api', endpoint)
-      page = ::TeamHub::Page.generate(site, api_endpoint, 'index.html',
+      page = ::TeamHub::Page.generate(site, api_endpoint, 'api.json',
         'api.json', "API: #{title}")
       page.data['json'] = JSON.generate(data)
       return [endpoint, title, description]

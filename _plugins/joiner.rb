@@ -15,6 +15,7 @@
 # @author Mike Bland (michael.bland@gsa.gov)
 
 require 'hash-joiner'
+require 'team_hub/private_assets'
 require 'weekly_snippets/version'
 
 module Hub
@@ -39,17 +40,16 @@ module Hub
       impl.join_team_data
       impl.join_project_data
 
-      impl.join_data 'departments', 'name'
-      impl.join_data 'email_groups', 'name'
-      impl.join_data 'nav_links', 'name'
-      impl.join_data 'working_groups', 'name'
+      impl.promote_private_data 'departments'
+      impl.promote_private_data 'email_groups'
+      impl.promote_private_data 'nav_links'
+      impl.promote_private_data 'working_groups'
 
       impl.join_snippet_data SNIPPET_VERSIONS
       impl.join_project_status
       impl.import_guest_users
       impl.filter_private_pages
 
-      site.data.delete 'public'
       site.data.delete 'private'
     end
 
@@ -102,22 +102,28 @@ module Hub
       @site = site
       @data = site.data
       @public_mode = site.config['public']
-      private_data = @data['private'] || {}
-      @source = private_data.empty? ? 'public' : 'private'
-      @join_source = @data[@source] || {}
+
+      if (site.data['private'] || {}).empty?
+        @source = 'public'
+        @join_source = @data
+      else
+        @source = 'private'
+        @join_source = site.data['private']
+      end
+
       create_team_by_email_index
     end
 
     # Joins team member data, converts site.data[team] to a hash of
     # username => team_member, and assigns team member images.
     def join_team_data
-      join_data 'team', 'name'
+      promote_private_data 'team'
       assign_team_member_images
     end
 
     # Joins public and private project data.
     def join_project_data
-      join_data 'projects', 'name'
+      promote_private_data 'projects'
 
       if @public_mode
         @data['projects'].delete_if {|p| p['status'] == 'Hold'}
@@ -135,7 +141,7 @@ module Hub
     end
 
     # Creates an index of team member information keyed by email address.
-    # @param team [Array<Hash>] contains individual team member information 
+    # @param team [Array<Hash>] contains individual team member information
     # @return [Hash<String, Hash>] email address => team member
     def self.create_team_by_email_index(team)
       team_by_email = {}
@@ -168,12 +174,11 @@ module Hub
       end
     end
 
-    # Joins data from +site.data[@source]+ (where +@source+ is +'private'+ or
-    # +'public'+) into +site.data+, if it exists.
-    # +category+:: key into +site.data[source]+ specifying data collection
-    # +key_field+:: if specified, primary key for Array of joined objects
-    def join_data(category, key_field)
-      HashJoiner.join_data category, key_field, @data, @join_source
+    # Promote data from +site.data['private']+ into +site.data+, if
+    # +site.data['private']+ exists.
+    # +category+:: key into +site.data['private']+ specifying data collection
+    def promote_private_data(category)
+      @data[category] = @join_source[category] if @join_source != @data
     end
 
     # Assigns the +image+ property of each team member based on the team
@@ -189,7 +194,7 @@ module Hub
         img = File.join(img_dir, "#{member['name']}.jpg")
 
         if (File.exists? File.join(base, img) or
-            PrivateAssets.exists?(site, img))
+            ::TeamHub::PrivateAssets.exists?(site, img))
           member['image'] = img
         else
           member['image'] = missing
@@ -233,7 +238,6 @@ module Hub
         result[timestamp] = joined unless joined.empty?
       end
       @data['snippets'] = result
-      @join_source.delete 'snippets'
     end
 
     # Joins project status information into +site.data[+'project_status'].
@@ -241,7 +245,6 @@ module Hub
       unless @public_mode
         @data['project_status'] = @join_source['project_status']
       end
-      @join_source.delete 'project_status'
     end
 
     # Imports the guest_users list into the top-level site.data object.
@@ -249,7 +252,6 @@ module Hub
       hub_data = @join_source['hub'] || {}
       if hub_data.member? 'guest_users'
         @data['guest_users'] = @join_source['hub']['guest_users']
-        @join_source['hub'].delete 'guest_users'
       end
     end
 

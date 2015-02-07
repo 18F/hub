@@ -50,7 +50,6 @@ module Hub
       @site.data['private'] = {'hub' => {'guest_users' => guests}}
       assert_equal guests, JoinerImpl.new(@site).import_guest_users
       assert_equal guests, @site.data['guest_users']
-      assert_nil @site.data['private']['hub']['guest_users']
     end
   end
 end

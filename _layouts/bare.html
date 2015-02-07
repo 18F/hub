@@ -1,29 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   {% include head.html %}
 </head>
+
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="hub-header">
-    <div class="stage-bug">
-      <span>This site is in alpha. <a href="https://18f.gsa.gov/dashboard/stages/">Learn more here.</a></span>
-    </div>
-{% unless site.public %}
-    <!--# include virtual="{{ site.baseurl }}/auth/$authenticated_user/index.html" -->
-{% endunless %}
+  
+  <div class="stage-bug">
+    <span>This site is in alpha. <a href="https://18f.gsa.gov/dashboard/stages/">Learn more here.</a></span>
   </div>
+
+  {% include nav-main.html %}
+
+{% unless site.public %}
+    <!--# include virtual="{{ site.baseurl }}/auth/$authenticated_user/index.html"  -->
+{% endunless %}
 
 <section class="container bare">
-  <div class="bare-logo" role="banner" itemscope itemtype="http://schema.org/WPHeader">
-    <a href="{{ site.baseurl }}/">
-      <i class="icon-18f-logo"></i>
-    </a>
-    {% include nav.html %}
+
+  <div ng-app="hubSearch" ng-controller="SearchController" class="bare-content" role="main" itemscope itemprop="mainContentOfPage">
+
+    {% raw %}
+
+      <div class="hub-search">
+        <live-search id="search1" type="text"
+          live-search-callback="searchCallback"
+          live-search-item-template="<a href='{{result.page.url}}'>{{result.page.title || result.page.url}}</a>"
+          live-search-select="displayTitle"
+          live-search-max-result-size="20"
+          ng-model="searchText"
+          ng-keydown="searchKeyDown($event)"
+          placeholder="Search – click or press '/'"
+        ></live-search>
+      </div>
+
+      <div ng-hide="searchText">
+
+    {% endraw %}
+
+    {{ content }}
+
+    {% include edit_link.html %}
+
+    {% raw %}
+
+      </div>
+
+    {% endraw %}
+
   </div>
 
-  <div class="bare-content" role="main" itemscope itemprop="mainContentOfPage">
-    {{ content }}{% include edit_link.html %}
-  </div>
 </section>
 
   {% include footer.html %}

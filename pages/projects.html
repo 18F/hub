@@ -1,18 +1,13 @@
 ---
+layout: bare
 permalink: projects/
 ---
 <h1>Projects</h1>
 
-<div>
-<strong>Latest Project Status Report:</strong>
-<a href="{{site.data.project_status.latest_url}}){{site.data.project_status.latest_date}}"></a><br/>
-<a href="{{site.data.project_status.all_updates_url}}">Read all project status updates</a>
-</div>
-
 {% for proj in site.data.projects %}
 <div class="index-entry">
-<strong><a href="{{ site.baseurl }}/projects/{{ proj.name }}">{{ proj.project }}</a></strong><br/>
-{% if proj.description %}{{ proj.description }}<br/>{% endif %}
-{% if proj.team %}{% assign member_separator = ', ' %}{% assign members = proj.team %}Team: {% include team_members_short.html %}<br/>{% endif %}
+	<h2><a href="{{ site.baseurl }}/projects/{{ proj.name }}">{{ proj.project }}</a></h2>
+	<p>{% if proj.description %}{{ proj.description }}{% endif %}</p>
+	<p>{% if proj.team %}{% assign member_separator = ', ' %}{% assign members = proj.team %}Team: {% include team_members_short.html %}{% endif %}</p>
 </div>
 {% endfor %}
