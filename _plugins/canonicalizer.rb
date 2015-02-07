@@ -104,21 +104,21 @@ module Hub
     #
     # +skills_ref+:: hash from skills => team members; updated in-place
     def self.combine_skills!(skills_xref)
-      canonical_skills = {}
+      canonicals = {}
       skills_xref.each do |skill, members|
-        canonicalized_skill = Canonicalizer.canonicalize(skill)
+        canonicalized = Canonicalizer.canonicalize(skill)
 
-        if not canonical_skills.member? canonicalized_skill
-          canonical_skills[canonicalized_skill] = skill
+        if not canonicals.member? canonicalized
+          canonicals[canonicalized] = skill
         else
-          current_canonical = canonical_skills[canonicalized_skill]
-          if current_canonical < skill
-            skills_xref[current_canonical].concat(members)
+          current = canonicals[canonicalized]
+          if current < skill
+            skills_xref[current].concat(members)
             members.clear
           else
-            members.concat(skills_xref[current_canonical])
-            skills_xref[current_canonical].clear
-            canonical_skills[canonicalized_skill] = skill
+            members.concat(skills_xref[current])
+            skills_xref[current].clear
+            canonicals[canonicalized] = skill
           end
         end
       end
