@@ -18,6 +18,7 @@ require_relative "test_helper"
 require_relative "../_plugins/joiner"
 require_relative "site"
 
+require "hash-joiner"
 require "minitest/autorun"
 
 module Hub
@@ -55,5 +56,26 @@ module Hub
         ],
         @site.data['private']['team'])
     end
+
+    def test_process_data_using_block
+      impl = JoinerImpl.new(@site)
+      impl.setup_join_source do |join_source|
+        ::HashJoiner.assign_empty_defaults(join_source['team'],
+          ['working_groups', 'projects'], [], ['email'])
+      end
+
+      assert_equal(
+        [{'name' => 'mbland', 'full_name' => 'Mike Bland',
+          'email' => 'michael.bland@gsa.gov',
+          'working_groups' => [], 'projects' => [],
+         },
+         {'name' => 'foobar', 'full_name' => 'Foo Bar',
+          'email' => '',
+          'working_groups' => [], 'projects' => [],
+         },
+        ],
+        @site.data['private']['team'])
+    end
+
   end
 end

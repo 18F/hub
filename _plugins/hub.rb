@@ -36,9 +36,9 @@ module Hub
       Snippets.publish(site)
       CrossReferencer.build_xrefs(site.data)
       Canonicalizer.canonicalize_data(site.data)
+      Auth.generate_artifacts(site)
       ::HashJoiner.prune_empty_properties(site.data)
       ::TeamHub::PrivateAssets.copy_to_site(site)
-      Auth.generate_artifacts(site)
       Api.generate_api(site)
 
       Team.generate_pages(site)
