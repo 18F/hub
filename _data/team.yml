@@ -388,6 +388,11 @@
   first_name: Meghana
   last_name: Khandekar
   location: DCA
+- name: melody
+  full_name: Melody Kramer
+  first_name: Melody
+  last_name: Kramer
+  location: DCA
 - name: mhz
   full_name: Michelle Hertzfeld
   first_name: Michelle
@@ -476,6 +481,11 @@
     and VeggieTales. Raphael earned his BS from Loyola University of Chicago and conducted
     post-baccalaureate studies in graphic design at University of Illinois at Chicago.
     Raphael lives in Chicago with his wife and two children.
+- name: rebecca
+  full_name: Rebecca Sweger
+  first_name: Rebecca
+  last_name: Sweger
+  location: BOS
 - name: ric
   full_name: Ric Miller
   first_name: Ric
