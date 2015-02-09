@@ -113,15 +113,17 @@ def deploy_submodules
 end
 
 def deploy_internal
+  auth_emails_path = '_site/auth/hub-authenticated-emails.txt'
+  users = File.read auth_emails_path
+
   bundle_cmd = "/usr/local/rbenv/shims/bundle"
-  users = File.read '_site/auth/hub-authenticated-emails.txt'
   deploy([
     "#{bundle_cmd} install",
     "#{bundle_cmd} #{JEKYLL_BUILD_CMD}",
     "#{bundle_cmd} #{JEKYLL_BUILD_CMD} #{JEKYLL_PUBLIC_CONFIG}",
   ])
 
-  if File.read('_site/auth/hub-authenticated-emails.txt') != users
+  if File.read(auth_emails_path) != users
     exec_cmd('sudo service google_auth_proxy restart')
   end
 end
