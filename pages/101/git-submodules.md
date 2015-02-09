@@ -6,7 +6,7 @@ permalink: /101/git-submodules/
 
 The Hub uses git submodules mounted at `_data/private` and `pages/private`.
 The reason for using these submodules is described in
-[Internal vs. Public Hubs](internal-vs-public/). This guide explains how to
+[Internal vs. Public Hubs](../internal-vs-public/). This guide explains how to
 work with them.
 
 - **If you're an 18F team member**: You have access to the private

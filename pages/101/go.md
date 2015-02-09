@@ -41,11 +41,11 @@ and `pages/private` submodules:
 $ git submodule init
 $ git submodule update
 ```
-See [Git Submodules](git-submodules/) for more details.
+See [Git Submodules](../git-submodules/) for more details.
 
 ## Serving the Hub locally
 
-See [Internal vs. Public Hubs](internal-vs-public/) for the difference between
+See [Internal vs. Public Hubs](../internal-vs-public/) for the difference between
 the "internal" and "public" versions of the Hub:
 
 ```shell

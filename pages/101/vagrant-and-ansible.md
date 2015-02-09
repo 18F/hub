@@ -16,7 +16,8 @@ Nginx instance immediately.
 
 For the internal version of the site, the dev server will default to setting
 the Nginx `$authenticated_user` variable (used by
-[_layouts/bare.html](_layouts/bare.html)) to the `authenticated_user` value in
+[_layouts/bare.html](https://github.com/18F/hub/tree/master/_layouts/bare.html))
+to the `authenticated_user` value in
 [deploy/ansible/playbook.yml](deploy/ansible/playbook.yml). You can also
 change this for a single page by adding `?user=[AUTHENTICATED_USER]` to the
 URL.
