@@ -7,6 +7,7 @@ gem 'jekyll-sitemap'
 gem 'hash-joiner'
 gem 'team_hub'
 gem 'weekly_snippets'
+gem 'rouge'
 
 group :jekyll_plugins do
   gem 'jekyll-assets'
