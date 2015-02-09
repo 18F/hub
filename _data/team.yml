@@ -454,6 +454,10 @@
   18f: true
   bio: Ori is the communications manager for 18F. If you're doing a story on us, please
     contact me and I'll help get things coordinated.
+- name: ozzy
+  full_name: Ozzy Johnson
+  first_name: Ozzy
+  last_name: Johnson
 - name: papazian
   full_name: Chris Papazian
   first_name: Chris
