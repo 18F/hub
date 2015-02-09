@@ -91,6 +91,7 @@ module Hub
 
     def test_team_artifacts_generated
       @site.data['team'] = @team
+      @site.data['guest_users'] = []
       Auth.generate_artifacts @site
       assert_equal([@team[0], @team[1]], auth_include_users)
 

@@ -27,7 +27,7 @@ module Hub
     end
 
     def test_select_private_source
-      @site.data['private'] = 'has private data'
+      @site.data['private']['sample_source_content'] = 'has private data'
       impl = JoinerImpl.new @site
       assert_equal 'private', impl.source
     end

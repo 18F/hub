@@ -27,19 +27,30 @@ module Hub
       @site.data.delete 'private'
     end
 
+    def new_impl
+      impl = JoinerImpl.new(@site)
+      impl.setup_join_source do |join_source|
+        ::HashJoiner.assign_empty_defaults(join_source,
+          [], ['hub'], [])
+        ::HashJoiner.assign_empty_defaults(join_source['hub'],
+          ['guest_users'], [], [])
+      end
+      impl
+    end
+
     def test_no_private_data
-      assert_nil JoinerImpl.new(@site).import_guest_users
+      assert_empty new_impl.import_guest_users
     end
 
     def test_no_hub_data
-      assert_nil JoinerImpl.new(@site).import_guest_users
-      assert_nil @site.data['guest_users']
+      assert_empty new_impl.import_guest_users
+      assert_empty @site.data['guest_users']
     end
 
     def test_no_guest_users
       @site.data['private'] = {'hub' => {}}
-      assert_nil JoinerImpl.new(@site).import_guest_users
-      assert_nil @site.data['guest_users']
+      assert_empty new_impl.import_guest_users
+      assert_empty @site.data['guest_users']
     end
 
     def test_guest_users_moved_to_top_level
@@ -48,7 +59,7 @@ module Hub
          'full_name' => 'Mike Bland'},
         ]
       @site.data['private'] = {'hub' => {'guest_users' => guests}}
-      assert_equal guests, JoinerImpl.new(@site).import_guest_users
+      assert_equal guests, new_impl.import_guest_users
       assert_equal guests, @site.data['guest_users']
     end
   end
