@@ -67,6 +67,15 @@ ul {
 .nav-break {
   margin-left: 120px;
 }
+.sr-only { //for screen readers
+  position: absolute;
+  overflow: hidden;
+  width:1px;
+  height:1px;
+  margin: -1px;
+  padding:0;
+}
+
 
 // News Template
 //********************************************************

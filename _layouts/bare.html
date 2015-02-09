@@ -24,6 +24,7 @@
     {% raw %}
 
       <div class="hub-search">
+        <label for="search1" class="sr-only">Search - click or press '/'</label>
         <live-search id="search1" type="text"
           live-search-callback="searchCallback"
           live-search-item-template="<a href='{{result.page.url}}'>{{result.page.title || result.page.url}}</a>"
