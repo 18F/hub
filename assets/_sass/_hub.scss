@@ -130,7 +130,7 @@ div.skip-nav a {
     border-radius: 0;
     font-size: 14px;
     box-shadow: none;
-    color: #bbb;
+    color: #777678;
     border-color: #bbb;
   }
 }
@@ -205,6 +205,22 @@ margin-bottom: 20px;
       }
     }
   }
+}
+//Placeholder styles
+::-webkit-input-placeholder {
+   color: #777678;
+}
+
+:-moz-placeholder { 
+   color: #777678;  
+}
+
+::-moz-placeholder {
+   color: #777678;  
+}
+
+:-ms-input-placeholder {  
+   color: #777678;  
 }
 
 // Snippets
