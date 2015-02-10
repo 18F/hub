@@ -6,6 +6,9 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
+  <div class="skip-nav">
+    <a href="#anchor">Skip to main content</a>
+  </div>
   
   <div class="stage-bug">
     <span>This site is in alpha. <a href="https://18f.gsa.gov/dashboard/stages/">Learn more here.</a></span>
@@ -23,7 +26,7 @@
 
     {% raw %}
 
-      <div class="hub-search">
+      <div class="hub-search skip-nav-anchor" id="anchor" tabindex="-1">
         <label for="search1" class="sr-only">Search - click or press '/'</label>
         <live-search id="search1" type="text"
           live-search-callback="searchCallback"
