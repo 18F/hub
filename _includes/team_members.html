@@ -1,7 +1,7 @@
 <div class="team-members">{% for member in members %}
   <div class="team-member">
     <div class="team-member-cell">
-      <a href="{{ site.baseurl }}/team/{{ member.name }}"><img class="team-member-thumb" src="{{ site.baseurl }}/{{ member.image }}" alt="Thumbnail photo of {{ member.full_name }}"></a>
+      <a href="{{ site.baseurl }}/team/{{ member.name }}"><img class="team-member-thumb" src="{{ site.baseurl }}/{{ member.image }}" alt="{% if member.image == 'assets/images/team/logo-18f.jpg' %}18F logo, {{ member.full_name }} photo missing{% else %}{{ member.full_name }}{% endif %}"></a>
     </div>
     <div class="team-member-info">
       <a href="{{ site.baseurl }}/team/{{ member.name }}">{{ member.full_name }}</a>{% if member.location %} - <a href="{{ site.baseurl }}/locations/{{ member.location }}">{{ member.location }}</a><br/>{% endif %}
