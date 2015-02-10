@@ -19,8 +19,8 @@ permalink: /
 		<div class="home-block">
 			<h3>Project status</h3>
 			<ul>
-				<li><a href="{{site.data.project_status.latest_url}}">Latest: {{site.data.project_status.latest_date}}</a></li>
-				<li><a href="{{site.data.project_status.all_updates_url}}">Read all</a></li>
+				<li><a href="{{site.data.project_status.latest_url}}">Latest: {{site.data.project_status.latest_date}} <span class="sr-only">project status</span></a></li>
+				<li><a href="{{site.data.project_status.all_updates_url}}">Read all<span class="sr-only"> project statuses</span></a></li>
 			</ul>
 		</div>
 	{% endif %}
@@ -29,8 +29,8 @@ permalink: /
 		<div class="home-block">
 			<h3>People status (snippets)</h3>
 			<ul>
-				<li><a href="{{ site.baseurl }}/snippets/{{ site.data.snippets_latest }}">Latest: {{ site.data.snippets_latest | hyphenate_yyyymmdd }}</a></li>
-				<li><a href="{{ site.baseurl }}/snippets/">Read all</a></li>
+				<li><a href="{{ site.baseurl }}/snippets/{{ site.data.snippets_latest }}">Latest: {{ site.data.snippets_latest | hyphenate_yyyymmdd }}<span class="sr-only"> snippet</span></a></li>
+				<li><a href="{{ site.baseurl }}/snippets/">Read all<span class='sr-only'> snippets</span></a></li>
 			</ul>
 		</div>
 	{% endif %}
