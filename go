@@ -43,6 +43,8 @@ EOF
   exit 1
 end
 
+require 'digest'
+
 def exec_cmd(cmd)
   exit $?.exitstatus unless system(cmd)
 end
@@ -113,12 +115,19 @@ def deploy_submodules
 end
 
 def deploy_internal
+  auth_emails_path = '_site/auth/hub-authenticated-emails.txt'
+  users_digest = ::Digest::SHA256.file auth_emails_path
+
   bundle_cmd = "/usr/local/rbenv/shims/bundle"
   deploy([
     "#{bundle_cmd} install",
     "#{bundle_cmd} #{JEKYLL_BUILD_CMD}",
     "#{bundle_cmd} #{JEKYLL_BUILD_CMD} #{JEKYLL_PUBLIC_CONFIG}",
   ])
+
+  if ::Digest::SHA256.file(auth_emails_path) != users_digest
+    exec_cmd('sudo service google_auth_proxy restart')
+  end
 end
 
 def deploy_public
