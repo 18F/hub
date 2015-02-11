@@ -168,7 +168,14 @@ margin-bottom: 20px;
       background-color: #eee;
     }
   }
+  a {
+    &:focus li {
+      background-color: #eee;
+    }
+  }
 }
+
+
 
 .clear { //forgive me this trespass, for it is late and I have no time
   clear:left;
