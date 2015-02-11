@@ -58,3 +58,17 @@ defaults:
       edit_info:
         repo: 18F/hub-pages-private
         prefix: pages/private/
+
+editor_url: https://hub.18f.us/edit/#
+
+prose:
+  rooturl: 'pages'
+  media: 'assets'
+  metadata:
+    pages:
+      - name: 'title'
+        field:
+          element: 'text'
+      - name: 'permalink'
+        field:
+          element: 'text'
