@@ -79,3 +79,13 @@ def restart():
     "cd %s && forever restart deploy/hookshot.js -p %i -b %s -c \"%s\""
     % (REMOTE_REPO_DIR, SETTINGS['port'], SETTINGS['branch'], COMMAND)
   )
+
+def start_prose():
+  fabric.api.env.hosts = ['18f-hub']
+  fabric.api.run("forever start -l gatekeeper.log -a gatekeeper/server.js")
+  fabric.api.run("forever start -l prose.log -a -c /usr/local/bin/serve prose")
+
+def stop_prose():
+  fabric.api.env.hosts = ['18f-hub']
+  fabric.api.run("forever stop gatekeeper/server.js")
+  fabric.api.run("forever stop -c /usr/local/bin/serve prose")
