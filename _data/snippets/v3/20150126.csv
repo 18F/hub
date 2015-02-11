@@ -1,0 +1,53 @@
+Timestamp,Public,Username,Last week,This week
+1/26/2015 10:22:43,Public,mbland,"Hub:
+- More automated deployment:
+  [#68](https://github.com/18F/hub/pull/68);
+  [#70](https://github.com/18F/hub/pull/70);
+  [#71](https://github.com/18F/hub/pull/71);
+  [#75](https://github.com/18F/hub/pull/75)
+- Commented on [Aidan Feldman's pages API
+  #69](https://github.com/18F/hub/pull/69)
+- Commented on [Michelle Hertzfeld's next-gen nav and structure
+  #73](https://github.com/18F/hub/pull/73)
+- More gem extraction/refactoring; merged other pull requests:
+  [#72](https://github.com/18F/hub/pull/72);
+  [#74](https://github.com/18F/hub/pull/74);
+  [#78](https://github.com/18F/hub/pull/78)
+- New issues:
+  [#76](https://github.com/18F/hub/pull/76);
+  [#77](https://github.com/18F/hub/pull/77)
+- Chat with Greg Godbout about demoing Hub for USDS
+
+Misc:
+- Featured on the [US Digital Service recruting page](http://wh.gov/usds)
+- Doc WG weekly meeting
+- Practice team proposal; first attempt at a business case
+- [`test_temp_file_helper`
+  v0.0.2](https://github.com/18F/test_temp_file_helper/pull/3)","- ""Unit Testing Perspectives"" doc (really)
+- Working Groups blog post (really)
+- Hub: gem extraction; improve docs; develop training; Aidan's search feature;
+  MHz's info arch/redesign; develop USDS demo
+- Reach out to connect Doc WG with Hiring and Team Ops
+- Drop in on Agile Delivery Services BPA Industry Day"
+1/26/2015 16:42:36,Public,gray,"Organize events for 18F all hands
+Organized feedback for website policies memo.  
+Briefed OCSIT on APIs in government 
+Consulted GSA data team on upcoming hackathon 
+Work on HTTPS in government material.  ","Prep release of analytics.usa.gov.  
+Work on HTTPS in government material.  
+Work on 3rd party services in government material.  
+Train teammate on analytics work. 
+1x 'What is 18F' session.  
+3x Agency API Consults "
+1/26/2015 16:52:14,Public,blacktm,"- Launched the prototype and microsite for the Navy Reserve, at http://18f.github.io/navy-reserve
+- Finished sprint 1 user stories","- Starting sprint 2
+- Meeting with reservists for user research
+- Meeting with Navy Reserve leadership to demo app, share 18F story"
+1/27/2015 16:19:32,Public,eric,"
+
+
+Worked towards launching a public analytics dashboard.","
+
+Building out HTTPS resources at https://github.com/gsa/https
+
+Working towards launching a public analytics dashboard."

@@ -388,6 +388,11 @@
   first_name: Meghana
   last_name: Khandekar
   location: DCA
+- name: melody
+  full_name: Melody Kramer
+  first_name: Melody
+  last_name: Kramer
+  location: DCA
 - name: mhz
   full_name: Michelle Hertzfeld
   first_name: Michelle
@@ -449,6 +454,10 @@
   18f: true
   bio: Ori is the communications manager for 18F. If you're doing a story on us, please
     contact me and I'll help get things coordinated.
+- name: ozzy
+  full_name: Ozzy Johnson
+  first_name: Ozzy
+  last_name: Johnson
 - name: papazian
   full_name: Chris Papazian
   first_name: Chris
@@ -476,6 +485,11 @@
     and VeggieTales. Raphael earned his BS from Loyola University of Chicago and conducted
     post-baccalaureate studies in graphic design at University of Illinois at Chicago.
     Raphael lives in Chicago with his wife and two children.
+- name: rebecca
+  full_name: Rebecca Sweger
+  first_name: Rebecca
+  last_name: Sweger
+  location: BOS
 - name: ric
   full_name: Ric Miller
   first_name: Ric
@@ -562,6 +576,11 @@
   - data visualization
   - maps
   - APIs
+- name: shawnique
+  full_name: Shawnique Muller
+  first_name: Shawnique
+  last_name: Muller
+  location: DCA
 - name: stephanierivera
   full_name: Stephanie Rivera
   location: SFO

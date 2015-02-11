@@ -4,8 +4,8 @@ GEM
     RedCloth (4.2.9)
     addressable (2.3.7)
     blankslate (2.1.2.4)
-    bourbon (4.1.1)
-      sass (~> 3.3)
+    bourbon (4.2.0)
+      sass (~> 3.4)
       thor
     celluloid (0.16.0)
       timers (~> 4.0.0)
@@ -24,7 +24,7 @@ GEM
     fastimage (1.6.6)
       addressable (~> 2.3, >= 2.3.5)
     ffi (1.9.6)
-    hash-joiner (0.0.3)
+    hash-joiner (0.0.5)
       safe_yaml
     hike (1.2.3)
     hitimes (1.2.2)
@@ -84,6 +84,7 @@ GEM
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     redcarpet (3.2.2)
+    rouge (1.8.0)
     safe_yaml (1.0.4)
     sass (3.4.11)
     simplecov (0.9.1)
@@ -130,6 +131,7 @@ DEPENDENCIES
   jekyll_pages_api
   minitest
   rake
+  rouge
   team_hub
   test_temp_file_helper
   weekly_snippets

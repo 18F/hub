@@ -19,6 +19,7 @@
 # The Hub::Generator class contains the logic for all Hub-specific data
 # processing and page generation.
 
+require 'hash-joiner'
 require 'team_hub'
 
 module Hub
@@ -35,8 +36,9 @@ module Hub
       Snippets.publish(site)
       CrossReferencer.build_xrefs(site.data)
       Canonicalizer.canonicalize_data(site.data)
-      ::TeamHub::PrivateAssets.copy_to_site(site)
       Auth.generate_artifacts(site)
+      ::HashJoiner.prune_empty_properties(site.data)
+      ::TeamHub::PrivateAssets.copy_to_site(site)
       Api.generate_api(site)
 
       Team.generate_pages(site)

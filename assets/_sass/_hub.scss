@@ -67,6 +67,38 @@ ul {
 .nav-break {
   margin-left: 120px;
 }
+.sr-only { //for screen readers
+  position: absolute;
+  overflow: hidden;
+  width:1px;
+  height:1px;
+  margin: -1px;
+  padding:0;
+}
+
+
+div.skip-nav a {
+  position: absolute;
+  left: -10000;
+  top: 0;
+  width: 1px;
+  height: auto;
+  overflow: hidden;
+  &:focus {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: auto; 
+    height: auto;
+    z-index: 999999;
+    padding-left: 2px;
+    padding-right: 2px;
+    overflow: visible;
+  }
+}
+.skip-nav-anchor:focus{
+  outline:none;
+}
 
 // News Template
 //********************************************************
@@ -98,7 +130,7 @@ ul {
     border-radius: 0;
     font-size: 14px;
     box-shadow: none;
-    color: #bbb;
+    color: #777678;
     border-color: #bbb;
   }
 }
@@ -108,6 +140,9 @@ ul {
 a:hover,
 a:focus {
   text-decoration: none;
+}
+a:focus img{
+  border: 2px solid red;
 }
 
 ul li {
@@ -133,7 +168,14 @@ margin-bottom: 20px;
       background-color: #eee;
     }
   }
+  a {
+    &:focus li {
+      background-color: #eee;
+    }
+  }
 }
+
+
 
 .clear { //forgive me this trespass, for it is late and I have no time
   clear:left;
@@ -173,6 +215,22 @@ margin-bottom: 20px;
       }
     }
   }
+}
+//Placeholder styles
+::-webkit-input-placeholder {
+   color: #777678;
+}
+
+:-moz-placeholder { 
+   color: #777678;  
+}
+
+::-moz-placeholder {
+   color: #777678;  
+}
+
+:-ms-input-placeholder {  
+   color: #777678;  
 }
 
 // Snippets

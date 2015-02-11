@@ -44,8 +44,10 @@ $ ./go init
 $ ./go serve
 ```
 
-See the [Hub 101 docs](_doc/README.md) for details and tips on how to set up
-and work with the Hub development environment.
+See the "Hub 101" docs either [in this repository](pages/101/), [served
+locally](http://localhost:4000/101/), or on the [18F Public
+Hub](https://18f.gsa.gov/hub/101/) for details and tips on how to set up and
+work with the Hub development environment.
 
 ### Contributing
 

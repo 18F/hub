@@ -35,7 +35,7 @@ module Hub
     # +site+:: Jekyll site data object
     def self.join_data(site)
       impl = JoinerImpl.new site
-      impl.setup_join_source
+      impl.setup_join_source {|source| Joiner.assign_empty_defaults source}
 
       impl.join_team_data
       impl.join_project_data
@@ -51,6 +51,15 @@ module Hub
       impl.filter_private_pages
 
       site.data.delete 'private'
+    end
+
+    # Assigns empty default values to Hub data objects to avoid the need for
+    # `(collection || [])`-style logic in Hub plugins.
+    def self.assign_empty_defaults(site_data)
+      ::HashJoiner.assign_empty_defaults(site_data,
+        ['team', 'projects', 'working_groups'], ['hub'], [])
+      ::HashJoiner.assign_empty_defaults(site_data['hub'],
+        ['guest_users'], [], [])
     end
 
     # Used to standardize snippet data of different versions before joining
@@ -111,6 +120,8 @@ module Hub
         @join_source = site.data['private']
       end
 
+      # We'll always need a 'team' property.
+      @join_source['team'] ||= []
       create_team_by_email_index
     end
 
@@ -136,8 +147,8 @@ module Hub
     # MUST be called before remove_data, or else private email addresses will
     # be inaccessible and snippets will not be joined.
     def create_team_by_email_index
-      team = @join_source['team'] || []
-      @team_by_email = self.class.create_team_by_email_index team
+      @team_by_email = self.class.create_team_by_email_index(
+        @join_source['team'])
     end
 
     # Creates an index of team member information keyed by email address.
@@ -166,12 +177,16 @@ module Hub
     # +site.data+. All data nested within +'private'+ attributes will be
     # stripped when @public_mode is +true+, and will be promoted to the same
     # level as its parent when @public_mode is +false+.
+    #
+    # If a block is given, +site.data[@source]+ will be passed to the block
+    # for other initialization/setup.
     def setup_join_source
       if @public_mode
         HashJoiner.remove_data @join_source, 'private'
       else
         HashJoiner.promote_data @join_source, 'private'
       end
+      yield @join_source if block_given?
     end
 
     # Promote data from +site.data['private']+ into +site.data+, if
@@ -249,10 +264,7 @@ module Hub
 
     # Imports the guest_users list into the top-level site.data object.
     def import_guest_users
-      hub_data = @join_source['hub'] || {}
-      if hub_data.member? 'guest_users'
-        @data['guest_users'] = @join_source['hub']['guest_users']
-      end
+      @data['guest_users'] = @join_source['hub']['guest_users']
     end
 
     # Filters out private pages when generating the public Hub.

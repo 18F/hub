@@ -26,8 +26,7 @@ module Hub
     def self.generate_artifacts(site)
       return if site.config['public']
       team = site.data['team'].select {|i| i.member? 'email'}
-      guests = site.data['guest_users'] || []
-      return if team.empty? and guests.empty?
+      guests = site.data['guest_users']
 
       groups = {
         team => 'team_member_auth_include.html',
