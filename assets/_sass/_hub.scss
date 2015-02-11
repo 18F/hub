@@ -141,6 +141,9 @@ a:hover,
 a:focus {
   text-decoration: none;
 }
+a:focus img{
+  border: 2px solid red;
+}
 
 ul li {
   list-style-type: none;
