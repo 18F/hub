@@ -2,10 +2,11 @@
 layout: bare
 ---
 <div>{% assign member = page.team_member %}
-<img class="img-circle team-img bio-clip" src="{{ site.baseurl }}/{{ member.image }}" alt="{{ member.full_name }}">
+{% capture img_basename %}{{ member.image | split:"/" | last }}{% endcapture %}
+<img class="img-circle team-img bio-clip" src="{{ site.baseurl }}/{{ member.image }}" alt="{% if img_basename == site.missing_team_member_img %}18F logo, {{ member.full_name }} photo missing{% else %}{{ member.full_name }}{% endif %}">
 <h1>{{ member.full_name }}</h1>
 <p>{% if member.email %}email: <a href="mailto:{{ member.email }}">{{ member.email }}</a><br/>{% endif %}
-{% if member.slack %}slack: <a href="https://18f.slack.com/team/{{ member.slack }}">{{ member.slack }}</a><br/>{% endif %}
+{% if member.slack %}slack: <a href="https://18f.slack.com/team/{{ member.slack }}">{{ member.slack }} <span class="sr-only">on slack</span></a><br/>{% endif %}
 {% if member.location %}location: <a href="{{ site.baseurl }}/locations/{{ member.location }}">{{ member.location }}</a><br/>{% endif %}
 {% if member.resume %}<a href="{{ member.resume }}">18F Résumé</a><br/>{% endif %}
 {% if member.okrs %}<a href="{{ member.okrs }}">Objectives and Key Results</a><br/>{% endif %}
