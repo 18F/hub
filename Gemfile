@@ -8,6 +8,7 @@ gem 'hash-joiner'
 gem 'team_hub'
 gem 'weekly_snippets'
 gem 'rouge'
+gem 'uglifier'
 
 group :jekyll_plugins do
   gem 'jekyll-assets'
