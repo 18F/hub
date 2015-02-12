@@ -7,7 +7,8 @@
         .html("Loading the map...");
 
   // names and geographic locations of airport codes
-  var locations = [
+  // you can find lat/longs here: <http://openflights.org/html/apsearch>
+  var airports = [
     {code: "DCA", label: "Washington", location: [-77.037722, 38.852083]},
     {code: "SFO", label: "San Francisco", location: [-122.374889, 37.618972]},
     {code: "CHI", label: "Chicago", location: [-87.631667, 41.883611]},
@@ -41,35 +42,37 @@
   queue()
     .defer(d3.json, urls.team)
     .defer(d3.json, urls.topology)
-    .await(allDone);
+    .await(function queued(error, team, topology) {
+      map.classed("loading", false);
+      if (error) return showError(error.statusText);
+      // kill the status message
+      status.remove();
 
-  function allDone(error, team, topology) {
-    map.classed("loading", false);
-    if (error) return showError(error.statusText);
+      // get a GeoJSON FeatureCollection from the topology
+      var states = topojson.feature(topology, topology.objects.states);
+      renderMapBackground(states.features);
 
-    // kill the status message
-    status.remove();
+      renderMapTeam(team);
+    });
 
-    // get a GeoJSON FeatureCollection from the topology
-    var states = topojson.feature(topology, topology.objects.states)
-      .features;
-    // draw the states background
-    renderMapBackground(states);
-
+  /*
+   * Render an array of team members on the map by joining them
+   * onto the airports list by FAA code.
+   */
+  function renderMapTeam(team) {
     // group members by location
     var members = d3.values(team)
           .filter(function(d) { return d.location; }),
         byLocation = d3.nest()
           .key(function(d) { return d.location; })
-          .map(members);
-
-    // then assign a list of members to each location
-    locations.forEach(function(d) {
-      d.members = byLocation[d.code] || [];
-    });
-
+          .map(members),
+        locations = airports.map(function(d) {
+          var location = extend({}, d);
+          location.members = byLocation[d.code] || [];
+          return location;
+        });
     // then draw them on the map
-    renderLocations(locations);
+    renderMapLocations(locations);
   }
 
   /*
@@ -102,7 +105,7 @@
    * and draws them on the map as circles with radii proportional to
    * their member count.
    */
-  function renderLocations(locations) {
+  function renderMapLocations(locations) {
     // size accessor (keeping things DRY)
     var size = function getSize(d) {
           return d.members.length;
@@ -237,6 +240,16 @@
     };
 
     return tooltip;
+  }
+
+  function extend(obj) {
+    [].slice.call(arguments, 1).forEach(function(arg) {
+      if (!arg) return;
+      for (var key in arg) {
+        obj[key] = arg[key];
+      }
+    });
+    return obj;
   }
 
 })(this);
