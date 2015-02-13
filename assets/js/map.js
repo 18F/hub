@@ -23,8 +23,8 @@
 
   // URLs to grab
   var urls = {
-    team: "/api/team/api.json",
-    topology: "/assets/data/us-states.json"
+    team: SITE_BASEURL + "/api/team/api.json",
+    topology: SITE_BASEURL + "/assets/data/us-states.json"
   };
 
   // set up map size, projection, and <svg> container

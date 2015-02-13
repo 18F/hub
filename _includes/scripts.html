@@ -44,7 +44,7 @@
 
 {% for script_url in page.scripts %}
 {% unless script_url contains '.min.js' %}
-<script src="{{ site.baseurl }}{{ script_url | split:"/" | last | asset_path }}"></script>
+<script src="{{ script_url | split:"/" | last | asset_path }}"></script>
 {% else %}<script src="{{ site.baseurl }}{{ script_url }}"></script>{% endunless %}
 {% endfor %}
 
