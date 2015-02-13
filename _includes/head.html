@@ -68,11 +68,14 @@
 
 <!-- CSS
 ================================================== -->
-<link href="https://fonts.googleapis.com/css?family=Raleway:400,700%7COpen+Sans:400,700" rel="stylesheet" type="text/css">
-<link href="{{ site.baseurl }}/assets/css/fonts.css" rel="stylesheet">
-<link href="{{ site.baseurl }}/assets/css/normalize.css" rel="stylesheet">
+<style>{% asset normalize.css %}
+{% asset fonts.css %}
+{% asset pygments-theme.css %}
+{% for sheet_url in page.stylesheets %}
+{{ sheet_url | split:"/" | last | asset }}
+{% endfor %}</style>
 <link href="{{ site.baseurl }}/assets/css/styles.css" rel="stylesheet">
-<link href="{{ site.baseurl }}/assets/css/pygments-theme.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,700%7COpen+Sans:400,700" rel="stylesheet" type="text/css">
 
 <!-- IE
 ================================================== -->
@@ -82,10 +85,6 @@
   <script src="{{ site.baseurl }}/assets/js/ie8/respond.js"></script>
   <link href="{{ site.baseurl }}/assets/css/ie8/ie.css" rel="stylesheet">
 <![endif]-->
-
-{% for sheet_url in page.stylesheets %}
-<link rel="stylesheet" href="{{ sheet_url }}">
-{% endfor %}
 
 <script>
 // export some helpful site-wide variables
