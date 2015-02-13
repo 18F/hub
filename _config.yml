@@ -22,6 +22,15 @@ tag_title_prefix: "#"
 
 sass:
   sass_dir: assets/_sass
+  style: compressed
+
+assets:
+  js_compressor: uglifier
+  css_compressor: sass
+  sources:
+    - _assets/javascripts
+    - assets/js
+    - assets/css
 
 # use where a full URL is appropriate (e.g. RSS, OG tags)
 url: https://hub.18f.us
@@ -58,3 +67,17 @@ defaults:
       edit_info:
         repo: 18F/hub-pages-private
         prefix: pages/private/
+
+editor_url: https://hub.18f.us/edit/#
+
+prose:
+  rooturl: 'pages'
+  media: 'assets'
+  metadata:
+    pages:
+      - name: 'title'
+        field:
+          element: 'text'
+      - name: 'permalink'
+        field:
+          element: 'text'

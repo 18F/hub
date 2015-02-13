@@ -16,9 +16,6 @@
   window._ie = window._ie9 || window._ie10 || window._ie11;
 </script>
 
-<!-- Browser warning, console message -->
-<script src="{{ site.baseurl }}/assets/js/18f.js"></script>
-
 <!-- Google Analytics -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -34,4 +31,21 @@
 </script>
 
 <!-- Digital Analytics Program roll-up, see https://analytics.usa.gov for data -->
-<script id="_fed_an_ua_tag" src="https://analytics.usa.gov/dap/dap.min.js"></script>
+<script id="_fed_an_ua_tag" src="https://analytics.usa.gov/dap/dap.min.js" async></script>
+
+<script src="{{ site.baseurl }}/assets/js/jquery-2.1.1.min.js"></script>
+<script src="{{ site.baseurl }}/assets/js/responsiveslides.min.js"></script>
+<script>
+  SITE_BASEURL = '{{site.baseurl}}';
+</script>
+
+<!-- Browser warning, console message -->
+<script src="{{ site.baseurl }}/assets/js/18f.js"></script>
+
+{% for script_url in page.scripts %}
+{% unless script_url contains '.min.js' %}
+<script src="{{ script_url | split:"/" | last | asset_path }}"></script>
+{% else %}<script src="{{ site.baseurl }}{{ script_url }}"></script>{% endunless %}
+{% endfor %}
+
+{% javascript search %}

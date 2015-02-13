@@ -22,7 +22,7 @@
 
 <section class="container bare">
 
-  <div ng-app="hubSearch" ng-controller="SearchController" class="bare-content" role="main" itemscope itemprop="mainContentOfPage">
+  <div ng-app="hubSearch" ng-controller="SearchController" class="bare-content" role="main" itemscope itemprop="mainContentOfPage" ng-strict-di>
 
     {% raw %}
 
@@ -61,7 +61,7 @@
 </section>
 
   {% include footer.html %}
-  {% include scripts.html %}
 
 </body>
+{% include scripts.html %}
 </html>

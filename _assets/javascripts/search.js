@@ -4,13 +4,13 @@
 
 var ngHub = angular.module('hubSearch', ['LiveSearch']);
 
-ngHub.factory('pagesPromise', function($http, $q) {
+ngHub.factory('pagesPromise', ["$http", "$q", function($http, $q) {
   return $http.get(SITE_BASEURL + '/api/v1/pages.json').then(function(response) {
     return response.data.entries;
   });
-});
+}]);
 
-ngHub.factory('pagesByUrl', function(pagesPromise) {
+ngHub.factory('pagesByUrl', ["pagesPromise", function(pagesPromise) {
   var result = {};
 
   // populate asynchronously
@@ -21,9 +21,9 @@ ngHub.factory('pagesByUrl', function(pagesPromise) {
   });
 
   return result;
-});
+}]);
 
-ngHub.factory('pageIndex', function(pagesPromise) {
+ngHub.factory('pageIndex', ["pagesPromise", function(pagesPromise) {
   var index = lunr(function() {
     this.ref('url');
 
@@ -40,9 +40,9 @@ ngHub.factory('pageIndex', function(pagesPromise) {
   });
 
   return index;
-});
+}]);
 
-ngHub.factory('pagesSearch', function(pagesByUrl, pageIndex) {
+ngHub.factory('pagesSearch', ["pagesByUrl", "pageIndex", function(pagesByUrl, pageIndex) {
   return function(term) {
     var results = pageIndex.search(term);
     angular.forEach(results, function(result) {
@@ -53,10 +53,10 @@ ngHub.factory('pagesSearch', function(pagesByUrl, pageIndex) {
     });
     return results;
   };
-});
+}]);
 
 // based on https://github.com/angular/angular.js/blob/54ddca537/docs/app/src/search.js#L198-L206
-ngHub.factory('searchUi', function($document) {
+ngHub.factory('searchUi', ["$document", function($document) {
   var isForwardSlash = function(keyCode) {
     return keyCode === 191;
   };
@@ -91,9 +91,9 @@ ngHub.factory('searchUi', function($document) {
       return selectionScope.results[resultIndex];
     }
   };
-});
+}]);
 
-ngHub.controller('SearchController', function($scope, $q, searchUi, pagesSearch) {
+ngHub.controller('SearchController', ["$scope", "$q", "searchUi", "pagesSearch", function($scope, $q, searchUi, pagesSearch) {
   searchUi.enableGlobalShortcut();
 
   var isEnter = function(keyCode) {
@@ -113,4 +113,4 @@ ngHub.controller('SearchController', function($scope, $q, searchUi, pagesSearch)
     defer.resolve(results);
     return defer.promise;
   };
-});
+}]);

@@ -63,6 +63,7 @@ GEM
     jekyll_pages_api (0.1.0)
       htmlentities (~> 4.3)
       jekyll (~> 2.0)
+    json (1.8.2)
     kramdown (1.5.0)
     liquid (2.6.2)
     listen (2.8.5)
@@ -114,6 +115,9 @@ GEM
       hitimes
     toml (0.1.2)
       parslet (~> 1.5.0)
+    uglifier (2.7.0)
+      execjs (>= 0.3.0)
+      json (>= 1.8.0)
     weekly_snippets (0.0.2)
     yajl-ruby (1.2.1)
 
@@ -134,4 +138,5 @@ DEPENDENCIES
   rouge
   team_hub
   test_temp_file_helper
+  uglifier
   weekly_snippets
