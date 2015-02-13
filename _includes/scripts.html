@@ -16,6 +16,10 @@
   window._ie = window._ie9 || window._ie10 || window._ie11;
 </script>
 
+{% for script_url in page.scripts %}
+<script src="{{ script_url }}"></script>
+{% endfor %}
+
 <!-- Browser warning, console message -->
 <script src="{{ site.baseurl }}/assets/js/18f.js"></script>
 

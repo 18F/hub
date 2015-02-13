@@ -1,0 +1,40 @@
+svg.map {
+  display: block;
+  width: 100%;
+  min-height: 400px;
+}
+
+svg.map .background path {
+  fill: #ddd;
+  stroke: #fff;
+  stroke-width: 1px;
+}
+
+svg.map .pin circle {
+  fill: #666;
+  stroke: #fff;
+  stroke-width: 2px;
+}
+
+svg.map .pin.on circle {
+  fill: #18f;
+}
+
+svg.map .pin .tip {
+  visibility: hidden;
+}
+
+svg.map .pin.on .tip,
+svg.map .pin:target .tip {
+  visibility: visible;
+}
+
+svg.map .tip path {
+  fill: #000;
+}
+
+svg.map .tip text {
+  font-weight: bold;
+  font-size: 20px;
+  fill: #fff;
+}
