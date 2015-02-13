@@ -61,16 +61,7 @@
 </section>
 
   {% include footer.html %}
-  {% include scripts.html %}
 
 </body>
-
-<!-- JS
-================================================== -->
-<script async src="{{ site.baseurl }}/assets/js/jquery-2.1.1.min.js"></script>
-<script async src="{{ site.baseurl }}/assets/js/responsiveslides.min.js"></script>
-<script>
-  SITE_BASEURL = '{{site.baseurl}}';
-</script>
-{% javascript search async %}
+{% include scripts.html %}
 </html>

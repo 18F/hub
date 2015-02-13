@@ -26,6 +26,9 @@ sass:
 
 assets:
   js_compressor: uglifier
+  sources:
+    - _assets/javascripts
+    - assets/js
 
 # use where a full URL is appropriate (e.g. RSS, OG tags)
 url: https://hub.18f.us
