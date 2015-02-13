@@ -1,5 +1,17 @@
 ---
 - name: Documentation
+  full_name: Documentation Working Group
+  mission: |
+    Organize all of 18F’s information and make it universally accessible and useful, internally and externally.
+  links:
+  - url: https://18f.gsa.gov/hub/
+    text: 18F Public Hub
+  - url: http://18f.github.io/guides
+    text: 18F Guides
+  tasks: https://trello.com/b/cI4LmXOj/wg-documentation
+  github_repos:
+  - 18F/hub
+  - 18F/guides
   leads:
   - mbland
   members:
@@ -12,6 +24,114 @@
   - brethauer
   - michelle
   - robert
+- name: Testing
+  full_name: 18F Testing Grouplet
+  mission: |
+    Ensure the long-term success of 18F development projects by cultivating the best automated testing tools, practices, and training materials available.
+  links:
+  - url: http://18f.github.io/automated-testing-playbook
+    text: Automated Testing Playbook
+  tasks: https://trello.com/b/efNEYNJ1/18f-testing-grouplet
+  github_repos:
+  - 18F/automated-testing-playbook
+  leads:
+  - mbland
+  - alison
+  members:
+  - mbland
+  - alison
+  - papazian
+  - moncef
+  - shawn
+  - ozzy
+  - micahsaul
+  - david
+  - marco
+  - jane
+- name: Working Group
+  full_name: Working Group Working Group
+  mission: |
+    To create an environment in which working groups and guilds can thrive and have a meaningful impact on 18F deliverables and operations.
+  links:
+  - url: http://18f.github.io/grouplet-playbook
+    text: Grouplet Playbook
+  tasks: https://trello.com/b/UTWUl10z/18f-working-group-working-group
+  github_repos:
+  - 18F/grouplet-playbook
+  leads:
+  - mbland
+  - gray
+  members:
+  - mbland
+  - gray
+  - brethauer
+  - nick
+  - diego
+  - yoz
+- name: Accessibility
+  full_name: Accessibility Guild
+  leads:
+  - nick
+  members:
+  - nick
+- name: Agile
+  full_name: Agile Guild
+  leads:
+  - sarah
+  - khandelwal
+  members:
+  - sarah
+  - khandelwal
+- name: Analytics
+  full_name: Analytics Guild
+  leads:
+  - gray
+  members:
+  - gray
+- name: Design Standards
+  full_name: Design Standards and Practices Guild
+  leads:
+  - jtag
+  members:
+  - jtag
+- name: DevOps
+  full_name: DevOps Guild
+  leads:
+  - diego
+  - afeld
+  members:
+  - diego
+  - afeld
+- name: Frontend
+  full_name: Frontend Guild
+  leads:
+  - marco
+  - mhz
+  members:
+  - marco
+  - mhz
+- name: Policy
+  full_name: Policy Guild
+  leads:
+  - majma
+  - eric
+  members:
+  - majma
+  - eric
+- name: Project Support
+  full_name: Project Support Guild
+  leads:
+  - yoz
+  members:
+  - yoz
+- name: User Research
+  full_name: User Research Guild
+  leads:
+  - jeremy
+  - brethauer
+  members:
+  - jeremy
+  - brethauer
 - name: Diversity
   members:
   - jackie
