@@ -20,7 +20,7 @@ Connections](https://18f.gsa.gov/2014/12/23/hub/)".
 ## Hub 101
 
 For an overview of Hub development and deployment details, visit the [Hub 101
-docs](/101/).
+docs](../101/).
 
 ## Working with Hub Docs
 

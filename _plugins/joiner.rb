@@ -122,7 +122,19 @@ module Hub
 
       # We'll always need a 'team' property.
       @join_source['team'] ||= []
+      ['team', 'projects', 'departments', 'working_groups'].each do |c|
+        i = @join_source[c]
+        @join_source[c] = JoinerImpl.flatten_index(i) if i.instance_of? Hash
+      end
       create_team_by_email_index
+    end
+
+    # Takes Hash<string, Array<Hash>> collections and flattens them
+    # Array<Hash>.
+    def self.flatten_index(index)
+      private_data = index['private']
+      index['private'] = {'private' => private_data.values} if private_data
+      index.values
     end
 
     # Joins team member data, converts site.data[team] to a hash of

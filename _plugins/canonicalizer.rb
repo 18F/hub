@@ -75,28 +75,18 @@ module Hub
       s.downcase.gsub(/\s+/, '-')
     end
 
-    # Returns a canonicalized, URL-friendly substitute for the 'name' field of
-    # an arbitrary hash.
-    # +data+:: hash containing a 'name' field
-    def self.canonicalize_name(data)
-      self.canonicalize(data['name'])
-    end
-
-    # Sorts in-place an array of data hashes based on the 'name' field.
-    # Case-insensitive. Returns the sorted, original array object.
-    # +data+:: hash containing a 'name' field
-    def self.sort_by_name!(data)
-      data.sort_by! {|i| i['name'].downcase}
-    end
-
     # Sorts in-place an array of team member data hashes based on the team
     # members' last names. Returns the sorted, original array object.
-    # +team+:: An array of team member data hashes containing 'last_name'
+    # +team+:: An array of team member data hashes
     def self.sort_by_last_name!(team)
       team.sort_by! do |i|
-        n = i['full_name'].downcase.split(',')[0]
-        l = n.split.last
-        [l, n]
+        if i['last_name']
+          [i['last_name'].downcase, i['first_name'].downcase]
+        else
+          n = i['full_name'].downcase.split(',')[0]
+          l = n.split.last
+          [l, n]
+        end
       end
     end
 
@@ -114,21 +104,21 @@ module Hub
     #
     # +skills_ref+:: hash from skills => team members; updated in-place
     def self.combine_skills!(skills_xref)
-      canonical_skills = {}
+      canonicals = {}
       skills_xref.each do |skill, members|
-        canonicalized_skill = Canonicalizer.canonicalize(skill)
+        canonicalized = Canonicalizer.canonicalize(skill)
 
-        if not canonical_skills.member? canonicalized_skill
-          canonical_skills[canonicalized_skill] = skill
+        if not canonicals.member? canonicalized
+          canonicals[canonicalized] = skill
         else
-          current_canonical = canonical_skills[canonicalized_skill]
-          if current_canonical < skill
-            skills_xref[current_canonical].concat(members)
+          current = canonicals[canonicalized]
+          if current < skill
+            skills_xref[current].concat(members)
             members.clear
           else
-            members.concat(skills_xref[current_canonical])
-            skills_xref[current_canonical].clear
-            canonical_skills[canonicalized_skill] = skill
+            members.concat(skills_xref[current])
+            skills_xref[current].clear
+            canonicals[canonicalized] = skill
           end
         end
       end

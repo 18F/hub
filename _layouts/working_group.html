@@ -4,26 +4,50 @@ layout: bare
 
 {% assign wg = page.working_group %}
 <div>
-	<h1>{{ wg.name }}</h1>
+	<h1>{% if wg.full_name %}{{ wg.full_name }}{% else %}{{ wg.name }}{% endif %}</h1>
+  {% if wg.mission %}<strong>{{ wg.mission }}</strong>{% endif %}
 
+	<section class="hub-page-section">
+		{% if wg.links %}
+			<h2>Products and Artifacts</h2>
+			<ul>
+				{% for l in wg.links %}
+					<li><a href="{{ l.url }}">{{ l.text }}</a></li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	</section>
+
+  <h2>Group Resources</h2>
 	<ul>
+		{% if wg.charter %}
+			<li><a href="{{ wg.charter }}">Charter</a></li>
+		{% endif %}
+		{% if wg.okrs %}
+			<li><a href="{{ wg.okrs }}">OKRs</a></li>
+		{% endif %}
 		{% if wg.slack %}
 			<li>Slack: <a href="https://18f.slack.com/messages/#{{ wg.slack }}">#{{ wg.slack }}</a></li>
 		{% endif %}
-		{% if wg.agenda %}
-			<li><a href="{{ wg.agenda }}">Agenda</a></li>
+		{% if wg.tasks %}
+			<li><a href="{{ wg.tasks }}">Tasks</a></li>
 		{% endif %}
-		{% if wg.wiki %}
-			<li><a href="{{ wg.wiki }}">Wiki</a></li>
+		{% if wg.meeting_agendas %}
+			<li><a href="{{ wg.meeting_agendas }}">Meeting agendas</a></li>
 		{% endif %}
 		{% if wg.drive %}
 			<li><a href="{{ wg.drive }}">Google Drive</a></li>
 		{% endif %}
+    {% if wg.github_repos %}<li>GitHub repos:
+      <ul>{% for repo in wg.github_repos %}
+        <li><a href="https://github.com/{{ repo }}">{{ repo }}</a></li>
+      {% endfor %}</ul>
+    </li>{% endif %}
 	</ul>
 
 	<section class="hub-page-section">
 		{% if wg.leads %}
-			<h1>Leads</h1>
+			<h2>Leads</h2>
 			<ul>
 				{% for l in wg.leads %}
 					<li><a href="{{ site.baseurl }}/team/{{l.name }}">{{ l.full_name }}</a></li>
@@ -34,7 +58,7 @@ layout: bare
 
 	<section class="hub-page-section">
 		{% if wg.members %}
-			<h1>Members</h1>
+			<h2>Members</h2>
 			<ul>
 				{% for m in wg.members %}
 					<li><a href="{{ site.baseurl }}/team/{{m.name }}">{{ m.full_name }}</a></li>
@@ -43,15 +67,4 @@ layout: bare
 		{% endif %}
 	</section>
 
-	<section class="hub-page-section">
-		{% if wg.links %}
-			<h1>Info</h1>
-			<ul>
-				{% for l in wg.links %}
-					<li><a href="{{ l.url }}">{{ l.text }}</a></li>
-				{% endfor %}
-			</ul>
-		{% endif %}
-	</section>
-	
 </div>
