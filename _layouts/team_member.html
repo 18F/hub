@@ -12,7 +12,7 @@ layout: bare
 </p>
 {% if member.projects %}
 <h2>Projects</h2>{% for proj in member.projects %}
-<a href="{{ site.baseurl }}/projects/{{ proj.name }}">{{ proj.project }}</a><br/>{% endfor %}
+<a href="{{ site.baseurl }}/projects/{{ proj.name | canonicalize }}">{{ proj.project }}</a><br/>{% endfor %}
 {% endif %}
 {% if member.working_groups %}
 <h2>Working Groups</h2>
