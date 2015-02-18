@@ -158,6 +158,11 @@
   last_name: Mill
   location: DCA
   email: eric.mill@gsa.gov
+- name: ericronne
+  full_name: Eric Ronne
+  first_name: Eric
+  last_name: Ronne
+  location: CHI
 - name: erica
   full_name: Erica Deahl
   first_name: Erica
@@ -490,6 +495,7 @@
     and VeggieTales. Raphael earned his BS from Loyola University of Chicago and conducted
     post-baccalaureate studies in graphic design at University of Illinois at Chicago.
     Raphael lives in Chicago with his wife and two children.
+  location: CHI
 - name: ric
   full_name: Ric Miller
   first_name: Ric
