@@ -1,10 +1,8 @@
 ---
 name: Documentation
 full_name: Documentation Working Group
-mission: 'Organize all of 18F’s information and make it universally accessible and
-  useful, internally and externally.
-
-'
+mission: |
+  Organize all of 18F’s information and make it universally accessible and useful, internally and externally.
 links:
 - url: https://18f.gsa.gov/hub/
   text: 18F Public Hub

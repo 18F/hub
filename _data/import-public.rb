@@ -28,7 +28,7 @@
 DATA_DIR = File.dirname __FILE__
 ['departments', 'projects', 'team', 'working_groups'].each do |dir|
   pattern = File.join DATA_DIR, 'private', dir, '*.yml'
-  files = Dir.glob(pattern)
+  files = Dir.glob(pattern).join ' '
   exit $?.exitstatus unless system(
-    "filter-yaml-files -o #{File.join DATA_DIR, dir} #{files.join ' '}")
+    "bundle exec filter-yaml-files -o #{File.join DATA_DIR, dir} #{files}")
 end
