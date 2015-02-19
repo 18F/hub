@@ -1,0 +1,22 @@
+---
+project: PeaceCorps.gov
+name: peacecorps-site
+github:
+- 18F/peacecorps-site
+description: A redesign of peacecorps.gov, offering a new, user-focused experience
+  for users.
+partner:
+- Peace Corps
+partners: 
+impact: 7,000 Peace Corps Volunteers in the field, hundreds of thousands Prospective/Returned
+  Volunteers, friends, and family.
+stage: discovery
+milestones:
+- 'August 2014: Project Discovery stage started'
+contact:
+- sean.herron@gsa.gov
+stack: 
+team: sean, victor, ben, cm, khandelwal, annalee, jeremy
+licenses: 
+links: 
+status: 

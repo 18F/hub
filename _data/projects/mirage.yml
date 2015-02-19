@@ -1,0 +1,26 @@
+---
+project: 'Mirage: OASIS Market Research Tool'
+name: mirage
+github:
+- 18F/mirage
+description: Market research tool for the OASIS procurement vehicle, which serves
+  contracting specialists throughout the U.S. Federal Government.
+partner:
+- General Services Administration
+partners: 
+impact: 
+stage: alpha
+milestones:
+- 'May 2014: Initial Discovery stage began for task order generator project'
+- 'June 2014: Project pivoted based on user interviews and Discovery stage began for
+  market research tool'
+- 'July 2014: Work on Alpha stage began for market research tool'
+contact:
+- josh.ruihley@gsa.gov
+stack: Python, JavaScript
+team: josh, kaitlin, brethauer, shawn
+licenses:
+  mirage: Public Domain (CC0)
+links:
+- http://gsa.gov/oasis
+status: 

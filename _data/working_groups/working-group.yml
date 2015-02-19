@@ -1,0 +1,23 @@
+---
+name: Working Group
+full_name: Working Group Working Group
+mission: 'To create an environment in which working groups and guilds can thrive and
+  have a meaningful impact on 18F deliverables and operations.
+
+'
+links:
+- url: http://18f.github.io/grouplet-playbook
+  text: Grouplet Playbook
+tasks: https://trello.com/b/UTWUl10z/18f-working-group-working-group
+github_repos:
+- 18F/grouplet-playbook
+leads:
+- mbland
+- gray
+members:
+- mbland
+- gray
+- brethauer
+- nick
+- diego
+- yoz
