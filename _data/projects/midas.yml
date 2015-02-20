@@ -1,0 +1,32 @@
+---
+project: Midas
+name: midas
+github:
+- 18F/midas
+description: A marketplace for federal employees to share and collaborate on ideas
+  to improve government or citizen experiences.
+partner:
+- General Services Administration
+- Department of State
+- Department of Health and Human Services
+partners: 
+stage: alpha
+impact: 2 million federal employees
+milestones:
+- 'June 2013: State Department begins project Discovery stage with Presidential Innovation
+  Fellows'
+- 'January 2014: 18F begins work on project'
+- 'May 2014: HHS launches Alpha as FairTrade'
+- 'June 2014: State Department launches Alpha as Crowdwork'
+- 'September 2014: 18F launches https://midas.18f.us for use by early adopters'
+- 'September 2014: GSA OCSIT signs MOU for Open Opportunities to move to Midas platform'
+contact:
+- midas@gsa.gov
+stack: JavaScript (Node/Sails, Backbone), CSS, Chef
+team: sarah, david, joe, dhcole
+licenses:
+  midas: Public Domain (CC0)
+links: https://midas.18f.us/
+blog:
+- midas
+status: 

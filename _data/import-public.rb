@@ -26,12 +26,9 @@
 # Date:   2014-12-22
 
 DATA_DIR = File.dirname __FILE__
-YAML_FILES = [
-  'departments.yml',
-  'projects.yml',
-  'team.yml',
-  'working_groups.yml',
-].map {|i| File.join(DATA_DIR, 'private', i)}.join ' '
-
-exit $?.exitstatus unless system(
-  "filter-yaml-files -o #{DATA_DIR} #{YAML_FILES}")
+['departments', 'projects', 'team', 'working_groups'].each do |dir|
+  pattern = File.join DATA_DIR, 'private', dir, '*.yml'
+  files = Dir.glob(pattern).join ' '
+  exit $?.exitstatus unless system(
+    "bundle exec filter-yaml-files -o #{File.join DATA_DIR, dir} #{files}")
+end

@@ -1,0 +1,21 @@
+---
+name: shawn
+full_name: Shawn Allen
+first_name: Shawn
+last_name: Allen
+location: SFO
+languages:
+- JavaScript
+- Python
+- HTML
+- CSS
+- SQL
+technologies:
+- D3
+- Node
+- Django
+- Jekyll
+specialties:
+- data visualization
+- maps
+- APIs
