@@ -75,14 +75,11 @@ module Hub
     end
 
     def self.generate_locations_endpoint(site)
-      locations = site.data['locations']
-      return if !locations or locations.empty?
-      data = {}
-      locations.each do |location,members|
-        data[location] = members.map {|member| member['name']}
-      end
+      join_fields = {
+        'team' => 'name', 'projects' => 'name', 'working_groups' => 'name'}
       generate_endpoint(site, 'locations', 'Locations',
-        'Index of team members by location code', data)
+        'Index of team members by location code',
+        create_filtered_hash(site.data['locations'], 'code', [], join_fields))
     end
 
     def self.generate_pages_endpoint(site)
