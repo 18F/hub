@@ -13,9 +13,17 @@ stylesheets:
 <figure id="team-map"></figure>
 
 {% for location in site.data.locations %}
-<div id="{{ location[0] }}" class="index-entry">
-  <h2>&lt; {{ location[0] }} /&gt;</h2>
-  {% assign members = location[1] %}
+<div id="{{ location.code }}" class="index-entry">
+  <h2>&lt; {{ location.code }} /&gt;</h2>
+  {% if location.projects %}<p>{{ location.projects.size }} projects:
+  {% for i in location.projects %}<a href="{{ site.baseurl }}/projects/{{ i.name | canonicalize }}">{{ i.project }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}
+  </p>{% endif %}
+
+  {% if location.working_groups %}<p>{{ location.working_groups.size }} working_groups:
+  {% for i in location.working_groups %}<a href="{{ site.baseurl }}/wg/{{ i.name | canonicalize }}">{{ i.name }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}
+  </p>{% endif %}
+
+  {% assign members = location.team %}
   <p>{{ members.size }} members:</p>
   {% include team_members.html %}
 </div>
