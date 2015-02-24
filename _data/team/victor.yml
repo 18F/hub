@@ -4,3 +4,19 @@ full_name: Victor Diaz Zapanta
 first_name: Victor
 last_name: Zapanta
 github: vz3
+email: victor.zapanta@gsa.gov
+location: DCA
+project: FOIA Modernization
+languages:
+-HTML/CSS/JS
+specialties:
+-User experience design
+-Designing for LEP (Limited English for Proficiency)
+-Front end development
+bio: is a User Experience designer working on the FOIA modernization project.
+  Prior to joining 18F, Victor was one of the founding members of the
+  technology team at the Consumer Financial Protection Bureau, where he worked
+  on the first several iterations of consumerfinance.gov and helped build out
+  their consumer complaint offerings for Limited English Profient (LEP)
+  individuals. Victor also helped build the most recent version of
+  Data.gov. Victor received his B.A. from the University of California at Davis.
