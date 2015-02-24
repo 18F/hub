@@ -4,6 +4,7 @@ scripts:
 - /assets/js/vendor/d3.v3.min.js
 - /assets/js/vendor/queue.v1.min.js
 - /assets/js/vendor/topojson.v1.min.js
+- /assets/js/vendor/d3-tip.min.js
 - /assets/js/map.js
 stylesheets:
 - /assets/css/map.css
@@ -16,7 +17,7 @@ stylesheets:
 <div id="{{ location[0] }}" class="index-entry">
   <h2>&lt; {{ location[0] }} /&gt;</h2>
   {% assign members = location[1] %}
-  <p>{{ members.size }} members:</p>
+  <p>{{ members.size }} member{% if members.size != 1 %}s{% endif %}:</p>
   {% include team_members.html %}
 </div>
 {% endfor %}
