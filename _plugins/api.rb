@@ -90,9 +90,9 @@ module Hub
 
     def self.generate_projects_endpoint(site)
       projects = site.data['projects']
-      return if !projects or projects.empty?
-      fields = ['project', 'github', 'partner', 'impact', 'stage',
-        'milestones', 'contact', 'stack', 'licenses', 'links', 'status']
+      fields = ['project', 'github', 'description', 'partner', 'partners',
+        'impact', 'stage', 'milestones', 'contact', 'stack', 'licenselink',
+        'licenses', 'links', 'blog', 'status']
       join_fields = {'team' => 'name'}
       data = create_filtered_hash(projects, 'name', fields, join_fields)
       generate_endpoint(site, 'projects', 'Projects',

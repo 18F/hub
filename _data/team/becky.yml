@@ -3,5 +3,15 @@ name: becky
 full_name: Becky Sweger
 first_name: Becky
 last_name: Sweger
-location: BOS
+location: BDL
 github: bsweger
+email: rebecca.sweger@gsa.gov
+specialties:
+- data sleuthing
+- data modeling
+- relational databases
+- data munging
+- technical writing
+languages:
+- python
+- sql
