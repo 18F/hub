@@ -10,19 +10,21 @@ partner:
 partners: 
 impact: Revenue from the sale of natural resources on Federal lands totaled $97.5
   billion between 2003 to 2013.
-stage: alpha
+stage: beta
 milestones:
 - 'July 2014: 18F began work on project'
 - 'September 2014: Alpha site launched'
+- 'December 2014: Beta site launched'
 contact:
-- christopher.cairns@gsa.gov
-stack: JavaScript, Jekyll
-team: mhz, chrisc, nick, shawn
+- michelle.hertzfeld@gsa.gov
+stack: JavaScript, D3, Jekyll
+team: mhz, nick, shawn
 licenses:
   doi-extractives-data: Public Domain (CC0)
 licenseBranch:
   doi-extractives-data: gh-pages
-links: 
+links:
+- https://useiti.doi.gov
 blog:
 - eiti
 status: 
