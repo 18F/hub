@@ -5,6 +5,7 @@ layout: bare
 <img class="img-circle team-img bio-clip" src="{{ site.baseurl }}/{{ member.image }}" alt="Photo of {{ member.full_name }}">
 <h1>{{ member.full_name }}</h1>
 <p>{% if member.email %}email: <a href="mailto:{{ member.email }}">{{ member.email }}</a><br/>{% endif %}
+{% if member.github %}GitHub: <a href="https://github.com/{{ member.github }}/">{{ member.github }}</a><br/>{% endif %}
 {% if member.slack %}slack: <a href="https://18f.slack.com/team/{{ member.slack }}">{{ member.slack }}</a><br/>{% endif %}
 {% if member.location %}location: <a href="{{ site.baseurl }}/locations/{{ member.location }}">{{ member.location }}</a><br/>{% endif %}
 {% if member.resume %}<a href="{{ member.resume }}">18F Résumé</a><br/>{% endif %}
@@ -12,7 +13,7 @@ layout: bare
 </p>
 {% if member.projects %}
 <h2>Projects</h2>{% for proj in member.projects %}
-<a href="{{ site.baseurl }}/projects/{{ proj.name }}">{{ proj.project }}</a><br/>{% endfor %}
+<a href="{{ site.baseurl }}/projects/{{ proj.name | canonicalize }}">{{ proj.project }}</a><br/>{% endfor %}
 {% endif %}
 {% if member.working_groups %}
 <h2>Working Groups</h2>

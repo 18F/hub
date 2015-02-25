@@ -1,0 +1,27 @@
+---
+project: OpenFEC
+name: openfec
+github:
+- 18F/FEC
+description: Redesigning how the FEC shares the information they collect and the regulations
+  they enforce, both as structured data and in robust, human-readable formats.
+partner:
+- Federal Election Commission
+partners: 
+impact: The FEC collects data about how campaigns are financed that affect all 318
+  million Americans every 2 years.
+stage: discovery
+milestones:
+- 'June 2014: Project Discovery stage started'
+contact:
+- 18F/FEC/issues
+stack: 
+team: majma, manger, jen, amos, sean, catherine, theresa
+licenses:
+  openFEC: Public Domain (CC0)
+  FEC: Public Domain (CC0)
+  fec-graph-search: Public Domain (CC0)
+links: 
+blog:
+- FEC
+status: 

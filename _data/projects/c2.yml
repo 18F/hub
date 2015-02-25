@@ -1,0 +1,24 @@
+---
+project: Common Acquisition Platform Tools
+name: C2
+github:
+- 18F/C2
+- 18F/Mario
+- 18F/gsa-advantage-scrape
+description: A simplified, email-based purchasing approval tool for purchase card
+  holders authorized to buy office supplies for the government.
+partner:
+- General Services Administration
+partners: 
+stage: beta
+impact: Over 80,000 U.S. Federal Government purchase card holders.
+milestones: 
+contact: raphael.villas@gsa.gov, kelly.robinson@gsa.gov
+stack: Ruby, CSS, JavaScript/Node, Python
+team: aidan, diego, raphy, sasha
+licenses:
+  C2: Public Domain (CC0)
+links:
+- https://18f.github.io/C2/
+- https://cap.18f.us
+status: 

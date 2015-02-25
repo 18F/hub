@@ -75,12 +75,11 @@ module Hub
     end
 
     def self.generate_locations_endpoint(site)
-      locations = site.data['locations']
-      return if !locations or locations.empty?
-      data = {}
-      locations.each do |location,members|
-        data[location] = members.map {|member| member['name']}
-      end
+      fields = ['latitude', 'longitude', 'timezone']
+      join_fields = {
+        'team' => 'name', 'projects' => 'name', 'working_groups' => 'name'}
+      data = create_filtered_hash(
+        site.data['locations'], 'code', fields, join_fields)
       generate_endpoint(site, 'locations', 'Locations',
         'Index of team members by location code', data)
     end
@@ -93,9 +92,9 @@ module Hub
 
     def self.generate_projects_endpoint(site)
       projects = site.data['projects']
-      return if !projects or projects.empty?
-      fields = ['project', 'github', 'partner', 'impact', 'stage',
-        'milestones', 'contact', 'stack', 'licenses', 'links', 'status']
+      fields = ['project', 'github', 'description', 'partner', 'partners',
+        'impact', 'stage', 'milestones', 'contact', 'stack', 'licenselink',
+        'licenses', 'links', 'blog', 'status']
       join_fields = {'team' => 'name'}
       data = create_filtered_hash(projects, 'name', fields, join_fields)
       generate_endpoint(site, 'projects', 'Projects',

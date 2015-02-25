@@ -1,0 +1,24 @@
+---
+project: Hourglass
+name: hourglass
+github:
+- 18F/hourglass
+description: Hourglass is a tool to help contracting personnel estimate their per-hour
+  labor costs for a contract, based on historical pricing information.
+partner:
+- General Services Administration
+partners: 
+impact: 
+stage: alpha
+milestones:
+- 'November 2014: Initial discovery stage begins'
+- 'November 2014: Begin building alpha'
+contact:
+- josh.ruihley@gsa.gov
+stack: Python, JavaScript
+team: josh, kaitlin, brethauer, shawn, alison
+licenses:
+  mirage: Public Domain (CC0)
+links:
+- https://trello.com/b/LjXJaVbZ/hourglass
+status: 
