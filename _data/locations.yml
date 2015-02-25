@@ -3,46 +3,57 @@
 # added to this list.
 ---
 - code: AUS
+  label: Austin
   latitude: 30.197429
   longitude: -97.666306
   timezone: 'Central Time Zone (UTC-06:00)'
 - code: BDL
+  label: Windsor Locks, CT
   latitude: 41.938874
   longitude: -72.686031
   timezone: 'Eastern Time Zone (UTC-05:00)'
 - code: CHI
+  label: Chicago
   latitude: 41.974162
   longitude: -87.907321
   timezone: 'Central Time Zone (UTC-06:00)'
 - code: DAY
+  label: Dayton
   latitude: 39.902524
   longitude: -84.221772
   timezone: 'Eastern Time Zone (UTC-05:00)'
 - code: DCA
+  label: Washington, D.C.
   latitude: 38.843677
   longitude: -77.046915
   timezone: 'Eastern Time Zone (UTC-05:00)'
 - code: NYC
+  label: New York City
   latitude: 40.641311
   longitude: -73.778139
   timezone: 'Eastern Time Zone (UTC-05:00)'
 - code: OBX
+  label: Outer Banks of North Carolina
   latitude: 36.014446
   longitude: -75.667738
   timezone: 'Eastern Time Zone (UTC-05:00)'
 - code: PHL
+  label: Philadelphia
   latitude: 39.874396
   longitude: -75.242423
   timezone: 'Eastern Time Zone (UTC-05:00)'
 - code: SEA
+  label: Seattle
   latitude: 47.45025
   longitude: -122.308816
   timezone: 'Pacific Time Zone (UTC-08:00)'
 - code: SFO
+  label: San Francisco
   latitude: 37.621313
   longitude: -122.378955
   timezone: 'Pacific Time Zone (UTC-08:00)'
 - code: TUS
+  label: Tuscon
   latitude: 32.11451
   longitude: -110.939227
   timezone: 'Mountain Time Zone (UTC-07:00)'
