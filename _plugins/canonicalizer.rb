@@ -32,7 +32,7 @@ module Hub
     def self.canonicalize_locations(site_data)
       if site_data.member? 'locations'
         site_data['locations'].each do |l|
-          sort_by_last_name! l['team']
+          sort_by_last_name! (l['team'] || [])
           ['projects', 'working_groups'].each do |category|
             l[category].sort_by!{|i| i['name']} if l[category]
           end

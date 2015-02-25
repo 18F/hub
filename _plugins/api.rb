@@ -75,11 +75,13 @@ module Hub
     end
 
     def self.generate_locations_endpoint(site)
+      fields = ['latitude', 'longitude', 'timezone']
       join_fields = {
         'team' => 'name', 'projects' => 'name', 'working_groups' => 'name'}
+      data = create_filtered_hash(
+        site.data['locations'], 'code', fields, join_fields)
       generate_endpoint(site, 'locations', 'Locations',
-        'Index of team members by location code',
-        create_filtered_hash(site.data['locations'], 'code', [], join_fields))
+        'Index of team members by location code', data)
     end
 
     def self.generate_pages_endpoint(site)
