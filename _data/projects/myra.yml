@@ -21,5 +21,6 @@ stack: JavaScript, Jekyll
 team: chrisc, manger
 licenses:
   myra: Public Domain (CC0)
-links: https://myra.treasury.gov
+links:
+- https://myra.treasury.gov
 status: 
