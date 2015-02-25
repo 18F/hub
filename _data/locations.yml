@@ -1,0 +1,37 @@
+---
+- code: BDL
+  latitude: 41.938874
+  longitude: -72.686031
+  timezone: 'Eastern Time Zone (UTC-05:00)'
+- code: CHI
+  latitude: 41.974162
+  longitude: -87.907321
+  timezone: 'Central Time Zone (UTC-06:00)'
+- code: DAY
+  latitude: 39.902524
+  longitude: -84.221772
+  timezone: 'Eastern Time Zone (UTC-05:00)'
+- code: DCA
+  latitude: 38.843677
+  longitude: -77.046915
+  timezone: 'Eastern Time Zone (UTC-05:00)'
+- code: NYC
+  latitude: 40.641311
+  longitude: -73.778139
+  timezone: 'Eastern Time Zone (UTC-05:00)'
+- code: OBX
+  latitude: 36.014446
+  longitude: -75.667738
+  timezone: 'Eastern Time Zone (UTC-05:00)'
+- code: PHL
+  latitude: 39.874396
+  longitude: -75.242423
+  timezone: 'Eastern Time Zone (UTC-05:00)'
+- code: SFO
+  latitude: 37.621313
+  longitude: -122.378955
+  timezone: 'Pacific Time Zone (UTC-08:00)'
+- code: TUS
+  latitude: 32.11451
+  longitude: -110.939227
+  timezone: 'Mountain Time Zone (UTC-07:00)'
