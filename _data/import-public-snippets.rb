@@ -34,11 +34,15 @@ require_relative '../_plugins/joiner.rb'
 DATA_DIR = File.dirname __FILE__
 
 def load_team_data
-  team_data_filename = File.join(DATA_DIR, 'private', 'team.yml')
-  team_data = SafeYAML.load_file(team_data_filename, :safe=>true)
-  unless team_data
-    puts "Failed to parse #{team_data_filename}"
-    exit 1
+  team_data = []
+  pattern = File.join DATA_DIR, 'private', 'team', '*.yml'
+  Dir.glob(pattern).each do |f|
+    team_member = SafeYAML.load_file(f, :safe=>true)
+    unless team_member
+      puts "Failed to parse #{f}"
+      exit 1
+    end
+    team_data << team_member
   end
   team_data
 end

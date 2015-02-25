@@ -42,7 +42,6 @@ module Hub
       Api.generate_api(site)
 
       Team.generate_pages(site)
-      Locations.generate_pages(site)
       Projects.generate_pages(site)
       Departments.generate_pages(site)
       WorkingGroups.generate_pages(site)

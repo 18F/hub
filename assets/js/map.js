@@ -6,24 +6,10 @@
       status = map.append("p")
         .html("Loading the map...");
 
-  // names and geographic locations of airport codes
-  // you can find lat/longs here: <http://openflights.org/html/apsearch>
-  var airports = [
-    {code: "DCA", label: "Washington", location: [-77.037722, 38.852083]},
-    {code: "SFO", label: "San Francisco", location: [-122.374889, 37.618972]},
-    {code: "CHI", label: "Chicago", location: [-87.631667, 41.883611]},
-    {code: "DAY", label: "Dayton", location: [-84.219375, 39.902375]},
-    {code: "DEN", label: "Denver", location: [-104.673178, 39.861656]},
-    {code: "PHL", label: "Philadelphia", location: [-75.241139, 39.871944]},
-    {code: "NYC", label: "New York", location: [-74.005833, 40.714167]},
-    {code: "TUS", label: "Tuscon", location: [-110.941028, 32.116083]},
-    {code: "SEA", label: "Seattle", location: [-122.309306, 47.449]},
-    {code: "AUS", label: "Austin", location: [-97.669889, 30.194528]}
-  ];
-
   // URLs to grab
   var urls = {
     team: SITE_BASEURL + "/api/team/api.json",
+    locations: SITE_BASEURL + "/api/locations/api.json",
     topology: SITE_BASEURL + "/assets/data/us-states.json"
   };
 
@@ -41,8 +27,9 @@
   // using nested callbacks
   queue()
     .defer(d3.json, urls.team)
+    .defer(d3.json, urls.locations)
     .defer(d3.json, urls.topology)
-    .await(function queued(error, team, topology) {
+    .await(function queued(error, team, locations, topology) {
       map.classed("loading", false);
       if (error) return showError(error.statusText);
       // kill the status message
@@ -52,27 +39,29 @@
       var states = topojson.feature(topology, topology.objects.states);
       renderMapBackground(states.features);
 
-      renderMapTeam(team);
+      renderMapTeam(team, locations);
     });
 
   /*
    * Render an array of team members on the map by joining them
    * onto the airports list by FAA code.
    */
-  function renderMapTeam(team) {
+  function renderMapTeam(team, locations) {
     // group members by location
     var members = d3.values(team)
           .filter(function(d) { return d.location; }),
         byLocation = d3.nest()
           .key(function(d) { return d.location; })
           .map(members),
-        locations = airports.map(function(d) {
-          var location = extend({}, d);
-          location.members = byLocation[d.code] || [];
+        map_locations = Object.keys(locations).map(function(value, index) {
+          var location = locations[value];
+          location.code = value;
           return location;
-        });
+        }).filter(function(i) {
+        return i.team !== undefined;
+      });
     // then draw them on the map
-    renderMapLocations(locations);
+    renderMapLocations(map_locations);
   }
 
   /*
@@ -98,8 +87,10 @@
    *
    * {
    *   code: "SFO",
-   *   location: [<longitude>, <latitude>],
-   *   members: []
+   *   label: "San Francisco",
+   *   latitude: <longitude>,
+   *   longitude: <latitude>,
+   *   team: []
    * }
    *
    * and draws them on the map as circles with radii proportional to
@@ -108,7 +99,7 @@
   function renderMapLocations(locations) {
     // size accessor (keeping things DRY)
     var size = function getSize(d) {
-          return d.members.length;
+          return d.team ? d.team.length : 0;
         },
         // label accessor
         label = function getLabel(d) {
@@ -134,7 +125,8 @@
             .attr("class", "pin")
             .attr("transform", function(d) {
               // translate the pin to its projected coordinate
-              var p = proj(d.location).map(Math.round);
+              var lat_lng = [d.longitude, d.latitude];
+              var p = proj(lat_lng).map(Math.round);
               return "translate(" + p + ")";
             }),
         // wrap an anchor around each circle
@@ -192,7 +184,8 @@
 
   function defaultSort(a, b) {
     return d3.descending(a.radius, b.radius)
-        || d3.descending(a.location[1], b.location[1]);
+        || d3.descending(a.latitude, b.latitude)
+        || d3.descending(a.longitude, b.longitude);
   }
 
   /*

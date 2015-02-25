@@ -1,0 +1,25 @@
+---
+name: Testing
+full_name: 18F Testing Grouplet
+mission: |
+  Ensure the long-term success of 18F development projects by cultivating the best automated testing tools, practices, and training materials available.
+links:
+- url: http://18f.github.io/automated-testing-playbook
+  text: Automated Testing Playbook
+tasks: https://trello.com/b/efNEYNJ1/18f-testing-grouplet
+github_repos:
+- 18F/automated-testing-playbook
+leads:
+- mbland
+- alison
+members:
+- mbland
+- alison
+- papazian
+- moncef
+- shawn
+- ozzy
+- micahsaul
+- david
+- marco
+- jane

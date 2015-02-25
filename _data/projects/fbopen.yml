@@ -1,0 +1,26 @@
+---
+project: FBOpen
+name: fbopen
+github:
+- 18F/fbopen
+description: FBOpen helps small businesses search for opportunities to work with the
+  U.S. government.
+partner: 
+partners: 
+stage: beta
+impact: There are nearly 40,000 active federal opportunities right now.
+milestones:
+- 'May 2014: 18F took over project maintenance from Presidential Innovation Fellows
+  program'
+contact:
+- fbopen@gsa.gov
+stack: Python, JavaScript/Node
+team: alison, mhz, kaitlin, diego
+licenses:
+  fbopen: Public Domain (CC0)
+links:
+- https://fbopen.gsa.gov
+- https://18f.github.io/fbopen
+blog:
+- fbopen
+status: 
