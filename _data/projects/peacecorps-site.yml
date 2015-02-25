@@ -10,13 +10,12 @@ partner:
 partners: 
 impact: 7,000 Peace Corps Volunteers in the field, hundreds of thousands Prospective/Returned
   Volunteers, friends, and family.
-stage: discovery
-milestones:
-- 'August 2014: Project Discovery stage started'
+stage: beta
 contact:
 - sean.herron@gsa.gov
 stack: 
-team: sean, victor, ben, cm, khandelwal, annalee, jeremy
+team: sean, cm, ericronne, marco, annalee
 licenses: 
-links: 
+links:
+- https://beta.peacecorps.gov
 status: 
