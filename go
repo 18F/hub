@@ -76,7 +76,7 @@ def test
 end
 
 JEKYLL_BUILD_CMD = "exec jekyll build --trace"
-JEKYLL_SERVE_CMD = "exec jekyll serve --trace"
+JEKYLL_SERVE_CMD = "exec jekyll serve -w --trace"
 JEKYLL_PUBLIC_CONFIG = "--config _config.yml,_config_public.yml"
 
 def serve

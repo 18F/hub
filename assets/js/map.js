@@ -14,7 +14,7 @@
   };
 
   // set up map size, projection, and <svg> container
-  var width = 1100,
+  var width = 960,
       height = 600,
       proj = d3.geo.albersUsa()
         .scale(1285)
@@ -53,13 +53,15 @@
         byLocation = d3.nest()
           .key(function(d) { return d.location; })
           .map(members),
-        map_locations = Object.keys(locations).map(function(value, index) {
-          var location = locations[value];
-          location.code = value;
-          return location;
-        }).filter(function(i) {
-        return i.team !== undefined;
-      });
+        map_locations = Object.keys(locations)
+          .map(function(value, index) {
+            var location = locations[value];
+            location.code = value;
+            return location;
+          })
+          .filter(function(i) {
+            return i.team !== undefined;
+          });
     // then draw them on the map
     renderMapLocations(map_locations);
   }
@@ -145,25 +147,26 @@
     // sort the pins (in the DOM) by latitude
     pin.sort(defaultSort);
 
-    // append a tooltip <g> to each pin
-    var tip = pin.append("g")
-      .attr("class", "tip")
-      .attr("transform", function(d) {
-        // move it to the top of its circle's radius
-        return "translate(" + [0, -d.radius] + ")";
-      });
+    var tip = d3.tip()
+      .attr("class", "map-tooltip")
+      .direction(function(d) {
+        return d.dir || "n";
+      })
+      .html(label);
 
-    // then render a tooltip on each pin
-    tip.call(tooltip()
-      .text(label));
+    exports.mapTip = tip;
+
+    svg.call(tip);
 
     // activate and deactiveate event handlers toggle the "on" class
     var activate = function activate(d) {
+          tip.show.call(this, d);
           this.classList.add("on");
           // move this node to the front
           this.parentNode.appendChild(this);
         },
         deactivate = function deactivate(d) {
+          tip.hide.call(this, d);
           this.classList.remove("on");
           // reset the sort order (in the DOM)
           pin.sort(defaultSort);
@@ -188,52 +191,6 @@
         || d3.descending(a.longitude, b.longitude);
   }
 
-  /*
-   * A simple little tooltip renderer:
-   *
-   * var tip = tooltip()
-   *  .text(function(d) { return d.title; });
-   * svg.call(tip);
-   */
-  function tooltip() {
-    var textOffset = 8,
-        text = "",
-        line = d3.svg.line();
-
-    function tooltip(selection) {
-      var path = selection.append("path");
-
-      selection.append("text")
-        .attr("text-anchor", "middle")
-        .attr("transform", "translate(" + [0, -textOffset - 7] + ")")
-        .text(text);
-
-      path.attr("d", function(d) {
-        var bbox = this.parentNode.querySelector("text").getBBox(),
-            o = textOffset,
-            x = Math.ceil(bbox.width) / 2 + 6,
-            y = Math.ceil(bbox.height) + 5;
-        return [
-          "M", [0, 0],  // origin
-          "l", [o, -o], // right side of arrow
-          "h", x - o,   // move to right edge
-          "v", -y,      // move to top edge
-          "h", -x * 2,  // move to left edge
-          "v", y,       // move to bottom edge
-          "h", x - o,   // move in toward center
-          "l", [o, o]   // move back to origin
-        ].join("");
-      });
-    }
-
-    tooltip.text = function(x) {
-      if (!arguments.length) return text;
-      text = x;
-      return tooltip;
-    };
-
-    return tooltip;
-  }
 
   function extend(obj) {
     [].slice.call(arguments, 1).forEach(function(arg) {
@@ -243,6 +200,23 @@
       }
     });
     return obj;
+  }
+
+  function selectOrAppend(selection, selector) {
+    if ((this instanceof d3.selection)) {
+      return selection.each(function() {
+        selectOrAppend(d3.select(this), selector);
+      });
+    }
+
+    var child = selection.select(selector);
+    if (!child.empty()) return child;
+
+    var parts = selector.split("."),
+        name = parts.shift(),
+        klass = parts.join(" ");
+    return selection.append(name)
+      .attr("class", klass);
   }
 
 })(this);
