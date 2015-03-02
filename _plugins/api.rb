@@ -122,7 +122,8 @@ module Hub
 
     def self.generate_pif_team_endpoint(site)
       team = (site.data['pif_team'] || [])
-      return if team.empty?
+      site.data['team'].each {|i| team << i if i.member? 'pif-round'}
+      Canonicalizer.sort_by_last_name! team
       fields = ['first_name', 'last_name', 'full_name', 'pif-round',
          'project', 'bio', 'hidden']
       data = create_filtered_hash(team, 'name', fields, {})
