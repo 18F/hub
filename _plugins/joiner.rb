@@ -45,6 +45,7 @@ module Hub
       impl.promote_private_data 'nav_links'
       impl.promote_private_data 'working_groups'
       impl.promote_private_data 'pif_team'
+      impl.promote_private_data 'pif_projects'
 
       impl.join_snippet_data SNIPPET_VERSIONS
       impl.join_project_status
