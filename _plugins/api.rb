@@ -31,6 +31,7 @@ module Hub
         generate_projects_endpoint(site),
         generate_departments_endpoint(site),
         generate_working_groups_endpoint(site),
+        generate_pif_team_endpoint(site),
       ]
       endpoint_info.concat generate_skills_endpoints(site)
       endpoint_info = endpoint_info.select {|i| i and !i.empty?}
@@ -117,6 +118,17 @@ module Hub
       data = create_filtered_hash(wg, 'name', fields, join_fields)
       generate_endpoint(site, 'working_groups', 'Working Groups',
         'Working group info, indexed by name', data)
+    end
+
+    def self.generate_pif_team_endpoint(site)
+      team = (site.data['pif_team'] || [])
+      return if team.empty?
+      fields = ['first_name', 'last_name', 'full_name', 'pif-round',
+         'project', 'bio', 'hidden']
+      data = create_filtered_hash(team, 'name', fields, {})
+      generate_endpoint(site, 'pif_team', 'PIF Team',
+        'Presidential Innovation Fellow Team member info, ' +
+        'indexed by username', data)
     end
 
     # Generates an endpoint for each skill category and returns a list of
