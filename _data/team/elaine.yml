@@ -4,3 +4,21 @@ full_name: Elaine Kamlley
 first_name: Elaine
 last_name: Kamlley
 github: elainekamlley
+location: DCA
+email: elaine.kamlley@gsa.gov
+languages:
+- Python
+- Ruby
+- HTML
+- CSS
+technologies:
+- Django/Flask
+- Jekyll
+specialites:
+- Project Management
+- Logistics
+- Training
+- Facilitation
+- Digital Photography
+- Audio Configurations
+- Community Organizing

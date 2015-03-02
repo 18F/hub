@@ -38,3 +38,48 @@ svg.map .tip text {
   font-size: 20px;
   fill: #fff;
 }
+
+.map-tooltip {
+  color: white;
+  background: black;
+  height: auto;
+  padding: 3px 10px 5px;
+  box-sizing: border-box;
+  margin-top: -7px;
+}
+
+.map-tooltip.e {
+  margin-top: 0px;
+  margin-left: 7px;
+}
+
+  .map-tooltip.n:after {
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: transparent;
+    border-top-color: #000;
+    border-width: 7px;
+    margin-left: -7px;
+  }
+
+  .map-tooltip.e:after {
+    right: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(0, 0, 0, 0);
+    border-right-color: #000;
+    border-width: 7px;
+    margin-top: -7px;
+  }
+

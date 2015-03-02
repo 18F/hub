@@ -4,3 +4,20 @@ full_name: Greg Boone
 first_name: Greg
 last_name: Boone
 github: gboone
+location: DCA
+languages:
+- Python
+- Ruby
+- PHP
+- JavaScript
+technologies:
+- Jekyll
+- WordPress
+- Django
+specialties:
+- Writing
+- Managing websites
+- Unit testing
+- Podcasting
+- Beer brewing (not at work)
+- Usability testing
