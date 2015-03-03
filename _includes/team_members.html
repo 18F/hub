@@ -6,7 +6,7 @@
     </div>
     <div class="team-member-info">
       <a href="{{ site.baseurl }}/team/{{ member.name }}">{{ member.full_name }}</a>{% if member.location %} -
-      <a class="location" href="{{ site.baseurl }}/locations/{{ member.location }}">{{ member.location }}</a><br/>{% endif %}
+      <a class="location" href="{{ site.baseurl }}/locations#{{ member.location }}">{{ member.location }}</a><br/>{% endif %}
       {% if member.projects %}
         Projects: {% for p in member.projects %}<a href="{{ site.baseurl }}/projects/{{ p.name | canonicalize }}">{{ p.project }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}<br/>
       {% endif %}
