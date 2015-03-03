@@ -5,3 +5,11 @@ first_name: Micah
 last_name: Saul
 github: micahsaul
 location: SFO
+languages:
+- python
+- R
+- PROLOG
+specialties:
+- Knowledge representation design
+- Graph DBs
+- Tacos
