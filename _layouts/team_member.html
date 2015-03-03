@@ -7,7 +7,7 @@ layout: bare
 <p>{% if member.email %}email: <a href="mailto:{{ member.email }}">{{ member.email }}</a><br/>{% endif %}
 {% if member.github %}GitHub: <a href="https://github.com/{{ member.github }}/">{{ member.github }}</a><br/>{% endif %}
 {% if member.slack %}slack: <a href="https://18f.slack.com/team/{{ member.slack }}">{{ member.slack }}</a><br/>{% endif %}
-{% if member.location %}location: <a href="{{ site.baseurl }}/locations/{{ member.location }}">{{ member.location }}</a><br/>{% endif %}
+{% if member.location %}location: <a href="{{ site.baseurl }}/locations#{{ member.location }}">{{ member.location }}</a><br/>{% endif %}
 {% if member.resume %}<a href="{{ member.resume }}">18F Résumé</a><br/>{% endif %}
 {% if member.okrs %}<a href="{{ member.okrs }}">Objectives and Key Results</a><br/>{% endif %}
 </p>
