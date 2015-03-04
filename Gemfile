@@ -13,6 +13,7 @@ gem 'uglifier'
 group :jekyll_plugins do
   gem 'jekyll-assets'
   gem 'jekyll_pages_api'
+  gem 'liquid_pluralize'
 end
 
 group :test do
