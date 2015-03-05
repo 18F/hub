@@ -58,6 +58,7 @@ def init
     puts "Bundler installed; installing gems"
   end
   exec_cmd 'bundle install'
+  exec_cmd 'git submodule update --init'
 end
 
 def update_components
