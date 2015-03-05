@@ -66,6 +66,8 @@ GEM
     json (1.8.2)
     kramdown (1.5.0)
     liquid (2.6.2)
+    liquid_pluralize (1.0.1)
+      liquid (~> 2.6)
     listen (2.8.5)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
@@ -133,6 +135,7 @@ DEPENDENCIES
   jekyll-assets
   jekyll-sitemap
   jekyll_pages_api
+  liquid_pluralize
   minitest
   rake
   rouge
