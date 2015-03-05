@@ -88,7 +88,7 @@ div.skip-nav a {
     position: absolute;
     top: 5px;
     left: 5px;
-    width: auto; 
+    width: auto;
     height: auto;
     z-index: 999999;
     padding-left: 2px;
@@ -143,10 +143,6 @@ a:focus {
 }
 a:focus img{
   border: 2px solid red;
-}
-
-ul li {
-  list-style-type: none;
 }
 
 .hub-page-section {
@@ -221,16 +217,16 @@ margin-bottom: 20px;
    color: #777678;
 }
 
-:-moz-placeholder { 
-   color: #777678;  
+:-moz-placeholder {
+   color: #777678;
 }
 
 ::-moz-placeholder {
-   color: #777678;  
+   color: #777678;
 }
 
-:-ms-input-placeholder {  
-   color: #777678;  
+:-ms-input-placeholder {
+   color: #777678;
 }
 
 // Snippets
