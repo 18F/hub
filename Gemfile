@@ -13,8 +13,7 @@ gem 'uglifier'
 
 group :jekyll_plugins do
   gem 'jekyll-assets'
-  # https://github.com/18F/jekyll_pages_api/pull/21
-  gem 'jekyll_pages_api', git: 'https://github.com/18F/jekyll_pages_api.git', ref: '608affe083e15ef73ac1317e43c7a3f78006630e'
+  gem 'jekyll_pages_api'
   # https://github.com/bdesham/pluralize/pull/3
   gem 'liquid_pluralize', git: 'https://github.com/bdesham/pluralize', ref: '057ffe2a174b7b5c084fb0d15f20dadcf0bf0fd9'
 end

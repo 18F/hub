@@ -1,13 +1,4 @@
 GIT
-  remote: https://github.com/18F/jekyll_pages_api.git
-  revision: 608affe083e15ef73ac1317e43c7a3f78006630e
-  ref: 608affe083e15ef73ac1317e43c7a3f78006630e
-  specs:
-    jekyll_pages_api (0.1.0)
-      htmlentities (~> 4.3)
-      jekyll (>= 2.0, < 4.0)
-
-GIT
   remote: https://github.com/bdesham/pluralize
   revision: 057ffe2a174b7b5c084fb0d15f20dadcf0bf0fd9
   ref: 057ffe2a174b7b5c084fb0d15f20dadcf0bf0fd9
@@ -55,6 +46,9 @@ GEM
     jekyll-sitemap (0.8.0)
     jekyll-watch (1.2.1)
       listen (~> 2.7)
+    jekyll_pages_api (0.1.1)
+      htmlentities (~> 4.3)
+      jekyll (>= 2.0, < 4.0)
     json (1.8.2)
     kramdown (1.6.0)
     liquid (3.0.1)
@@ -115,7 +109,7 @@ DEPENDENCIES
   jekyll (= 3.0.0.beta2)
   jekyll-assets
   jekyll-sitemap
-  jekyll_pages_api!
+  jekyll_pages_api
   liquid_pluralize!
   minitest
   rake
