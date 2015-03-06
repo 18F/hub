@@ -1,4 +1,3 @@
-
 markdown: redcarpet
 redcarpet:
   extensions:
@@ -81,3 +80,6 @@ prose:
       - name: 'permalink'
         field:
           element: 'text'
+
+# Remove this when https://github.com/18F/hub/issues/209 is resolved.
+full_rebuild: true
