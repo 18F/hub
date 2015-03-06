@@ -1,16 +1,16 @@
 GIT
   remote: https://github.com/18F/jekyll_pages_api.git
   revision: 608affe083e15ef73ac1317e43c7a3f78006630e
-  branch: jekyll-3
+  ref: 608affe083e15ef73ac1317e43c7a3f78006630e
   specs:
     jekyll_pages_api (0.1.0)
       htmlentities (~> 4.3)
       jekyll (>= 2.0, < 4.0)
 
 GIT
-  remote: https://github.com/afeld/pluralize
-  revision: e4fe6d8bea1afca23c2cbf1572c1f0573117bc00
-  branch: patch-1
+  remote: https://github.com/bdesham/pluralize
+  revision: 057ffe2a174b7b5c084fb0d15f20dadcf0bf0fd9
+  ref: 057ffe2a174b7b5c084fb0d15f20dadcf0bf0fd9
   specs:
     liquid_pluralize (1.0.1)
       liquid (>= 2.6, < 4.0)
