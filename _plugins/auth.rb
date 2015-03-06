@@ -88,7 +88,7 @@ module Hub
         'Authenticated Emails')
       addrs = team.map {|i| i['email']}
       addrs.concat(guests.map {|i| i['email']})
-      page.data['addrs'] = addrs.sort!
+      page.data['addrs'] = addrs.sort!.join("\n")
     end
   end
 end
