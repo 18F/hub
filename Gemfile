@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'jekyll'
+gem 'jekyll', '3.0.0.beta2'
+gem 'redcarpet'
 gem 'RedCloth'
 gem 'bourbon'
 gem 'jekyll-sitemap'
