@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'jekyll'
+gem 'jekyll', '3.0.0.beta2'
+gem 'redcarpet'
 gem 'RedCloth'
 gem 'bourbon'
 gem 'jekyll-sitemap'
@@ -12,8 +13,10 @@ gem 'uglifier'
 
 group :jekyll_plugins do
   gem 'jekyll-assets'
-  gem 'jekyll_pages_api'
-  gem 'liquid_pluralize'
+  # https://github.com/18F/jekyll_pages_api/pull/21
+  gem 'jekyll_pages_api', git: 'https://github.com/18F/jekyll_pages_api.git', branch: 'jekyll-3'
+  # https://github.com/bdesham/pluralize/pull/3
+  gem 'liquid_pluralize', git: 'https://github.com/afeld/pluralize', branch: 'patch-1'
 end
 
 group :test do
