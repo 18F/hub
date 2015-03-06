@@ -14,8 +14,7 @@ gem 'uglifier'
 group :jekyll_plugins do
   gem 'jekyll-assets'
   gem 'jekyll_pages_api'
-  # https://github.com/bdesham/pluralize/pull/3
-  gem 'liquid_pluralize', git: 'https://github.com/bdesham/pluralize', ref: '057ffe2a174b7b5c084fb0d15f20dadcf0bf0fd9'
+  gem 'liquid_pluralize'
 end
 
 group :test do
