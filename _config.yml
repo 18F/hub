@@ -68,6 +68,8 @@ defaults:
         prefix: pages/private/
 
 editor_url: https://hub.18f.us/edit/#
+midas_url: "https://midas-dev.18f.us"
+midas_token: ""
 
 prose:
   rooturl: 'pages'
