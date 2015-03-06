@@ -7,7 +7,7 @@ GEM
       thor
     celluloid (0.16.0)
       timers (~> 4.0.0)
-    codeclimate-test-reporter (0.4.6)
+    codeclimate-test-reporter (0.4.7)
       simplecov (>= 0.7.1, < 1.0.0)
     colorator (0.1)
     docile (1.1.5)
@@ -87,7 +87,7 @@ GEM
     tilt (1.4.1)
     timers (4.0.1)
       hitimes
-    uglifier (2.7.0)
+    uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     weekly_snippets (0.0.2)
