@@ -95,10 +95,9 @@ module Hub
       Auth.generate_artifacts @site
       assert_equal([@team[0], @team[1]], auth_include_users)
 
-      expected_emails = [
-        'michael.bland@gsa.gov', 'foo.bar@notgsa.gov'].join("\n")
+      expected_emails = ['michael.bland@gsa.gov', 'foo.bar@notgsa.gov']
       assert_equal(user_include_files(expected_emails), auth_include_files)
-      assert_equal(expected_emails.sort!, auth_emails)
+      assert_equal(expected_emails.sort!.join("\n"), auth_emails)
     end
 
     def test_guest_artifacts_generated
@@ -107,10 +106,9 @@ module Hub
       Auth.generate_artifacts @site
       assert_equal([@guests[0], @guests[1]], auth_include_users)
 
-      expected_emails = [
-        'mbland@acm.org', 'baz.quux@notgsa.gov'].join("\n")
+      expected_emails = ['mbland@acm.org', 'baz.quux@notgsa.gov']
       assert_equal(user_include_files(expected_emails), auth_include_files)
-      assert_equal(expected_emails.sort!, auth_emails)
+      assert_equal(expected_emails.sort!.join("\n"), auth_emails)
     end
 
     def test_team_and_guest_artifacts_generated
@@ -122,9 +120,9 @@ module Hub
 
       expected_emails = [
         'michael.bland@gsa.gov','foo.bar@notgsa.gov',
-        'mbland@acm.org', 'baz.quux@notgsa.gov'].join("\n")
+        'mbland@acm.org', 'baz.quux@notgsa.gov']
       assert_equal(user_include_files(expected_emails), auth_include_files)
-      assert_equal(expected_emails.sort!, auth_emails)
+      assert_equal(expected_emails.sort!.join("\n"), auth_emails)
     end
   end
 end
