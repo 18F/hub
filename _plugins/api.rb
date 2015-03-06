@@ -15,6 +15,7 @@
 # @author Mike Bland (michael.bland@gsa.gov)
 
 require 'team_hub/page'
+require 'json'
 
 module Hub
 
