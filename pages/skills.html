@@ -1,0 +1,20 @@
+---
+layout: bare
+permalink: /skills/
+scripts:
+  - /assets/js/vendor/underscore.min.js
+  - /assets/js/team/skill.js
+---
+<h1>Skills</h1>
+
+<script type="text/template" class="template-skills">
+  <% _(skills).each(function(skill) { %>
+    <p><strong>
+      <a href="{{ site.baseurl }}/skills/?<%= encodeURIComponent(skill) %>"><%= skill %></a>
+    </strong></p>
+  <% }); %>
+</script>
+
+<script>
+  MEMBERS = {{ site.data.team | map: "email" | jsonify }}
+</script>
