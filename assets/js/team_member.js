@@ -13,7 +13,7 @@
   delete member.specialties;
 
   // Load data from Midas
-  $.get(midasURL).complete(loadMidas);
+  $.getJSON(midasURL).always(loadMidas);
 
   function loadMidas(data) {
 
@@ -23,11 +23,15 @@
       var skills = _(data[0].tags).chain()
             .pluck('tag')
             .where({ type: 'skill' })
-            .pluck('name').value(),
+            .pluck('name')
+            .invoke('trim')
+            .invoke('toLowerCase').value(),
           interests = _(data[0].tags).chain()
             .pluck('tag')
             .where({ type: 'topic' })
-            .pluck('name').value();
+            .pluck('name')
+            .invoke('trim')
+            .invoke('toLowerCase').value();
       member.skills = _.union(member.skills, skills);
       member.interests = _.union(member.interests, interests);
     }
