@@ -301,6 +301,9 @@ margin-bottom: 20px;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
   }
+  h1:first-letter {
+    text-transform: uppercase;
+  }
 }
 
 .stage-bug {

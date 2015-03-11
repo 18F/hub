@@ -1,8 +1,9 @@
 ---
 layout: bare
+category: profile
 scripts:
   - /assets/js/vendor/underscore.min.js
-  - /assets/js/team_member.js
+  - /assets/js/team.js
 ---
 
 {% assign member = page.team_member %}
@@ -56,16 +57,28 @@ scripts:
 </div>
 
 <script>
-  // Data for client-side templates
-  MEMBER = {
-    email: '{{ member.email }}'
-    {% if member.languages %}    , languages: {{ member.languages | jsonify }}       {% endif %}
-    {% if member.technologies %} , technologies: {{ member.technologies | jsonify }} {% endif %}
-    {% if member.specialties %}  , specialties: {{ member.specialties | jsonify }}  {% endif %}
-  };
-  // Merge local data with team member's Midas profile
-  MIDAS = {
-    url: '{{ site.midas_url }}',
-    token: '{{ site.midas_token }}'
-  };
+
+// Data for team members
+MEMBERS = [
+  {
+    email: {{ member.email | jsonify }},
+    languages: {{ member.languages | jsonify }},
+    technologies: {{ member.technologies | jsonify }},
+    specialties: {{ member.specialties | jsonify }},
+    location: {{ member.location | jsonify }},
+    image: {{ member.image | jsonify }},
+    name: {{ member.name | jsonify }},
+    full_name: {{ member.full_name | jsonify }}
+  }
+];
+
+// Merge local data with team member's Midas profile
+MIDAS = {
+  url: '{{ site.midas_url }}',
+  token: '{{ site.midas_token }}'
+};
+
+// Page category
+CATEGORY = '{{ page.category }}';
+
 </script>
