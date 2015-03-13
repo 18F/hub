@@ -42,6 +42,11 @@
   latitude: 39.874396
   longitude: -75.242423
   timezone: 'Eastern Time Zone (UTC-05:00)'
+- code: RDU
+  label: Raleigh-Durham, NC
+  latitude: 35.880079
+  longitude: -78.787996
+  timezone: 'Eastern Time Zone (UTC-05:00)'
 - code: SEA
   label: Seattle
   latitude: 47.45025

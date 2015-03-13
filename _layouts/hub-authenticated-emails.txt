@@ -1,2 +1,1 @@
-{% capture addrs %}{% for i in page.addrs %}{{ i }}{% unless forloop.last %}
-{% endunless %}{% endfor %}{% endcapture %}{{ addrs }}
+{{ page.addrs }}
