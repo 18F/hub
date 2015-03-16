@@ -10,3 +10,5 @@ env:
     secure: NgtjK21TkgOD9FiCNxs/cB27T0y0Zrw/IHt2IeeJ+6da/luHU2f3VjCZ8gadCf8KWQMw1YoQgOCU8FVCtQ69Gf4PcB0w+eDWsuEtZPzM6TB1K5/mUlfJfRG5xD8iwYGBNyFBgYnHAklYm+7VOKOL3Rk5Qrsc2DHhfAb+yVByN2Y=
 
 script: ./go ci_build
+notifications:
+  webhooks: http://project-monitor.cf.18f.us/projects/hub/status
