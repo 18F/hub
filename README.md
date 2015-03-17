@@ -61,6 +61,19 @@ Feel free to ping [@mbland](https://github.com/mbland) with any questions you
 may have, especially if the current documentation should've addressed your
 needs, but didn't.
 
+### Contributing as an 18F Team Member
+
+1. Clone the repo, including the submodule for private data ( `git clone --recursive git@github.com:18F/hub.git` )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
+
+Feel free to ping [@mbland](https://github.com/mbland) with any questions you
+may have, especially if the current documentation should've addressed your
+needs, but didn't.
+
+
 ### Public domain
 
 This project is in the worldwide [public domain](LICENSE.md). As stated in [CONTRIBUTING](CONTRIBUTING.md):
