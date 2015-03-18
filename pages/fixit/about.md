@@ -37,3 +37,7 @@ For more details:
 
 * [Fixit planning guide](guides/planning/)
 * [Fixit participation guide](guides/participation)
+
+## Fixit Events
+
+18F's [first fixit](/fixit/onboarding) is April 17th, and the theme is onboarding.
