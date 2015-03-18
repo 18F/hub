@@ -11,6 +11,7 @@ links:
 tasks: https://trello.com/b/efNEYNJ1/18f-testing-grouplet
 github_repos:
 - 18F/automated-testing-playbook
+- 18F/testing-cookbook
 leads:
 - mbland
 - alison
