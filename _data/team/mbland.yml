@@ -6,15 +6,14 @@ last_name: Bland
 github: mbland
 email: michael.bland@gsa.gov
 location: DCA
-languages:
+skills:
 - C++
 - Python
-technologies:
 - Jekyll
 - Googletest
 - Googlemock
 - MapReduce
-specialties:
+interests:
 - Automated Testing
 - Object-Oriented Design
 - Distributed Systems
