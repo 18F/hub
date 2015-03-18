@@ -145,7 +145,7 @@ module Hub
     def self.generate_skills_endpoints(site)
       return [] unless site.data.member? 'skills'
       endpoint_info = []
-      ['Languages', 'Technologies', 'Specialties'].each do |category|
+      ['Skills', 'Interests'].each do |category|
         category_index = site.data['skills'][category]
         next if category_index.nil? || category_index.empty?
         skills = {}
