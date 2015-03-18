@@ -57,7 +57,7 @@ module Hub
       return if team.empty?
       fields = ['first_name', 'last_name', 'full_name', 'image',
          'pif-round', 'bio', 'email', 'slack', 'location',
-         'languages', 'technologies', 'specialties']
+         'skills', 'interests' ]
       join_fields = {'projects' => 'name', 'departments' => 'name',
          'working_groups' => 'name'}
       data = create_filtered_hash(team, 'name', fields, join_fields)
