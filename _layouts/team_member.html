@@ -21,17 +21,13 @@ layout: bare
 <a href="{{ site.baseurl }}/wg/{{ wg.name | canonicalize }}">{{ wg.name }}</a><br/>
 {% endfor %}</p>
 {% endif %}
-{% if member.languages %}
-<h2>Languages</h2>{% for lang in member.languages %}
-<a href="{{ site.baseurl }}/languages/{{ lang | downcase | replace:' ','-' }}">{{ lang }}</a><br/>{% endfor %}
+{% if member.skills %}
+<h2>Skills</h2>{% for skill in member.skills %}
+<a href="{{ site.baseurl }}/skills/{{ skill | downcase | replace:' ','-' }}">{{ skill }}</a><br/>{% endfor %}
 {% endif %}
-{% if member.technologies %}
-<h2>Technologies</h2>{% for tech in member.technologies %}
-<a href="{{ site.baseurl }}/technologies/{{ tech | downcase | replace:' ','-' }}">{{ tech }}</a><br/>{% endfor %}
-{% endif %}
-{% if member.specialties %}
-<h2>Specialties</h2>{% for spec in member.specialties %}
-<a href="{{ site.baseurl }}/specialties/{{ spec | downcase | replace:' ','-' }}">{{ spec }}</a><br/>{% endfor %}
+{% if member.interests %}
+<h2>Interests</h2>{% for interest in member.interests %}
+<a href="{{ site.baseurl }}/interests/{{ interest | downcase | replace:' ','-' }}">{{ interest }}</a><br/>{% endfor %}
 {% endif %}
 {% if member.snippets %}
 <h2>Snippets</h2>{% assign latest_snippet = member.snippets.last %}
