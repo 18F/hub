@@ -1,5 +1,5 @@
 ---
-permalink: /fixit/guides/participation
+permalink: /fixit/guides/participation/
 ---
 
 # Fixit Participation Guide

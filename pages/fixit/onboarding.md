@@ -1,5 +1,5 @@
 ---
-permalink: /fixit/onboarding
+permalink: /fixit/onboarding/
 ---
 # Onboarding Fixit
 

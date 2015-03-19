@@ -1,5 +1,5 @@
 ---
-permalink: /fixit/guides/planning
+permalink: /fixit/guides/planning/
 ---
 
 # Planning a Fixit
