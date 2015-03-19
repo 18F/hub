@@ -3,7 +3,7 @@ permalink: /fixit/onboarding
 ---
 # Onboarding Fixit
 
-The theme for 18F's first official [fixit](/fixit) is onboarding, and it will culminate on Friday, April 17th.
+The theme for 18F's first official [fixit](/fixit) is onboarding, and it will culminate on April 17th, 2015.
 
 The ops and onboarding teams are doing tremendous work to make sure new hires have the best possible transition to life at 18F.
 
@@ -37,5 +37,8 @@ We'll congregate to tackle the collected issues (and create new ones if necessar
 
 The fixit organizers will survey participants, sift through the collected metrics, and report back:
 
+* How many people participated?
+* What did the fixit help accomplish for individuals, projects, working groups, and guilds?
 * How many issues did we fix?
+* What is now possible after the fixit that wasn't possible before?
 * What should we do differently in the next fixit?

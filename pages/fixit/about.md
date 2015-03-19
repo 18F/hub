@@ -17,9 +17,9 @@ permalink: /fixit/
     * GitHub issues
     * Trello tasks
     * Surveys
-2. At the appointed time, fixit participants collectively attack the to-do list, with individuals submitting a record of what they did. It's the organizers' job to make that last part easy.
-3. After the appointed time, there will be thanks and recognition.
-4. The organizers report on fixit outcomes and tweak the process for next time.
+3. At the appointed time, fixit participants collectively attack the to-do list, with individuals submitting a record of what they did. It's the organizers' job to make that last part easy.
+4. After the appointed time, there will be thanks and recognition.
+5. The organizers report on fixit outcomes and tweak the process for next time.
 
 ## Why?
 
@@ -36,7 +36,7 @@ Everyone at 18F can (and should!) contribute to a fixit. No special ops, code, o
 For more details:
 
 * [Fixit planning guide](guides/planning/)
-* [Fixit participation guide](guides/participation)
+* [Fixit participation guide](guides/participation/)
 
 ## Fixit Events
 
