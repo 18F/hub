@@ -5,18 +5,17 @@ first_name: Shawn
 last_name: Allen
 github: shawnbot
 location: SFO
-languages:
+skills:
 - JavaScript
 - Python
 - HTML
 - CSS
 - SQL
-technologies:
 - D3
 - Node
 - Django
 - Jekyll
-specialties:
+interests:
 - data visualization
 - maps
 - APIs

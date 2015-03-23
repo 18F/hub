@@ -51,7 +51,7 @@ work with the Hub development environment.
 
 ### Contributing
 
-1. Fork the repo ( https://github.com/18F/hub/fork )
+1.  Fork the repo ( https://github.com/18F/hub/fork ). If you're an 18F team member, you'll likely find it easier to clone the repo instead of forking it (`git clone --recursive git@github.com:18F/hub.git`). The recursive clone ensures that you'll grab the contents of private submodules.
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

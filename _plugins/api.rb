@@ -57,7 +57,7 @@ module Hub
       return if team.empty?
       fields = ['first_name', 'last_name', 'full_name', 'image',
          'pif-round', 'bio', 'email', 'slack', 'location',
-         'languages', 'technologies', 'specialties']
+         'skills', 'interests' ]
       join_fields = {'projects' => 'name', 'departments' => 'name',
          'working_groups' => 'name'}
       data = create_filtered_hash(team, 'name', fields, join_fields)
@@ -145,7 +145,7 @@ module Hub
     def self.generate_skills_endpoints(site)
       return [] unless site.data.member? 'skills'
       endpoint_info = []
-      ['Languages', 'Technologies', 'Specialties'].each do |category|
+      ['Skills', 'Interests'].each do |category|
         category_index = site.data['skills'][category]
         next if category_index.nil? || category_index.empty?
         skills = {}

@@ -5,16 +5,15 @@ first_name: Julia
 last_name: Elman
 github: juliaelman
 location: RDU
-languages:
+skills:
 - HTML
 - CSS
 - JavaScript
-technologies:
 - Django
 - Ruby on Rails
 - Foundation
 - Bootstrap
-specialties:
+interests:
 - Design
 - Rapid prototypes
 - Front end development
