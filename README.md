@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/18F/hub/badge.svg?branch=coveralls)](https://coveralls.io/r/18F/hub?branch=coveralls)
+
 ## 18F Hub
 
 [The 18F Hub](https://18f.gsa.gov/hub) is a [Jekyll](http://jekyllrb.com/)-based documentation platform that aims to help [18F](https://github.com/18F) and other development teams organize and easily share their information, and to enable easy exploration of the connections between team members, projects, and skill sets. It aims to serve as the go-to place for all of a team's working information, whether that information is integrated into the Hub directly or provided as links to other sources. It also serves as a lightweight tool that other teams can experiment with and deploy with a minimum of setup.
