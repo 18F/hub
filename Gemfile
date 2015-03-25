@@ -10,6 +10,7 @@ gem 'team_hub'
 gem 'weekly_snippets'
 gem 'rouge'
 gem 'uglifier'
+gem 'coveralls', require: false
 
 group :jekyll_plugins do
   gem 'jekyll-assets'
