@@ -39,7 +39,6 @@ module Hub
       Auth.generate_artifacts(site)
       ::HashJoiner.prune_empty_properties(site.data)
       ::TeamHub::PrivateAssets.copy_to_site(site)
-      Generator.copy_files site, site.config['private_pages_path'], 'assets'
       Api.generate_api(site)
 
       Team.generate_pages(site)
@@ -48,17 +47,6 @@ module Hub
       WorkingGroups.generate_pages(site)
       Snippets.generate_pages(site)
       Skills.generate_pages(site)
-    end
-
-    def self.copy_files(site, relative_root_path, dir_to_copy)
-      abs_dir_to_copy_path = File.join(site.source, relative_root_path,
-        dir_to_copy)
-      begin_path = abs_dir_to_copy_path.size + File::SEPARATOR.size
-      Dir[File.join(abs_dir_to_copy_path, '**', '*')].each do |filename|
-        next unless File.file? filename
-        site.static_files << ::Jekyll::StaticFile.new(
-          site, relative_root_path, dir_to_copy, filename[begin_path..-1])
-      end
     end
   end
 end
