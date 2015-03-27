@@ -17,4 +17,7 @@
 require "codeclimate-test-reporter"
 CodeClimate::TestReporter.start
 
+require "coveralls"
+Coveralls.wear!
+
 `rm -rf _test/tmp`

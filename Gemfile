@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'jekyll', '3.0.0.beta2'
+gem 'jekyll', '3.0.0.pre.beta2'
 gem 'redcarpet'
 gem 'RedCloth'
 gem 'bourbon'
@@ -10,6 +10,7 @@ gem 'team_hub'
 gem 'weekly_snippets'
 gem 'rouge'
 gem 'uglifier'
+gem 'coveralls', require: false
 
 group :jekyll_plugins do
   gem 'jekyll-assets'

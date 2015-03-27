@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/18F/hub/badge.svg?branch=coveralls)](https://coveralls.io/r/18F/hub?branch=coveralls)
+
 ## 18F Hub
 
 [![Build Status](https://travis-ci.org/18F/hub.svg?branch=master)](https://travis-ci.org/18F/hub)
