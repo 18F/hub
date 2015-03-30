@@ -25,16 +25,17 @@ Make sure README.md has:
 
 * A link to an existing public instance of the project. Links to internal/staging versions can be listed on the Hub (see below) if you don't want them publicly visible.
 * Description of the workflow for submitting project code changes (_e.g._ do you fork or branch?)
-* How to stand up a development version of the project. Installs, scripts, a Vagrantfile for forced fresh install, etc.
+* How to stand up a development version of the project. Installation commands, scripts, a Vagrantfile for forced fresh install, etc.
 * Project management-related information:
 
-    * links to sprint boards (some are in GitHub, some in Trello, etc.)
-    * links to task management tools (GitHub, Trello, Pivotal)
+    * Links to GitHub issues, sprint plans, dashboards, etc.
+    * Links to task management tools (GitHub, Trello, Pivotal Tracker)
     * Quick write-up of where things are: GitHub issues versus sprint plans
 
-Update the CONTRIBUTING file to reflect the workflow as written in README.md.
+Also consider:
 
-Tag issues as new-to-project.
+* Updating the CONTRIBUTING file to reflect the workflow as written in README.md.
+* Tagging issues as new-to-project.
 
 #### On the Hub
 
