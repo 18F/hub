@@ -89,7 +89,8 @@
 <script>
 // export some helpful site-wide variables
 window.site = {
-  baseurl: "{{ site.baseurl }}"
+  baseurl: "{{ site.baseurl }}"{% unless site.public %},
+  access_token: "<!--# echo var="access_token" -->"{% endunless %}
 };
 </script>
 
