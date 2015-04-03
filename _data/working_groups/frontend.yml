@@ -6,10 +6,6 @@ mission: |
 links:
 - url: https://drive.google.com/drive/#folders/0B84F26FpUP0lR1B2VVNGSi1MMVk/0B0C6PKlzps2JV3pqX3NJdm5WejA/0B5HeQa_YQ6-VTTlkVEFNZ2VWZEU
   text: Google Drive folder
-tasks:
-- Create Hub page CHECK CHECK CHECK
-- Survey team on needs
-- Share draft coding styleguide with team for review
 github_repos:
 - 18F/frontend-style-guide
 leads:
