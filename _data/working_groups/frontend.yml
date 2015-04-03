@@ -1,6 +1,10 @@
 ---
 name: Frontend
 full_name: Frontend Guild
+mission: |
+  Provide cross-team support to both frontend developers and 18F team members seeking tips and best practices in the frontend space.
+github_repos:
+- 18F/frontend-style-guide
 leads:
 - marco
 - mhz
