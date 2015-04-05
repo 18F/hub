@@ -5,13 +5,15 @@ permalink: /docsprint/onboarding/
 
 ## tl;dr
 
-A lot of new people are starting at 18F on April 6th. Do these things to get ready for them:
+A lot of new people are getting ready to start at 18F. Do these things to prepare for them:
 
 1. **Every project**: [update project READMEs](#repo).
 2. Update the [18F Onboarding Guide](https://hub.18f.us/private/18f-site/onboarding/).
 3. Update our [18F Guides](http://18f.github.io/guides/).
 
-This cohort will test our documentation as they onboard. On April 17th, we sprint and implement their suggestions for improvement. Getting our docs right is a key part of scaling 18F's onboarding process.
+This cohort will test our documentation as they onboard.
+
+[April 17th](#sprint): we sprint and improve our onboarding docs to prepare for the next cohort.
 
 # Why?
 
@@ -63,9 +65,13 @@ Make sure your project has a Hub page and that it contains the following informa
 
 Our new coworkers onboard using the materials we've created. We all use this opportunity to record opportunities for improvement. The specific feedback mechanisms will likely be project-specific (*e.g.*, GitHub issue, Trello card). In addition, doc sprint organizers will survey the new cohort to get additional ideas.
 
-### Doc Sprint Day: April 17th
+### <a name="sprint"></a>Doc Sprint Day: April 17th
 
-We'll congregate to tackle the collected issues (and create new ones if necessary), reporting along the way. We'll use a Google form to track what gets done. This tracking is a critical step, since we want to collect doc sprint metrics.
+1. Here's a list of things you can work on during the April 17th doc sprint.
+    * [Hub issues](https://github.com/18F/hub/issues)
+    * [18F Guide issues](https://github.com/18F/guides/issues)
+
+2. After you complete a task, please log it using our [doc sprint form](#) so we can report on what got done.
 
 ### Post-Doc Sprint
 
