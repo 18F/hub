@@ -47,6 +47,11 @@
   latitude: 35.880079
   longitude: -78.787996
   timezone: 'Eastern Time Zone (UTC-05:00)'
+- code: SAN
+  label: San Diego
+  latitude: 32.733801
+  longitude: -117.193304
+  timezone: 'Pacific Time Zone (UTC-08:00)'
 - code: SEA
   label: Seattle
   latitude: 47.45025
