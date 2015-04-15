@@ -41,7 +41,7 @@
   label: Philadelphia
   latitude: 39.874396
   longitude: -75.242423
-  timezone: 'Eastern Time Zone (UTC-05:00)
+  timezone: 'Eastern Time Zone (UTC-05:00)'
 - code: PIT
   label: Pittsburgh
   latitude: 40.440625
