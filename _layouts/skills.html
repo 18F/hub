@@ -42,9 +42,8 @@ scripts:
     {% for member in site.data.team %}
     {
       email: {{ member.email | jsonify }},
-      languages: {{ member.languages | jsonify }},
-      technologies: {{ member.technologies | jsonify }},
-      specialties: {{ member.specialties | jsonify }},
+      skills: {{ member.skills | jsonify }},
+      interests: {{ member.interests | jsonify }},
       location: {{ member.location | jsonify }},
       image: {{ member.image | jsonify }},
       name: {{ member.name | jsonify }},

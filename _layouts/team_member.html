@@ -62,9 +62,8 @@ scripts:
 MEMBERS = [
   {
     email: {{ member.email | jsonify }},
-    languages: {{ member.languages | jsonify }},
-    technologies: {{ member.technologies | jsonify }},
-    specialties: {{ member.specialties | jsonify }},
+    skills: {{ member.skills | jsonify }},
+    interests: {{ member.interests | jsonify }},
     location: {{ member.location | jsonify }},
     image: {{ member.image | jsonify }},
     name: {{ member.name | jsonify }},
@@ -74,8 +73,7 @@ MEMBERS = [
 
 // Merge local data with team member's Midas profile
 MIDAS = {
-  url: '{{ site.midas_url }}',
-  token: '{{ site.midas_token }}'
+  url: '{{ site.midas_url }}'
 };
 
 // Page category
