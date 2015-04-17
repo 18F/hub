@@ -6,9 +6,12 @@ mission: |
 links:
 - url: http://18f.github.io/automated-testing-playbook
   text: Automated Testing Playbook
+- url: http://18f.github.io/testing-cookbook
+  text: Testing Cookbook
 tasks: https://trello.com/b/efNEYNJ1/18f-testing-grouplet
 github_repos:
 - 18F/automated-testing-playbook
+- 18F/testing-cookbook
 leads:
 - mbland
 - alison

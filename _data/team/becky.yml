@@ -6,12 +6,12 @@ last_name: Sweger
 location: BDL
 github: bsweger
 email: rebecca.sweger@gsa.gov
-specialties:
+skills:
+- python
+- sql
+interests:
 - data sleuthing
 - data modeling
 - relational databases
 - data munging
 - technical writing
-languages:
-- python
-- sql

@@ -7,9 +7,6 @@ github: vz3
 email: victor.zapanta@gsa.gov
 location: DCA
 project: FOIA
-specialties:
-- User experience design
-- Front-end development
 bio: is a User Experience designer working on the FOIA modernization project. Prior
   to joining 18F, Victor was one of the founding members of the technology team at
   the Consumer Financial Protection Bureau, where he worked on the first several iterations
@@ -18,3 +15,6 @@ bio: is a User Experience designer working on the FOIA modernization project. Pr
   version of Data.gov. Victor enjoys live music, prefers two-wheeled transportation,
   and misses Google Reader dearly. Victor received his B.A. from the University of
   California at Davis.
+interests:
+- User experience design
+- Front-end development
