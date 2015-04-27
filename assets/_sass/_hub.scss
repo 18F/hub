@@ -317,3 +317,50 @@ margin-bottom: 20px;
   text-align: center;
   padding: .5em 0;
 }
+
+// Index page
+//********************************************************
+
+.index-title {
+  font-weight: bold;
+  font-size: 300%;
+  color: #1188ff;
+}
+
+div.index-layout {
+  display: table;
+
+  div {
+    display: table-cell;
+  }
+
+  div.lhs {
+    width: 50%;
+  }
+}
+
+.site-desc {
+  font-size: 200%;
+}
+
+ul.main-nav {
+  list-style: none inside none;
+
+  li {
+    color: #ffffff;
+    background-color: #1188ff;
+    padding: 1em 2em 1em 2em;
+    margin-left: 1em;
+    border-bottom: 1px solid #ffffff;
+
+    a {
+      color: #ffffff;
+      font-size: 200%;
+      text-decoration: none;
+    }
+  }
+}
+
+div.search-container {
+  float: right;
+}

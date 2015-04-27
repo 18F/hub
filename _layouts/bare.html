@@ -22,7 +22,7 @@
 
 <section class="container bare">
 
-  <div ng-controller="SearchController" class="bare-content" role="main" itemscope itemprop="mainContentOfPage" ng-strict-di>
+  <div ng-controller="SearchController" class="search-container" role="main" itemscope itemprop="mainContentOfPage" ng-strict-di>
 
     {% raw %}
 
@@ -42,12 +42,14 @@
         ></live-search>
       </div>
 
-      <div ng-hide="searchText">
+      <div ng-hide="searchText"></div>
 
     {% endraw %}
+    </div>
 
     {{ content }}
 
+    <hr/>
     {% include edit_link.html %}
 
     {% raw %}

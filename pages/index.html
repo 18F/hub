@@ -1,40 +1,29 @@
 ---
 permalink: /
 ---
-<h1>{{ site.title }}</h1>
-<p>{{ site.description }}</p>
+<div>
+<span class="index-title"><img src="{{ site.baseurl }}/assets/images/logo-18f.png" alt="18F logo" width=100 height=100> hub</span>
+</div>
 
-<section>
+<div class="index-layout">
+  <div class="lhs">
+  <p class="site-desc">{{ site.description }}</p>
+  <p>The Hub helps 18F organize its information and explore the connections
+  between team members, projects, and skill sets.</p>
+  </div>
 
-	<h2 id="updates">Updates</h2>
-
-	<div class="news">
-		{% for post in site.posts limit:1 %}
-			<h3>{{ post.title }}</h3>
-			<p>{{ post.content }}</p>
-		{% endfor %}
-	</div>
-
-	{% if site.data.project_status %}
-		<div class="home-block">
-			<h3>Project status</h3>
-			<ul>
-				<li><a href="{{site.data.project_status.latest_url}}">Latest: {{site.data.project_status.latest_date}} <span class="sr-only">project status</span></a></li>
-				<li><a href="{{site.data.project_status.all_updates_url}}">Read all<span class="sr-only"> project statuses</span></a></li>
-			</ul>
-		</div>
-	{% endif %}
-
-	{% if site.data.snippets %}
-		<div class="home-block">
-			<h3>People status (snippets)</h3>
-			<ul>
-				<li><a href="{{ site.baseurl }}/snippets/{{ site.data.snippets_latest }}">Latest: {{ site.data.snippets_latest | hyphenate_yyyymmdd }}<span class="sr-only"> snippet</span></a></li>
-				<li><a href="{{ site.baseurl }}/snippets/">Read all<span class='sr-only'> snippets</span></a></li>
-			</ul>
-		</div>
-	{% endif %}
-	
-	<!-- {% include twitter_favorites.html %} -->
-
-</section>
+  <div>
+  <ul class="main-nav">
+    <li><a href="{{ site.baseurl }}/team/">Team</a><br/>
+      Learn something about the 18F team.</li>
+    <li><a href="{{ site.baseurl }}/projects/">Projects</a><br/>
+      Learn something about 18F projects.</li>
+    <li><a href="https://pages.18f.gov/guides/">Guides</a><br/>
+      Learn best practices employed by 18F.</li>
+    <li><a href="{{ site.baseurl }}/how-to/">How to...</a><br/>
+      A collection of FAQs about life at 18F.</li>
+    <li><a href="{{ site.baseurl }}/n00b/">New to 18F?</a><br/>
+      Start your journey here, n00b.</li>
+  </ul>
+  </div>
+</div>
