@@ -58,7 +58,7 @@ module Hub
     end
 
     def test_inserts_content
-      assert_includes(homepage_body, 'Team information')
+      assert_includes(homepage_body, 'The go-to place for all team information')
     end
   end
 end
