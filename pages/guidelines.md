@@ -10,6 +10,7 @@ published: true
 * [API Standards](https://github.com/18F/api-standards)
 * [Frontend Styleguide](https://github.com/18F/frontend-style-guide)
 {% unless site.public %}
+* [Leave, Telework, and Virtual Worker Policy]({{ site.baseurl }}/private/team-ops/leave-telework-virtual-worker-policy/)
 * [Distributed Work Guide](https://docs.google.com/a/gsa.gov/document/d/16ozBoXxTnWutvp63mr5Q8phN21IRFD3LYm3BtgYkQg0/edit)
 * [Slack Guidelines]({{ site.baseurl }}/private/devops/standards/slack/)
 * [Github Standards]({{ site.baseurl }}/private/devops/standards/github/)
