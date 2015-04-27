@@ -82,3 +82,6 @@ prose:
 
 # Remove this when https://github.com/18F/hub/issues/209 is resolved.
 full_rebuild: true
+
+# For Google Analytics
+google_analytics_ua: UA-48605964-24
