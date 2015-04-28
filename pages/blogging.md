@@ -1,4 +1,10 @@
-# Blog posts
+---
+title: How to write a blog for 18F
+permalink: /blogging
+---
+# {{ page.title }}
+
+At 18F we keep a private GitHub repo for kicking around ideas on the blog. This is how we use that repo.
 
 We use milestones for workflow tracking:
 
