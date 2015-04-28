@@ -25,6 +25,7 @@ define(['angularAMD', 'liveSearch', 'lunr'], function(angularAMD, liveSearch, lu
       this.ref('url');
 
       this.field('title', {boost: 10});
+      this.field('tags', {boost: 10});
       this.field('url', {boost: 5});
       this.field('body');
     });
