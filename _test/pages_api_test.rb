@@ -53,10 +53,6 @@ module Hub
       assert(File.exist?(PATH), "JSON file doesn't exist.")
     end
 
-    def test_properties
-      assert_includes(homepage_body, 'snippets')
-    end
-
     def test_inserts_content
       assert_includes(homepage_body, 'The go-to place for all team information')
     end
