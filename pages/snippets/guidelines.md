@@ -1,7 +1,8 @@
 ---
 permalink: /snippets/guidelines/
+title: Guidelines for Writing Snippets
 ---
-# Guidelines for Writing Snippets
+# {{ page.title }}
 
 ## Writing and reading snippets is optional
 

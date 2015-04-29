@@ -22,7 +22,7 @@
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-48605964-1', 'gsa.gov');
+  ga('create', '{{ site.google_analytics_ua }}', 'gsa.gov');
 
   // anonymize user IPs (chops off the last IP triplet)
   ga('set', 'anonymizeIp', true);
@@ -34,7 +34,6 @@
 <script id="_fed_an_ua_tag" src="https://analytics.usa.gov/dap/dap.min.js" async></script>
 
 <script src="{{ site.baseurl }}/assets/js/jquery-2.1.1.min.js"></script>
-<script src="{{ site.baseurl }}/assets/js/responsiveslides.min.js"></script>
 <script>
   SITE_BASEURL = '{{site.baseurl}}';
 </script>
@@ -48,4 +47,4 @@
 {% else %}<script src="{{ site.baseurl }}{{ script_url }}"></script>{% endunless %}
 {% endfor %}
 
-{% javascript search %}
+<script async data-main="{{ site.baseurl }}/assets/js/main" src="{{ site.baseurl }}/assets/js/vendor/requirejs/require.js"></script>

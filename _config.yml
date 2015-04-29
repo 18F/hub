@@ -10,7 +10,6 @@ exclude:
 - LICENSE.md
 - CONTRIBUTING.md
 - deploy
-- pages/README.md
 - pages/private/README.md
 - vendor
 - go
@@ -27,7 +26,6 @@ assets:
   js_compressor: uglifier
   css_compressor: sass
   sources:
-    - _assets/javascripts
     - assets/js
     - assets/css
 
@@ -83,3 +81,6 @@ prose:
 
 # Remove this when https://github.com/18F/hub/issues/209 is resolved.
 full_rebuild: true
+
+# For Google Analytics
+google_analytics_ua: UA-48605964-24

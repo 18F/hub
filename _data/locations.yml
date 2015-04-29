@@ -1,6 +1,6 @@
 # Note that this list only contains locations of current team members. If a
 # new team member is added in a new location, that location will have to be
-# added to this list.
+# added to this list. http://www.latlong.net or similar is useful here.
 ---
 - code: AUS
   label: Austin
@@ -42,11 +42,21 @@
   latitude: 39.874396
   longitude: -75.242423
   timezone: 'Eastern Time Zone (UTC-05:00)'
+- code: PIT
+  label: Pittsburgh
+  latitude: 40.440625
+  longitude: -79.995886
+  timezone: 'Eastern Time Zone (UTC-05:00)'
 - code: RDU
   label: Raleigh-Durham, NC
   latitude: 35.880079
   longitude: -78.787996
   timezone: 'Eastern Time Zone (UTC-05:00)'
+- code: SAN
+  label: San Diego
+  latitude: 32.733801
+  longitude: -117.193304
+  timezone: 'Pacific Time Zone (UTC-08:00)'
 - code: SEA
   label: Seattle
   latitude: 47.45025
