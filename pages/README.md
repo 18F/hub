@@ -1,8 +1,13 @@
+---
+title: Adding and Organizing Hub Pagess
+permalink: /hub-pages/
+---
+
 # Adding and Organizing Hub Pages
 
 ## Publicly-visible pages
 
-The `/pages` directory is where publicly-visible Hub content should be collected. Nearly everything in this subdirectory should be stored as Markdown files editable by 18F team members. The `permalink:` attribute in the front matter will determine the location of each document in the generated site.
+[The `/pages` directory](https://github.com/18F/hub/tree/master/pages) of [the Hub repository](https://github.com/18F/hub) is where publicly-visible Hub content should be collected. Nearly everything in this subdirectory should be stored as Markdown files editable by 18F team members. The `permalink:` attribute in the front matter will determine the location of each document in the generated site.
 
 ## Internal-only pages
 
