@@ -10,7 +10,6 @@ exclude:
 - LICENSE.md
 - CONTRIBUTING.md
 - deploy
-- pages/README.md
 - pages/private/README.md
 - vendor
 - go
