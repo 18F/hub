@@ -49,6 +49,14 @@ module Hub
       homepage_data['body']
     end
 
+    def posts_with_empty_titles
+      entries_data.select { |hash| hash['title'] == '' }
+    end
+
+    def posts_with_title_called_untitled
+      entries_data.select { |hash| hash['title'] == 'Untitled' }
+    end
+
     def test_files_exist
       assert(File.exist?(PATH), "JSON file doesn't exist.")
     end
@@ -59,6 +67,14 @@ module Hub
 
     def test_inserts_content
       assert_includes(homepage_body, 'Team information')
+    end
+
+    def test_all_posts_have_titles
+      assert_empty posts_with_empty_titles.map { |hash| hash['url'] }
+    end
+
+    def test_no_posts_are_untitled
+      assert_empty posts_with_title_called_untitled.map { |hash| hash['url'] }
     end
   end
 end
