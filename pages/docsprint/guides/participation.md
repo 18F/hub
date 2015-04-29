@@ -1,8 +1,8 @@
 ---
 permalink: /docsprint/guides/participation/
+title: Doc Sprint Participation Guide
 ---
-
-# Doc Sprint Participation Guide
+# {{ page.title }}
 
 A well-organized doc sprint is designed to improve team documentation quickly and efficiently. Making sure 18F's documentation is accessible and comprehensive is critical for scaling what we do.  
 
