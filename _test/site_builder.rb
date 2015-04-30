@@ -8,7 +8,7 @@ module Hub
     unless system(
       "bundle exec jekyll build --destination #{BUILD_DIR} --trace",
       {:out => '/dev/null', :err =>STDERR})
-      STDERR.puts "\n***\nSite failed to build for pages_api_test\n***\n"
+      STDERR.puts "\n***\nSiteBuilder failed to build site for tests\n***\n"
       exit $?.exitstatus
     end
   end
