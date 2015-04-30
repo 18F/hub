@@ -76,5 +76,10 @@ module Hub
     def test_no_posts_are_untitled
       assert_empty posts_with_title_called_untitled.map { |hash| hash['url'] }
     end
+
+    def test_index_built
+      assert(File.exist?(File.join(BUILD_DIR, 'index.json')),
+        "Serialized lunr.js index doesn't exist")
+    end
   end
 end
