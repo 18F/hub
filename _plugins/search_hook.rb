@@ -1,9 +1,12 @@
 require 'jekyll/site'
 require 'jekyll_pages_api'
 
+# This Jekyl::Site override creates a hook for generating the search index
+# after the jekyll_pages_api plugin has produced the api/v1/pages.json corpus.
+# In the very near term, we should probably create a proper hook in the
+# jekyll_pages_api plugin itself.
 module Jekyll
   class Site
-    # This requires deep knowledge of jekyll_pages_api.
     alias_method :pages_api_after_render, :after_render
 
     def after_render
