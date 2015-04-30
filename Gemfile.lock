@@ -53,6 +53,7 @@ GEM
       jekyll (>= 2.0, < 4.0)
     json (1.8.2)
     kramdown (1.7.0)
+    libv8 (3.16.14.7)
     liquid (3.0.2)
     liquid_pluralize (1.0.2)
       liquid (>= 2.6, < 4.0)
@@ -71,6 +72,7 @@ GEM
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     redcarpet (3.2.3)
+    ref (1.0.5)
     rest-client (1.8.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
@@ -101,6 +103,9 @@ GEM
       tins (~> 1.0)
     test_temp_file_helper (0.0.2)
       rake (~> 10.0)
+    therubyracer (0.12.2)
+      libv8 (~> 3.16.14.0)
+      ref
     thor (0.19.1)
     tilt (1.4.1)
     timers (4.0.1)
@@ -134,5 +139,6 @@ DEPENDENCIES
   rouge
   team_hub
   test_temp_file_helper
+  therubyracer
   uglifier
   weekly_snippets

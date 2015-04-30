@@ -7,6 +7,13 @@ define(['angularAMD', 'liveSearch', 'lunr'], function(angularAMD, liveSearch, lu
     });
   }]);
 
+  ngHub.factory('pageIndexPromise', ["$http", "$q", function($http, $q) {
+    return $http.get(SITE_BASEURL + '/index.json').then(function(response) {
+      return response.data;
+    });
+  }]);
+
+
   ngHub.factory('pagesByUrl', ["pagesPromise", function(pagesPromise) {
     var result = {};
 
@@ -20,29 +27,17 @@ define(['angularAMD', 'liveSearch', 'lunr'], function(angularAMD, liveSearch, lu
     return result;
   }]);
 
-  ngHub.factory('pageIndex', ["pagesPromise", function(pagesPromise) {
-    var index = lunr(function() {
-      this.ref('url');
-
-      this.field('title', {boost: 10});
-      this.field('tags', {boost: 10});
-      this.field('url', {boost: 5});
-      this.field('body');
+  ngHub.factory('pageIndex', ["pageIndexPromise", function(pageIndexPromise) {
+    var container = {};
+    pageIndexPromise.then(function(index_json) {
+      container['index'] = lunr.Index.load(index_json);
     });
-
-    // populate asynchronously
-    pagesPromise.then(function(docs) {
-      angular.forEach(docs, function(page) {
-        index.add(page);
-      });
-    });
-
-    return index;
+    return container;
   }]);
 
   ngHub.factory('pagesSearch', ["pagesByUrl", "pageIndex", function(pagesByUrl, pageIndex) {
     return function(term) {
-      var results = pageIndex.search(term);
+      var results = pageIndex.index.search(term);
       angular.forEach(results, function(result) {
         var page = pagesByUrl[result.ref];
         result.page = page;
