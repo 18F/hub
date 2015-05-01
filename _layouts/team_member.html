@@ -1,38 +1,98 @@
 ---
 layout: bare
+category: profile
+scripts:
+  - /assets/js/vendor/underscore.min.js
+  - /assets/js/team.js
 ---
-<div>{% assign member = page.team_member %}
-<img class="img-circle team-img bio-clip" src="{{ site.baseurl }}/{{ member.image }}" alt="Photo of {{ member.full_name }}">
-<h1>{{ member.full_name }}</h1>
-<p>{% if member.email %}email: <a href="mailto:{{ member.email }}">{{ member.email }}</a><br/>{% endif %}
-{% if member.github %}GitHub: <a href="https://github.com/{{ member.github }}/">{{ member.github }}</a><br/>{% endif %}
-{% if member.slack %}slack: <a href="https://18f.slack.com/team/{{ member.slack }}">{{ member.slack }}</a><br/>{% endif %}
-{% if member.location %}location: <a href="{{ site.baseurl }}/locations#{{ member.location }}">{{ member.location }}</a><br/>{% endif %}
-{% if member.resume %}<a href="{{ member.resume }}">18F Résumé</a><br/>{% endif %}
-{% if member.okrs %}<a href="{{ member.okrs }}">Objectives and Key Results</a><br/>{% endif %}
-</p>
-{% if member.projects %}
-<h2>Projects</h2>{% for proj in member.projects %}
-<a href="{{ site.baseurl }}/projects/{{ proj.name | canonicalize }}">{{ proj.project }}</a><br/>{% endfor %}
-{% endif %}
-{% if member.working_groups %}
-<h2>Working Groups</h2>
-<p>{% for wg in member.working_groups %}
-<a href="{{ site.baseurl }}/wg/{{ wg.name | canonicalize }}">{{ wg.name }}</a><br/>
-{% endfor %}</p>
-{% endif %}
-{% if member.skills %}
-<h2>Skills</h2>{% for skill in member.skills %}
-<a href="{{ site.baseurl }}/skills/{{ skill | downcase | replace:' ','-' }}">{{ skill }}</a><br/>{% endfor %}
-{% endif %}
-{% if member.interests %}
-<h2>Interests</h2>{% for interest in member.interests %}
-<a href="{{ site.baseurl }}/interests/{{ interest | downcase | replace:' ','-' }}">{{ interest }}</a><br/>{% endfor %}
-{% endif %}
-{% if member.snippets %}
-<h2>Snippets</h2>{% assign latest_snippet = member.snippets.last %}
-<p><strong><a href="{{ site.baseurl }}/snippets/{{ member.name }}">All snippets</a></strong><br/>
-<strong>Latest Snippet: {{ latest_snippet.timestamp }}</strong>
-</p>
-{% assign s = latest_snippet %}{% include snippet.html %}{% endif %}
+
+{% assign member = page.team_member %}
+<div class="team-member">
+
+  <img class="img-circle team-img bio-clip" src="{{ site.baseurl }}/{{ member.image }}" alt="Photo of {{ member.full_name }}">
+  <h1>{{ member.full_name }}</h1>
+  <p>
+    {% if member.email %}email: <a href="mailto:{{ member.email }}">{{ member.email }}</a><br/>{% endif %}
+    {% if member.github %}GitHub: <a href="https://github.com/{{ member.github }}/">{{ member.github }}</a><br/>{% endif %}
+    {% if member.slack %}slack: <a href="https://18f.slack.com/team/{{ member.slack }}">{{ member.slack }}</a><br/>{% endif %}
+    {% if member.location %}location: <a href="{{ site.baseurl }}/locations#{{ member.location }}">{{ member.location }}</a><br/>{% endif %}
+    {% if member.resume %}<a href="{{ member.resume }}">18F Résumé</a><br/>{% endif %}
+    {% if member.okrs %}<a href="{{ member.okrs }}">Objectives and Key Results</a><br/>{% endif %}
+  </p>
+
+  {% if member.projects %}
+  <h2>Projects</h2>{% for proj in member.projects %}
+  <a href="{{ site.baseurl }}/projects/{{ proj.name | canonicalize }}">{{ proj.project }}</a><br/>{% endfor %}
+  {% endif %}
+
+  {% if member.working_groups %}
+  <h2>Working Groups</h2>
+  <p>{% for wg in member.working_groups %}
+  <a href="{{ site.baseurl }}/wg/{{ wg.name | canonicalize }}">{{ wg.name }}</a><br/>
+  {% endfor %}</p>
+  {% endif %}
+
+  <div class="skills-block">
+    {% if member.skills %}
+    <h2>Skills</h2>
+    {% for skill in member.skills %}
+    <a href="{{ site.baseurl }}/skills/?{{ skill | downcase | strip | uri_escape }}">{{ skill | downcase | strip }}</a><br/>
+    {% endfor %}
+    {% endif %}
+  </div>
+  <script type="text/template" class="template-skills">
+    <h2>Skills</h2>
+    <% _(skills).each(function(skill) { %>
+    <a href="{{ site.baseurl }}/skills/?<%= encodeURIComponent(skill) %>"><%= skill %></a><br/>
+    <% }); %>
+  </script>
+
+  <div class="interests-block">
+    {% if member.interests %}
+    <h2>Interests</h2>
+    {% for interest in member.interests %}
+    <a href="{{ site.baseurl }}/interests/?{{ interest | downcase | strip | uri_escape }}">{{ interest | downcase | strip }}</a><br/>
+    {% endfor %}
+    {% endif %}
+  </div>
+  <script type="text/template" class="template-interests">
+    <h2>Interests</h2>
+    <% _(interests).each(function(interest) { %>
+    <a href="{{ site.baseurl }}/interests/?<%= encodeURIComponent(interest) %>"><%= interest %></a><br/>
+    <% }); %>
+  </script>
+
+  {% if member.snippets %}
+  <h2>Snippets</h2>{% assign latest_snippet = member.snippets.last %}
+  <p><strong><a href="{{ site.baseurl }}/snippets/{{ member.name }}">All snippets</a></strong><br/>
+  <strong>Latest Snippet: {{ latest_snippet.timestamp }}</strong>
+  </p>
+
+  {% assign s = latest_snippet %}{% include snippet.html %}{% endif %}
+
 </div>
+
+<script>
+
+// Data for team members
+MEMBERS = [
+  {
+    email: {{ member.email | jsonify }},
+    skills: {{ member.skills | jsonify }},
+    interests: {{ member.interests | jsonify }},
+    location: {{ member.location | jsonify }},
+    image: {{ member.image | jsonify }},
+    name: {{ member.name | jsonify }},
+    full_name: {{ member.full_name | jsonify }}
+  }
+];
+
+// Merge local data with team member's Midas profile
+MIDAS = {
+  url: '{{ site.midas_url }}'
+};
+
+// Page category
+CATEGORY = '{{ page.category }}';
+
+</script>
