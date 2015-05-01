@@ -6,3 +6,10 @@ var index = lunr(function() {
   this.field('url', {boost: 5});
   this.field('body');
 });
+
+var url_to_doc = {};
+
+corpus.entries.forEach(function(page) {
+  index.add(page);
+  url_to_doc[page.url] = {url: page.url, title: page.title};
+});

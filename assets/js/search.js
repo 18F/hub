@@ -1,9 +1,9 @@
 define(['angularAMD', 'liveSearch', 'lunr'], function(angularAMD, liveSearch, lunr) {
   var ngHub = angular.module('hubSearch', ['LiveSearch']);
 
-  ngHub.factory('pagesPromise', ["$http", "$q", function($http, $q) {
-    return $http.get(SITE_BASEURL + '/api/v1/pages.json').then(function(response) {
-      return response.data.entries;
+  ngHub.factory('pagesByUrlPromise', ["$http", "$q", function($http, $q) {
+    return $http.get(SITE_BASEURL + '/url_to_doc.json').then(function(response) {
+      return response.data;
     });
   }]);
 
@@ -14,17 +14,15 @@ define(['angularAMD', 'liveSearch', 'lunr'], function(angularAMD, liveSearch, lu
   }]);
 
 
-  ngHub.factory('pagesByUrl', ["pagesPromise", function(pagesPromise) {
-    var result = {};
+  ngHub.factory('pagesByUrl', ["pagesByUrlPromise", function(pagesByUrlPromise) {
+    var container = {};
 
     // populate asynchronously
-    pagesPromise.then(function(docs) {
-      angular.forEach(docs, function(doc) {
-        result[doc.url] = doc;
-      });
+    pagesByUrlPromise.then(function(url_to_doc_json) {
+      container['index'] = url_to_doc_json;
     });
 
-    return result;
+    return container;
   }]);
 
   ngHub.factory('pageIndex', ["pageIndexPromise", function(pageIndexPromise) {
@@ -39,7 +37,7 @@ define(['angularAMD', 'liveSearch', 'lunr'], function(angularAMD, liveSearch, lu
     return function(term) {
       var results = pageIndex.index.search(term);
       angular.forEach(results, function(result) {
-        var page = pagesByUrl[result.ref];
+        var page = pagesByUrl.index[result.ref];
         result.page = page;
         // make top-level attribute available for LiveSearch
         result.displayTitle = page.title || page.url;
