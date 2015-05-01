@@ -4,19 +4,13 @@ module Hub
   class SearchIndexBuilder
     def self.build_index(site)
       corpus_page = find_corpus_page(site.pages)
-      return nil if corpus_page == nil
+      raise 'Pages API corpus not found' if corpus_page == nil
 
       cxt = V8::Context.new
       cxt.load(File.join(site.source,
         'assets', 'js', 'vendor', 'lunr.js', 'lunr.js'))
-      cxt.load(File.join(site.source, '_plugins', 'search.js'))
       cxt.eval("var corpus = #{corpus_page.content};")
-      cxt.eval("var url_to_doc = {};")
-      cxt.eval(
-        'corpus.entries.forEach(function(page) {' +
-        '  index.add(page);' +
-        '  url_to_doc[page.url] = {url: page.url, title: page.title};' +
-        '});')
+      cxt.load(File.join(site.source, '_plugins', 'search.js'))
 
       index_page = JekyllPagesApi::PageWithoutAFile.new(
         site, site.source, '', 'index.json')

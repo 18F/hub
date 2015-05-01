@@ -12,9 +12,8 @@ module Jekyll
     def after_render
       pages_api_after_render
       return if self.config['skip_index']
-      index, url_to_doc = Hub::SearchIndexBuilder.build_index(self)
-      self.pages << index if index != nil
-      self.pages << url_to_doc if url_to_doc != nil
+      search_pages = Hub::SearchIndexBuilder.build_index(self)
+      self.pages.concat search_pages
     end
   end
 end
