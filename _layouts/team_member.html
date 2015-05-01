@@ -32,6 +32,14 @@ scripts:
   {% endfor %}</p>
   {% endif %}
 
+  <div class="skills-block">
+    {% if member.skills %}
+    <h2>Skills</h2>
+    {% for skill in member.skills %}
+    <a href="{{ site.baseurl }}/skills/?{{ skill | downcase | strip | uri_escape }}">{{ skill | downcase | strip }}</a><br/>
+    {% endfor %}
+    {% endif %}
+  </div>
   <script type="text/template" class="template-skills">
     <h2>Skills</h2>
     <% _(skills).each(function(skill) { %>
@@ -39,6 +47,14 @@ scripts:
     <% }); %>
   </script>
 
+  <div class="interests-block">
+    {% if member.interests %}
+    <h2>Interests</h2>
+    {% for interest in member.interests %}
+    <a href="{{ site.baseurl }}/interests/?{{ interest | downcase | strip | uri_escape }}">{{ interest | downcase | strip }}</a><br/>
+    {% endfor %}
+    {% endif %}
+  </div>
   <script type="text/template" class="template-interests">
     <h2>Interests</h2>
     <% _(interests).each(function(interest) { %>

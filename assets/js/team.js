@@ -45,15 +45,16 @@
     });
 
     // Set up template based on filter
-    var selector, compiled;
+    var selector, compiled, destination;
     if (category === 'profile') {
 
       // Render templates
       _(['skills', 'interests']).each(function(set) {
         if (!members[0][set].length) return;
         selector = '.template-' + set;
+        destination = '.' + set + '-block';
         compiled = _.template($(selector).html());
-        $(selector).replaceWith(compiled(members[0]));
+        $(destination).html(compiled(members[0]));
       });
 
     } else if (filter) {
