@@ -1,8 +1,8 @@
 ---
 permalink: /docsprint/guides/planning/
+title: Planning a Doc Sprint
 ---
-
-# Planning a Doc Sprint
+# {{ page.title }}
 
 Good planning will make people more likely to join the doc sprint, will ensure that participants have a smooth, productive experience, and will make it easier to document the outcomes.
 

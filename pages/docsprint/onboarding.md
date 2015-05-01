@@ -1,10 +1,9 @@
 ---
 permalink: /docsprint/onboarding/
 published: true
-title: Untitled
+title: Onboarding Doc Sprint
 ---
-
-# Onboarding Doc Sprint
+# {{ page.title }}
 
 ## tl;dr
 

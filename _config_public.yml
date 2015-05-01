@@ -7,3 +7,6 @@ assets:
   baseurl: /hub/assets
 
 editor_url: http://prose.io/#
+
+# For Google Analytics
+google_analytics_ua: UA-48605964-1

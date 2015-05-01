@@ -1,7 +1,8 @@
 ---
 permalink: /docsprint/
+title: Doc Sprints
 ---
-# Doc Sprints
+# {{ page.title }}
 
 ## What's a Doc Sprint?
 
