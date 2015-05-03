@@ -4,10 +4,6 @@ redcarpet:
   - with_toc_data
 highlighter: rouge
 
-# Uncomment one or both of these to speed up site generation while developing.
-#skip_index: true
-#skip_compression: true
-
 excerpt_separator: <!-- more -->
 exclude:
 - README.md
