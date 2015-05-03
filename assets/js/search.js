@@ -1,43 +1,27 @@
 define(['angularAMD', 'liveSearch', 'lunr'], function(angularAMD, liveSearch, lunr) {
   var ngHub = angular.module('hubSearch', ['LiveSearch']);
 
-  ngHub.factory('pagesByUrlPromise', ["$http", "$q", function($http, $q) {
-    return $http.get(SITE_BASEURL + '/url_to_doc.json').then(function(response) {
-      return response.data;
-    });
-  }]);
-
-  ngHub.factory('pageIndexPromise', ["$http", "$q", function($http, $q) {
-    return $http.get(SITE_BASEURL + '/index.json').then(function(response) {
+  ngHub.factory('searchIndexPromise', ["$http", "$q", function($http, $q) {
+    return $http.get(SITE_BASEURL + '/search-index.json').then(function(response) {
       return response.data;
     });
   }]);
 
 
-  ngHub.factory('pagesByUrl', ["pagesByUrlPromise", function(pagesByUrlPromise) {
+  ngHub.factory('searchIndex', ["searchIndexPromise", function(searchIndexPromise) {
     var container = {};
-
-    // populate asynchronously
-    pagesByUrlPromise.then(function(url_to_doc_json) {
-      container['index'] = url_to_doc_json;
-    });
-
-    return container;
-  }]);
-
-  ngHub.factory('pageIndex', ["pageIndexPromise", function(pageIndexPromise) {
-    var container = {};
-    pageIndexPromise.then(function(index_json) {
-      container['index'] = lunr.Index.load(index_json);
+    searchIndexPromise.then(function(index_json) {
+      container.url_to_doc = index_json.url_to_doc;
+      container.index = lunr.Index.load(index_json.index);
     });
     return container;
   }]);
 
-  ngHub.factory('pagesSearch', ["pagesByUrl", "pageIndex", function(pagesByUrl, pageIndex) {
+  ngHub.factory('pagesSearch', ["searchIndex", function(searchIndex) {
     return function(term) {
-      var results = pageIndex.index.search(term);
+      var results = searchIndex.index.search(term);
       angular.forEach(results, function(result) {
-        var page = pagesByUrl.index[result.ref];
+        var page = searchIndex.url_to_doc[result.ref];
         result.page = page;
         // make top-level attribute available for LiveSearch
         result.displayTitle = page.title || page.url;

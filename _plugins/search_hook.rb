@@ -12,8 +12,7 @@ module Jekyll
     def after_render
       pages_api_after_render
       return if self.config['skip_index']
-      search_pages = Hub::SearchIndexBuilder.build_index(self)
-      self.pages.concat search_pages
+      self.pages << Hub::SearchIndexBuilder.build_index(self)
     end
   end
 end
