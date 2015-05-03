@@ -47,4 +47,4 @@
 {% else %}<script src="{{ site.baseurl }}{{ script_url }}"></script>{% endunless %}
 {% endfor %}
 
-<script async data-main="{{ site.baseurl }}/assets/js/main" src="{{ site.baseurl }}/assets/js/vendor/requirejs/require.js"></script>
+<script async data-main="{{ site.baseurl }}/assets/js/main" src="{{ site.baseurl }}{% asset_path vendor/requirejs/require %}"></script>

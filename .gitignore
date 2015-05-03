@@ -2,6 +2,7 @@ _site
 _site_public
 .jekyll-metadata
 .sass-cache
+.jekyll-assets-cache
 .DS_Store
 *.log
 .*.swp
@@ -9,3 +10,4 @@ _site_public
 _test/tmp
 bower_components
 coverage/*
+*.pyc
