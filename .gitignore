@@ -6,6 +6,8 @@ _site_public
 *.log
 .*.swp
 .vagrant
+_compressed
 _test/tmp
 bower_components
 coverage/*
+*.pyc
