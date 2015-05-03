@@ -13,19 +13,11 @@ module Hub
       cxt.load(File.join(site.source, '_plugins', 'search.js'))
 
       index_page = JekyllPagesApi::PageWithoutAFile.new(
-        site, site.source, '', 'index.json')
-      index_page.content = cxt.eval("JSON.stringify(index.toJSON());")
-
-      url_to_doc_page = JekyllPagesApi::PageWithoutAFile.new(
-        site, site.source, '', 'url_to_doc.json')
-      url_to_doc_page.content = cxt.eval("JSON.stringify(url_to_doc);")
-
-      pages = [index_page, url_to_doc_page]
-      pages.each do |page|
-        page.data['layout'] = nil
-        page.render(Hash.new, site.site_payload)
-      end
-      return pages
+        site, site.source, '', 'search-index.json')
+      index_page.content = cxt[:result]
+      index_page.data['layout'] = nil
+      index_page.render(Hash.new, site.site_payload)
+      return index_page
     end
 
     def self.find_corpus_page(pages)
