@@ -12,6 +12,11 @@
   latitude: 41.938874
   longitude: -72.686031
   timezone: 'Eastern Time Zone (UTC-05:00)'
+- code: BOS
+  label: Boston
+  latitude: 42.365613
+  longitude: -71.00956
+  timezone: 'Eastern Time Zone (UTC-05:00)'
 - code: CHI
   label: Chicago
   latitude: 41.974162
