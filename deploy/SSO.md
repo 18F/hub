@@ -95,7 +95,7 @@ example, `https://auth.18f.gov/hub.18f.gov` will be rewritten as
   }
 ```
 
-### *.conf files
+### .conf files
 
 Now, create a `/etc/nginx/vhosts/[YOUR-PROJECT].conf` file and include
 the `auth-locations.conf` file in the bottom of the `server` block that
