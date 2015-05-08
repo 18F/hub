@@ -1,50 +1,27 @@
 define(['angularAMD', 'liveSearch', 'lunr'], function(angularAMD, liveSearch, lunr) {
   var ngHub = angular.module('hubSearch', ['LiveSearch']);
 
-  ngHub.factory('pagesPromise', ["$http", "$q", function($http, $q) {
-    return $http.get(SITE_BASEURL + '/api/v1/pages.json').then(function(response) {
-      return response.data.entries;
+  ngHub.factory('searchIndexPromise', ["$http", "$q", function($http, $q) {
+    return $http.get(SITE_BASEURL + '/search-index.json').then(function(response) {
+      return response.data;
     });
   }]);
 
-  ngHub.factory('pagesByUrl', ["pagesPromise", function(pagesPromise) {
-    var result = {};
 
-    // populate asynchronously
-    pagesPromise.then(function(docs) {
-      angular.forEach(docs, function(doc) {
-        result[doc.url] = doc;
-      });
+  ngHub.factory('searchIndex', ["searchIndexPromise", function(searchIndexPromise) {
+    var container = {};
+    searchIndexPromise.then(function(index_json) {
+      container.url_to_doc = index_json.url_to_doc;
+      container.index = lunr.Index.load(index_json.index);
     });
-
-    return result;
+    return container;
   }]);
 
-  ngHub.factory('pageIndex', ["pagesPromise", function(pagesPromise) {
-    var index = lunr(function() {
-      this.ref('url');
-
-      this.field('title', {boost: 10});
-      this.field('tags', {boost: 10});
-      this.field('url', {boost: 5});
-      this.field('body');
-    });
-
-    // populate asynchronously
-    pagesPromise.then(function(docs) {
-      angular.forEach(docs, function(page) {
-        index.add(page);
-      });
-    });
-
-    return index;
-  }]);
-
-  ngHub.factory('pagesSearch', ["pagesByUrl", "pageIndex", function(pagesByUrl, pageIndex) {
+  ngHub.factory('pagesSearch', ["searchIndex", function(searchIndex) {
     return function(term) {
-      var results = pageIndex.search(term);
+      var results = searchIndex.index.search(term);
       angular.forEach(results, function(result) {
-        var page = pagesByUrl[result.ref];
+        var page = searchIndex.url_to_doc[result.ref];
         result.page = page;
         // make top-level attribute available for LiveSearch
         result.displayTitle = page.title || page.url;

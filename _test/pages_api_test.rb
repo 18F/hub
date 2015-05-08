@@ -15,21 +15,13 @@
 # @author Aidan Feldman (aidan.feldman@gsa.gov)
 
 require_relative 'test_helper'
+require_relative 'site_builder'
 
 require 'minitest/autorun'
 
 module Hub
   class PagesApiTest < ::Minitest::Test
-    # before all
-    # TODO isolate the tests better
-    BUILD_DIR = File.join(Dir.pwd, '_test', 'tmp')
-    unless system(
-      "bundle exec jekyll build --destination #{BUILD_DIR} --trace",
-      {:out => '/dev/null', :err =>STDERR})
-      STDERR.puts "\n***\nSite failed to build for pages_api_test\n***\n"
-      exit $?.exitstatus
-    end
-    PATH = File.join(BUILD_DIR, 'api', 'v1', 'pages.json')
+    PATH = File.join(SiteBuilder::BUILD_DIR, 'api', 'v1', 'pages.json')
 
     def read_json(path)
       contents = File.read(path)

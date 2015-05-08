@@ -30,6 +30,11 @@ module Hub
     def canonicalize(s)
       Canonicalizer.canonicalize s
     end
+
+    # Chops off the suffix from s, if s ends with suffix
+    def trim_suffix(s, suffix)
+      s.end_with? suffix and s[0..-(suffix.length + 1)] or s
+    end
   end
 end
 

@@ -46,7 +46,9 @@ module Hub
       Departments.generate_pages(site)
       WorkingGroups.generate_pages(site)
       Snippets.generate_pages(site)
-      Skills.generate_pages(site)
+      # Disabled in favor of templated pages in `/pages/`
+      # Skills.generate_pages(site)
+      Compressor.compress(site)
     end
   end
 end

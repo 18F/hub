@@ -81,16 +81,16 @@
 ================================================== -->
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
-  <script src="{{ site.baseurl }}/assets/js/ie8/html5shiv.js"></script>
-  <script src="{{ site.baseurl }}/assets/js/ie8/respond.js"></script>
-  <link href="{{ site.baseurl }}/assets/css/ie8/ie.css" rel="stylesheet">
+  <script src="{{ site.baseurl }}{% asset_path ie8/html5shiv %}"></script>
+  <script src="{{ site.baseurl }}{% asset_path ie8/respond %}"></script>
+  <link href="{{ site.baseurl }}{% asset_path ie8/ie.css %}" rel="stylesheet">
 <![endif]-->
 
 <script>
 // export some helpful site-wide variables
 window.site = {
   baseurl: "{{ site.baseurl }}"{% unless site.public %},
-  access_token: "<!--# echo var="access_token" -->"{% endunless %}
+  access_token: '<!--# echo var="access_token" -->'{% endunless %}
 };
 </script>
 
