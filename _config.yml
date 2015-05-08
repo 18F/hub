@@ -36,7 +36,7 @@ assets:
   cache: true
 
 # use where a full URL is appropriate (e.g. RSS, OG tags)
-url: https://hub.18f.us
+url: https://hub.18f.gov
 
 # metadata
 title: 18F Hub
@@ -71,7 +71,7 @@ defaults:
         repo: 18F/hub-pages-private
         prefix: pages/private/
 
-editor_url: https://hub.18f.us/edit/#
+editor_url: https://hub.18f.gov/edit/#
 midas_url: "https://midas.18f.us"
 
 prose:
