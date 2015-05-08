@@ -1,7 +1,7 @@
 ## Single Sign-On
 
 The Hub's `google_auth_proxy` instance is configured as a single sign-on
-service for multiple 18.gov domains using a single set of MyUSA OAuth
+service for multiple 18f.gov sub-domains using a single set of MyUSA OAuth
 credentials. The configuration, inspired by the instructions in
 [bitly/google_auth_proxy#12](https://github.com/bitly/google_auth_proxy/issues/12),
 is subtle, but effective.
@@ -22,13 +22,13 @@ cookie_domain = ".18f.gov"
 ```
 
 The `cookie_domain` ensures that a single `.18f.gov` auth cookie will provide
-access to any application hosted on an 18f.gov domain (for which the Hub's
+access to any application hosted on an 18f.gov sub-domain (for which the Hub's
 `google_auth_proxy` is configured to act as a reverse proxy, of course).
 
 ### /etc/nginx/vhosts/auth-locations.conf
 
-This file is included by every Nginx `server` block for which the
-`google_auth_proxy` provides authentication. The `location /` block is the
+Include this file at the end of every Nginx `server` block for which you want the
+`google_auth_proxy` to provide authentication. The `location /` block is the
 normal case; after the user is authenticated, all requests will be routed
 through this block and passed to the `google_auth_proxy`.
 
@@ -95,11 +95,11 @@ example, `https://auth.18f.gov/hub.18f.gov` will be rewritten as
   }
 ```
 
-### /etc/nginx/vhosts/hub.conf
+### *.conf files
 
-Now, in the bottom of the `server` block that configures `hub.18f.gov:443`,
-or any other virtual host that uses the `google_auth_proxy` for
-authentication, all that's required is:
+Now, create a `/etc/nginx/vhosts/[YOUR-PROJECT].conf` file and include
+the `auth-locations.conf` file in the bottom of the `server` block that
+defines the https server:
 
 ```
   include vhosts/auth-locations.conf;
