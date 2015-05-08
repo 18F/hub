@@ -39,7 +39,7 @@
 </script>
 
 <!-- Browser warning, console message -->
-<script src="{{ site.baseurl }}{% asset_path 18f.js %}"></script>
+<script src="{% asset_path 18f.js %}"></script>
 
 {% for script_url in page.scripts %}
 {% unless script_url contains '.min.js' %}
@@ -47,4 +47,4 @@
 {% else %}<script src="{{ site.baseurl }}{{ script_url }}"></script>{% endunless %}
 {% endfor %}
 
-<script async data-main="{{ site.baseurl }}/assets/js/main" src="{{ site.baseurl }}{% asset_path vendor/requirejs/require %}"></script>
+<script async data-main="{{ site.baseurl }}/assets/js/main" src="{% asset_path vendor/requirejs/require %}"></script>
