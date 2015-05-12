@@ -71,7 +71,7 @@ defaults:
         repo: 18F/hub-pages-private
         prefix: pages/private/
 
-editor_url: https://hub.18f.gov/edit/#
+editor_url: https://github.com/
 midas_url: "https://midas.18f.us"
 
 prose:
