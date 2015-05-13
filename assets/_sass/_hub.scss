@@ -29,6 +29,19 @@ ul {
   }
 }
 
+ol {
+  list-style-type: decimal;
+  li {
+    ol {
+      list-style-type: lower-alpha;
+      li {
+        margin-left: 2em;
+        padding-right: 2em;
+      }
+    }
+  }
+}
+
 .nav {
   float: left;
   width: 100%;
