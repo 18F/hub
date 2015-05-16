@@ -26,13 +26,19 @@ jekyll_pages_api_search:
 
 excerpt_separator: <!-- more -->
 exclude:
-- README.md
-- LICENSE.md
 - CONTRIBUTING.md
+- COPYING.txt
+- Gemfile
+- Gemfile.lock
+- LICENSE.md
+- README.md
+- Rakefile
+- Vagrantfile
+- bower.json
 - deploy
+- go
 - pages/private/README.md
 - vendor
-- go
 
 permalink: pretty
 tag_dir: tags
