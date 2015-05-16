@@ -5,10 +5,17 @@ module Hub
     def self.build_index(site)
       corpus_page = find_corpus_page(site.pages)
       raise 'Pages API corpus not found' if corpus_page == nil
+      index_fields = {
+        'title' => {'boost' => 10},
+        'tags' => {'boost' => 10},
+        'url' => {'boost' => 5},
+        'body' => nil,
+      }
 
       cxt = V8::Context.new
       cxt.load(File.join(site.source,
         'assets', 'js', 'vendor', 'lunr.js', 'lunr.js'))
+      cxt[:index_fields] = index_fields
       cxt.eval("var corpus = #{corpus_page.content};")
       cxt.load(File.join(site.source, '_plugins', 'search.js'))
 

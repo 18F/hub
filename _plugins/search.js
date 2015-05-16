@@ -1,10 +1,10 @@
 var index = lunr(function() {
   this.ref('url');
 
-  this.field('title', {boost: 10});
-  this.field('tags', {boost: 10});
-  this.field('url', {boost: 5});
-  this.field('body');
+  for (var field_name in index_fields) {
+    var boost = index_fields[field_name];
+    this.field(field_name, boost);
+  }
 });
 
 var url_to_doc = {};
