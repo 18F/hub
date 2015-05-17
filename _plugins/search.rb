@@ -12,7 +12,7 @@ module Hub
       cxt.load File.join(site.source, search_config['lunr_js_source'])
       cxt[:index_fields] = search_config['index_fields'] || {}
       cxt.eval("var corpus = #{corpus_page.content};")
-      cxt.load(File.join(site.source, '_plugins', 'search.js'))
+      cxt.load(File.join(File.dirname(__FILE__), 'search.js'))
 
       index_page = JekyllPagesApi::PageWithoutAFile.new(
         site, site.source, '', 'search-index.json')
