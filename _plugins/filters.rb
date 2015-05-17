@@ -33,8 +33,12 @@ module Hub
       Canonicalizer.canonicalize s
     end
 
-    # Retrieves the asset_path for a search component.
     # Chops off the suffix from s, if s ends with suffix.
+    def trim_suffix(s, suffix)
+      s.end_with? suffix and s[0..-(suffix.length + 1)] or s
+    end
+
+    # Retrieves the asset_path for a search component.
     # This is to make the path compatible with require.js.
     def require_js_asset_path(path)
       # Digging into the jekyll-assets internals here, since we can't invoke
