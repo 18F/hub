@@ -2,6 +2,11 @@
 # new team member is added in a new location, that location will have to be
 # added to this list. http://www.latlong.net or similar is useful here.
 ---
+- code: ATL
+  label: Atlanta
+  latitude: 33.640728
+  longitude: -84.4277,17 
+  timezone: 'Eastern Time Zone (UTC-05:00)'
 - code: AUS
   label: Austin
   latitude: 30.197429
