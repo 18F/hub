@@ -18,9 +18,9 @@
     <!--# include virtual="{{ site.baseurl }}/auth/$authenticated_user/index.html"  -->
 {% endunless %}
 
-<section class="container bare">
+{% include nav-main.html %}
 
-  {% include nav-main.html %}
+<section class="container bare">
 
   <div ng-controller="SearchController" class="search-container" role="main" itemscope itemprop="mainContentOfPage" ng-strict-di>
 
