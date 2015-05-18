@@ -72,6 +72,11 @@
   latitude: 37.621313
   longitude: -122.378955
   timezone: 'Pacific Time Zone (UTC-08:00)'
+- code: STL
+  label: St. Louis
+  latitude: 38.749689
+  longitude: -90.372133
+  timezone: 'Central Time Zone (UTC-06:00)'
 - code: TUS
   label: Tuscon
   latitude: 32.11451
