@@ -1,10 +1,9 @@
 ---
 layout: bare
-permalink: guidelines/
-published: true
+permalink: /guidelines/
+title: Guidelines
 ---
-
-# Guidelines
+# {{ page.title }}
 
 * [Open Source Policy](https://github.com/18F/open-source-policy)
 * [API Standards](https://github.com/18F/api-standards)

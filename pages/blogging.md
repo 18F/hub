@@ -1,6 +1,6 @@
 ---
 title: How to write a blog for 18F
-permalink: /blogging
+permalink: /blogging/
 ---
 # {{ page.title }}
 

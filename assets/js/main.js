@@ -1,16 +1,16 @@
+---
+---
 require.config({
   paths: {
-    'angular': 'vendor/angular/angular',
-    // 'angular-route': '.../angular-route.min',
-    'angularAMD': 'vendor/angularAMD/angularAMD',
-    'liveSearch': 'vendor/angular-livesearch/liveSearch',
-    'lunr': 'vendor/lunr.js/lunr'
+    'angular': '{{ "vendor/angular/angular" | require_js_asset_path }}',
+    'angularAMD': '{{ "vendor/angularAMD/angularAMD" | require_js_asset_path }}',
+    'liveSearch': '{{ "vendor/angular-livesearch/liveSearch" | require_js_asset_path }}',
+    'lunr': '{{ "vendor/lunr.js/lunr" | require_js_asset_path }}'
   },
   shim: {
     'angularAMD': ['angular'],
-    // 'angular-route': ['angular'],
     'liveSearch': ['angular'],
     'lunr': []
   },
-  deps: ['search']
+  deps: ['{{ "search" | asset_path }}']
 });

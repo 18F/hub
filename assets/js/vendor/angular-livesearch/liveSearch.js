@@ -94,7 +94,7 @@ angular.module("LiveSearch", ["ng"])
                 var vals = target.val().split(",");
                 var search_string = vals[vals.length - 1].trim();
                 // Do Search
-                if (search_string.length < 3 || search_string.length > 9) {
+                if (search_string.length < 3) {
                     scope.visible = false;
                     //unmanaged code needs to force apply
                     scope.$apply();

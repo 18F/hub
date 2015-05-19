@@ -1,24 +1,27 @@
 ---
-project: Hourglass
-name: hourglass
+project: CALC
+name: calc
 github:
-- 18F/hourglass
-description: Hourglass is a tool to help contracting personnel estimate their per-hour
+- 18F/calc
+description: CALC is a tool to help contracting personnel estimate their per-hour
   labor costs for a contract, based on historical pricing information.
 partner:
 - General Services Administration
 partners: 
 impact: 
-stage: alpha
+stage: beta
 milestones:
 - 'November 2014: Initial discovery stage begins'
 - 'November 2014: Begin building alpha'
+- 'March 2015: Name changed from "Hourglass" to "CALC"'
+- 'May 2015: Public beta launched'
 contact:
-- josh.ruihley@gsa.gov
+- nick.brethauer@gsa.gov
 stack: Python, JavaScript
-team: josh, kaitlin, brethauer, shawn, alison
+team: josh, kaitlin, brethauer, shawn, alison, theresa, maya
 licenses:
   mirage: Public Domain (CC0)
 links:
 - https://trello.com/b/LjXJaVbZ/hourglass
+- https://calc.gsa.gov
 status: 

@@ -2,6 +2,11 @@
 # new team member is added in a new location, that location will have to be
 # added to this list. http://www.latlong.net or similar is useful here.
 ---
+- code: ATL
+  label: Atlanta
+  latitude: 33.640728
+  longitude: -84.4277,17 
+  timezone: 'Eastern Time Zone (UTC-05:00)'
 - code: AUS
   label: Austin
   latitude: 30.197429
@@ -11,6 +16,11 @@
   label: Windsor Locks, CT
   latitude: 41.938874
   longitude: -72.686031
+  timezone: 'Eastern Time Zone (UTC-05:00)'
+- code: BOS
+  label: Boston
+  latitude: 42.365613
+  longitude: -71.00956
   timezone: 'Eastern Time Zone (UTC-05:00)'
 - code: CHI
   label: Chicago
@@ -67,6 +77,11 @@
   latitude: 37.621313
   longitude: -122.378955
   timezone: 'Pacific Time Zone (UTC-08:00)'
+- code: STL
+  label: St. Louis
+  latitude: 38.749689
+  longitude: -90.372133
+  timezone: 'Central Time Zone (UTC-06:00)'
 - code: TUS
   label: Tuscon
   latitude: 32.11451
