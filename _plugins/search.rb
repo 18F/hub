@@ -1,3 +1,4 @@
+require 'jekyll_pages_api'
 require 'v8'
 
 module Hub
@@ -6,11 +7,12 @@ module Hub
       corpus_page = find_corpus_page(site.pages)
       raise 'Pages API corpus not found' if corpus_page == nil
 
+      search_config = site.config['jekyll_pages_api_search']
       cxt = V8::Context.new
-      cxt.load(File.join(site.source,
-        'assets', 'js', 'vendor', 'lunr.js', 'lunr.js'))
+      cxt.load File.join(site.source, search_config['lunr_js_source'])
+      cxt[:index_fields] = search_config['index_fields'] || {}
       cxt.eval("var corpus = #{corpus_page.content};")
-      cxt.load(File.join(site.source, '_plugins', 'search.js'))
+      cxt.load(File.join(File.dirname(__FILE__), 'search.js'))
 
       index_page = JekyllPagesApi::PageWithoutAFile.new(
         site, site.source, '', 'search-index.json')

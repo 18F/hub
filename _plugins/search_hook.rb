@@ -11,7 +11,8 @@ module Jekyll
 
     def after_render
       pages_api_after_render
-      return if self.config['skip_index']
+      search_config = self.config['jekyll_pages_api_search']
+      return if search_config == nil || search_config['skip_index']
       self.pages << Hub::SearchIndexBuilder.build_index(self)
     end
   end

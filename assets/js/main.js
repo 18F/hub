@@ -2,15 +2,13 @@
 ---
 require.config({
   paths: {
-    'angular': '{{ "vendor/angular/angular" | asset_path | trim_suffix:".js" }}',
-    // 'angular-route': '.../angular-route.min',
-    'angularAMD': '{{ "vendor/angularAMD/angularAMD" | asset_path | trim_suffix:".js" }}',
-    'liveSearch': '{{ "vendor/angular-livesearch/liveSearch" | asset_path | trim_suffix:".js" }}',
-    'lunr': '{{ "vendor/lunr.js/lunr" | asset_path | trim_suffix:".js" }}'
+    'angular': '{{ "vendor/angular/angular" | require_js_asset_path }}',
+    'angularAMD': '{{ "vendor/angularAMD/angularAMD" | require_js_asset_path }}',
+    'liveSearch': '{{ "vendor/angular-livesearch/liveSearch" | require_js_asset_path }}',
+    'lunr': '{{ "vendor/lunr.js/lunr" | require_js_asset_path }}'
   },
   shim: {
     'angularAMD': ['angular'],
-    // 'angular-route': ['angular'],
     'liveSearch': ['angular'],
     'lunr': []
   },
