@@ -8,9 +8,11 @@ angular.module("LiveSearch", ["ng"])
         scope: {
             liveSearchCallback: '=',
             liveSearchSelect: '=?',
+            liveSearchSelectCallback: '=',
             liveSearchItemTemplate: '@',
             liveSearchWaitTimeout: '=?',
-            liveSearchMaxResultSize: '=?'
+            liveSearchMaxResultSize: '=?',
+            liveSearchMaxlength: '=?'
         },
         template: "<input type='text' />",
         link: function (scope, element, attrs, controller) {
@@ -32,11 +34,17 @@ angular.module("LiveSearch", ["ng"])
             scope.$watch("selectedIndex", function(newValue, oldValue) {
                 var item = scope.results[newValue];
                 if(item) {
-                    if(attrs.liveSearchSelect) {
-                        element.val(item[attrs.liveSearchSelect]);
+                    if(attrs.liveSearchSelectCallback) {
+                        var value = scope.liveSearchSelectCallback.call(null, {items: scope.results, item: item});
+                        element.val(value);
                     }
                     else {
-                        element.val(item);
+                        if (attrs.liveSearchSelect) {
+                            element.val(item[attrs.liveSearchSelect]);
+                        }
+                        else {
+                            element.val(item);
+                        }
                     }
                 }
                 if ('undefined' !== element.controller('ngModel')) {
@@ -94,7 +102,8 @@ angular.module("LiveSearch", ["ng"])
                 var vals = target.val().split(",");
                 var search_string = vals[vals.length - 1].trim();
                 // Do Search
-                if (search_string.length < 3) {
+                if (search_string.length < 3 ||
+                    (scope.liveSearchMaxlength !== null && search_string.length > scope.liveSearchMaxlength)) {
                     scope.visible = false;
                     //unmanaged code needs to force apply
                     scope.$apply();
@@ -131,7 +140,7 @@ angular.module("LiveSearch", ["ng"])
             };
 
             var itemTemplate = element.attr("live-search-item-template") || "{{result}}";
-            var template = "<ul ng-show='visible' ng-style=\"{'top':top,'left':left,'width':width}\" class='searchresultspopup'><li ng-class=\"{ 'selected' : isSelected($index) }\" ng-click='select($index)' ng-repeat='result in results' id='search_result_{{$index}}'>" + itemTemplate + "</li></ul>";
+            var template = "<ul ng-show='visible' ng-style=\"{'top':top,'left':left,'width':width}\" class='searchresultspopup'><li ng-class=\"{ 'selected' : isSelected($index) }\" ng-click='select($index)' ng-repeat='result in results'>" + itemTemplate + "</li></ul>";
             var searchPopup = $compile(template)(scope);
             document.body.appendChild(searchPopup[0]);
         }
