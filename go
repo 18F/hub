@@ -92,9 +92,17 @@ def build
   exec_cmd "bundle #{JEKYLL_BUILD_CMD} #{JEKYLL_PUBLIC_CONFIG}"
 end
 
+
+def validate
+  require 'html/proofer'
+  HTML::Proofer.new('./_site').run
+  HTML::Proofer.new('./_site_public').run
+end
+
 def ci_build
   test
   build
+  validate
 end
 
 def deploy(deploy_commands)
@@ -177,6 +185,7 @@ CommandGroup.add_group(
     :serve => 'Serves the internal hub at localhost:4000',
     :serve_public => 'Serves the public hub at localhost:4000/hub/',
     :build => 'Builds the internal and external versions of the Hub',
+    :validate => 'Run HTML link validation on Hub pages',
     :ci_build => 'Runs tests and builds both Hub versions',
   })
 
