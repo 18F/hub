@@ -1,3 +1,3 @@
 ---
 - include: nginx.yml
-#- include: google_auth_proxy.yml
+#- include: oauth2_proxy.yml

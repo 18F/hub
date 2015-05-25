@@ -1,40 +1,40 @@
 #! /bin/sh
 
 ### BEGIN INIT INFO
-# Provides:          google_auth_proxy
+# Provides:          oauth2_proxy
 # Required-Start:    $all
 # Required-Stop:     $all
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: starts the google_auth_proxy for the 18F Hub
-# Description:       starts the google_auth_proxy for the 18F Hub
+# Short-Description: starts the oauth2_proxy for the 18F Hub
+# Description:       starts the oauth2_proxy for the 18F Hub
 ### END INIT INFO
 
 ###
 # Originally sourced from Jamie Curle:
 #   http://jamie.curle.io/blog/compiling-nginx-ubuntu/
 #   https://s3-eu-west-1.amazonaws.com/jcurle/code/nginx.sh
-# 
+#
 # Modified by Eric Mill, for 18F, 2014-07-15.
 #   https://github.com/18f/DevOps
 #
 # Modified by Mike Bland, for 18F, 2014-11-24.
 #   https://github.com/18F/hub
-### 
+###
 
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
-DAEMON=/usr/local/18f/bin/google_auth_proxy.sh
-DAEMON_OPTS="--config=/usr/local/18f/etc/google_auth_proxy.cfg"
-NAME=google_auth_proxy
-DESC=google_auth_proxy
-LOGS=/var/log/google_auth_proxy
-PIDFILE=/var/run/google_auth_proxy.run
+DAEMON=/usr/local/18f/bin/oauth2_proxy.sh
+DAEMON_OPTS="--config=/usr/local/18f/etc/oauth2_proxy.cfg"
+NAME=oauth2_proxy
+DESC=oauth2_proxy
+LOGS=/var/log/oauth2_proxy
+PIDFILE=/var/run/oauth2_proxy.run
 
 test -x $DAEMON || exit 0
 
 # Include nginx defaults if available
-if [ -f /etc/default/google_auth_proxy ] ; then
-        . /etc/default/google_auth_proxy
+if [ -f /etc/default/oauth2_proxy ] ; then
+        . /etc/default/oauth2_proxy
 fi
 
 set -e
