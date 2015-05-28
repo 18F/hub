@@ -4,8 +4,8 @@
 ---
 - code: ATL
   label: Atlanta
-  latitude: 33.640728
-  longitude: -84.4277,17 
+  latitude: 33.6375184
+  longitude: -84.4287258
   timezone: 'Eastern Time Zone (UTC-05:00)'
 - code: AUS
   label: Austin
