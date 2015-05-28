@@ -1,6 +1,6 @@
 {% if page.edit_info %}{% assign edit_info = page.edit_info %}
   <div class="edit-info">
     {% capture path %}{% if edit_info.prefix %}{{ page.path | remove_first:edit_info.prefix }}{% else %}{{ page.path }}{% endif %}{% endcapture %}
-    <p><a href="{{ site.editor_url }}{{ edit_info.repo }}/edit/{{ edit_info.branch }}/{{ path }}">Edit this page »</a></p>
+    <p><a href="{{ site.editor_url }}{{ edit_info.repo }}/edit/{{ edit_info.branch }}/{{ path }}">Edit this page</a></p>
   </div>
 {% endif %}
