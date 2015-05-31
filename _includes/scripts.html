@@ -47,4 +47,4 @@
 {% else %}<script src="{{ site.baseurl }}{{ script_url }}"></script>{% endunless %}
 {% endfor %}
 
-<script async data-main="{{ site.baseurl }}/assets/js/main" src="{% asset_path vendor/requirejs/require %}"></script>
+{% jekyll_pages_api_search_load %}
