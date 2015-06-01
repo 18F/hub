@@ -42,6 +42,7 @@ run your own local instance at `http://localhost:4000`:
 ```
 $ git clone git@github.com:18F/hub.git
 $ cd hub
+$ git submodule update --init 
 $ ./go init
 $ ./go serve
 ```
