@@ -92,7 +92,7 @@ defaults:
         prefix: pages/private/
 
 editor_url: https://github.com/
-midas_url: "https://midas.18f.us"
+midas_url: "https://openopps.digitalgov.gov"
 
 prose:
   rooturl: 'pages'
