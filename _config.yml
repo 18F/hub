@@ -103,6 +103,13 @@ defaults:
       layout: team_member
       title_field: full_name
 
+  - scope:
+      path: "projects"
+      type: 18F-private
+    values:
+      layout: project
+      title_field: name
+
 editor_url: https://github.com/
 midas_url: "https://openopps.digitalgov.gov"
 

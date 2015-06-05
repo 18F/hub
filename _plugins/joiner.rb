@@ -169,8 +169,6 @@ module Hub
 
     # Joins public and private project data.
     def join_project_data
-      promote_private_data 'projects'
-
       if @public_mode
         @data['projects'].delete_if {|p| p['status'] == 'Hold'}
       end
