@@ -3,6 +3,17 @@
     <a href="{{ site.baseurl }}/">
       <img src="{{ site.baseurl }}/assets/images/18f-logo-small.png" alt="18F logo">
     </a>
+    {% unless site.public %}
+    <li>
+      <a href="{{ site.baseurl }}/n00b">New to 18F?</a>
+    </li>
+    <li>
+      <a href="{{ site.baseurl }}/how-to">How to...</a>
+    </li>
+    <li>
+      <a href="{{ site.baseurl }}/structure">18F Structure</a>
+    </li>
+    {% endunless %}
     <li>
       <a href="{{ site.baseurl }}/team">Team</a>
     </li>
@@ -12,21 +23,10 @@
     <li>
       <a href="{{ site.baseurl }}/guidelines">Guidelines</a>
     </li>
-    {% unless site.public %}
-    <li>
-      <a href="{{ site.baseurl }}/structure">18F Structure</a>
-    </li>
-    <li>
-      <a href="{{ site.baseurl }}/how-to">How to...</a>
-    </li>
-    {% endunless %}
     <li>
       <a href="{{ site.baseurl }}/about">About the Hub</a>
     </li>
     {% unless site.public %}
-    <li>
-      <a href="{{ site.baseurl }}/n00b">New to 18F?</a>
-    </li>
     {% endunless %}
   </ul>
 </nav>
