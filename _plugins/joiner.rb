@@ -49,7 +49,6 @@ module Hub
       impl.promote_private_data 'pif_projects'
 
       impl.join_snippet_data SNIPPET_VERSIONS
-      impl.join_project_status
       impl.import_guest_users
       impl.filter_private_pages
 
@@ -289,13 +288,6 @@ module Hub
         result[timestamp] = joined unless joined.empty?
       end
       @data['snippets'] = result
-    end
-
-    # Joins project status information into +site.data[+'project_status'].
-    def join_project_status
-      unless @public_mode
-        @data['project_status'] = @join_source['project_status']
-      end
     end
 
     # Imports the guest_users list into the top-level site.data object.
