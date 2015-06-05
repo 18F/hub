@@ -44,7 +44,6 @@ module Hub
       impl.promote_private_data 'departments'
       impl.promote_private_data 'email_groups'
       impl.promote_private_data 'nav_links'
-      impl.promote_private_data 'working_groups'
       impl.promote_private_data 'pif_team'
       impl.promote_private_data 'pif_projects'
 
@@ -59,7 +58,7 @@ module Hub
     # `(collection || [])`-style logic in Hub plugins.
     def self.assign_empty_defaults(site_data)
       ::HashJoiner.assign_empty_defaults(site_data,
-        ['team', 'projects', 'working_groups'], ['hub'], [])
+        ['team', 'projects'], ['hub'], [])
       ::HashJoiner.assign_empty_defaults(site_data['hub'],
         ['guest_users'], [], [])
     end
@@ -124,7 +123,7 @@ module Hub
 
       # We'll always need a 'team' property.
       @join_source['team'] ||= []
-      ['team', 'projects', 'departments', 'working_groups'].each do |c|
+      ['team', 'projects', 'departments'].each do |c|
         i = @join_source[c]
         @join_source[c] = JoinerImpl.flatten_index(i) if i.instance_of? Hash
       end

@@ -2,7 +2,7 @@
 layout: bare
 ---
 
-{% assign wg = page.working_group %}
+{% assign wg = page %}
 <div>
 	<h1>{% if wg.full_name %}{{ wg.full_name }}{% else %}{{ wg.name }}{% endif %}</h1>
   {% if wg.mission %}<strong>{{ wg.mission }}</strong>{% endif %}

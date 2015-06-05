@@ -1,16 +1,16 @@
 ---
-title: Working Groups, Guilds, and Grouplets
-permalink: wg/
+title: Working Groups
+permalink: working-groups/
 ---
 <h1>{{ page.title }}</h1>
 
 <p>These are ad-hoc, self-organizing groups dedicated to improving an aspect of
 18F culture and operations. For more background on the concept, see the
-<a href="http://18f.github.io/grouplet-playbook">Grouplet Playbook</a>.</p>
+<a href="https://pages.18f.gov/grouplet-playbook">Grouplet Playbook</a>.</p>
 
-{% for wg in site.data.working_groups %}
+{% for wg in site.data.working-groups %}
 <div class="index-entry">
-<a href="{{ site.baseurl }}/wg/{{ wg.name | canonicalize }}"><strong>{% if wg.full_name %}{{ wg.full_name }}{% else %}{{ wg.name }}{% endif %}</a></strong><br/>
+<a href="{{ site.baseurl }}/working-groups/{{ wg.name | canonicalize }}"><strong>{% if wg.full_name %}{{ wg.full_name }}{% else %}{{ wg.name }}{% endif %}</a></strong><br/>
 {% if wg.mission %}<em>{{ wg.mission }}</em><br/>{% endif %}
 {% if wg.leads %}{% assign member_separator = ', ' %}{% assign members = wg.leads %}Leads:{% include team_members_short.html %}<br/>{% endif %}
 {% if wg.members %}{% assign members = wg.members %}Members: {% include team_members_short.html %}{% endif %}

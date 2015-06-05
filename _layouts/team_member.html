@@ -22,10 +22,17 @@ scripts:
   <a href="{{ site.baseurl }}/projects/{{ proj.name | canonicalize }}">{{ proj.project }}</a><br/>{% endfor %}
   {% endif %}
 
-  {% if member.working_groups %}
+  {% if member.working-groups %}
   <h2>Working Groups</h2>
-  <p>{% for wg in member.working_groups %}
-  <a href="{{ site.baseurl }}/wg/{{ wg.name | canonicalize }}">{{ wg.name }}</a><br/>
+  <p>{% for wg in member.working-groups %}
+  <a href="{{ site.baseurl }}/working-groups/{{ wg.name | canonicalize }}">{{ wg.name }}</a><br/>
+  {% endfor %}</p>
+  {% endif %}
+
+  {% if member.guilds %}
+  <h2>Guilds</h2>
+  <p>{% for wg in member.guilds %}
+  <a href="{{ site.baseurl }}/guilds/{{ wg.name | canonicalize }}">{{ wg.name }}</a><br/>
   {% endfor %}</p>
   {% endif %}
 

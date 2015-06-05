@@ -1,0 +1,19 @@
+---
+title: Guilds
+permalink: guilds/
+---
+<h1>{{ page.title }}</h1>
+
+<p>These are officially-sanctioned, self-organizing groups dedicated to
+improving an aspect of 18F culture and operations. For more background on the
+concept, see the <a href="https://pages.18f.gov/grouplet-playbook">Grouplet
+Playbook</a>.</p>
+
+{% for wg in site.data.guilds %}
+<div class="index-entry">
+<a href="{{ site.baseurl }}/guilds/{{ wg.name | canonicalize }}"><strong>{% if wg.full_name %}{{ wg.full_name }}{% else %}{{ wg.name }}{% endif %}</a></strong><br/>
+{% if wg.mission %}<em>{{ wg.mission }}</em><br/>{% endif %}
+{% if wg.leads %}{% assign member_separator = ', ' %}{% assign members = wg.leads %}Leads:{% include team_members_short.html %}<br/>{% endif %}
+{% if wg.members %}{% assign members = wg.members %}Members: {% include team_members_short.html %}{% endif %}
+</div>
+{% endfor %}

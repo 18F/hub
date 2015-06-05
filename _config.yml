@@ -110,6 +110,20 @@ defaults:
       layout: project
       title_field: name
 
+  - scope:
+      path: "working-groups"
+      type: 18F-private
+    values:
+      layout: working_group
+      title_field: full_name
+
+  - scope:
+      path: "guilds"
+      type: 18F-private
+    values:
+      layout: working_group
+      title_field: full_name
+
 editor_url: https://github.com/
 midas_url: "https://openopps.digitalgov.gov"
 
