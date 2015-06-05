@@ -19,8 +19,6 @@ require 'team_hub/page'
 module Hub
   class Team
     def self.generate_pages(site)
-      ::TeamHub::Page.generate_collection_item_pages(site, 'team',
-        'team_member', 'full_name', primary_key: 'name')
       team = site.data['team'] || []
       team.each {|i| generate_team_member_snippets_page(site, i)}
     end

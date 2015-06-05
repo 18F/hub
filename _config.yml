@@ -1,3 +1,4 @@
+team_collection: 18F-private
 markdown: redcarpet
 redcarpet:
   extensions:
@@ -72,24 +73,35 @@ team_img_dir: assets/images/team
 missing_team_member_img: logo-18f.jpg
 guest_user_img: logo-18f.jpg
 
+collections:
+  18F-private:
+    output: true
+    permalink: /:path/
+
 # Editable link idea from:
 # https://github.com/blacktm/standard-jekyll-template/blob/gh-pages/_config.yml
 defaults:
-  -
-    scope:
+  - scope:
       path: "pages"
     values:
       layout: "bare"
       edit_info:
         repo: 18F/hub
         branch: master
-  -
-    scope:
+
+  - scope:
       path: "pages/private"
     values:
       edit_info:
         repo: 18F/hub-pages-private
         prefix: pages/private/
+
+  - scope:
+      path: "team"
+      type: 18F-private
+    values:
+      layout: team_member
+      title_field: full_name
 
 editor_url: https://github.com/
 midas_url: "https://openopps.digitalgov.gov"

@@ -37,6 +37,7 @@ module Hub
       impl = JoinerImpl.new site
       impl.setup_join_source {|source| Joiner.assign_empty_defaults source}
 
+      impl.collect_data_from_team_collection
       impl.join_team_data
       impl.join_project_data
 
@@ -139,10 +140,31 @@ module Hub
       index.values
     end
 
+    def collect_data_from_team_collection
+      data = {}
+      collection = @site.config['team_collection']
+      @site.collections[collection].docs.each do |doc|
+        # Trim off the team collection and the file name from the path.
+        dirs = doc.relative_path.split(File::SEPARATOR)[1..-2]
+        data_class = dirs.pop
+        current = data
+        dirs.each {|dir| current = (current[dir] ||= Hash.new)}
+        (current[data_class] ||= Array.new) << doc.data
+        doc.data['title'] = doc.data[doc.data['title_field']]
+      end
+
+      if @public_mode
+        HashJoiner.remove_data data, 'private'
+      else
+        HashJoiner.promote_data data, 'private'
+      end
+
+      data.each {|k,v| @site.data[k] = v}
+    end
+
     # Joins team member data, converts site.data[team] to a hash of
     # username => team_member, and assigns team member images.
     def join_team_data
-      promote_private_data 'team'
       assign_team_member_images
     end
 

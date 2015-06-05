@@ -1,13 +1,10 @@
 ---
 layout: bare
-category: profile
 scripts:
   - /assets/js/vendor/underscore.min.js
   - /assets/js/team.js
 ---
-
-{% assign member = page.team_member %}
-<div class="team-member">
+{% assign member = page %}<div class="team-member">
 
   <img class="img-circle team-img bio-clip" src="{{ site.baseurl }}/{{ member.image }}" alt="Photo of {{ member.full_name }}">
   <h1>{{ member.full_name }}</h1>
