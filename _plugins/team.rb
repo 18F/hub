@@ -19,8 +19,7 @@ require 'team_hub/page'
 module Hub
   class Team
     def self.generate_pages(site)
-      team = site.data['team'] || []
-      team.each {|i| generate_team_member_snippets_page(site, i)}
+      site.data['team'].each {|i| generate_team_member_snippets_page(site, i)}
     end
 
     def self.generate_team_member_snippets_page(site, team_member)
