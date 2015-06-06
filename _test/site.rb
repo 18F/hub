@@ -15,6 +15,7 @@
 # @author Mike Bland (michael.bland@gsa.gov)
 
 require "jekyll"
+require "jekyll/converters/identity"
 require "jekyll/site"
 
 module Hub
@@ -22,6 +23,7 @@ module Hub
     def initialize(config: {})
       @config = config
       @data = {'public' => {}, 'private' => {}}
+      @converters = [::Jekyll::Converters::Identity.new]
       @pages = []
       @source = @config['source']
     end

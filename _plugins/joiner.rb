@@ -39,7 +39,6 @@ module Hub
 
       impl.collect_data_from_team_collection
       impl.assign_team_member_images
-      @data['projects'].delete_if {|p| p['status'] == 'Hold'} if @public_mode
 
       impl.promote_private_data 'departments'
       impl.promote_private_data 'email_groups'
@@ -151,6 +150,7 @@ module Hub
         doc.data['title'] = doc.data[doc.data['title_field']]
       end
 
+      data['projects'].delete_if {|p| p['status'] == 'Hold'} if @public_mode
       private_data_method = @public_mode ? :remove_data : :promote_data
       HashJoiner.send private_data_method, data, 'private'
       @data.merge! data
