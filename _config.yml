@@ -37,6 +37,7 @@ exclude:
 - go
 - pages/private/README.md
 - vendor
+- bower_components
 
 permalink: pretty
 tag_dir: tags
