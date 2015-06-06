@@ -38,8 +38,8 @@ module Hub
       impl.setup_join_source {|source| Joiner.assign_empty_defaults source}
 
       impl.collect_data_from_team_collection
-      impl.join_team_data
-      impl.join_project_data
+      impl.assign_team_member_images
+      @data['projects'].delete_if {|p| p['status'] == 'Hold'} if @public_mode
 
       impl.promote_private_data 'departments'
       impl.promote_private_data 'email_groups'
@@ -151,26 +151,9 @@ module Hub
         doc.data['title'] = doc.data[doc.data['title_field']]
       end
 
-      if @public_mode
-        HashJoiner.remove_data data, 'private'
-      else
-        HashJoiner.promote_data data, 'private'
-      end
-
-      data.each {|k,v| @site.data[k] = v}
-    end
-
-    # Joins team member data, converts site.data[team] to a hash of
-    # username => team_member, and assigns team member images.
-    def join_team_data
-      assign_team_member_images
-    end
-
-    # Joins public and private project data.
-    def join_project_data
-      if @public_mode
-        @data['projects'].delete_if {|p| p['status'] == 'Hold'}
-      end
+      private_data_method = @public_mode ? :remove_data : :promote_data
+      HashJoiner.send private_data_method, data, 'private'
+      @data.merge! data
     end
 
     # Creates +self.team_by_email+, a hash of email address => username to use
@@ -213,11 +196,8 @@ module Hub
     # If a block is given, +site.data[@source]+ will be passed to the block
     # for other initialization/setup.
     def setup_join_source
-      if @public_mode
-        HashJoiner.remove_data @join_source, 'private'
-      else
-        HashJoiner.promote_data @join_source, 'private'
-      end
+      private_data_method = @public_mode ? :remove_data : :promote_data
+      HashJoiner.send private_data_method, @join_source, 'private'
       yield @join_source if block_given?
     end
 
