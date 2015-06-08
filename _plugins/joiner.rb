@@ -41,8 +41,6 @@ module Hub
       impl.join_project_data
 
       impl.promote_private_data 'departments'
-      impl.promote_private_data 'email_groups'
-      impl.promote_private_data 'nav_links'
       impl.promote_private_data 'working_groups'
       impl.promote_private_data 'pif_team'
       impl.promote_private_data 'pif_projects'
