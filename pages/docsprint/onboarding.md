@@ -10,7 +10,7 @@ title: Onboarding Doc Sprint
 A lot of new people are getting ready to start at 18F. Do these things to prepare for them:
 
 1. **Every project**: [update project READMEs](#repo).
-2. Create an onboarding guide for your team. (You can use the [18F website team's as a model](https://hub.18f.us/private/18f-site/onboarding/).)
+2. Create an onboarding guide for your team. (You can use the [18F website team's as a model]({{ site.baseurl }}/18f-site/onboarding/).)
 3. Update our [18F Guides](http://18f.github.io/guides/).
 
 This cohort will test our documentation as they onboard.
