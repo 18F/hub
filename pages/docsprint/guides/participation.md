@@ -9,7 +9,7 @@ A well-organized doc sprint is designed to improve team documentation quickly an
 Documentation includes, but is not limited to:
 
 * READMEs, especially making sure that anyone can easily build/run a project in minutes (if not seconds)
-* Onboarding guides a la https://hub.18f.us/private/18f-site/onboarding/
+* Onboarding guides a la [the 18F-site team onboarding guide]({{ site.baseurl }}/18f-site/onboarding/)
 * Updating our [18F Guides](http://18f.github.io/guides/)
 
 **Here are some helpful materials and resources for participating in a doc sprint.**

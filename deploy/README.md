@@ -2,7 +2,7 @@
 
 ### Set up SSH
 
-Ask Mike Bland or Eric Mill to help add your public key (typically `$HOME/.ssh/id_rsa.pub`) to `$HOME/.ssh/authorized_keys` on `hub.18f.us` and `18f.gsa.gov`. Then make sure your `$HOME/.ssh/config` file on your machine contains the following entries:
+Ask Mike Bland or Eric Mill to help add your public key (typically `$HOME/.ssh/id_rsa.pub`) to `$HOME/.ssh/authorized_keys` on `hub.18f.gov` and `18f.gsa.gov`. Then make sure your `$HOME/.ssh/config` file on your machine contains the following entries:
 
 ```
 Host 18f-site
@@ -12,7 +12,7 @@ Host 18f-site
    IdentitiesOnly yes
 
 Host 18f-hub
-   Hostname hub.18f.us
+   Hostname hub.18f.gov
    User ubuntu
    IdentityFile [$HOME]/.ssh/id_rsa
    IdentitiesOnly yes
@@ -22,19 +22,19 @@ This configuration allows you to log into each machine as the appropriate user b
 
 ### DEPRECATED: `publish.sh` and `publish-prod.sh`
 
-Not much to see here; after regenerating the site with Jekyll, [publish.sh](publish.sh) just `rsync`s it to `hub.18f.us`. [publish-prod.sh](publish-prod.sh) does the same thing for the Public Hub.
+Not much to see here; after regenerating the site with Jekyll, [publish.sh](publish.sh) just `rsync`s it to `hub.18f.gov`. [publish-prod.sh](publish-prod.sh) does the same thing for the Public Hub.
 
 Now that automated deployments are underway (see below), these scripts are deprecated. They remain as examples for those wishing to deploy their own Hub instances quickly.
 
 ### AWS
 
-https://hub.18f.us/ is running as an AWS EC2 instance named `18f-hub` based on 18F's `m3.medium` image. The AWS Elastic IP of the instance is assigned to the `hub.18f.us` subdomain via the AWS Route 53 panel. The associated AWS Security Group restricts access to the SSH, HTTP, and HTTPS ports (22, 80, and 443), but those ports are reachable from any source IP address.
+https://hub.18f.gov/ is running as an AWS EC2 instance named `18f-hub` based on 18F's `m3.medium` image. The AWS Elastic IP of the instance is assigned to the `hub.18f.gov` subdomain via the AWS Route 53 panel. The associated AWS Security Group restricts access to the SSH, HTTP, and HTTPS ports (22, 80, and 443), but those ports are reachable from any source IP address.
 
 The Public Hub is served directly from https://18f.gsa.gov/.
 
 ### Nginx
 
-For the internal Hub, [/etc/nginx/nginx.conf](etc/nginx/nginx.conf) is the stock 18F nginx config that comes with the image, modified to include the Hub-specific config, [/etc/nginx/vhosts/hub.conf](etc/nginx/vhosts/hub.conf), further described in the Google Auth Proxy section below:
+For the internal Hub, [/etc/nginx/nginx.conf](etc/nginx/nginx.conf) is the stock 18F nginx config that comes with the image, modified to include the Hub-specific config, [/etc/nginx/vhosts/hub.conf](etc/nginx/vhosts/hub.conf), further described in the OAuth2 Proxy section below:
 
 ```
   ##
@@ -53,36 +53,40 @@ For the internal hub, [/etc/nginx/vhosts/hub.conf](etc/nginx/vhosts/hub.conf) is
 
 The public Hub is served by the same web server as https://18f.gsa.gov and doesn't require its own configuration.
 
-### Google Auth Proxy
+### OAuth2 Proxy
 
 _This pertains to the internal Hub only._
 
-The [etc](etc) and [usr](usr) subdirectory trees contain the files needed to configure Nginx and the [Google Auth Proxy](https://github.com/bitly/google_auth_proxy) in concert to ensure only 18F team members can access the Hub. The current version of `google_auth_proxy` running on `hub.18f.us` is 1.0; the latest version can be downloaded from: https://github.com/bitly/google_auth_proxy/releases and unpacked on the Hub machine as `/usr/local/18f/bin/google_auth_proxy`.
+The [etc](etc) and [usr](usr) subdirectory trees contain the files needed to configure Nginx and the [OAuth2 Proxy](https://github.com/bitly/oauth2_proxy) in concert to ensure only 18F team members can access the Hub. The current version of `oauth2_proxy` running on `hub.18f.gov` was built at commit a80aad04f7bbe821bca9ea9659fef04c869ac970. The latest packaged version can be downloaded from: https://github.com/bitly/oauth2_proxy/releases and unpacked on the Hub machine as `/usr/local/18f/bin/oauth2_proxy`.
 
-* [/etc/init.d/google_auth_proxy](etc/init.d/google_auth_proxy): Enables the `google_auth_proxy` service to be started and stopped like any other standard service, via `sudo service google_auth_proxy [start|stop|restart]`.
+* [/etc/init.d/oauth2_proxy](etc/init.d/oauth2_proxy): Enables the `oauth2_proxy` service to be started and stopped like any other standard service, via `sudo service oauth2_proxy [start|stop|restart]`.
 
-* [/etc/nginx/vhosts/hub.conf](etc/nginx/vhosts/hub.conf): All `http://` requests are permanently redirected (301) to the `https://` equivalent by the first `server` block. The second `server` block, listening for `https://` requests, is configured to forward all requests (except for the logo used for the Google OAuth consent screen) to the `google_auth_proxy` service. The content of the site is ultimately served by the final `server` block, accessible only by the running `google_auth_proxy` instance on the localhost, given the AWS Security Group port restrictions.
+* [/etc/nginx/vhosts/hub.conf](etc/nginx/vhosts/hub.conf): All `http://` requests are permanently redirected (301) to the `https://` equivalent by the first `server` block. The second `server` block, listening for `https://` requests, is configured to forward all requests (except for the logo used for the consent screen) to the `oauth2_proxy` service. The content of the site is ultimately served by the final `server` block, accessible only by the running `oauth2_proxy` instance on the localhost, given the AWS Security Group port restrictions.
 
   *Notice the `port_in_redirect off;` line in the third `server` block:* Without this line, permanent redirects from directory URLs _without_ a trailing slash to directory URLs _with_ a trailing slash will include the local server's port, which will cause the redirect to fail.
 
-* [/usr/local/18f/bin/google_auth_proxy.sh](usr/local/18f/bin/google_auth_proxy.sh): A shim that allows the `google_auth_proxy` logs to be captured in `/var/log/google_auth_proxy/access.log`.
+* [/usr/local/18f/bin/oauth2_proxy.sh](usr/local/18f/bin/oauth2_proxy.sh): A shim that allows the `oauth2_proxy` logs to be captured in `/var/log/oauth2_proxy/access.log`.
 
-* [/usr/local/18f/etc/google_auth_proxy.cfg](usr/local/18f/etc/google_auth_proxy.cfg): The configuration file for the `google_auth_proxy`, specified as a command line flag by [/etc/init.d/google_auth_proxy](etc/init.d/google_auth_proxy). The `client_id` and `client_secret` fields have been redacted from the repository. Currently they come from Mike Bland's personal account, since https://console.developers.google.com/ is currently disabled for the gsa.gov domain. A dedicated, shared `18f-hub-admin@gsa.gov` account would be ideal. For progress on this front, see 18F DevOps issues [60](https://github.com/18F/DevOps/issues/60) and [79](https://github.com/18F/DevOps/issues/79).
+* [/usr/local/18f/etc/oauth2_proxy.cfg](usr/local/18f/etc/oauth2_proxy.cfg): The configuration file for the `oauth2_proxy`, specified as a command line flag by [/etc/init.d/oauth2_proxy](etc/init.d/oauth2_proxy). The `client_id` and `client_secret` fields have been redacted from the repository. Currently they contain Mike Bland's MyUSA app credentials for the 18F Hub.
+
+  Previously they came from Mike Bland's personal account, since https://console.developers.google.com/ is currently disabled for the gsa.gov domain. A dedicated, shared `18f-hub-admin@gsa.gov` account would be ideal. For progress on this front, see 18F DevOps issues [60](https://github.com/18F/DevOps/issues/60) and [79](https://github.com/18F/DevOps/issues/79).
 
   *Notice the `authenticated_emails_file` setting, and that `google_apps_domains` has been commented out.* Access is granted to the union of these two sets, i.e. to everyone in the `authenticated_emails_file` _or_ in the `google_apps_domains`.
 
 #### Single Sign-On
 
-For the details on how the Hub's `google_auth_proxy` instance is configured as a single sign-on service for multiple 18f.gov domains, see the [Single Sign-On instructions](SSO.md).
+For the details on how the Hub's `oauth2_proxy` instance is configured as a single sign-on service for multiple 18f.gov domains, see the [Single Sign-On instructions](SSO.md).
 
 #### Adding/removing users
 
-The `authenticated_emails_file` is the list of Google Apps-authenticated users authorized to access the Hub. It is currently generated by the [auth.rb](../_plugins/auth.rb) plugin. Whenever team member email address information is updated in [_data/private/team.yml](../_data/private/team.yml) or [_data/private/hub/guest_users.yml](../_data/private/hub/guest_users.yml), a new version of this file will be generated, and the `google_auth_proxy` will need to be restarted.
+The `authenticated_emails_file` is the list of authenticated users authorized to access the Hub. It is currently generated by the [auth.rb](../_plugins/auth.rb) plugin. Whenever team member email address information is updated in [_data/private/team.yml](../_data/private/team.yml) or [_data/private/hub/guest_users.yml](../_data/private/hub/guest_users.yml), a new version of this file will be generated, and the `oauth2_proxy` will reload the file.
 
-One you have your `$HOME/.ssh/config` configured as described at the beginning of this document, you can restart the `google_auth_proxy` like so:
+#### Configuration changes
+
+The `oauth2_proxy` must be restarted if you update `/usr/local/18f/etc/oauth2_proxy.cfg`. One you have your `$HOME/.ssh/config` configured as described at the beginning of this document, you can restart the `oauth2_proxy` like so:
 
 ```
-$ ssh 18f-hub sudo service google_auth_proxy restart
+$ ssh 18f-hub sudo service oauth2_proxy restart
 ```
 
 ### Preparing for automated deployment

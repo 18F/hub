@@ -14,50 +14,19 @@
     <span>This site is in alpha. <a href="https://18f.gsa.gov/dashboard/stages/"><span class="sr-only">This site is in alpha.</span>Learn more here.</a></span>
   </div>
 
-  {% include nav-main.html %}
-
+{% include nav-main.html %}
 {% unless site.public %}
     <!--# include virtual="{{ site.baseurl }}/auth/$authenticated_user/index.html"  -->
 {% endunless %}
 
 <section class="container bare">
-
-  <div ng-controller="SearchController" class="bare-content" role="main" itemscope itemprop="mainContentOfPage" ng-strict-di>
-
-    {% raw %}
-
-      <div class="hub-search skip-nav-anchor" id="anchor" tabindex="-1">
-        <label for="search1" class="sr-only">Search - click or press '/'</label>
-        <live-search id="search1" type="text"
-          live-search-callback="searchCallback"
-          live-search-item-template="<a href='{{result.page.url}}'>{{result.page.title || result.page.url}}</a>"
-          live-search-select="displayTitle"
-          live-search-max-result-size="20"
-          ng-model="searchText"
-          ng-keydown="searchKeyDown($event)"
-          placeholder="Search – click or press '/'"
-          aria-autocomplete="list"
-          aria-activedescendant="search_result_0"
-          aria-haspopup="true"
-        ></live-search>
-      </div>
-
-      <div ng-hide="searchText">
-
-    {% endraw %}
-
+  {% jekyll_pages_api_search_interface %}
+  <div class="bare-content" role="main" itemscope itemprop="mainContentOfPage">
     {{ content }}
 
+    <hr/>
     {% include edit_link.html %}
-
-    {% raw %}
-
-      </div>
-
-    {% endraw %}
-
   </div>
-
 </section>
 
   {% include footer.html %}
