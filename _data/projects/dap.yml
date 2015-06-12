@@ -13,7 +13,7 @@ milestones:
 - 'March 2015: Analytics.USA.gov announced'
 contact:
 - dap@gsa.gov
-stack: jeykll, ruby
+stack: jekyll, bourbon, neat, d3, node, analytics-reporter
 team: gray, eric, leah, shawn
 licenses:
   analytics.usa.gov: Public Domain (CC0)
