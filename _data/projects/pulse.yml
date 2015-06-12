@@ -15,7 +15,7 @@ milestones:
 - 'June 2015: Pulse.CIO.gov announced'
 contact:
 - pulse@cio.gov
-stack: 
+stack: jeykll, ruby
 team: gray, julia, eric
 licenses:
   pulse: Public Domain (CC0)
