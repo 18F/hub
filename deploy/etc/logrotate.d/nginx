@@ -1,0 +1,15 @@
+/var/log/nginx/access.log {
+  rotate 12
+  monthly
+  compress
+  missingok
+  notifempty
+}
+
+/var/log/nginx/error.log {
+  rotate 12
+  monthly
+  compress
+  missingok
+  notifempty
+}
