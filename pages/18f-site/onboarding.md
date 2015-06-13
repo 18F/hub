@@ -9,34 +9,34 @@ permalink: /18f-site/onboarding/
 
 ## Welcome!
 
-Welcome to our team. This page provides an overview of how we work, the tools we use, and the different sites you'll use to do your job. Over the next week, you will set up your dev environment, learn how to create a blog post, and get connected to all of the sites we use on a regular basis.
+Welcome to our team. This page provides an overview of how we work, the tools we use, and the different sites you'll use to do your job. Over the next week, you'll set up your dev environment, learn how to create a blog post, and get connected to all of the sites we use on a regular basis.
 
 ## What is this site?
 
 You're looking at a page on The [Hub]({{ site.baseurl }}). The Hub is our internal, editable Wiki with information about how 18F works and what tools we use to do our work.
 
-The best place to start on The Hub is the [New to 18F page]({{ site.baseurl }}/n00b/), which contains a checklist of administrative things to do during your first week. Like every part on the Hub, the New to 18F page is a working document. If you see something that could be improved, please make a note of it. You’ll learn how to update The Hub later this week.
+The best place to start on The Hub is the [New to 18F page]({{ site.baseurl }}/n00b/), which contains a checklist of administrative things to do during your first week. Like every part of the Hub, the New to 18F page is a working document. If you see something that could be improved, please make a note of it. You’ll learn how to update The Hub later this week.
 
 
 ## Who is on my team and when will I meet them?
 
-On Tuesday, we'll invite you to a meeting where we'll introduce you to the team, our current sprint — or work cycle — and how we work together. During this meeting we'll cover
+On Tuesday, we'll invite you to a meeting where we'll introduce you to the team, our current sprint — or work cycle — and how we work together. During this meeting we'll cover:
 
 #### Who is on the team right now.
 
-> [Elaine]({{site.baseurl}}/team/elaine/) and [Greg]({{site.baseurl}}/team/greg/) are the 18f-site team's lead and owner. Our team is made up of different people who have the availibility to embed with us for each sprint. We assess who can work with us during each sprint — as well as their specific skills — to assess what we can accomplish during any particular sprint. You can see who is on the team on the Hub on the [18f.gsa.gov team page]({{ site.baseurl }}/private/18f-site/).
+[Elaine]({{site.baseurl}}/team/elaine/) and [Greg]({{site.baseurl}}/team/greg/) are the 18f-site team's lead and owner. Our team is made up of different people who have the availibility to embed with us for each sprint. We assess who can work with us during each sprint — as well as their specific skills — to assess what we can accomplish during any particular sprint. You can see who is on the team on the Hub on the [18f.gsa.gov team page]({{ site.baseurl }}/private/18f-site/).
 
 #### Your role on the team
 
-> Your role on the team will largely depend on your background and skill set. We have tasks available for designers, developers, researchers, content strategists, UX designers, and others. We are always happy to have new members of the team, so if you don't fit one of these roles, let us know and we'll cook up something together.
+Your role on the team will largely depend on your background and skill set. We have tasks available for designers, developers, researchers, content strategists, UX designers, and others. We are always happy to have new members of the team, so if you don't fit one of these roles, let us know and we'll cook up something together.
 
 #### How we work
 
-> We use Slack and GitHub to communicate and complete our work. We also use Google Hangouts for sprint planning, review, and retrospectives. We'll let you know what Slack channels you should join and how to find your teammates.
+We use Slack and GitHub to communicate and complete our work. We also use Google Hangouts for sprint planning, review, and retrospectives. We'll let you know what Slack channels you should join and how to find your teammates.
 
 #### Who are our stakeholders and what is the review period like?
 
-> Our team is directly accountable to the rest of the 18F staff. Everyone else who works for 18F is considered a stakeholder. In addition to a sprint review for our team, at the end of every sprint we give the team opportunities to review our work and give us feedback.
+Our team is directly accountable to the rest of the 18F staff. Everyone else who works for 18F is considered a stakeholder. In addition to a sprint review for our team, at the end of every sprint we give the team opportunities to review our work and give us feedback.
 
 ## Tools We Use
 
@@ -143,12 +143,12 @@ Tuesday:
 
 Wednesday:
 
--   Meeting with Mike Bland on overview on Working Groups and Guilds(no pressure)
--   Lunch with the team you’re joining / or with people you will work with
+-   Meeting with Mike Bland on overview of Working Groups and Guilds (no pressure)
+-   Lunch with the team you’re joining / or with people you'll work with
 
 Thursday:
 
--   Get assigned a internal 18F projects
+-   Get assigned an internal 18F project
 -   Work with buddy to observe
 -   Work with buddy to work on a task
 -   Get assigned a task to work on your own with buddy support
@@ -156,7 +156,7 @@ Thursday:
 Friday:
 
 -   Continue to do tasks
--   Contribute what they learned to the hub
+-   Contribute what you've learned to the hub
 -   "Uses This" interview with Mel
     -   What stuff did you learn at your old job that we should know?
 -   Feedback on onboarding process: How could we improve?
@@ -270,8 +270,8 @@ We've set up some high level goals we think each person joining our team should 
 
 ## Offboarding:
 
-> This section is a work in progress, please check back soon for updates.
+_This section is a work in progress, please check back soon for updates._
 
-- Russ to reach out to HH, Greg, etc. to initiate off-boarding
+- Russ to reach out to Hillary, Aaron, etc. to initiate off-boarding
 - Hand off meeting between onboarding team member and exiting
     - [insert agenda items]
