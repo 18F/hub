@@ -5,10 +5,9 @@ github:
 - 18F/calc
 description: CALC is a tool to help contracting personnel estimate their per-hour
   labor costs for a contract, based on historical pricing information.
-partner:
-- General Services Administration
+partner: General Services Administration
 partners: 
-impact: 
+impact: All federal acquisition personnel involved in buying professional services
 stage: beta
 milestones:
 - 'November 2014: Initial discovery stage begins'
@@ -16,9 +15,9 @@ milestones:
 - 'March 2015: Name changed from "Hourglass" to "CALC"'
 - 'May 2015: Public beta launched'
 contact:
-- nick.brethauer@gsa.gov
-stack: Python, JavaScript
-team: josh, kaitlin, brethauer, shawn, alison, theresa, maya
+- nicholas.brethauer@gsa.gov
+stack: Python, Django, JavaScript, Postgres
+team: josh, kaitlin, brethauer, shawn, alison, theresa, maya, christine
 licenses:
   mirage: Public Domain (CC0)
 links:
