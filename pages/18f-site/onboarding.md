@@ -15,7 +15,7 @@ Welcome to our team. This page provides an overview of how we work, the tools we
 
 You're looking at a page on The [Hub]({{ site.baseurl }}). The Hub is our internal, editable Wiki with information about how 18F works and what tools we use to do our work.
 
-The best place to start on The Hub is the [New to 18F page]({{ site.baseurl }}/n00b/), which contains a checklist of administrative things to do during your first week. Like every part of the Hub, the New to 18F page is a working document. If you see something that could be improved, please make a note of it. You’ll learn how to update The Hub later this week.
+The best place to start on The Hub is the [New to 18F page]({{ site.baseurl }}{% unless site.public %}/private{% endunless %}/n00b/), which contains a checklist of administrative things to do during your first week. Like every part of the Hub, the New to 18F page is a working document. If you see something that could be improved, please make a note of it. You’ll learn how to update The Hub later this week.
 
 
 ## Who is on my team and when will I meet them?
@@ -223,7 +223,7 @@ We've set up some high level goals we think each person joining our team should 
   </tr>
   <tr class="bare-row">
     <td class="bare-cell">Learn about The Hub</td>
-    <td>Start with the <a href="{{ site.baseurl }}/n00b/"> New to 18F</a> section and complete the listed tasks</td>
+    <td>Start with the <a href="{{ site.baseurl }}{% unless site.public %}/private{% endunless %}/n00b/"> New to 18F</a> section and complete the listed tasks</td>
     <td class="bare-cell"><input type="checkbox" /></td>
   </tr>
   <tr class="bare-row">
