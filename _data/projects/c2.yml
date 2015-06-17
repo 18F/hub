@@ -1,22 +1,22 @@
 ---
-project: Common Acquisition Platform Tools
+project: Communicart
 name: C2
 github:
 - 18F/C2
-description: A simplified, email-based purchasing approval tool for purchase card
-  holders authorized to buy office supplies for the government.
+description: At the core, Communicart (a.k.a. C2) is simple tool to automate and manage
+  approval workflows, with use cases implemented for GSA purchase approvals.
 partner:
 - General Services Administration
 partners: 
 stage: beta
-impact: Over 80,000 U.S. Federal Government purchase card holders.
+impact: For the GSA use cases alone, Communicart could be used by over 80,000 U.S.
+  Federal Government purchase card holders.
 milestones: 
-contact: raphael.villas@gsa.gov, kelly.robinson@gsa.gov
-stack: Ruby, CSS, JavaScript/Node, Python
-team: afeld, diego, raphy, cm, nick
+contact: raphael.villas@gsa.gov, john.felleman@gsa.gov
+stack: Ruby on Rails, Cloud Foundry
+team: afeld, raphy, cm, nick
 licenses:
   C2: Public Domain (CC0)
 links:
-- https://18f.github.io/C2/
 - https://cap.18f.us
 status: 
