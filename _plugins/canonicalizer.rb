@@ -24,7 +24,7 @@ module Hub
       sort_by_last_name! site_data['team']
       canonicalize_locations(site_data)
       canonicalize_projects(site_data)
-      canonicalize_working_groups(site_data)
+      canonicalize_working_groups_and_guilds(site_data)
       canonicalize_snippets(site_data)
       canonicalize_skills(site_data)
     end
@@ -33,7 +33,7 @@ module Hub
       if site_data.member? 'locations'
         site_data['locations'].each do |l|
           sort_by_last_name! (l['team'] || [])
-          ['projects', 'working_groups'].each do |category|
+          ['projects', 'working-groups', 'guilds'].each do |category|
             l[category].sort_by!{|i| i['name']} if l[category]
           end
         end
@@ -48,16 +48,16 @@ module Hub
       end
     end
 
-    def self.canonicalize_working_groups(site_data)
-      if site_data.member? 'working_groups'
-        site_data['working_groups'].each do |wg|
+    def self.canonicalize_working_groups_and_guilds(site_data)
+      ['working-groups', 'guilds'].each do |group|
+        (site_data[group] || []).each do |g|
           ['leads', 'members'].each do |member_type|
-            sort_by_last_name! wg[member_type] if wg.member? member_type
+            sort_by_last_name! g[member_type] if g.member? member_type
           end
         end
 
         site_data['team'].each do |member|
-          (member['working_groups'] || []).sort_by! {|wg| wg['name']}
+          (member[group] || []).sort_by! {|g| g['name']}
         end
       end
     end

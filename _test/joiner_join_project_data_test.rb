@@ -18,29 +18,36 @@ require_relative "test_helper"
 require_relative "../_plugins/joiner"
 require_relative "site"
 
+require "jekyll/document"
 require "minitest/autorun"
 
 module Hub
   class JoinProjectDataTest < ::Minitest::Test
     def setup
-      @site = DummyTestSite.new
-      @site.data['private']['team'] = {}
-      @site.data['private']['projects'] = [
-        {'name' => 'MSB-USA', 'status' => 'Hold'}
-      ]
+      config = {
+        'source' => '/', 'team_collection' => '18F', 'collections' => ['18F']}
+      @site = DummyTestSite.new config: config
+      collection = @site.collections['18F']
+      doc = ::Jekyll::Document.new(
+        '/_18F/projects/msb-usa.md', { site: @site, collection: collection })
+      doc.data.merge!(
+        {'name' => 'MSB-USA', 'status' => 'Hold', 'title_field' => 'name'})
+      collection.docs << doc
     end
 
     def test_join_project
-      @impl = JoinerImpl.new(@site)
-      @impl.join_project_data
-      assert_equal([{'name' => 'MSB-USA', 'status' => 'Hold'}],
+      impl = JoinerImpl.new(@site)
+      impl.collect_data_from_team_collection
+      assert_equal(
+        [{'name' => 'MSB-USA', 'status' => 'Hold',
+          'title' => 'MSB-USA', 'title_field' => 'name'}],
         @site.data['projects'])
     end
 
     def test_hide_hold_projects_in_public_mode
       @site.config['public'] = true
-      @impl = JoinerImpl.new(@site)
-      @impl.join_project_data
+      impl = JoinerImpl.new(@site)
+      impl.collect_data_from_team_collection
       assert_empty @site.data['projects']
     end
   end

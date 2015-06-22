@@ -37,18 +37,16 @@ module Hub
       impl = JoinerImpl.new site
       impl.setup_join_source {|source| Joiner.assign_empty_defaults source}
 
-      impl.join_team_data
-      impl.join_project_data
+      impl.collect_data_from_team_collection
+      impl.assign_team_member_images
 
       impl.promote_private_data 'departments'
       impl.promote_private_data 'email_groups'
       impl.promote_private_data 'nav_links'
-      impl.promote_private_data 'working_groups'
       impl.promote_private_data 'pif_team'
       impl.promote_private_data 'pif_projects'
 
       impl.join_snippet_data SNIPPET_VERSIONS
-      impl.join_project_status
       impl.import_guest_users
       impl.filter_private_pages
 
@@ -59,7 +57,7 @@ module Hub
     # `(collection || [])`-style logic in Hub plugins.
     def self.assign_empty_defaults(site_data)
       ::HashJoiner.assign_empty_defaults(site_data,
-        ['team', 'projects', 'working_groups'], ['hub'], [])
+        ['team', 'projects'], ['hub'], [])
       ::HashJoiner.assign_empty_defaults(site_data['hub'],
         ['guest_users'], [], [])
     end
@@ -124,7 +122,7 @@ module Hub
 
       # We'll always need a 'team' property.
       @join_source['team'] ||= []
-      ['team', 'projects', 'departments', 'working_groups'].each do |c|
+      ['team', 'projects', 'departments'].each do |c|
         i = @join_source[c]
         @join_source[c] = JoinerImpl.flatten_index(i) if i.instance_of? Hash
       end
@@ -139,20 +137,23 @@ module Hub
       index.values
     end
 
-    # Joins team member data, converts site.data[team] to a hash of
-    # username => team_member, and assigns team member images.
-    def join_team_data
-      promote_private_data 'team'
-      assign_team_member_images
-    end
-
-    # Joins public and private project data.
-    def join_project_data
-      promote_private_data 'projects'
-
-      if @public_mode
-        @data['projects'].delete_if {|p| p['status'] == 'Hold'}
+    def collect_data_from_team_collection
+      data = {}
+      collection = @site.config['team_collection']
+      @site.collections[collection].docs.each do |doc|
+        # Trim off the team collection and the file name from the path.
+        dirs = doc.relative_path.split(File::SEPARATOR)[1..-2]
+        data_class = dirs.pop
+        current = data
+        dirs.each {|dir| current = (current[dir] ||= Hash.new)}
+        (current[data_class] ||= Array.new) << doc.data
+        doc.data['title'] = doc.data[doc.data['title_field']]
       end
+
+      data['projects'].delete_if {|p| p['status'] == 'Hold'} if @public_mode
+      private_data_method = @public_mode ? :remove_data : :promote_data
+      HashJoiner.send private_data_method, data, 'private'
+      @data.merge! data
     end
 
     # Creates +self.team_by_email+, a hash of email address => username to use
@@ -195,11 +196,8 @@ module Hub
     # If a block is given, +site.data[@source]+ will be passed to the block
     # for other initialization/setup.
     def setup_join_source
-      if @public_mode
-        HashJoiner.remove_data @join_source, 'private'
-      else
-        HashJoiner.promote_data @join_source, 'private'
-      end
+      private_data_method = @public_mode ? :remove_data : :promote_data
+      HashJoiner.send private_data_method, @join_source, 'private'
       yield @join_source if block_given?
     end
 
@@ -267,13 +265,6 @@ module Hub
         result[timestamp] = joined unless joined.empty?
       end
       @data['snippets'] = result
-    end
-
-    # Joins project status information into +site.data[+'project_status'].
-    def join_project_status
-      unless @public_mode
-        @data['project_status'] = @join_source['project_status']
-      end
     end
 
     # Imports the guest_users list into the top-level site.data object.

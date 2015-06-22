@@ -23,7 +23,8 @@ module Hub
     def self.build_xrefs(site_data)
       impl = ::TeamHub::CrossReferencerImpl.new site_data
       impl.xref_projects_and_team_members
-      impl.xref_groups_and_team_members 'working_groups', ['leads', 'members']
+      impl.xref_groups_and_team_members 'working-groups', ['leads', 'members']
+      impl.xref_groups_and_team_members 'guilds', ['leads', 'members']
       impl.xref_snippets_and_team_members
       impl.xref_skills_and_team_members(['Skills', 'Interests'])
       impl.xref_locations

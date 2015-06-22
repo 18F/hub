@@ -31,7 +31,7 @@ module Hub
         generate_pages_endpoint(site),
         generate_projects_endpoint(site),
         generate_departments_endpoint(site),
-        generate_working_groups_endpoint(site),
+        generate_working_groups_and_guilds_endpoints(site),
         generate_pif_team_endpoint(site),
         generate_pif_projects_endpoint(site),
       ]
@@ -59,7 +59,7 @@ module Hub
          'pif-round', 'bio', 'email', 'slack', 'location',
          'skills', 'interests' ]
       join_fields = {'projects' => 'name', 'departments' => 'name',
-         'working_groups' => 'name'}
+         'working-groups' => 'name', 'guilds' => 'name'}
       data = create_filtered_hash(team, 'name', fields, join_fields)
       generate_endpoint(site, 'team', 'Team',
         'Team member info, indexed by username', data)
@@ -80,7 +80,8 @@ module Hub
     def self.generate_locations_endpoint(site)
       fields = ['latitude', 'longitude', 'timezone']
       join_fields = {
-        'team' => 'name', 'projects' => 'name', 'working_groups' => 'name'}
+        'team' => 'name', 'projects' => 'name', 'working-groups' => 'name',
+        'guilds' => 'name'}
       data = create_filtered_hash(
         site.data['locations'], 'code', fields, join_fields)
       generate_endpoint(site, 'locations', 'Locations',
@@ -112,14 +113,19 @@ module Hub
         create_filtered_hash(departments, 'name', ['links'], {}))
     end
 
-    def self.generate_working_groups_endpoint(site)
-      wg = site.data['working_groups']
-      return if !wg or wg.empty?
-      fields = ['slack', 'agenda', 'wiki', 'drive', 'links']
-      join_fields = {'leads' => 'name', 'members' => 'name'}
-      data = create_filtered_hash(wg, 'name', fields, join_fields)
-      generate_endpoint(site, 'working_groups', 'Working Groups',
-        'Working group info, indexed by name', data)
+    def self.generate_working_groups_and_guilds_endpoints(site)
+      [{'label' => 'working-groups', 'title' => 'Working Groups',
+        'singular' => 'Working group'},
+       {'label' => 'guilds', 'title' => 'Guilds',
+        'singular' => 'Guild'}].each do |item|
+        wg = site.data[item['label']]
+        return if !wg or wg.empty?
+        fields = ['slack', 'agenda', 'wiki', 'drive', 'links']
+        join_fields = {'leads' => 'name', 'members' => 'name'}
+        data = create_filtered_hash(wg, 'name', fields, join_fields)
+        generate_endpoint(site, item['label'], item['title'],
+          "#{item['singular']} info, indexed by name", data)
+      end
     end
 
     def self.generate_pif_team_endpoint(site)
