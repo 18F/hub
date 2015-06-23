@@ -21,6 +21,11 @@ jekyll_pages_api_search:
       boost: 5
     body:
 
+collections:
+  pages:
+    output: true
+    permalink: /:path/
+
 excerpt_separator: <!-- more -->
 exclude:
 - CONTRIBUTING.md
@@ -75,17 +80,16 @@ guest_user_img: logo-18f.jpg
 # Editable link idea from:
 # https://github.com/blacktm/standard-jekyll-template/blob/gh-pages/_config.yml
 defaults:
-  -
-    scope:
-      path: "pages"
+  - scope:
+      path: ""
+      type: pages
     values:
       layout: "bare"
       edit_info:
         repo: 18F/hub
         branch: master
-  -
-    scope:
-      path: "pages/private"
+  - scope:
+      path: "/private"
     values:
       edit_info:
         repo: 18F/hub-pages-private
