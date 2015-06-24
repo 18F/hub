@@ -1,5 +1,4 @@
 ---
-permalink: /snippets/guidelines/
 title: Guidelines for Writing Snippets
 ---
 # {{ page.title }}

@@ -1,6 +1,5 @@
 ---
 title: Joining the 18F site team
-permalink: /18f-site/onboarding/
 ---
 # {{ page.title }}
 > This is a working draft for onboarding and offboarding team members to the

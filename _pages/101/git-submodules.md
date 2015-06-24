@@ -1,6 +1,5 @@
 ---
 title: Hub 101 - Working with Git Submodules
-permalink: /101/git-submodules/
 ---
 # {{ page.title }}
 

@@ -1,6 +1,5 @@
 ---
 title: Hub 101 - Using the `./go` Script
-permalink: /101/go/
 ---
 # {{ page.title }}
 

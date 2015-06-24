@@ -1,5 +1,4 @@
 ---
-permalink: /docsprint/onboarding/
 published: true
 title: Onboarding Doc Sprint
 ---
