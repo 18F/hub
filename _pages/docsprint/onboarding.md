@@ -1,5 +1,4 @@
 ---
-published: true
 title: Onboarding Doc Sprint
 ---
 # {{ page.title }}
