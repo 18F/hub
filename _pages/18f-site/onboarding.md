@@ -208,7 +208,7 @@ We've set up some high level goals we think each person joining our team should 
   </tr>
    <tr class="bare-row">
     <td class="bare-cell"> Set up Google Drive</td>
-    <td>Become familiar with 18F Google Drive architecture</td>
+    <td>Add "18F Team Folder" to your Drive. Become familiar with its architecture.</td>
     <td class="bare-cell"><input type="checkbox" /></td>
   </tr>
     <tr class="bare-row">
