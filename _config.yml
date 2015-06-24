@@ -89,11 +89,12 @@ defaults:
         repo: 18F/hub
         branch: master
   - scope:
-      path: "/private"
+      path: "private"
+      type: pages
     values:
       edit_info:
         repo: 18F/hub-pages-private
-        prefix: pages/private/
+        prefix: _pages/private/
 
 editor_url: https://github.com/
 midas_url: "https://openopps.digitalgov.gov"
