@@ -35,7 +35,7 @@ module Jekyll
 
     # Returns the type of the collection if present, nil otherwise.
     def type
-      @type ||= @collection.label.nil? ? @collection.label.to_sym : nil
+      @type ||= @collection.nil? ? nil : @collection.label.to_sym
     end
 
     # Returns the front matter defaults defined for the file's URL and/or type
