@@ -11,6 +11,8 @@ module Hub
       basedir = SiteBuilder::BUILD_DIR
       pages_dir = File.join basedir, 'pages'
       refute Dir.exist?(pages_dir), "#{pages_dir} should not exist"
+
+      return if TestHelper::running_on_public_ci
       pages_img = File.join basedir, 'private', 'qa', 'hub.png'
       assert File.exist?(pages_img), "#{pages_img} not found"
     end
@@ -19,6 +21,8 @@ module Hub
       basedir = SiteBuilder::PUBLIC_BUILD_DIR
       pages_dir = File.join basedir, 'pages'
       refute Dir.exist?(pages_dir), "#{pages_dir} should not exist"
+
+      return if TestHelper::running_on_public_ci
       private_dir = File.join basedir, 'private'
       refute Dir.exist?(private_dir), "#{private_dir} should not exist"
     end

@@ -20,4 +20,12 @@ CodeClimate::TestReporter.start
 require "coveralls"
 Coveralls.wear!
 
-`rm -rf _test/tmp`
+`rm -rf _test/tmp _test/tmp_public`
+
+module Hub
+  class TestHelper
+    def self.running_on_public_ci
+      ENV['CI'] == 'true'
+    end
+  end
+end
