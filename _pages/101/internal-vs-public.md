@@ -1,6 +1,5 @@
 ---
 title: Hub 101 - Internal vs. Public Hubs
-permalink: /101/internal-vs-public/
 ---
 # {{ page.title }}
 

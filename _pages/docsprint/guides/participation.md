@@ -1,5 +1,4 @@
 ---
-permalink: /docsprint/guides/participation/
 title: Doc Sprint Participation Guide
 ---
 # {{ page.title }}
