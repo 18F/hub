@@ -24,7 +24,7 @@ jekyll_pages_api_search:
 collections:
   pages:
     output: true
-    permalink: /:path
+    permalink: /:path/
 
 excerpt_separator: <!-- more -->
 exclude:
