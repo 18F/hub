@@ -1,6 +1,5 @@
 ---
 title: Editing Hub Content
-permalink: /editing/
 ---
 #{{ page.title }}
 

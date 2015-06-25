@@ -1,6 +1,5 @@
 ---
 title: Hub 101 - Advanced Local Dev Environment Using Vagrant and Ansible
-permalink: /101/vagrant-and-ansible/
 ---
 # {{ page.title }}
 

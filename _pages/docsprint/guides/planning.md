@@ -1,5 +1,4 @@
 ---
-permalink: /docsprint/guides/planning/
 title: Planning a Doc Sprint
 ---
 # {{ page.title }}

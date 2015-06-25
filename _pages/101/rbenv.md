@@ -1,6 +1,5 @@
 ---
 title: Hub 101 - Setting up the Ruby environment with `rbenv`
-permalink: /101/rbenv/
 ---
 # {{ page.title }}
 

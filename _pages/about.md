@@ -1,6 +1,5 @@
 ---
 title: About the 18F Hub
-permalink: /about/
 ---
 # {{ page.title }}
 

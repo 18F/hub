@@ -1,6 +1,5 @@
 ---
 layout: bare
-permalink: /guidelines/
 title: Guidelines
 ---
 # {{ page.title }}

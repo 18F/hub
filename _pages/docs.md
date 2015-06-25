@@ -1,6 +1,5 @@
 ---
 title: 18F Team Documentation
-permalink: /docs/
 ---
 # {{ page.title }}
 

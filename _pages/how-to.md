@@ -1,6 +1,5 @@
 ---
 layout: "q-and-a"
-permalink: "how-to/"
 title: How to...
 ---
 # {{ page.title }}
