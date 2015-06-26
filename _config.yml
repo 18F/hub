@@ -37,6 +37,7 @@ exclude:
 - Rakefile
 - Vagrantfile
 - bower.json
+- bower_components
 - deploy
 - go
 - pages/private/README.md

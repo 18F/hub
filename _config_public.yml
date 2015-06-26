@@ -6,7 +6,19 @@ baseurl: /hub
 assets:
   baseurl: /hub/assets
 
-editor_url: http://prose.io/#
-
 # For Google Analytics
 google_analytics_ua: UA-48605964-1
+
+defaults:
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: "bare"
+      edit_info:
+        repo: 18F/hub
+        branch: master
+  - scope:
+      path: "private"
+    values:
+      published: false

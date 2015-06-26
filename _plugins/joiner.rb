@@ -50,7 +50,6 @@ module Hub
       impl.join_snippet_data SNIPPET_VERSIONS
       impl.join_project_status
       impl.import_guest_users
-      impl.filter_private_pages
 
       site.data.delete 'private'
     end
@@ -279,16 +278,6 @@ module Hub
     # Imports the guest_users list into the top-level site.data object.
     def import_guest_users
       @data['guest_users'] = @join_source['hub']['guest_users']
-    end
-
-    # Filters out private pages when generating the public Hub.
-    def filter_private_pages
-      if @public_mode
-        private_pages_path = "/#{@site.config['private_pages_path']}"
-        @site.pages.delete_if do |p|
-          p.relative_path.start_with? private_pages_path
-        end
-      end
     end
   end
 end
