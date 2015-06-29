@@ -34,7 +34,7 @@ docs](http://bundler.io/gemfile.html) for details on the format of these
 files.
 
 **For 18F team members:** Run the following to initialize the `_data/private`
-and `pages/private` submodules:
+and `_pages/private` submodules:
 
 ```shell
 $ git submodule init
