@@ -24,10 +24,10 @@ development environment.
 [Internal vs. Public Hubs](internal-vs-public/) describes the differences
 between the "internal" and "public" versions of the Hub.
 
-## `_data/private` and `pages/private`
+## `_data/private` and `_pages/private`
 
 [Working with Git Submodules](git-submodules/) explains how to initialize the
-`_data/private` and `pages/private` submodules, along with tips for working
+`_data/private` and `_pages/private` submodules, along with tips for working
 with them.
 
 ## Plugins

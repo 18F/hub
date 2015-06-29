@@ -42,11 +42,11 @@ repository](https://github.com/18F/data-private) (via [GitHub
 Webooks](https://help.github.com/articles/about-webhooks/)), ensuring that
 `_data/public` remains fresh.
 
-## How `pages` and `pages/private` work
+## How `_pages` and `_pages/private` work
 
 All documents intended only for the internal Hub should be stored in
-`pages/private`. Documents that can be shared on the public Hub can be stored
-in `pages`. Pages in either directory should contain a `permalink:` property
+`_pages/private`. Documents that can be shared on the public Hub can be stored
+in `_pages`. Pages in either directory should contain a `permalink:` property
 in their front matter. For example:
 
 ```yaml
@@ -56,20 +56,19 @@ permalink: /about/
 ---
 ```
 
-Pages in `pages/private` should ensure that this `permalink:` always begins
+Pages in `_pages/private` should ensure that this `permalink:` always begins
 with `/private/`. For example:
 
 ```yaml
 ---
 title: 18F Private Team Documentation
-permalink: /private/docs/
 ---
 ```
 
-All `pages/private` pages are filtered out by the [`joiner.rb`
+All `_pages/private` pages are filtered out by the [`joiner.rb`
 plugin](https://github.com/18F/hub/tree/master/_plugins/joiner.rb) when
-generating the public Hub. Sections of pages outside `pages/private` that link
-to documents in `pages/private` should be surrounded by the following
+generating the public Hub. Sections of pages outside `_pages/private` that
+link to documents in `_pages/private` should be surrounded by the following
 [Liquid](https://github.com/Shopify/liquid/wiki/Liquid-for-Designers)
 conditional:
 
