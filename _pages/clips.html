@@ -1,0 +1,13 @@
+---
+title: News Clips
+---
+<h1>{{ page.title }}</h1>
+
+<strong>Note: moving these to <a href="https://delicious.com/interesting18f">Delicious</a>, so drop any new links in the #press channel rather than adding them here.</strong>
+
+{% for c in site.data.clips %}
+<div class="index-entry">
+<strong>{{ c.date }}</strong><br/>
+<a href="{{ c.url }}">{{ c.article }}</a>
+</div>
+{% endfor %}

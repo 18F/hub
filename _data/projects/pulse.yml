@@ -3,6 +3,7 @@ project: Pulse
 name: pulse
 github:
 - 18F/pulse
+- 18F/domain-scan
 description: A lightweight dashboard that uses the official .gov domain list to measure
   HTTPS integration and participation in the Digital Analytics Program.
 partner:

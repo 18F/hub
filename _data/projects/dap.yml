@@ -3,6 +3,7 @@ project: Analytics.USA.gov
 name: dap
 github:
 - gsa/analytics.usa.gov
+- 18f/analytics-reporter
 description: A lightweight dashboard that shows web traffic across the .gov domain.
 partner:
 - General Services Administration
