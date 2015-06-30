@@ -38,6 +38,7 @@ exclude:
 - Vagrantfile
 - bower.json
 - bower_components
+- coverage
 - deploy
 - go
 - pages/private/README.md
