@@ -18,5 +18,6 @@ title: Guidelines
 * [Using Ubuntu]({{ site.baseurl }}/private/team-ops/ubuntu/)
 * [How to hold events]({{ site.baseurl }}/private/team-ops/resources/event-info/)
 * [Publishing and Content Submission on 18f.gsa.gov]({{ site.baseurl }}/private/18F-site/publishing/){% endunless %}
+* [Content Guide](https://pages.18f.gov/content-guide/)
 
 We've tried to collect all of 18F's available standards and guidelines here. **If we've missed something or you see a way to improve this information**, please [file an issue](https://github.com/18F/hub/issues), click the 'edit this page' link at the bottom, or branch-add-pull-request from [the Hub repo](https://github.com/18F/hub).
