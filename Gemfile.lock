@@ -28,7 +28,7 @@ GEM
     htmlentities (4.3.4)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
-    jekyll (3.0.0.pre.beta2)
+    jekyll (3.0.0.pre.beta8)
       colorator (~> 0.1)
       jekyll-sass-converter (~> 1.0)
       jekyll-watch (~> 1.1)
@@ -75,7 +75,7 @@ GEM
     rb-fsevent (0.9.5)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
-    redcarpet (3.2.3)
+    redcarpet (3.3.2)
     ref (1.0.5)
     rest-client (1.8.0)
       http-cookie (>= 1.0.2, < 2.0)
@@ -132,7 +132,7 @@ DEPENDENCIES
   codeclimate-test-reporter
   coveralls
   hash-joiner
-  jekyll (= 3.0.0.pre.beta2)
+  jekyll (= 3.0.0.pre.beta8)
   jekyll-assets
   jekyll-sitemap
   jekyll_pages_api
@@ -140,7 +140,7 @@ DEPENDENCIES
   liquid_pluralize
   minitest
   rake
-  redcarpet (= 3.2.3)
+  redcarpet
   rouge
   team_hub
   test_temp_file_helper
