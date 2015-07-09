@@ -58,12 +58,6 @@ def init
   exec_cmd 'bundle install'
 end
 
-def update_components
-  exec_cmd 'npm install -g bower bower-installer'
-  exec_cmd 'bower update'
-  exec_cmd 'bower-installer'
-end
-
 def update_gems
   exec_cmd 'bundle update'
   exec_cmd 'git add Gemfile.lock'
@@ -171,7 +165,6 @@ CommandGroup.add_group(
   'Development commands',
   {
     :init => 'Set up the Hub dev environment',
-    :update_components => 'Execute bower-installer to update Bower components. Requires Node.js.',
     :update_gems => 'Execute Bundler to update gem set',
     :test => 'Execute automated tests',
     :serve => 'Serves the internal hub at localhost:4000',
