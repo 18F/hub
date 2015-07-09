@@ -8,7 +8,7 @@ description: At the core, Communicart (a.k.a. C2) is simple tool to automate and
 partner:
 - General Services Administration
 partners: 
-stage: beta
+stage: live
 impact: For the GSA use cases alone, Communicart could be used by over 80,000 U.S.
   Federal Government purchase card holders.
 milestones: 

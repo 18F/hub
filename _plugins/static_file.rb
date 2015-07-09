@@ -4,6 +4,10 @@ require 'jekyll/url'
 module Jekyll
   # Reopens the class to provide new implementations of :destination_rel_dir,
   # and :write?, making it collection- and defaults-aware.
+  #
+  # TODO(mbland): Delete this once jekyll/jekyll#3823 (commit
+  # 250b6ebb7e4108de387027f2ab71aba0062c9ad7) is integrated into a Jekyll
+  # release.
   class StaticFile
     # Allows the StaticFile to be written to the same output directory as all
     # the Jekyll::Documents in the same collection.
