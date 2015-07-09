@@ -9,6 +9,5 @@ _site_public
 .vagrant
 _test/tmp
 _test/tmp_public
-bower_components
 coverage/*
 *.pyc
