@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'jekyll', '3.0.0.pre.beta2'
-gem 'redcarpet', '3.2.3' # avoiding https://github.com/vmg/redcarpet/issues/494
+gem 'jekyll', '3.0.0.pre.beta8'
+gem 'redcarpet'
 gem 'RedCloth'
 gem 'bourbon'
 gem 'jekyll-sitemap'
