@@ -146,6 +146,3 @@ DEPENDENCIES
   test_temp_file_helper
   uglifier
   weekly_snippets
-
-BUNDLED WITH
-   1.10.5
