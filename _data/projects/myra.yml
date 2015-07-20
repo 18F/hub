@@ -15,6 +15,8 @@ stage: live
 milestones:
 - 'August 2014: Project discovery stage started'
 - 'September 2014: Project moved from discovery to alpha'
+- 'December 2014: Project launched'
+- 'June 2015: Project handed off to partner'
 contact:
 - christopher.cairns@gsa.gov
 stack: JavaScript, Jekyll
