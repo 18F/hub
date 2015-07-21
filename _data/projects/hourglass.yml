@@ -8,12 +8,13 @@ description: CALC is a tool to help contracting personnel estimate their per-hou
 partner: General Services Administration
 partners: 
 impact: All federal acquisition personnel involved in buying professional services
-stage: beta
+stage: live
 milestones:
 - 'November 2014: Initial discovery stage begins'
 - 'November 2014: Begin building alpha'
 - 'March 2015: Name changed from "Hourglass" to "CALC"'
 - 'May 2015: Public beta launched'
+- 'July 2015: Second release with price analysis tools, status changed to live'
 contact:
 - nicholas.brethauer@gsa.gov
 stack: Python, Django, JavaScript, Postgres
