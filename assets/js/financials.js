@@ -28,22 +28,15 @@ var munge_data = function(chart_data, chart_name) {
   return data_out;
 };
 
-var raw_data = $('#chart-data').data('chart');
-console.log(raw_data);
-var chart_names = Object.keys(raw_data[0]).filter(function(x) { return x != 'name' });
+var chart_names = ['revenue', 'expenses', 'billable_hours'];
 var charts = [];
 chart_names.map(function(chart_name) {
   var ctx = $('#' + chart_name + '-chart').get(0).getContext('2d');
-  var munged_data = munge_data(raw_data, chart_name);
-  console.log("data munged for " + chart_name);
-  console.log(munged_data);
-  console.log
-  console.log("initializing chart object for " + chart_name);
+  var munged_data = munge_data(financial_chart_data, chart_name);
   var chart = new Chart(ctx).Bar(munged_data, {
     'scaleShowHorizontalLines': true,
     'scaleShowVerticalLines': true,
     'scaleBeginAtZero': true
   });
   charts.push(chart);
-  console.log("completed chart for " + chart_name);
 });
