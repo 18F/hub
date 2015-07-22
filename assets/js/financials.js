@@ -29,14 +29,12 @@ var munge_data = function(chart_data, chart_name) {
 };
 
 var chart_names = ['revenue', 'expenses', 'billable_hours'];
-var charts = [];
-chart_names.map(function(chart_name) {
+var charts = chart_names.map(function(chart_name) {
   var ctx = $('#' + chart_name + '-chart').get(0).getContext('2d');
   var munged_data = munge_data(financial_chart_data, chart_name);
-  var chart = new Chart(ctx).Bar(munged_data, {
+  return new Chart(ctx).Bar(munged_data, {
     'scaleShowHorizontalLines': true,
     'scaleShowVerticalLines': true,
     'scaleBeginAtZero': true
   });
-  charts.push(chart);
 });
