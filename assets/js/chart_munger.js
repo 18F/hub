@@ -1,4 +1,5 @@
 var munge_data = function(chart_data, chart_name) {
+  // TODO(arowla):
   // var config = chart_data.config;
   var data_in = chart_data;
   var data_out = {};
@@ -14,6 +15,7 @@ var munge_data = function(chart_data, chart_name) {
 
     data.label = label;
 
+    // TODO(arowla)
     // $.extend(data, config[label_lower]);
 
     data.data = data_in.map(function(item) {
