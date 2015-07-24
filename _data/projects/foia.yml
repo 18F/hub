@@ -14,7 +14,7 @@ impact: The U.S. Federal Government processed nearly 700,000 FOIA requests in fi
 stage: alpha
 milestones:
 - 'June 2014: Project Discovery stage started'
-- Mid 2015: open.foia.gov is deployed.
+- April 2015: open.foia.gov is deployed.
 contact:
 - 18f/foia/issues
 stack: python, django
