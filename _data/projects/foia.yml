@@ -16,7 +16,7 @@ milestones:
 - 'June 2014: Project Discovery stage started'
 contact:
 - 18f/foia/issues
-stack: 
+stack: python, django
 team: jackie, khandelwal, majma, eric, gramirez, jtag, victor
 licenses:
   foia: Public Domain (CC0)
