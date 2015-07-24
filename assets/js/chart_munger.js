@@ -20,7 +20,9 @@ var munge_data = function(chart_data, chart_name) {
 
     data.data = data_in.map(function(item) {
       var value = chart_set.data_item_func(item, chart_name, label_lower);
-      return parseInt(value) % 1 === 0 ? parseInt(value) : 0;
+      value = parseInt(value);
+      // check for NaN because parseInt(null) returns NaN, which breaks the charts
+      return isNaN(value) ? 0 : value;
     });
 
     return data;
