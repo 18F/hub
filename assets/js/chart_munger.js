@@ -1,42 +1,32 @@
-var munge_data = function(chart_data, chart_name) {
-  // TODO(arowla):
-  // var config = chart_data.config;
-  var data_in = chart_data;
+var munge_data = function(chart_config, chart_name) {
+  var config = chart_config[chart_name];
+  var data_in = config.data;
   var data_out = {};
+  var should_exclude = function(x) { return ((config.exclude || []).indexOf(x) == -1); };
 
-  data_out.labels = data_in.map(function(item) {
-      return item.name;
-  });
+  data_out.labels = data_in.map(function(x) { return x.name; }).filter(should_exclude);
 
   var munge_series = function(label) {
     var data = {};
-    var label_lower = label.toLowerCase();
-    label_lower = label_lower.replace(' ', '_');
-
+    var key = label.toLowerCase().replace(' ', '_').replace('-', '');
     data.label = label;
 
-    // TODO(arowla)
-    // $.extend(data, config[label_lower]);
-
-    data.data = data_in.map(function(item) {
-      var value = chart_set.data_item_func(item, chart_name, label_lower);
-      value = parseInt(value);
-      // check for NaN because parseInt(null) returns NaN, which breaks the charts
-      return isNaN(value) ? 0 : value;
-    });
+    data.data = data_in
+      .filter(function (x) { return should_exclude(x.name); })
+      .map(function(x) { return (parseInt(config.data_item_func(x, chart_name, key)) || 0); });
 
     return data;
   };
 
-  data_out.datasets = chart_set.dataset_names.map(munge_series);
+  data_out.datasets = config.dataset_names.map(munge_series);
 
   return data_out;
 };
 
 if ("chart_set" in window) {
-  var charts = chart_set.chart_names.map(function(chart_name) {
+  var charts = Object.keys(chart_set).map(function (chart_name) {
     var ctx = $('#' + chart_name + '-chart').get(0).getContext('2d');
-    var munged_data = munge_data(chart_set.data, chart_name);
+    var munged_data = munge_data(chart_set, chart_name);
     return new Chart(ctx).Bar(munged_data, {
       'scaleShowHorizontalLines': true,
       'scaleShowVerticalLines': true,
