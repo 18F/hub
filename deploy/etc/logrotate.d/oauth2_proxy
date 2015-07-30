@@ -4,4 +4,7 @@
   compress
   missingok
   notifempty
+  postrotate
+    service oauth2_proxy restart
+  endscript
 }
