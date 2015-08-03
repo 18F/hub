@@ -1,6 +1,6 @@
 var test_data_type_1 = { quarters: [
-  { 
-    name: 'FY15Q1', 
+  {
+    name: 'FY15Q1',
     revenue: {
       projected: 1,
       actual: 2
@@ -14,8 +14,8 @@ var test_data_type_1 = { quarters: [
       actual: 100
     }
   },
-  { 
-    name: 'FY15Q2', 
+  {
+    name: 'FY15Q2',
     revenue: {
       projected: 5,
       actual: 6
@@ -57,7 +57,7 @@ $(document).ready(function () {
       it("should remove hyphens", function() {
         expect(ds._label_to_key('Non-Billable')).to.equal('nonbillable');
       });
-        
+
       it("should turn spaces into underscores", function() {
         expect(ds._label_to_key('Agency Sources')).to.equal('agency_sources');
       });
@@ -70,6 +70,80 @@ $(document).ready(function () {
           data: [ 1000, 300, 500 ]
         });
       });
+    });
+  });
+
+  describe("ChartMunger", function() {
+
+    describe("should_exclude()", function() {
+      it("should exclude listed words or phrases", function() {
+        munger = new ChartMunger({
+          name: 'revenue',
+          config: {
+            data: test_data_type_2,
+            func: function (x, name, key) { return x[key]; },
+            dataset_names: ['Billable', 'Non-billable'],
+            exclude: ['General Services Administration']
+          }
+        });
+        var test_list = ['Commerce Department', 'General Services Administration', 'TSA'];
+        expect(test_list.filter(munger.should_exclude, munger)).deep.equal(['Commerce Department', 'TSA']);
+      });
+    });
+
+    describe("get_labels()", function() {
+      it("should extract labels from the dataset and perform exclusions", function() {
+        munger = new ChartMunger({
+          name: 'revenue',
+          config: {
+            data: test_data_type_2,
+            func: function (x, name, key) { return x[key]; },
+            dataset_names: ['Billable', 'Non-billable'],
+            exclude: ['General Services Administration']
+          }
+        });
+        expect(munger.get_labels()).deep.equal(['Federal Election Commission', 'Social Security Administration']);
+      });
+    });
+
+    describe("get_datasets()", function() {
+      it("should munge data into dataseries format that Chart.js requires", function() {
+        munger = new ChartMunger({
+          name: 'revenue',
+          config: {
+            data: test_data_type_1.quarters,
+            func: function (x, name, key) { return x[name][key]; },
+            dataset_names: ['Projected', 'Actual'],
+          }
+        });
+
+        var results = munger.get_datasets();
+        console.log(results);
+
+        expect(results).to.have.length(2);
+
+        expect(results).to.include.something.that.deep.equals({ label: 'Projected', data: [ 1, 5 ] });
+        expect(results).to.include.something.that.deep.equals({ label: 'Actual', data: [ 2, 6 ] });
+      });
+    });
+
+    describe("run()", function() {
+      it("should munge and return data in overall format that Chart.js requires", function() {
+        munger = new ChartMunger({
+          name: 'revenue',
+          config: {
+            data: test_data_type_1.quarters,
+            func: function (x, name, key) { return x[name][key]; },
+            dataset_names: ['Projected', 'Actual'],
+          }
+        });
+
+        var results = munger.run();
+        console.log(results);
+
+        expect(results).to.have.keys(['labels', 'datasets']);
+      });
+
     });
   });
 
