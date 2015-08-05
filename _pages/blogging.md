@@ -3,7 +3,7 @@ title: How to write a blog for 18F
 ---
 # {{ page.title }}
 
-At 18F we keep a [private GitHub repo](https://github.com/18f/blog-drafts) for kicking around ideas on the blog. This is how we use that repo. (Note to people not at the GSA or on the 18F team: <any of the links on this page will likely _not_ work for you.)
+At 18F we keep a [private GitHub repo](https://github.com/18f/blog-drafts) for kicking around ideas on the blog. This is how we use that repo. (Note to people not at the GSA or on the 18F team: many of the links on this page will likely _not_ work for you.)
 
 We use milestones for workflow tracking:
 
