@@ -3,7 +3,7 @@ title: How to write a blog for 18F
 ---
 # {{ page.title }}
 
-At 18F we keep a private GitHub repo for kicking around ideas on the blog. This is how we use that repo.
+At 18F we keep a [private GitHub repo](https://github.com/18f/blog-drafts) for kicking around ideas on the blog. This is how we use that repo. (Note to people not at the GSA or on the 18F team: <any of the links on this page will likely _not_ work for you.)
 
 We use milestones for workflow tracking:
 
@@ -14,7 +14,7 @@ We use milestones for workflow tracking:
 
 For new posts:
 
-1. Drop ideas for future blog posts into the `ideas` milestone as individual issues. Please include the following headings:
+1. [Create an issue for a blog post](https://github.com/18f/blog-drafts/issues/new) into the `ideas` milestone as individual issues. Please include the following headings:
     * `## Audience`
     * `## Goal of blog post`
     * `## Imagery ideas`
