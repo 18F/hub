@@ -20,8 +20,8 @@ milestones:
   files and instructions for printed cards.'
 contact:
 - https://github.com/18f/methods/issues
-team: jthibault, colinmacarthur, jeremy, egoodman, andrewmaier, bradnunnally, victor,
-  jhunter, jameshupp, russu
+team: jthibault, colin, jeremy, esgoodman, andrewmaier, brad, victor, jhunter, jameshupp,
+  russu
 licenses:
   methods: Public Domain (CC0)
 links:
