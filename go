@@ -63,6 +63,15 @@ def update_gems
   exec_cmd 'git add Gemfile.lock'
 end
 
+def update_js
+  abort 'Install npm to update JavaScript components: ' \
+      'http://nodejs.org/download/' unless system 'which npm > /dev/null'
+
+  exec_cmd 'npm update'
+  exec_cmd 'npm install'
+  exec_cmd 'gulp vendorize'
+end
+
 def test
   exec_cmd 'bundle exec rake test'
 end
@@ -166,6 +175,7 @@ CommandGroup.add_group(
   {
     :init => 'Set up the Hub dev environment',
     :update_gems => 'Execute Bundler to update gem set',
+    :update_js => 'Execute npm to update JS',
     :test => 'Execute automated tests',
     :serve => 'Serves the internal hub at localhost:4000',
     :serve_public => 'Serves the public hub at localhost:4000/hub/',
