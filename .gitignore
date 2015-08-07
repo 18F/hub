@@ -11,3 +11,4 @@ _test/tmp
 _test/tmp_public
 coverage/*
 *.pyc
+node_modules
