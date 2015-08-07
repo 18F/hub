@@ -64,6 +64,9 @@ def update_gems
 end
 
 def update_js
+  abort 'Install npm to update JavaScript components: ' \
+      'http://nodejs.org/download/' unless system 'which npm > /dev/null'
+
   exec_cmd 'npm update'
   exec_cmd 'npm install'
   exec_cmd 'gulp vendorize'
