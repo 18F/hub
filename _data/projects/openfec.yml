@@ -3,25 +3,32 @@ project: OpenFEC
 name: openfec
 github:
 - 18F/FEC
-description: Redesigning how the Federal Election Commission shares campaign finance
-  information and regulations.
+- 18F/openFEC-web-app
+- 18F/fec-alpha
+description: |
+  Redesigning how the Federal Election Commission shares campaign finance information and regulations. This effort involves: <ul> <li>The <a href="https://api.open.fec.gov/developers">FEC’s first API</a></li> <li>A new campaign finance portal (Coming soon!)</li> <li>An eventual redesign of the agency’s website.</li> </ul>
 partner:
 - Federal Election Commission
 partners: 
 impact: The FEC collects data about how campaigns are financed that affect all 318
   million Americans every 2 years.
-stage: discovery
+stage: beta
 milestones:
 - 'June 2014: Project Discovery stage started'
+- 'May 2015: Alpha testing of API and website'
+- 'July 2015: Beta testing of the API'
 contact:
 - 18F/FEC/issues
 stack: 
-team: leah, alison, lindsay, manger, sean, marco, joshcarp
+team: alison, cm, emileigh, jeremy, joshcarp, jthibault, manger, leah, lindsay, marco
 licenses:
   openFEC: Public Domain (CC0)
   FEC: Public Domain (CC0)
-  fec-graph-search: Public Domain (CC0)
-links: 
+links:
+- https://api.open.fec.gov/developers
+- https://github.com/18F/openFEC
+- https://github.com/18F/openFEC-web-app
+- https://github.com/18F/fec-alpha
 blog:
 - FEC
 status: 

@@ -41,7 +41,7 @@
 <!-- Browser warning, console message -->
 <script src="{% asset_path 18f.js %}"></script>
 
-{% for script_url in page.scripts %}{% unless script_url contains '.min.js' %}
+{% for script_url in page.scripts %}{% unless script_url contains '.min.js' or 'tests' %}
 <script src="{{ script_url | split:"/" | last | asset_path }}"></script>{% else %}
 <script src="{{ site.baseurl }}{{ script_url }}"></script>{% endunless %}{% endfor %}
 

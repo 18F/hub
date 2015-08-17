@@ -1,5 +1,5 @@
 ---
-title: Guidelines for Writing Snippets
+title: Guidelines for writing snippets
 ---
 # {{ page.title }}
 
@@ -21,7 +21,7 @@ The author of a snippet is free to write as much or as little as he or she finds
 
 ## Brevity is the soul of wit
 
-That said, one should strive for conciseness. It does make it easier for others to peruse your snippets, which can lead to fruitful, serendipitous discussions and insights.
+That said, strive for conciseness. It does make it easier for others to peruse your snippets, which can lead to fruitful, serendipitous discussions and insights.
 
 ## Private by default
 
@@ -31,13 +31,13 @@ Currently snippets are visible only to other 18F team members. However, support 
 
 If most of your snippets are OK for public consumption, and you've selected the _Public_ box on the form, yet there are details you'd like to omit, you can redact spans of text by surrounding them with <code>&#123;&#123;</code> and <code>&#125;&#125;</code> tokens.
 
-## Last Week and This Week
+## Last week and this week
 
-The *Last Week* and *This Week* sections encourage separation between past and future items. However, if you want to put everything into the *Last week* section, you are free to do so.
+The *Last Week* and *This Week* sections encourage separation between past and future items. However, if you want to put everything into the *Last Week* section, you are free to do so.
 
 ## Plaintext or Markdown
 
-[Markdown syntax](http://daringfireball.net/projects/markdown/) is supported, but is not required; plaintext will always continue to work.
+[Markdown syntax](http://daringfireball.net/projects/markdown/) is supported but not required; plaintext will always work.
 
 ## Use the preview tool
 
