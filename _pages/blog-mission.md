@@ -1,7 +1,7 @@
 ---
 title: Blog Mission Brief
 ---
-## Mission 
+## Mission
 
 The 18F blog is a place where we share what we’ve learned, what we’ve made, and what we do in an accessible, public way. We work in the open and share information that makes our work understandable and usable. We write frankly about the challenges we encounter and detail the lessons we learn when making tough decisions. Our blog sheds light on the innovation, integrity, and creativity of our teams and other teams across the government. We hope to lead by example, showing that government agencies can be straightforward and friendly in their communication.  
 
