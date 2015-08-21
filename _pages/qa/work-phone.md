@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: private/work-phone/
+permalink: /work-phone/
 title: Get a work phone
 ---
 # {{ page.title }}

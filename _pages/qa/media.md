@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: /private/media/
+permalink: /media/
 title: Media inquiries
 ---
 # {{ page.title }}

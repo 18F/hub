@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: /private/outside-18f-github/
+permalink: /outside-18f-github/
 title: Giving partners and collaborators access to 18F GitHub repositories
 ---
 # {{ page.title }}

@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: /private/help-from-18f-delivery/
+permalink: /help-from-18f-delivery/
 title: Help from 18F Delivery
 ---
 # {{ page.title }}

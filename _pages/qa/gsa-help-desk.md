@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: private/gsa-help-desk/
+permalink: /gsa-help-desk/
 title: GSA help desk and payroll
 ---
 # {{ pages.title }}

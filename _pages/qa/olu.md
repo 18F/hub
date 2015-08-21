@@ -1,6 +1,6 @@
 ---
 layout: "q-and-a"
-permalink: private/olu/
+permalink: /olu/
 title: On-Line University (OLU)
 ---
 # {{ page.title }}

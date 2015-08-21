@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: /private/trello/
+permalink: /trello/
 title: How to use Trello
 ---
 # {{ page.title }}

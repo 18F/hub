@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: /private/wi-fi/
+permalink: /wi-fi/
 title: Wi-Fi options
 ---
 # {{ page.title }}
