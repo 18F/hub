@@ -96,14 +96,18 @@ def build
 end
 
 
+PROOFER_OPTS = {
+  disable_external: true # might want to re-enable this eventually
+}
+
 def validate_public
   require 'html/proofer'
-  HTML::Proofer.new('./_site_public').run
+  HTML::Proofer.new('./_site_public', PROOFER_OPTS).run
 end
 
 def validate_private
   require 'html/proofer'
-  HTML::Proofer.new('./_site').run
+  HTML::Proofer.new('./_site', PROOFER_OPTS).run
 end
 
 def validate
