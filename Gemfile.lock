@@ -21,6 +21,9 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     execjs (2.5.2)
     ffi (1.9.10)
+    go_script (0.0.0)
+      bundler (~> 1.10)
+      safe_yaml (~> 1.0)
     hash-joiner (0.0.7)
       safe_yaml
     hike (1.2.3)
@@ -131,6 +134,7 @@ DEPENDENCIES
   bourbon
   codeclimate-test-reporter
   coveralls
+  go_script
   hash-joiner
   jekyll (= 3.0.0.pre.beta8)
   jekyll-assets
@@ -146,3 +150,6 @@ DEPENDENCIES
   test_temp_file_helper
   uglifier
   weekly_snippets
+
+BUNDLED WITH
+   1.10.6
