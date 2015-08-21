@@ -13,7 +13,7 @@ module Hub
       refute Dir.exist?(pages_dir), "#{pages_dir} should not exist"
 
       return if TestHelper::running_on_public_ci
-      pages_img = File.join basedir, 'private', 'qa', 'hub.png'
+      pages_img = File.join basedir, 'private', 'team-ops', 'ubuntu-printer.jpg'
       assert File.exist?(pages_img), "#{pages_img} not found"
     end
 
