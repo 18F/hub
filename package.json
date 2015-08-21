@@ -1,0 +1,22 @@
+{
+  "name": "hub",
+  "version": "1.0.0",
+  "description": "Documentation hub for the 18F team",
+  "dependencies": {
+    "chai": "^3.2.0",
+    "chai-things": "^0.2.0",
+    "mocha": "^2.2.5"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/18F/hub.git"
+  },
+  "author": "Mike Bland <michael.bland@gsa.gov>",
+  "bugs": {
+    "url": "https://github.com/18F/hub/issues"
+  },
+  "homepage": "https://hub.18f.gov"
+}

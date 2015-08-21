@@ -1,0 +1,27 @@
+---
+- name: Download OAuth2 Proxy
+  get_url:
+    url=https://github.com/bitly/oauth2_proxy/releases/download/v1.0/google_auth_proxy-1.0.linux-amd64.go1.3.tar.gz
+    dest=/home/vagrant/oauth2_proxy-1.0.linux-amd64.go1.3.tar.gz
+- name: Unpack OAuth2 Proxy
+  unarchive:
+    src=/home/vagrant/oauth2_proxy-1.0.linux-amd64.go1.3.tar.gz
+    dest=/home/vagrant
+    copy=no
+- name: Symlink OAuth2 Proxy
+  file:
+    src=/home/vagrant/oauth2_proxy-1.0.linux-amd64.go1.3/google_auth_proxy
+    dest=/usr/local/18f/bin/oauth2_proxy
+    state=link
+- name: Copy OAuth2 Proxy wrapper script
+  copy:
+    src=../../../../usr/local/18f/bin/oauth2_proxy.sh
+    dest=/usr/local/18f/bin/oauth2_proxy.sh
+- name: Copy OAuth2 Proxy config
+  copy:
+    src=../../../../usr/local/18f/etc/oauth2_proxy.cfg
+    dest=/usr/local/18f/etc/oauth2_proxy.cfg
+- name: Copy OAuth2 Proxy init script
+  copy:
+    src=../../../../etc/init.d/oauth2_proxy
+    dest=/etc/init.d/oauth2_proxy

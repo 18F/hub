@@ -1,0 +1,26 @@
+---
+name: hub
+full_name: 18F Hub
+short_name: hub
+type: docs
+owner_type: project
+status: active
+stage: alpha
+testable: true
+mission: >
+  The 18F Hub is a Jekyll-based documentation platform that aims to help 18F
+  and other development teams organize and easily share their information, and
+  to enable easy exploration of the connections between team members,
+  projects, and skill sets. It aims to serve as the go-to place for all of a
+  team's working information, whether that information is integrated into the
+  Hub directly or provided as links to other sources. It also serves as a
+  lightweight tool that other teams can experiment with and deploy with a
+  minimum of setup.
+links:
+- url: https://hub.18f.gov/
+  text: 18F Hub production instance
+- url: https://hub.18f.gov/hub/
+  text: 18F Public Hub staging instance
+- url: https://18f.gsa.gov/hub/
+  text: 18F Public Hub production instance
+tasks: https://github.com/18F/hub/issues

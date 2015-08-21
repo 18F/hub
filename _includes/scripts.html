@@ -41,10 +41,8 @@
 <!-- Browser warning, console message -->
 <script src="{% asset_path 18f.js %}"></script>
 
-{% for script_url in page.scripts %}
-{% unless script_url contains '.min.js' %}
-<script src="{{ script_url | split:"/" | last | asset_path }}"></script>
-{% else %}<script src="{{ site.baseurl }}{{ script_url }}"></script>{% endunless %}
-{% endfor %}
+{% for script_url in page.scripts %}{% unless script_url contains '.min.js' or 'tests' %}
+<script src="{{ script_url | split:"/" | last | asset_path }}"></script>{% else %}
+<script src="{{ site.baseurl }}{{ script_url }}"></script>{% endunless %}{% endfor %}
 
-<script async data-main="{{ site.baseurl }}/assets/js/main" src="{% asset_path vendor/requirejs/require %}"></script>
+{% jekyll_pages_api_search_load %}

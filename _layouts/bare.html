@@ -14,17 +14,17 @@
     <span>This site is in alpha. <a href="https://18f.gsa.gov/dashboard/stages/"><span class="sr-only">This site is in alpha.</span>Learn more here.</a></span>
   </div>
 
-  {% include nav-main.html %}
-
+{% include nav-main.html %}
 {% unless site.public %}
     <!--# include virtual="{{ site.baseurl }}/auth/$authenticated_user/index.html"  -->
 {% endunless %}
 
 <section class="container bare">
-  {% include search.html %}
+  {% jekyll_pages_api_search_interface %}
   <div class="bare-content" role="main" itemscope itemprop="mainContentOfPage">
     {{ content }}
 
+    <hr/>
     {% include edit_link.html %}
   </div>
 </section>

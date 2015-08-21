@@ -38,7 +38,6 @@ module Hub
       Canonicalizer.canonicalize_data(site.data)
       Auth.generate_artifacts(site)
       ::HashJoiner.prune_empty_properties(site.data)
-      ::TeamHub::PrivateAssets.copy_to_site(site)
       Api.generate_api(site)
 
       Team.generate_pages(site)
@@ -46,9 +45,6 @@ module Hub
       Departments.generate_pages(site)
       WorkingGroups.generate_pages(site)
       Snippets.generate_pages(site)
-      # Disabled in favor of templated pages in `/pages/`
-      # Skills.generate_pages(site)
-      Compressor.compress(site)
     end
   end
 end

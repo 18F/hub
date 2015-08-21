@@ -1,4 +1,14 @@
-<div class="auth-include">
-<span>{{ page.user.full_name }}</span>
-<img src="{{ site.baseurl }}/{{ site.team_img_dir }}/{{ site.guest_user_img }}" alt="{{ page.user.full_name }}">
+---
+skip_index: true
+---
+<div class="auth-include team-members">
+  <div class="team-member">
+    <div class="team-member-cell">
+      <a href="{{ site.baseurl }}/oauth2/sign_in"><span>{{ page.user.full_name }}</span><br/>
+      Log Out</a>
+    </div>
+    <div class="team-member-cell">
+      <img src="{{ site.baseurl }}/{{ site.team_img_dir }}/{{ site.guest_user_img }}" alt="<!--# echo var="{{ page.user.full_name }}" -->"></a>
+    </div>
+  </div>
 </div>

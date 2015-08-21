@@ -8,6 +8,7 @@ _site_public
 .*.swp
 .vagrant
 _test/tmp
-bower_components
+_test/tmp_public
 coverage/*
 *.pyc
+node_modules

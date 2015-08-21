@@ -41,16 +41,12 @@ module Hub
       impl.join_project_data
 
       impl.promote_private_data 'departments'
-      impl.promote_private_data 'email_groups'
-      impl.promote_private_data 'nav_links'
       impl.promote_private_data 'working_groups'
       impl.promote_private_data 'pif_team'
       impl.promote_private_data 'pif_projects'
 
       impl.join_snippet_data SNIPPET_VERSIONS
-      impl.join_project_status
       impl.import_guest_users
-      impl.filter_private_pages
 
       site.data.delete 'private'
     end
@@ -269,26 +265,9 @@ module Hub
       @data['snippets'] = result
     end
 
-    # Joins project status information into +site.data[+'project_status'].
-    def join_project_status
-      unless @public_mode
-        @data['project_status'] = @join_source['project_status']
-      end
-    end
-
     # Imports the guest_users list into the top-level site.data object.
     def import_guest_users
       @data['guest_users'] = @join_source['hub']['guest_users']
-    end
-
-    # Filters out private pages when generating the public Hub.
-    def filter_private_pages
-      if @public_mode
-        private_pages_path = "/#{@site.config['private_pages_path']}"
-        @site.pages.delete_if do |p|
-          p.relative_path.start_with? private_pages_path
-        end
-      end
     end
   end
 end

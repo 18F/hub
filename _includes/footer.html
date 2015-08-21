@@ -1,7 +1,26 @@
 <footer class="footer">
   <div class="container">
-    <div>
-      <img src="{{ site.baseurl }}/assets/images/logo-gsa.png" alt="GSA logo"/>
-    </div>
+    <ul>
+      <li>
+        <a href="{{ site.baseurl }}/team/">Team</a>
+      </li>
+      <li>
+        <a href="{{ site.baseurl }}/projects/">Projects</a>
+      </li>
+      <li>
+        <a href="https://pages.18f.gov/guides/">Guides</a>
+      </li>
+      <li>
+        <a href="{{ site.baseurl }}{% unless site.public %}/private{% endunless %}/how-to/">How to...</a>
+      </li>
+      <li>
+        <a href="{{ site.baseurl }}{% unless site.public %}/private{% endunless %}/n00b/">N00b</a>
+      </li>
+      <li>
+        <a href="{{ site.baseurl }}/about/">About the Hub</a>
+      </li>
+    </ul>
+
+    <img src="{{ site.baseurl }}/assets/images/logo-gsa.png" alt="GSA logo"/>
   </div>
 </footer>

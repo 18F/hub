@@ -11,5 +11,15 @@ module Hub
       STDERR.puts "\n***\nSiteBuilder failed to build site for tests\n***\n"
       exit $?.exitstatus
     end
+
+    PUBLIC_BUILD_DIR = "#{BUILD_DIR}_public"
+    unless system(
+      "bundle exec jekyll build --destination #{PUBLIC_BUILD_DIR} --trace " +
+      "--config _config.yml,_config_public.yml",
+      {:out => '/dev/null', :err =>STDERR})
+      STDERR.puts("\n***\nSiteBuilder failed to build public site " +
+        "for tests\n***\n")
+      exit $?.exitstatus
+    end
   end
 end

@@ -1,6 +1,6 @@
 ---
 project: DATA Act
-name: fedspendingtransparency
+name: dataact
 github:
 - fedspendingtransparency/fedspendingtransparency.github.io
 description: Consulting engagement to advise on the federal spending data standards
