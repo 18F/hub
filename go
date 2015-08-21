@@ -96,16 +96,26 @@ def build
 end
 
 
-def validate
+def validate_public
+  require 'html/proofer'
+  HTML::Proofer.new('./_site_public').run
+end
+
+def validate_private
   require 'html/proofer'
   HTML::Proofer.new('./_site').run
-  HTML::Proofer.new('./_site_public').run
+end
+
+def validate
+  build
+  validate_public
+  validate_private
 end
 
 def ci_build
   test
   build
-  validate
+  validate_public
 end
 
 def deploy(deploy_commands)
