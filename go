@@ -55,7 +55,7 @@ end
 def_command(:ci_build, dev_commands,
   'Runs tests and builds both Hub versions') do
   test []
-  build
+  build []
 end
 
 deploy_commands = GoScript::CommandGroup.add_group(
