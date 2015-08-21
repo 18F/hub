@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: /private/tracking/
+permalink: //tracking/
 title: GSA online activity tracking
 ---
 # {{ page.title }}

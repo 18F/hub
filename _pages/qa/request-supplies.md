@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: private/request-supplies/
+permalink: /request-supplies/
 title: Request supplies
 tags:
 - equipment

@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: private/macbook-security/
+permalink: /macbook-security/
 title: MacBook security
 ---
 # {{ page.title }}

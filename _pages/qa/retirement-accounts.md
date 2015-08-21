@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: private/tsp/
+permalink: /tsp/
 title: How to Transfer Your Previous Retirement Account into the TSP
 ---
 # {{ page.title }}

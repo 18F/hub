@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: /private/find-phone/
+permalink: //find-phone/
 title: Find my work iPhone/Android
 ---
 # {{ page.title }}

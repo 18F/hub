@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: /private/speak-event/
+permalink: //speak-event/
 title: Get approval to speak at an event
 tags:
 - giving a talk

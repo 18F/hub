@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: /private/timecard/
+permalink: //timecard/
 title: Weekly time reporting
 ---
 # {{ page.title }}

@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: private/attend-event/
+permalink: /attend-event/
 title: Attending an event
 tags:
 - speaking

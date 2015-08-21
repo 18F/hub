@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: private/calendar-items/
+permalink: /calendar-items/
 title: Google calendar items
 ---
 # {{ page.title }}

@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: /private/pers-phone/
+permalink: //pers-phone/
 title: Personal Phone Access to Federal Email
 ---
 

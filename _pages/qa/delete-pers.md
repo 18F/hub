@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: private/delete-pers/
+permalink: /delete-pers/
 title: Deleting a project
 ---
 # {{ page.title }}

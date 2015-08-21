@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: /private/reserve-conference-line/
+permalink: //reserve-conference-line/
 title: Reserve a conference call line
 ---
 # {{ page.title }}

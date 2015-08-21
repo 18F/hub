@@ -1,7 +1,7 @@
 ---
 title: "How we use GitHub"
 layout: "q-and-a"
-permalink: "private/github-work/"
+permalink: "/github-work/"
 ---
 # {{ page.title }}
 

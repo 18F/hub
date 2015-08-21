@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: /private/otp/
+permalink: //otp/
 title: One-time password (OTP)
 ---
 # {{ page.title }}

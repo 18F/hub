@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: private/fed-proj-foia/
+permalink: /fed-proj-foia/
 title: Federal government projects and FOIA
 ---
 # {{ page.title }}

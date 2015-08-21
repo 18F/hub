@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: private/dc-lockers/
+permalink: /dc-lockers/
 title: D.C. locker instructions
 ---
 # {{ page.title }}

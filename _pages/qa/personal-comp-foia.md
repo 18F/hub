@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: /private/personal-comp-foia/
+permalink: //personal-comp-foia/
 title: Personal computers and FOIA
 ---
 # {{ page.title }}

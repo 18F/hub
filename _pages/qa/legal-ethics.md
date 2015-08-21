@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: /private/legal-ethics/
+permalink: //legal-ethics/
 title: Legal and ethics questions
 ---
 # {{ page.title }}

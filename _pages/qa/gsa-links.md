@@ -1,6 +1,6 @@
 ---
 layout: "q-and-a"
-permalink: "private/gsa-links/"
+permalink: "/gsa-links/"
 title: Useful GSA links
 ---
 # {{ page.title }}

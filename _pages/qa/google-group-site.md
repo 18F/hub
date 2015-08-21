@@ -1,6 +1,6 @@
 ---
 layout: "q-and-a"
-permalink: "/private/google-group-site/"
+permalink: "//google-group-site/"
 title: Google Groups and Google Sites
 ---
 

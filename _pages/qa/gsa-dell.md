@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: private/gsa-dell/
+permalink: /gsa-dell/
 title: GSA Dell laptops
 ---
 # {{ page.title }}

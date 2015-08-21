@@ -1,6 +1,6 @@
 ---
 layout: "q-and-a"
-permalink: "private/moving-zones/"
+permalink: "/moving-zones/"
 title: "Moving to a different zone? Do this stuff"
 
 ---

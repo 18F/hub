@@ -1,6 +1,6 @@
 ---
 layout: "q-and-a"
-permalink: "private/inperson-training/"
+permalink: "/inperson-training/"
 title: "In-person Training"
 ---
 

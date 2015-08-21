@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: private/fed-network-foia/
+permalink: /fed-network-foia/
 title: Federal Government Networks and FOIA
 ---
 # {{ page.title }}

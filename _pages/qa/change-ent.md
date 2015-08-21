@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: private/change-ent/
+permalink: /change-ent/
 title: ENT Passwords
 ---
 # {{ page.title }}

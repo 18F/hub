@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: /private/gsa-approved-software/
+permalink: //gsa-approved-software/
 title: GSA approved software
 ---
 # {{ page.title }}

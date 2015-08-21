@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: private/dc-fire/
+permalink: /dc-fire/
 title: Fire evacuation procedures in D.C.
 ---
 # {{ page.title }}

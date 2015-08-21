@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: private/encrypt-pers-comp/
+permalink: /encrypt-pers-comp/
 title: Encrypting your Personal Computer
 ---
 # {{ page.title }}

@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: private/request-leave/
+permalink: /request-leave/
 title: Request leave
 ---
 # {{ page.title }}

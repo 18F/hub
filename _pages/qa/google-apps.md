@@ -1,6 +1,6 @@
 ---
 layout: "q-and-a"
-permalink: "/private/google-apps/"
+permalink: "//google-apps/"
 title: GSA Google apps
 ---
 # {{ page.title }}

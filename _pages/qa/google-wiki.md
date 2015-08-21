@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: private/google-wiki
+permalink: /google-wiki
 title: How to get access to the 18F wiki
 ---
 

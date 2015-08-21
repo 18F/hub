@@ -1,6 +1,6 @@
 ---
 layout: "q-and-a"
-permalink: /private/glossary/
+permalink: //glossary/
 title: Glossary
 tags:
 - Acronyms

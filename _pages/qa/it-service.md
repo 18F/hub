@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: /private/it-service/
+permalink: //it-service/
 title: IT service requests
 ---
 # {{ page.title }}

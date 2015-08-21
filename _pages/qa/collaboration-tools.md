@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: private/collaboration-tools/
+permalink: /collaboration-tools/
 title: Collaboration tools
 ---
 # {{ page.title }}

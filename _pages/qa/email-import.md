@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: private/email-import/
+permalink: /email-import/
 title: Importing email
 ---
 # {{ page.title }}

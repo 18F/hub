@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: private/kill-spam/
+permalink: /kill-spam/
 title: Spam filter
 ---
 # {{ page.title }}

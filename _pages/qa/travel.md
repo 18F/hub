@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: /private/travel/
+permalink: //travel/
 title: Book travel
 tags:
 - Concur

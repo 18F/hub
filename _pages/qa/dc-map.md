@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: private/dc-map/
+permalink: /dc-map/
 title: Washington, D.C. map
 ---
 # {{ page.title }}

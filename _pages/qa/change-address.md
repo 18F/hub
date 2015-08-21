@@ -1,7 +1,7 @@
 ---
 title: Changing Your Address
 layout: q-and-a
-permalink: /private/change-address/
+permalink: //change-address/
 ---
 
 ## Change your home address 

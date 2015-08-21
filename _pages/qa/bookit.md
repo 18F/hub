@@ -1,6 +1,6 @@
 ---
 layout: "q-and-a"
-permalink: "private/bookit/"
+permalink: "/bookit/"
 title: Using BookIT!
 ---
 # {{ page.title }}

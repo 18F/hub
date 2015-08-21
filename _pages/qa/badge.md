@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: private/badge/
+permalink: /badge/
 title: How to get your badge
 ---
 # {{ page.title }}

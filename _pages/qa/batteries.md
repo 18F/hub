@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: private/batteries/
+permalink: /batteries/
 title: Keyboard and trackpad batteries
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: private/aws-access/
+permalink: /aws-access/
 title: Amazon Web Services (AWS) Access
 ---
 # {{ pages.private }}

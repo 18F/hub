@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: /private/reserve-workstation-room/
+permalink: //reserve-workstation-room/
 title: Reserve a workstation or conference room
 ---
 # {{ page.title }}

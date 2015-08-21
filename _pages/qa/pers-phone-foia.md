@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: /private/pers-phone-foia/
+permalink: //pers-phone-foia/
 title: Personal phones and FOIA
 ---
 # {{ page.title }}

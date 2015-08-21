@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: /private/listserv-password/
+permalink: //listserv-password/
 title: Listserv Passwords
 ---
 # {{ page.title }}

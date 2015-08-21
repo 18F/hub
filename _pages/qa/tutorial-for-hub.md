@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: private/tutorial-for-prose-and-hub/
+permalink: /tutorial-for-prose-and-hub/
 title: Add and edit Hub pages
 ---
 
@@ -23,7 +23,7 @@ title: Add and edit Hub pages
 
   layout: q-and-a
 
-  permalink: private/tutorial-for-hub
+  permalink: tutorial-for-hub
 
   title: Add and edit Hub pages
 

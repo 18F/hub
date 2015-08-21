@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: /private/fed-hotspot-foia/
+permalink: //fed-hotspot-foia/
 title: Federal government mobile hotspots and FOIA
 ---
 # {{ page.title }}
