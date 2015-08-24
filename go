@@ -44,7 +44,7 @@ end
 JEKYLL_PUBLIC_CONFIG = "--config _config.yml,_config_public.yml"
 
 def_command :serve, 'Serves the internal hub at localhost:4000' do
-  serve_jekyll
+  serve_jekyll ''
 end
 
 def_command :serve_public, 'Serves the public hub at localhost:4000/hub' do
@@ -53,7 +53,7 @@ end
 
 def_command :build, 'Builds the internal and external versions of the Hub' do
   puts 'Building internal version...'
-  build_jekyll
+  build_jekyll ''
   puts 'Building public version...'
   build_jekyll JEKYLL_PUBLIC_CONFIG
 end
