@@ -37,6 +37,11 @@
   latitude: 38.843677
   longitude: -77.046915
   timezone: 'Eastern Time Zone (UTC-05:00)'
+- code: LAW
+  label: Lawrence
+  latitude: 38.9734885
+  longitude: -95.2509269
+  timezone: 'Central Time Zone (UTC-06:00)'
 - code: LAX
   label: Los Angeles
   latitude: 33.9428575
