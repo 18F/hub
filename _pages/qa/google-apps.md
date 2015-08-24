@@ -11,19 +11,15 @@ If you’re familiar with  Google apps you're aware that many features have been
 
 **Gmail**
 
-* Messages will be filtered through Postini which must be reviewed at [mrec.gsa.gov](http://mrec.gsa.gov/).
-
 * Since you can't set a profile picture in Google profile (Google+), you just need to do it in [Gmail settings](https://support.google.com/mail/answer/35529?hl=en).
 
 **Groups**
 
-* You can no longer create your own groups directly; you have to [request them](https://insite.gsa.gov/portal/content/654350).
+* You can't create your own groups directly; you have to [request them](https://insite.gsa.gov/portal/content/654350).
 
 * You can't access public google groups via the Google Groups website, but group owners can directly add your address to send and receive public group emails.
 
 * People outside GSA can't access GSA google groups via the Google Groups website, but email still works - note the permissions for the Google group though. 
-
-* Messages will be filtered through Postini unless you request to have it disabled.
 
 **Calendar**
 
