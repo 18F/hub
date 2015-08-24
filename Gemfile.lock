@@ -21,7 +21,7 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     execjs (2.5.2)
     ffi (1.9.10)
-    go_script (0.0.0)
+    go_script (0.1.0)
       bundler (~> 1.10)
       safe_yaml (~> 1.0)
     hash-joiner (0.0.7)
