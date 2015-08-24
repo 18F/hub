@@ -28,6 +28,10 @@ check_ruby_version '2.1.5'
 
 command_group :dev, 'Development commands'
 
+def_command :init, 'Initialize private submodules (18F members only)' do
+  exec_cmd 'git submodule update --init'
+end
+
 def_command :update_gems, 'Update Ruby gems' do |gems = []|
   update_gems gems
 end
@@ -41,7 +45,7 @@ def_command :test, 'Execute automated tests' do |args = []|
   exec_cmd "bundle exec rake test #{args.join ' '}"
 end
 
-JEKYLL_PUBLIC_CONFIG = "--config _config.yml,_config_public.yml"
+JEKYLL_PUBLIC_CONFIG = '--config _config.yml,_config_public.yml'
 
 def_command :serve, 'Serves the internal hub at localhost:4000' do
   serve_jekyll ''
@@ -78,8 +82,8 @@ def_command :deploy_submodules, 'Commits automated submodule updates' do
   ])
 end
 
-def_command(:deploy_internal,
-  'Deploys the internal and staging Hub instances') do
+def_command(
+  :deploy_internal, 'Deploys the internal and staging Hub instances') do
   deploy
   build
 end
