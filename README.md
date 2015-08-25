@@ -43,10 +43,9 @@ run your own local instance at `http://localhost:4000`:
 $ git clone git@github.com:18F/hub.git
 $ cd hub
 
-# 18F team members only: initialize private submodules
-$ git submodule update --init 
-
+# Only 18F team members need run this:
 $ ./go init
+
 $ ./go serve
 ```
 

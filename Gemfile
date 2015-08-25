@@ -11,6 +11,7 @@ gem 'weekly_snippets'
 gem 'rouge'
 gem 'uglifier'
 gem 'coveralls', require: false
+gem 'go_script'
 
 group :jekyll_plugins do
   gem 'jekyll-assets'
