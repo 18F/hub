@@ -102,12 +102,7 @@ end
 def_command :ci_build, 'Runs tests and builds both Hub versions' do
   test
   build
-  # TODO fix internal links and remove rescue
-  begin
-    validate_public
-  rescue RuntimeError
-    STDERR.puts "WARNING: Link validation failed."
-  end
+  validate_public
 end
 
 command_group :deploy, 'Automated deployment commands used by deploy/fabfile.py'
