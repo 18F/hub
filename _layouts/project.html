@@ -35,7 +35,7 @@ layout: bare
 	<h1>Team Members</h1>
 	<ul>
 		{% for i in proj.team %}
-			<li><a href="{{ site.baseurl }}/team/{{ i.name }}">{{ i.full_name }}</a></li>
+			<li><a href="{{ site.baseurl }}/team/{{ i.name | canonicalize }}">{{ i.full_name }}</a></li>
 		{% endfor %}
 	</ul>
 

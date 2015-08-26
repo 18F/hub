@@ -9,7 +9,7 @@ Good planning will make people more likely to join the doc sprint, will ensure t
 
 ### Three Weeks Before Doc Sprint
 * Determine the theme
-* Set a date and invite people. Include a link to the [Doc Sprint Overview](/docsprint)
+* Set a date and invite people. Include a link to the [Doc Sprint Overview](../..)
 
 ### Two Weeks Before Doc Sprint
 * Identify candidate doc sprint tasks
@@ -17,7 +17,7 @@ Good planning will make people more likely to join the doc sprint, will ensure t
 * Update the invite with a link to the task list
 
 ### One Week Before Doc Sprint
-* Make sure the [Doc Sprint Participant Guide](/docsprint/guides/participation) is current (or created)
+* Make sure the [Doc Sprint Participant Guide](../participation) is current (or created)
 * Set up Google form or other way to report on progress during the doc sprint
 
 ### One Day Before Doc Sprint
