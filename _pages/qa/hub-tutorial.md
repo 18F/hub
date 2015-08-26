@@ -9,17 +9,17 @@ work, read [Internal vs. Public Hubs](../../101/internal-vs-public/).
 
 ### Add a page to the Hub
 
-1. The Hub is located at [18F/hub-pages-private](https://github.com/18F/hub-pages-private) on GitHub.
+**1.** The Hub is located at [18F/hub-pages-private](https://github.com/18F/hub-pages-private) on GitHub.
 
 >We've been adding new pages to the [qa folder](https://github.com/18F/hub-pages-private/tree/master/qa).
 
-2. To add a new page, click the "+" button located above the files:
+**2.** To add a new page, click the "+" button located above the files:
 
 ![Screenshot of + button](../assets/images/onboarding/new-file.png)
 
 >Name the new file "name-of-your-file.md"
 
-3. Add front matter to the page. It should look like this:
+**3.** Add front matter to the page. It should look like this:
 
 ```
 ---
@@ -29,7 +29,7 @@ title: {{ page.title }}
 ---
 ```
 
-4. You can now edit the page in GitHub and make a pull request for it to be added to the Hub.
+**4.** You can now edit the page in GitHub and make a pull request for it to be added to the Hub.
 
 ### Edit an existing page on the Hub from the Hub itself by scrolling to the bottom of that page,
 
