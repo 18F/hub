@@ -1,6 +1,6 @@
 ---
 layout: q-and-a
-permalink: /tutorial-for-prose-and-hub/
+permalink: /tutorial-for-hub/
 title: Add and edit Hub pages
 ---
 
@@ -19,15 +19,11 @@ title: Add and edit Hub pages
 3. Add front matter to the page. It should look like this:
 
 ```
-  ---
-
-  layout: q-and-a
-
-  permalink: tutorial-for-hub
-
-  title: Add and edit Hub pages
-
-  ---
+---
+layout: {{ page.layout }}
+permalink: {{ page.permalink }}
+title: {{ page.title }}
+---
 ```
 
 4. You can now edit the page in GitHub and make a pull request for it to be added to the Hub.
