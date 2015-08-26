@@ -25,6 +25,9 @@ GEM
       ffi (>= 1.3.0)
     execjs (2.5.2)
     ffi (1.9.10)
+    go_script (0.1.0)
+      bundler (~> 1.10)
+      safe_yaml (~> 1.0)
     hash-joiner (0.0.7)
       safe_yaml
     hike (1.2.3)
@@ -150,6 +153,7 @@ DEPENDENCIES
   bourbon
   codeclimate-test-reporter
   coveralls
+  go_script
   hash-joiner
   html-proofer
   jekyll (= 3.0.0.pre.beta8)

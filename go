@@ -1,98 +1,58 @@
 #! /usr/bin/env ruby
-#
-# 18F Hub - Docs & connections between team members, projects, and skill sets
-#
-# Written in 2015 by Mike Bland (michael.bland@gsa.gov)
-# on behalf of the 18F team, part of the US General Services Administration:
-# https://18f.gsa.gov/
-#
-# To the extent possible under law, the author(s) have dedicated all copyright
-# and related and neighboring rights to this software to the public domain
-# worldwide. This software is distributed without any warranty.
-#
-# You should have received a copy of the CC0 Public Domain Dedication along
-# with this software. If not, see
-# <https://creativecommons.org/publicdomain/zero/1.0/>.
-#
-# @author Mike Bland (michael.bland@gsa.gov)
-#
-# ----
-#
-# ./go script: unified development environment interface
-#
-# Inspired by:
-# http://www.thoughtworks.com/insights/blog/praise-go-script-part-i
-# http://www.thoughtworks.com/insights/blog/praise-go-script-part-ii
-#
-# Author: Mike Bland (michael.bland@gsa.gov)
-# Date:   2015-01-10
 
-MIN_VERSION = "2.1.5"
+require 'English'
 
-unless RUBY_VERSION >= MIN_VERSION
-  puts <<EOF
+Dir.chdir File.dirname(__FILE__)
 
-*** ABORTING: Unsupported Ruby version ***
-
-Ruby version #{MIN_VERSION} or greater is required to work with the Hub, but
-this Ruby is version #{RUBY_VERSION}. Consider using a version manager such as
-rbenv (https://github.com/sstephenson/rbenv) or rvm (https://rvm.io/)
-to install a Ruby version specifically for Hub development.
-
-EOF
-  exit 1
+def try_command_and_restart(command)
+  exit $CHILD_STATUS.exitstatus unless system command
+  exec $PROGRAM_NAME, *ARGV
 end
 
-def exec_cmd(cmd)
-  exit $?.exitstatus unless system(cmd)
+begin
+  require 'bundler/setup' if File.exist? 'Gemfile'
+rescue LoadError
+  try_command_and_restart 'gem install bundler'
+rescue SystemExit
+  try_command_and_restart 'bundle install'
 end
 
-def init
-  begin
-    require 'bundler'
-  rescue LoadError
-    puts "Installing Bundler gem..."
-    exec_cmd 'gem install bundler'
-    puts "Bundler installed; installing gems"
-  end
-  exec_cmd 'bundle install'
+begin
+  require 'go_script'
+rescue LoadError
+  try_command_and_restart 'gem install go_script'
 end
 
-def update_gems
-  exec_cmd 'bundle update'
-  exec_cmd 'git add Gemfile.lock'
+extend GoScript
+check_ruby_version '2.1.5'
+
+command_group :dev, 'Development commands'
+
+def_command :init, 'Initialize private submodules (18F members only)' do
+  exec_cmd 'git submodule update --init'
 end
 
-def update_js
-  abort 'Install npm to update JavaScript components: ' \
-      'http://nodejs.org/download/' unless system 'which npm > /dev/null'
+def_command :update_gems, 'Update Ruby gems' do |gems = []|
+  update_gems gems
+end
 
-  exec_cmd 'npm update'
-  exec_cmd 'npm install'
+def_command :update_js, 'Update JavaScript components' do
+  update_node_modules
   exec_cmd 'gulp vendorize'
 end
 
-def test
-  exec_cmd 'bundle exec rake test'
+def_command :test, 'Execute automated tests' do |args = []|
+  exec_cmd "bundle exec rake test #{args.join ' '}"
 end
 
-JEKYLL_BUILD_CMD = "exec jekyll build --trace"
-JEKYLL_SERVE_CMD = "exec jekyll serve -w --trace"
-JEKYLL_PUBLIC_CONFIG = "--config _config.yml,_config_public.yml"
+JEKYLL_PUBLIC_CONFIG = '--config _config.yml,_config_public.yml'
 
-def serve
-  exec "bundle #{JEKYLL_SERVE_CMD}"
+def_command :serve, 'Serves the internal hub at localhost:4000' do
+  serve_jekyll ''
 end
 
-def serve_public
-  exec "bundle #{JEKYLL_SERVE_CMD} #{JEKYLL_PUBLIC_CONFIG}"
-end
-
-def build
-  puts 'Building internal version...'
-  exec_cmd "bundle #{JEKYLL_BUILD_CMD}"
-  puts 'Building public version...'
-  exec_cmd "bundle #{JEKYLL_BUILD_CMD} #{JEKYLL_PUBLIC_CONFIG}"
+def_command :serve_public, 'Serves the public hub at localhost:4000/hub' do
+  serve_jekyll JEKYLL_PUBLIC_CONFIG
 end
 
 
@@ -100,23 +60,31 @@ PROOFER_OPTS = {
   disable_external: true # might want to re-enable this eventually
 }
 
-def validate_public
+def_command :validate_public, 'Validate no internal links are broken on the public build' do
   require 'html/proofer'
   HTML::Proofer.new('./_site_public', PROOFER_OPTS).run
 end
 
-def validate_private
+def_command :validate_private, 'Validate no internal links are broken on the private build' do
   require 'html/proofer'
   HTML::Proofer.new('./_site', PROOFER_OPTS).run
 end
 
-def validate
+def_command :validate, 'Build, then validate no internal links are broken' do
   build
   validate_public
   validate_private
 end
 
-def ci_build
+
+def_command :build, 'Builds the internal and external versions of the Hub' do
+  puts 'Building internal version...'
+  build_jekyll ''
+  puts 'Building public version...'
+  build_jekyll JEKYLL_PUBLIC_CONFIG
+end
+
+def_command :ci_build, 'Runs tests and builds both Hub versions' do
   test
   build
   # TODO fix internal links and remove rescue
@@ -127,114 +95,30 @@ def ci_build
   end
 end
 
-def deploy(deploy_commands)
-  exec_cmd(['git pull',
-            'git submodule update --remote',
-           ].concat(deploy_commands).join(' && '))
+command_group :deploy, 'Automated deployment commands used by deploy/fabfile.py'
+
+def deploy(commands = [])
+  git_sync_and_deploy ['git submodule update --remote'].concat(commands)
 end
 
-def deploy_submodules
+def_command :deploy_submodules, 'Commits automated submodule updates' do
   deploy([
-    '/usr/local/rbenv/shims/ruby _data/import-public.rb',
+    'ruby _data/import-public.rb',
     'git add .',
     'git commit -m \'Private submodule update\'',
     'git push',
   ])
 end
 
-def deploy_internal
-  bundle_cmd = "/usr/local/rbenv/shims/bundle"
-  deploy([
-    "#{bundle_cmd} install",
-    "#{bundle_cmd} #{JEKYLL_BUILD_CMD}",
-    "#{bundle_cmd} #{JEKYLL_BUILD_CMD} #{JEKYLL_PUBLIC_CONFIG}",
-  ])
+def_command(
+  :deploy_internal, 'Deploys the internal and staging Hub instances') do
+  deploy
+  build
 end
 
-def deploy_public
-  bundle_cmd = "/opt/install/rbenv/shims/bundle"
-  deploy([
-    "#{bundle_cmd} install",
-    "#{bundle_cmd} #{JEKYLL_BUILD_CMD} #{JEKYLL_PUBLIC_CONFIG}",
-  ])
+def_command :deploy_public, 'Deploys the public Hub instance' do
+  deploy
+  build_jekyll JEKYLL_PUBLIC_CONFIG
 end
 
-# Groups a set of commands by common function.
-class CommandGroup
-  attr_accessor :description, :commands
-  private_class_method :new
-  @@groups = Array.new
-
-  # @param description [String] short description of the group
-  # @param commands [Hash<Symbol,String>] mapping from command function name
-  #   to a brief description; each key must be the name of a function in this
-  #   script
-  def initialize(description, commands)
-    @description = description
-    @commands = commands
-  end
-
-  def to_s
-    padding = @commands.keys.max_by {|i| i.size}.size + 2
-    ["\n#{@description}"].concat(
-      @commands.map {|name, desc| "  %-#{padding}s#{desc}" % name}).join("\n")
-  end
-
-  def self.add_group(description, commands)
-    @@groups << new(description, commands)
-  end
-
-  def self.groups
-    @@groups
-  end
-
-  def self.check_command_exists(command_symbol)
-    all_commands = @@groups.map {|i| i.commands.keys}.flatten
-    unless all_commands.member? command_symbol
-      puts "Unknown option or command: #{command_symbol}"
-      usage(exitstatus: 1)
-    end
-  end
-end
-
-CommandGroup.add_group(
-  'Development commands',
-  {
-    :init => 'Set up the Hub dev environment',
-    :update_gems => 'Execute Bundler to update gem set',
-    :update_js => 'Execute npm to update JS',
-    :test => 'Execute automated tests',
-    :serve => 'Serves the internal hub at localhost:4000',
-    :serve_public => 'Serves the public hub at localhost:4000/hub/',
-    :build => 'Builds the internal and external versions of the Hub',
-    :validate => 'Run HTML link validation on Hub pages',
-    :ci_build => 'Runs tests and builds both Hub versions',
-  })
-
-CommandGroup.add_group(
-  'Automated deployment commands used by deploy/fabfile.py',
-  {
-    :deploy_submodules => 'Commits automated submodule updates',
-    :deploy_internal => 'Deploys the internal and staging Hub instances',
-    :deploy_public => 'Deploys the public Hub instance',
-  }
-)
-
-def usage(exitstatus: 0)
-  puts <<EOF
-Usage: #{$0} [options] [command]
-
-options:
-  -h,--help  Show this help
-EOF
-  CommandGroup.groups.each {|s| puts s}
-  exit exitstatus
-end
-
-usage(exitstatus: 1) unless ARGV.size == 1
-command = ARGV.shift
-usage if ['-h', '--help'].include? command
-
-command = command.to_sym
-CommandGroup.check_command_exists command
-send command
+execute_command ARGV
