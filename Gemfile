@@ -22,6 +22,7 @@ end
 
 group :test do
   gem 'rake'
+  gem 'html-proofer'
   gem 'minitest'
   gem 'codeclimate-test-reporter'
   gem 'test_temp_file_helper'

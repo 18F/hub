@@ -55,6 +55,28 @@ def_command :serve_public, 'Serves the public hub at localhost:4000/hub' do
   serve_jekyll JEKYLL_PUBLIC_CONFIG
 end
 
+
+PROOFER_OPTS = {
+  disable_external: true # might want to re-enable this eventually
+}
+
+def_command :validate_public, 'Validate no internal links are broken on the public build' do
+  require 'html/proofer'
+  HTML::Proofer.new('./_site_public', PROOFER_OPTS).run
+end
+
+def_command :validate_private, 'Validate no internal links are broken on the private build' do
+  require 'html/proofer'
+  HTML::Proofer.new('./_site', PROOFER_OPTS).run
+end
+
+def_command :validate, 'Build, then validate no internal links are broken' do
+  build
+  validate_public
+  validate_private
+end
+
+
 def_command :build, 'Builds the internal and external versions of the Hub' do
   puts 'Building internal version...'
   build_jekyll ''
@@ -65,6 +87,12 @@ end
 def_command :ci_build, 'Runs tests and builds both Hub versions' do
   test
   build
+  # TODO fix internal links and remove rescue
+  begin
+    validate_public
+  rescue RuntimeError
+    STDERR.puts "WARNING: Link validation failed."
+  end
 end
 
 command_group :deploy, 'Automated deployment commands used by deploy/fabfile.py'
