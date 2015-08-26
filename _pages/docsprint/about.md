@@ -41,4 +41,4 @@ For more details:
 
 ## Doc Sprint Events
 
-18F's [first doc sprint](/docsprint/onboarding) is April 17th, and the theme is onboarding.
+18F's [first doc sprint](../onboarding) is April 17th, and the theme is onboarding.

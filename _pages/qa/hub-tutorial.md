@@ -4,6 +4,9 @@ permalink: /tutorial-for-hub/
 title: Add and edit Hub pages
 ---
 
+For more in-depth discussion of how the `_data/` and `pages/` directories
+work, read [Internal vs. Public Hubs](../../101/internal-vs-public/).
+
 ### Add a page to the Hub
 
 1. The Hub is located at [18F/hub-pages-private](https://github.com/18F/hub-pages-private) on GitHub.
@@ -41,3 +44,11 @@ This will take you to that file in Github, already open in edit mode.
 Once you're finished with your changes, write about your changes in the "Commit changes" box. Select "Create a new branch" radio button and click on the "Propose file change" button. On the next page click the "Create a pull request" button.
 
 Congrats! You've edited a Hub page.
+
+## How to edit team information
+
+TODO
+
+## How to edit project information
+
+TODO
