@@ -1,0 +1,13 @@
+{
+  "name": "angular-livesearch",
+  "homepage": "https://github.com/mauriciogentile/angular-livesearch",
+  "_release": "1f4e357ab3",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "1f4e357ab3b50701eeedcfb45c12cd901d612087"
+  },
+  "_source": "https://github.com/mauriciogentile/angular-livesearch.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/mauriciogentile/angular-livesearch.git"
+}

@@ -2,6 +2,12 @@ GEM
   remote: https://rubygems.org/
   specs:
     RedCloth (4.2.9)
+    activesupport (4.2.4)
+      i18n (~> 0.7)
+      json (~> 1.7, >= 1.7.7)
+      minitest (~> 5.1)
+      thread_safe (~> 0.3, >= 0.3.4)
+      tzinfo (~> 1.1)
     addressable (2.3.8)
     bourbon (4.2.3)
       sass (~> 3.4)
@@ -25,6 +31,7 @@ GEM
       ffi (>= 1.3.0)
     execjs (2.5.2)
     ffi (1.9.10)
+    gemoji (2.1.0)
     go_script (0.1.0)
       bundler (~> 1.10)
       safe_yaml (~> 1.0)
@@ -32,6 +39,9 @@ GEM
       safe_yaml
     hike (1.2.3)
     hitimes (1.2.2)
+    html-pipeline (1.11.0)
+      activesupport (>= 2)
+      nokogiri (~> 1.4)
     html-proofer (2.3.0)
       addressable (~> 2.3)
       colored (~> 1.2)
@@ -43,6 +53,7 @@ GEM
     htmlentities (4.3.4)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
+    i18n (0.7.0)
     jekyll (3.0.0.pre.beta8)
       colorator (~> 0.1)
       jekyll-sass-converter (~> 1.0)
@@ -70,6 +81,10 @@ GEM
       jekyll_pages_api (~> 0.1.4)
       sass (~> 3.4)
       therubyracer (~> 0.12.2)
+    jemoji (0.5.0)
+      gemoji (~> 2.0)
+      html-pipeline (~> 1.9)
+      jekyll (>= 2.0)
     json (1.8.3)
     kramdown (1.8.0)
     libv8 (3.16.14.11)
@@ -130,12 +145,15 @@ GEM
       libv8 (~> 3.16.14.0)
       ref
     thor (0.19.1)
+    thread_safe (0.3.5)
     tilt (1.4.1)
     timers (4.0.1)
       hitimes
     tins (1.5.4)
     typhoeus (0.7.3)
       ethon (>= 0.7.4)
+    tzinfo (1.2.2)
+      thread_safe (~> 0.1)
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
@@ -161,6 +179,7 @@ DEPENDENCIES
   jekyll-sitemap
   jekyll_pages_api
   jekyll_pages_api_search
+  jemoji
   liquid_pluralize
   minitest
   rake
