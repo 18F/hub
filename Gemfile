@@ -12,6 +12,7 @@ gem 'rouge'
 gem 'uglifier'
 gem 'coveralls', require: false
 gem 'go_script'
+gem 'jemoji'
 
 group :jekyll_plugins do
   gem 'jekyll-assets'
