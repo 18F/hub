@@ -6,7 +6,7 @@ Dir.chdir File.dirname(__FILE__)
 
 def try_command_and_restart(command)
   exit $CHILD_STATUS.exitstatus unless system command
-  exec $PROGRAM_NAME, *ARGV
+  exec RbConfig.ruby, *[$PROGRAM_NAME].concat(ARGV)
 end
 
 begin
@@ -66,7 +66,9 @@ PROOFER_OPTS = {
   ].freeze
 }.freeze
 
-def_command :validate_public, 'Validate no internal links are broken on the public build' do
+def_command(
+  :validate_public,
+  'Validate no internal links are broken on the public build') do
   require 'html/proofer'
 
   opts = PROOFER_OPTS.dup
@@ -80,7 +82,9 @@ def_command :validate_public, 'Validate no internal links are broken on the publ
   HTML::Proofer.new('./_site_public', opts).run
 end
 
-def_command :validate_private, 'Validate no internal links are broken on the private build' do
+def_command(
+  :validate_private,
+  'Validate no internal links are broken on the private build') do
   require 'html/proofer'
   HTML::Proofer.new('./_site', PROOFER_OPTS.dup).run
 end
@@ -90,7 +94,6 @@ def_command :validate, 'Build, then validate no internal links are broken' do
   validate_public
   validate_private
 end
-
 
 def_command :build, 'Builds the internal and external versions of the Hub' do
   puts 'Building internal version...'
