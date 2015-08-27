@@ -15,7 +15,7 @@ Another handy lab: Automatically declining events, will give you the option of "
 
 ## Event duration
 
-By default, Google Calendar thinks you want to schedule 30 minute meetings with people. But [some people](/team/boone) can't sit still very long and prefer shorter meetings. [Other people](/team/russ) _really like talking_ and prefer longer meetings. (Just kidding, Russ.)
+By default, Google Calendar thinks you want to schedule 30 minute meetings with people. But [some people](https://18f.gsa.gov/team/boone) can't sit still very long and prefer shorter meetings. [Other people](https://18f.gsa.gov/team/russ) _really like talking_ and prefer longer meetings. (Just kidding, Russ.)
 
 If you are either of those people, this is the setting for you: *On the "General" settings screen look for a section called "Default event duration"* and click the dropdown to choose from either 15, 30, 60, 90, or (:scream:) 120 minutes.
 
