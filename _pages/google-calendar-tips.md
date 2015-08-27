@@ -41,4 +41,4 @@ When you create an event, under the "Where" input there's a link for "Add video 
 
 The "Add video call" link automatically gives the call a name like gregory-boone. But that's a dumb name for a video call. Click the "change name" link below the new "Join meeting" link and you can set it to whatever you want!
 
-[How to add a video call](assets/images/google-cal-tips.gif)
+![How to add a video call](assets/images/google-cal-tips.gif)
