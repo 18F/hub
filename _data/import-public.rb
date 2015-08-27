@@ -25,10 +25,14 @@
 # @author Mike Bland (michael.bland@gsa.gov)
 # Date:   2014-12-22
 
-DATA_DIR = File.dirname __FILE__
+require 'fileutils'
+
+DATA_DIR = File.expand_path(__dir__)
 ['departments', 'projects', 'team', 'working_groups'].each do |dir|
+  full_path = File.join(DATA_DIR, dir)
+  FileUtils.rm_rf(full_path)
   pattern = File.join DATA_DIR, 'private', dir, '*.yml'
   files = Dir.glob(pattern).join ' '
   exit $?.exitstatus unless system(
-    "bundle exec filter-yaml-files -o #{File.join DATA_DIR, dir} #{files}")
+    "bundle exec filter-yaml-files -o #{full_path} #{files}")
 end
