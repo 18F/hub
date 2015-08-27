@@ -42,3 +42,9 @@ When you create an event, under the "Where" input there's a link for "Add video 
 The "Add video call" link automatically gives the call a name like gregory-boone. But that's a dumb name for a video call. Click the "change name" link below the new "Join meeting" link and you can set it to whatever you want!
 
 ![How to add a video call]({{ site.baseurl }}/assets/images/google-cal-tips.gif)
+
+## Find a time!
+
+When you're creating a meeting for many people, Google Calendar has a neat feature that does the legwork of finding a time when everybody is free for you. Checkout this demo:
+
+![How to find a time when everybody is free]({{site.baseurl}}/assets/images/moar-google-cal-tips.gif)
