@@ -122,4 +122,4 @@ google_analytics_ua: UA-48605964-24
 gems:
   - jemoji
 emoji:
-  src: "/assets/images"
+  src: "{{ site.baseurl }}/assets/images"
