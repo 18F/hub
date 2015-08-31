@@ -10,7 +10,7 @@ To invite people to a public Slack channel, send them to [chat.18f.gov](https://
 
 ## Adding new channels
 
-[chat.18f.gov](https://chat.18f.gov/) is an instance of [slackin](https://github.com/rauchg/slackin). To create a new publicly-joinable channel:
+[chat.18f.gov](https://chat.18f.gov/) is an instance of [slackin](https://github.com/18F/slackin). To create a new publicly-joinable channel:
 
 1. Create the channel in Slack, with a `*-public` suffix (just to make it explicit).
 1. Run `NEW_CHANNEL=new-channel-name` (replace with the appropriate value).
@@ -22,4 +22,4 @@ To invite people to a public Slack channel, send them to [chat.18f.gov](https://
     cf restage slackin
     ```
 
-If you get an error on the last step, ask in #devops to give you the appropriate permissions, or do it for you.
+Ask in #devops if you need any help.
