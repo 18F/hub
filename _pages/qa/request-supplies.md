@@ -9,7 +9,7 @@ tags:
 ---
 # {{ page.title }}
 
-TeamOps is testing Communicart for requesting computer hardware, software, and licenses – make new requests here:
+TeamOps is temporarly using a Google request form for requesting computer hardware, software, and licenses – make new requests here:
 
 https://docs.google.com/a/gsa.gov/forms/d/1zSuFinxBVr0_oi2aGFaHArRJ8McyfQhjC05SOG_uCzo/viewform
 
