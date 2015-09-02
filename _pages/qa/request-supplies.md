@@ -11,8 +11,8 @@ tags:
 
 TeamOps is testing Communicart for requesting computer hardware, software, and licenses – make new requests here:
 
-https://cap.18f.gov/gsa18f/procurements/new
+https://docs.google.com/a/gsa.gov/forms/d/1zSuFinxBVr0_oi2aGFaHArRJ8McyfQhjC05SOG_uCzo/viewform
 
 If you're requesting software, be sure you have permission from #devops first. If it's software that runs directly on your laptop, speak with @kimber first. TeamOps will not approve software without DevOps clearance. 
 
-Drop by #cap if you have trouble accessing, or ask any questions about the procurement process in #teamops.
+Drop by #teamops if you have trouble accessing, or ask any questions about the procurement process in #teamops.
