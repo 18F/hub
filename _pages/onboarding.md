@@ -1,6 +1,6 @@
 ---
 layout: "q-and-a"
-title: "New to 18F?"
+title: Onboarding guide
 ---
 
 # {{ page.title }}
