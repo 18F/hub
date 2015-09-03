@@ -52,8 +52,8 @@ This will make life easier for the next person being onboarded. Thanks!
 
 ...if they apply to you.
 
-* [18F Site]({{ site.baseurl }}/18f-site/onboarding/)
-* [Consulting]({{ site.baseurl }}/consulting/onboarding/){% unless site.public %}
+* [18F Site]({{ site.baseurl }}/18f-site/onboarding/){% unless site.public %}
+* [Consulting]({{ site.baseurl }}/consulting/onboarding/)
 * [Design]({{ site.baseurl }}/design-onboarding/){% endunless %}
 
 ## Next, check on these items in a more relaxed manner during your first two weeks
