@@ -34,7 +34,7 @@ These tips come from fellow 18F staffers who really wished they had known them w
 ## Training
 
 * Access [virtual training resources](../private/virtual-training).
-* Learn how to get reimbursed for [training or classes]({{ site.baseurl }}/inperson-training).
+* Learn more about [training and classes]({{ site.baseurl }}/training-and-classes).
 
 ## Leave
 

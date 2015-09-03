@@ -1,52 +1,35 @@
 ---
 layout: "q-and-a"
-permalink: "/inperson-training/"
-title: "In-person Training"
+permalink: "/training-and-classes/"
+title: "Training and classes"
 ---
 
 # {{ page.title }}
 
-The [official training policy](https://docs.google.com/document/d/18VcWDZbXw7lNAHj_OJbRMZBacEgO2IKJZSsTqy33gOY/edit#heading=h.hmzkrq8b1z05) can be a little confusing. As an employee looking to get training approved, here is what you really need to do.  If you have any questions, please reach out to the 18F Talent team.
+Want to increase your workplace savvy by taking a class or attending a training? Good news! As an 18F team member, you’re eligible for tuition reimbursement through GSA. The process can take a couple weeks, but it’s relatively painless— it just involves a few rounds of paperwork and supervisory approval.
+
+The [official training policy](https://docs.google.com/document/d/18VcWDZbXw7lNAHj_OJbRMZBacEgO2IKJZSsTqy33gOY/edit#heading=h.hmzkrq8b1z05) can be a little overwhelming. Here's a breakdown of what you need to do:
 
 
-### Step One: Identify training as part of your professional development - IDP
-
-1. Meet with your supervisor to discuss your training needs.
-2. Add (or confirm) that the training event is a part of your [Individual Development Plan (IDP)](https://insite.gsa.gov/portal/category/533326). If not, add it.
-
-To update your IDP, visit the [IDP tool](https://gsa--c.na1.visual.force.com/apex/IDP_ViewPage?sfdc.tabName=01r30000001L8lz).  This will open your personal IDP template.  Follow instructions to complete your IDP.
+### Step one
+Open the [Speaking requests, attending events](https://docs.google.com/spreadsheets/d/1Y0336rKQ4FiTFhoQynRjoVuJFzXEgaV0QcHqaNd-Eis/edit#gid=2072167708) spreadsheet. Enter the class or training you’d like to attend in the second tab— ”Training Requests.”
 
 
-### Step Two: Submit for higher approval
+### Step two
+Complete an [individual development plan (IDP)](https://insite.gsa.gov/portal/content/656782). Enter the class or training as a goal.  If you need inspiration, you can find lots of sample IDPs are floating around the Internet. You can also check out [this sample](https://drive.google.com/a/gsa.gov/file/d/1Sid8vVFgR69gYOin5FUxbVbuC6XGEu-zIii9dO7xBN4VrWumKvl02Zs0NFKxg_bUGikkSiakn0HBFdlP/view) or [this sample](https://docs.google.com/document/d/1IDVXKHnj9lVWiloBShZ9tuU3Wwe7ErTUL0hVDncKau4/edit) to see how previous 18F team members have completed theirs. 
 
-Enter complete training request into [18F Speaking Requests / Attending Events spreadsheet](https://docs.google.com/spreadsheets/d/1Y0336rKQ4FiTFhoQynRjoVuJFzXEgaV0QcHqaNd-Eis/edit#gid=2072167708) -- except Columns B (Aaron/Hillary Approval), C (Red Flag) and O (Other Red Flags); P (Steps to Approval if Red Flags) and Q (Steps to Approval).
-
-[![screen shot 2015-08-19 at 12 29 34 pm](https://cloud.githubusercontent.com/assets/166734/9362359/faeff1ec-466d-11e5-9c08-3800afb77618.png)](https://docs.google.com/spreadsheets/d/1Y0336rKQ4FiTFhoQynRjoVuJFzXEgaV0QcHqaNd-Eis/edit#gid=2072167708)
-
-
-### Step Three: Review & Resolve Red Flags
-
-After submission to the [18F Speaking Requests / Attending Events spreadsheet](https://docs.google.com/spreadsheets/d/1Y0336rKQ4FiTFhoQynRjoVuJFzXEgaV0QcHqaNd-Eis/edit#gid=2072167708) the requestor reviews and resolves Red Flags identified in the spreadsheet.
-
-Example: "IDP and SF-182 Approval Pending.  Salesforce approval required for travel and conference attendance."
+ Submit your IDP for approval. The approving supervisor is the same person who approves your leave requests.
 
 
-### Step Four: Complete SF-182 "Authorization, Agreement and Certification of Training"
+### Step three
+Enter your training in the event tracker on [Salesforce](https://insite.gsa.gov/portal/content/646482). Submit it for approval. Aaron Snow is the supervisor, and Phaedra Chrousos is the HSSO.
 
-1. Create [SF-182](https://gsa.my.salesforce.com/a2r/o).
 
-2. If travel, then add travel expense request to SF-182.
+### Step four
+When your IDP is approved, you’ll get an email asking you to complete an [SF-182](https://drive.google.com/a/gsa.gov/file/d/0B9DenuU408s4ZDRHVWNMSEI2WlE/view). Follow the link in that email to submit it for approval.
 
-3. Submit to your Supervisor for signature.
+If travel is required, add a travel expense request to the SF-182. If you're traveling, you'll also need to get [travel authorization](../travel/) once the SF-182 is approved.
 
-### Step Five: Get Travel Authorization and book travel!
 
-Once the SF-182 is approved, if travel is required, get a travel authorization. See the [Hub's travel page](../travel/) for more information.
-
-*Receipts -- keep those and scan for voucher submission!*
-
-### Step Six: Attend the training!
-
-### Step Seven: Share what you learned
-
-If you attend a training, when you return you should schedule a brown bag about what you learned so others can benefit from your experiences.
+### Step five
+Go forth! Learn! Enjoy! Consider hosting a brown bag to share what you learn.
