@@ -4,11 +4,11 @@ skip_index: true
 <div class="auth-include team-members">
   <div class="team-member">
     <div class="team-member-cell">
-      <a href="{{ site.baseurl }}/team/{{ page.user.name }}"><span>{{ page.user.full_name }}</span></a><br/>
+      <a href="{{ site.baseurl }}/team/{{ page.user.name | canonicalize }}"><span>{{ page.user.full_name }}</span></a><br/>
       <a href="{{ site.baseurl }}/oauth2/sign_in">Log Out</a>
     </div>
     <div class="team-member-cell">
-      <a href="{{ site.baseurl }}/team/{{ page.user.name }}"><img src="{{ site.baseurl }}/{{ page.user.image }}" alt="{{ page.user.full_name }}"></a>
+      <a href="{{ site.baseurl }}/team/{{ page.user.name | canonicalize }}"><img src="{{ site.baseurl }}/{{ page.user.image }}" alt="{{ page.user.full_name }}"></a>
     </div>
   </div>
 </div>

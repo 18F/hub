@@ -17,7 +17,7 @@ This cohort will test our documentation as they onboard.
 
 # Why?
 
-The theme for 18F's first official [doc sprint](/docsprint) is onboarding. The **Onboarding+Doc Sprint** will culminate on April 17th, 2015.
+The theme for 18F's first official [doc sprint](..) is onboarding. The **Onboarding+Doc Sprint** will culminate on April 17th, 2015.
 
 The ops and onboarding teams are doing tremendous work to make sure new hires have the best possible transition to life at 18F.
 
@@ -71,7 +71,7 @@ Our new coworkers onboard using the materials we've created. We all use this opp
     * [Hub issues](https://github.com/18F/hub/issues)
     * [18F Guide issues](https://github.com/18F/guides/issues)
 
-2. After you complete a task, please log it using our [doc sprint form](#) so we can report on what got done.
+2. After you complete a task, please log it using our doc sprint form so we can report on what got done.
 
 ### Post-Doc Sprint
 

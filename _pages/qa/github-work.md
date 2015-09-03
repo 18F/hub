@@ -43,7 +43,7 @@ Contractors or external collaborators should only be added to teams with scoped 
 
 ## Learn more
 
-* After you feel comfortable with Git and GitHub, be sure to read and complete all of our [GitHub Standards](../private/devops/standards/github/).
+* After you feel comfortable with Git and GitHub, be sure to read and complete all of our [GitHub Standards](../standards/github/).
 * [@wslack](https://github.com/wslack) created a [GitHub Basics](https://docs.google.com/document/d/18b-4VPTcuqat-enGQSVzivGH2CsqdQVG0K0eToRM39I/edit) guide and training, which teaches you the pointy-clicky GitHub for Mac interface.
 * [@melody](https://github.com/melodykramer) and [@gboone](https://github.com/gboone) wrote a [great tutorial](https://18f.gsa.gov/2015/03/03/how-to-use-github-and-the-terminal-a-guide/) on how to use GitHub on the command-line.
 * For a quick and gentle introduction to Git, the underlying protocol of GitHub, take a few minutes to work through [Try Git](https://try.github.io/levels/1/challenges/1).

@@ -6,7 +6,7 @@ Dir.chdir File.dirname(__FILE__)
 
 def try_command_and_restart(command)
   exit $CHILD_STATUS.exitstatus unless system command
-  exec $PROGRAM_NAME, *ARGV
+  exec RbConfig.ruby, *[$PROGRAM_NAME].concat(ARGV)
 end
 
 begin
@@ -55,6 +55,46 @@ def_command :serve_public, 'Serves the public hub at localhost:4000/hub' do
   serve_jekyll JEKYLL_PUBLIC_CONFIG
 end
 
+
+PROOFER_OPTS = {
+  disable_external: true, # might want to re-enable this eventually
+  file_ignore: [
+    %r{/snippets/} # not worth fixing, for now
+  ].freeze,
+  url_ignore: [
+    '/hub/oauth2/sign_in'
+  ].freeze
+}.freeze
+
+def_command(
+  :validate_public,
+  'Validate no internal links are broken on the public build') do
+  require 'html/proofer'
+
+  opts = PROOFER_OPTS.dup
+  opts[:file_ignore] += [
+    './_site_public/hub/api/index.html'
+  ]
+  opts[:url_ignore] += [
+    %r{/private/}
+  ]
+
+  HTML::Proofer.new('./_site_public', opts).run
+end
+
+def_command(
+  :validate_private,
+  'Validate no internal links are broken on the private build') do
+  require 'html/proofer'
+  HTML::Proofer.new('./_site', PROOFER_OPTS.dup).run
+end
+
+def_command :validate, 'Build, then validate no internal links are broken' do
+  build
+  validate_public
+  validate_private
+end
+
 def_command :build, 'Builds the internal and external versions of the Hub' do
   puts 'Building internal version...'
   build_jekyll ''
@@ -65,6 +105,7 @@ end
 def_command :ci_build, 'Runs tests and builds both Hub versions' do
   test
   build
+  validate_public
 end
 
 command_group :deploy, 'Automated deployment commands used by deploy/fabfile.py'

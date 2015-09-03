@@ -2,6 +2,6 @@
 layout: bare
 ---
 <h1>{{ page.title }}</h1>
-{% for s in page.snippets %}<h2 class='snippets' id="{{ s.name }}"><a href="{{ site.baseurl }}/team/{{ s.name }}">{{ s.full_name }}</a></h2>
+{% for s in page.snippets %}<h2 class='snippets' id="{{ s.name }}"><a href="{{ site.baseurl }}/team/{{ s.name | canonicalize }}">{{ s.full_name }}</a></h2>
 {% include snippet.html %}
 {% endfor %}

@@ -10,6 +10,7 @@ title: Google Groups and Google Sites
 
 * Find instructions at [https://insite.gsa.gov/portal/content/654350](https://insite.gsa.gov/portal/content/654350).
 * The site has changed a little, but this might help:  [step-by-step screencast](https://drive.google.com/a/gsa.gov/file/d/0BynIxtx-CfkdYzdERmJwUWNoRlU/view).
+* It's also worth changing the group (left hand menu in the "manage group" page) under settings > moderation to auto-send all possible spam to the group. Will Slack has seen some legit messages get stuck and the GSA spam software doesn't send immediate notifications.
 
 **See also**
 For a period of time, GSA has locked down, very frustrating processes for creating a new Google Group.  Gray reports seeing it work in about 36 hours, start to finish. 
