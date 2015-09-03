@@ -1,6 +1,6 @@
 ---
 layout: "q-and-a"
-permalink: "/inperson-training/"
+permalink: "/training-and-classes/"
 title: "Training and classes"
 ---
 
