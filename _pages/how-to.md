@@ -112,6 +112,10 @@ These tips come from fellow 18F staffers who really wished they had known them w
 
 * [Access Google Analytics.]({{ site.baseurl }}/wg/analytics/)
 
+## Slack
+
+* [Add your picture to Slack's "hug bombs"]({{ site.baseurl }}/hug_bombs/)
+
 
 ## Legal and ethics questions
 
