@@ -114,7 +114,7 @@ These tips come from fellow 18F staffers who really wished they had known them w
 
 ## Slack
 
-* [Add your picture to Slack's "hug bombs"]({{ site.baseurl }}/hug_bombs/)
+* [Add your picture to Slack's "hug bombs"]({{ site.baseurl }}/hug_bomb/)
 
 
 ## Legal and ethics questions
