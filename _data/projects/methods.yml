@@ -19,7 +19,7 @@ milestones:
 - 'August 2015: Launched online, beta version of the methods at methods.18f.gov, including
   files and instructions for printed cards.'
 contact:
-- https://github.com/18f/methods/issues
+- 18f/methods/issues
 team: jthibault, colin, jeremy, esgoodman, andrewmaier, brad, victor, jhunter, jameshupp,
   russu
 licenses:
