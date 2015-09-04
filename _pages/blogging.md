@@ -3,7 +3,7 @@ title: How to write a blog for 18F
 ---
 # {{ page.title }}
 
-First, it might be a good idea to check out our [mission brief](({{ site.baseurl }}/blog-mission/), if you haven't already. 
+First, it might be a good idea to check out our [mission brief]({{ site.baseurl }}/blog-mission/), if you haven't already. 
 At 18F we keep a [private GitHub repo](https://github.com/18f/blog-drafts) for kicking around ideas on the blog. This is how we use that repo. (Note to people not at the GSA or on the 18F team: Many of the links on this page will likely _not_ work for you.)
 
 We use milestones for workflow tracking:
