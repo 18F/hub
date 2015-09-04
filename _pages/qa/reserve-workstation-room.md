@@ -5,9 +5,7 @@ title: Reserve a workstation or conference room
 ---
 # {{ page.title }}
 
-
-
-* [Log in to BookIT](https://bookit.gsa.gov/mobile/auth/spnego/spnegoLogin.jsp). It will ask for your ENT password.
+[Log in to BookIT](https://bookit.gsa.gov/mobile/auth/spnego/spnegoLogin.jsp). It will ask for your ENT password.
 
 ## Reserve your D.C. workstation
 
@@ -25,6 +23,4 @@ title: Reserve a workstation or conference room
 
 ## Reserve a conference room in D.C. or San Francisco:
  
-The instructions were easy to follow for a first-timer. 
-
-Except: you'll need to fill in the "attendee count," which is a field labelled "attendees in room" (in very small type). 
+Follow the instructions above, but fill in the "attendee count", which is a field labelled "attendees in room" (in very small type).
