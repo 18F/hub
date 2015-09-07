@@ -59,7 +59,7 @@ To ensure compliance with the possibility that we might create permanent or long
 
 This policy applies to all types of Slack communications: public channels, private groups, even direct messages. **Nothing is private.** We use the [compliance export](https://slack.zendesk.com/hc/en-us/articles/203950296-FAQs-about-Slack-s-policy-update#complianceexport) capability in Slack to view all messages. The Primary Team Owner is responsible for ensuring monthly exports and backing these exports up in GSA's Google Drive.
 
-During regular operations, only the Slack Owners and the Exective Director of 18F have access to the exports. There is no regular monitoring of these messages. However, various legal actions (e.g. a Freedom of Information Act request) or security operations approved by the Infrastructure Director may require others to view the exports. The team will be notified at the earliest possible time that the exports have been accessed. Notifications of access may not be made in real-time.
+During regular operations, only the Slack Owners and the Executive Director of 18F have access to the exports. There is no regular monitoring of these messages. However, various legal actions (e.g. a Freedom of Information Act request) or security operations approved by the Infrastructure Director may require others to view the exports. The team will be notified at the earliest possible time that the exports have been accessed. Notifications of access may not be made in real-time.
 
 ## Security
 
