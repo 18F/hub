@@ -45,7 +45,7 @@ Friends from other government teams can be invited into a project's channel or a
 
 #### Teammates from the United States Digital Service (USDS)
 
-One of our biggest collaborators is the USDS. You may see channels that end with `-usds` — members of the USDS across government are in these channels. In order to keep the signal to noise ratio high, please keep discussion focused on the project or task at hand in each channel. 
+One of our biggest collaborators is the USDS. You may see channels that end with `-usds` — members of the USDS across government are in these channels. 
 
 #### The public
 
