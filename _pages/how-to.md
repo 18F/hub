@@ -165,20 +165,9 @@ These tips come from fellow 18F staffers who really wished they had known them w
 * [Recurring calendar items]({{ site.baseurl }}/calendar-items/)
 
 
-## D.C.
+## Location-Specific Information
 
-* [1800 F Street locker instructions are here.]({{ site.baseurl }}/dc-lockers/)
-
-* [Where does our team meet in case of a fire drill at GSA HQ?]({{ site.baseurl }}/dc-fire/)
-
-* [Is there a map with directions for the 18F office at GSA HQ?]({{ site.baseurl }}/dc-map/)
-
-* [This is our D.C. conference room cheat sheet](http://gsa.github.io/Open-Data-Collaboration-Sandbox/pages/18f_conference_rooms)
-
-* [Connect to a printer.](../private/printer-dc/)
-
-
-## New York City
+* [Guide to the DC Office](https://docs.google.com/document/d/1dKME7mCLp4uIxJ2OgXCjGvrVskF0ngieHIfe5xRur1g/edit#)
 
 * [What do I need to know about working from the New York City office?](https://docs.google.com/a/gsa.gov/document/d/1dhAwKE2C2-iICmiPa_AbSLBqMXoGl1NnWcEwruzA0bA/edit?usp=sharing)
 
