@@ -3,4 +3,13 @@ name: jessie
 full_name: Jessie Young
 first_name: Jessie
 last_name: Young
+github: jessieay
 location: SFO
+skills:
+- ruby
+- rails
+- sql
+interests:
+- Documentation
+- API design
+- Mentorship
