@@ -11,4 +11,6 @@ title: Google calendar items
 
 * Tuesday 1:00 ET: follow-up action items
 
+* Thursday 12:00 ET: Weekly Intake Standup
+
 * Teams may post their daily stand times in the 18F product meetings calendar
