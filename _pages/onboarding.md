@@ -23,7 +23,7 @@ This will make life easier for the next person being onboarded. Thanks!
 
 * [Set up two-factor authentication](../private/two-factor/) for email, Github, and Slack.
 
-* [Set up Slack.](../slack/) You'll have questions about the steps below, and you'll need to ask for help.  _(Hint: There's as [#questions channel](https://18f.slack.com/messages/questions/).)_
+* [Set up Slack.](../slack/) You'll have questions about the steps below, and you'll need to ask for help.  _(Hint: There's a [#questions channel](https://18f.slack.com/messages/questions/).)_
 
 * [Get GitHub configured properly for work.]({{ site.baseurl }}/github-work/) Even if you aren't a developer, many discussions happen on GitHub, and it's required to add or update Hub pages.
 
