@@ -30,7 +30,7 @@ This will make life easier for the next person being onboarded. Thanks!
 * [Secure your MacBook.]({{ site.baseurl }}/macbook-security/)
 
 * Get familiar with [Google Drive](https://support.google.com/drive/answer/6021313?hl=en) and the [18F Team folder](https://drive.google.com/a/gsa.gov/folderview?id=0B84F26FpUP0lR1B2VVNGSi1MMVk&usp=sharing_eid)
-    * The folder structure may be unintutive; make sure to bookmark folders you want to browse regularly, otherwise use search instead.
+    * The folder structure may be unintuitive; make sure to bookmark folders you want to browse regularly, otherwise use search instead.
     * Searching in Drive goes through all the files that have been shared with you.
     * Highlight a file, then hit Shift-Z to quickly add files or folders to "My Drive" for fast access.
     * Grant "edit" or "comment" access to the entire team on a files by adding [18f-team@gsa.gov](mailto:18f-team@gsa.gov) in the Share menu. Consider disabling the notification email if you don’t wish to bring it to the team’s attention right away.
