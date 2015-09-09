@@ -1,5 +1,5 @@
 ---
-title: How to write a blog for 18F
+title: How to write a blog post for 18F
 ---
 # {{ page.title }}
 
