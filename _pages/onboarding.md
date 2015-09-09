@@ -9,11 +9,7 @@ Welcome to 18F! We are so glad you are here.
 
 ## Help make onboarding better
 
-Before you begin, it’s worth pointing out that this page contains a ton of links to get you set up. Furthermore, we realize this might not be the easiest thing to do on your own. We’re working on it. In the meantime, if you could please keep track of what is missing and/or confusing, and let us know in #wg-onboarding channel (or “chat room”) on Slack (our internal chat client), we promise to make things better!
-
-Who’s “we,” you might ask? Well, everyone in #wg-onboarding—but specifically @melodykramer and @andrewmaier as they’ve been tasked with making onboarding better. So if you've got a _very_ specific question or pointed feedback, be sure to message them directly or mention them by name in the #wg-onboarding channel.
-
-This will make life easier for the next person being onboarded. Thanks!
+18F cares about the onboarding experience. Throughout this process, we ask that you please keep track of what is missing or confusing, and let us know in the #wg-onboarding channel (a chat room) using Slack (our internal chat client, which you'll setup in just a minute). If you've got particularly pointed feedback, please direct it to Melody Kramer (@melodykramer) and Andrew Maier (@andrewmaier), as they've been asked to take the lead on improving the onboarding process itself. Any information you provide will make life easier for the next person joining the team. Thanks!
 
 ## Do these things immediately!
 
