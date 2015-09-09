@@ -54,9 +54,9 @@ Welcome to 18F! We are so glad you are here.
 
 ## Next, check on these items in a more relaxed manner during your first two weeks
 
-* [Add yourself to our contact info, Hub, and homepage.]({{ site.baseurl }}/add-contact/)
+* [Add yourself to our contact info and Hub.]({{ site.baseurl }}/add-contact/)
 
-* [Do these steps to get onto the 18F Team page.](https://github.com/18F/18f.gsa.gov/#getting-your-picture-and-bio-on-the-site)
+* [Do these steps to get onto the 18F Team page.](https://github.com/18F/18f.gsa.gov/#getting-your-picture-and-bio-on-the-site). Feel free to ask the [#18f-site Slack channel](https://18f.slack.com/messages/18f-site/) for help if you’re not comfy with GitHub.
 
 * Read the [18F open source policy](https://github.com/18F/open-source-policy/blob/master/policy.md) (especially if you're not a developer!) and the [team process FAQ.](https://github.com/18F/open-source-policy/blob/master/practice.md).
 
