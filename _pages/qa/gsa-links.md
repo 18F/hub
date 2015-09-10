@@ -9,7 +9,7 @@ title: Useful GSA links
 
 * Visit [ALOHA](http://aloha.gsa.gov/) to request and document sick or annual leave.
 
-* [CHRIS](http://www.gsa.gov/chris) provides access your personnel file online.
+* [CHRIS](http://www.gsa.gov/chris) provides access your personnel file online. You’ll get an email in week 3 or so that says that your personal record has been updated with certain actions. Take this as a cue of your account being created in the system, after which you can begin the login process.
 
 * [CGE](https://insite.gsa.gov/portal/content/500122)[ (Concur travel planning and reimbursement)](https://insite.gsa.gov/portal/content/500122). If you need to access this site outside of GSA's network, visit [http://concur.gsa.gov](http://concur.gsa.gov).
 
@@ -26,4 +26,4 @@ title: Useful GSA links
 
 * [Meeting space](http://meet.gsa.gov/) can be used to set up meetings.
 
-* [On-Line University](https://gsaolu.gsa.gov/) is the hub for all the mandatory trainings for federal employees. The trainings consist of presentations with tests at the end of them, for example, IT security and awareness, ethics, telework, travel, and more.
+* [On-Line University](https://gsaolu.gsa.gov/) is the hub for all the mandatory trainings for federal employees. The trainings consist of presentations with tests at the end of them, for example, IT security and awareness, ethics, telework, travel, and more. You cannot get into OLU until you have access to CHRIS, and you can gain your OLU login information by chatting with with the OLU help desk after gaining entrance to CHRIS.
