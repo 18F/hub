@@ -40,7 +40,13 @@ Welcome to 18F! We are so glad you are here.
 * [Set up VPN and remote network access.](../private/access-gsa-remote/) [this may be failing currently on Macs]
 
 * Make a calendar reminder to badger for access to On-line University (OLU), GSA's mandatory training courses.
-    * You won't have access until you are set up in CHRIS, but once you have access, training is mandatory or you lose computer privileges. Instructions for the training are [here.]({{ site.baseurl }}/olu/)
+    * You won't have OLU access until you are set up in CHRIS. You will receive
+      an email within a few weeks of starting notifying you that your CHRIS
+      profile is ready.
+    * Once you have CHRIS access, you can request an OLU password via [live chat](
+      https://clientsupport.eskillz.com/Interface/Chat.aspx).
+    * Once you have OLU access, training is mandatory or you lose computer
+      privileges. More information about OLU training is available [here.]({{ site.baseurl }}/olu/)
 
 * If you are in the SF office, change the order of your wireless networks so that gsa-wireless is higher priority than GSA-Guest (otherwise you will be shunted to the latter silently and lose time troubleshooting as a result).
 
