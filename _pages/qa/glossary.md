@@ -19,7 +19,7 @@ tags:
 
 * **ATO** - Authority to Operate. It's a sign-off from an authorized agency official for a website to be allowed to engage with citizens, including security and some other stuff. Historically this is a three to six month process, but 18F has been working to fix this. Noah Kunin can sometimes help speed the process.
 
-* **AWS** - Amazon Web Services. When we make websites, this is where they all live.
+* **AWS** - Amazon Web Services. When we make websites, this is where they all live. Read easy-to-understand descriptions of the different pieces [here](https://www.expeditedssl.com/aws-in-plain-english).
 
 * **AWS** - Alternative Work Schedule. Working eight, 10-hour days or working nine, nine-hour days in a pay period.
 
