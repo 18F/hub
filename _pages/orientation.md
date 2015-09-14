@@ -9,6 +9,8 @@ Welcome to 18F! We're excited to have you on the team.
 
 On this page, you'll find everything you need to know for your first day, week, and month at 18F. We know that this is overwhelming and we're here to help. There's a lot of paperwork and a lot of information in the first few weeks. You can think of this page as a handy guide to refer back to — and feel free to ask any questions you have in Slack. 
 
+
+
 ## By the end of your first day, you should:
 
 * Complete GSA orientation (click here for a recap)
