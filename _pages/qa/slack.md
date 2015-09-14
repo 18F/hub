@@ -10,6 +10,7 @@ Getting on Slack: [https://18f.slack.com/](https://18f.slack.com/). You will pro
 * Remember to first review [18F's Slack standards]({{ site.baseurl }}/standards/slack). These are the required steps you need to take first.
 * You'll automatically be added to several channels. The most important is #news, as it contains announcements from the 18F management team. Browse through the available channels. You may want to take a look at:
     * #questions (a friendly place to ask questions)
+    * #newcomers (a place to chat with other new-hires)
     * #it-issues (IT related questions)
     * #random (idle chatter!)
     * #friends (allies of 18F, both inside and outside of government)
