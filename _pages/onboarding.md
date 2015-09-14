@@ -46,7 +46,8 @@ Welcome to 18F! We are so glad you are here.
     * Once you have CHRIS access, you can request an OLU password via [live chat](
       https://clientsupport.eskillz.com/Interface/Chat.aspx).
     * Once you have OLU access, training is mandatory or you lose computer
-      privileges. More information about OLU training is available [here.]({{ site.baseurl }}/olu/)
+      privileges. More information about OLU training is available on the
+      [OLU page]({{ site.baseurl }}/olu/).
 
 * If you are in the SF office, change the order of your wireless networks so that gsa-wireless is higher priority than GSA-Guest (otherwise you will be shunted to the latter silently and lose time troubleshooting as a result).
 
