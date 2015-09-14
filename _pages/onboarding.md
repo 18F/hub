@@ -102,8 +102,6 @@ Welcome to 18F! We are so glad you are here.
 
 * Learn about [mural.ly,](../private/murally) too.
 
-* [Set up a printer](../private/printer-dc/) (DC).
-
 ## Someone else should have taken care of these
 Speak up if you haven't been added to [the 18F mailing lists](../private/listservs/#18f-specific) the appropriate lists and the 18F team calendars below. Team calendars are stored in the left hand menu of Google Calendar, where you can toggle them on or off.
 
