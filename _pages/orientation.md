@@ -5,11 +5,26 @@ title: New Employee Orientation
 
 # {{ page.title }}
 
-Welcome to 18F! We are so glad you are here.
+Welcome to 18F! We're excited to have you on the team.
 
-## Help make onboarding better
+On this page, you'll find everything you need to know for your first day, week, and month at 18F. 
 
-18F cares about the onboarding experience. Throughout this process, we ask that you please keep track of what is missing or confusing, and let us know in the #wg-onboarding channel (a chat room) using Slack (our internal chat client, which you'll setup in just a minute). If you've got particularly pointed feedback, please direct it to Melody Kramer (@melodykramer) and Andrew Maier (@andrewmaier), as they've been asked to take the lead on improving the onboarding process itself. Any information you provide will make life easier for the next person joining the team. Thanks!
+## By the end of your first day, you should:
+
+* Complete GSA orientation (click here for a recap)
+
+* Receive your 18F computer
+
+* [Set up two-factor authentication](https://slack.zendesk.com/hc/en-us/articles/204509068-Enabling-two-factor-authentication) and then join the 18F Slack space.
+
+* Join a private Slack room with the other new hires that started on the same day.
+
+## By the end of your first week
+
+* You'll learn a
+
+
+
 
 ## Do these things immediately!
 
