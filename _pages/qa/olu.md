@@ -12,7 +12,7 @@ title: On-Line University (OLU)
   * Note that your access to CHRIS is contigent on fully clearing security; your security upon starting may only be provisional.
   * Mandatory courses include:
       * IT Security Awareness and Privacy 101: Failure to complete this course can lead to GSA cutting off your email access.
-      * No FEAR Act: Use **Firefox** or **Safari with IE8 User Agent**, or it won't register that you completed the course.
+      * No FEAR Act: Use **Firefox** or **Safari with IE8 User Agent**, or it won't register that you completed the course. Upon completion of the test, you might not be able to click on the **Exit** button as is suggested. Try closing the window that the test was in and clicking next on the parent window - this should register your test as having been completed and generate the certification that is loaded to your profile. 
       * Telework Works: After completing this training, submit a telework agreement using the steps are outlined below: 
           * Select Aaron Snow as your supervisor.
           * Select "Citizens Services and Innovative Technologies (X) Telework" in question 13.
