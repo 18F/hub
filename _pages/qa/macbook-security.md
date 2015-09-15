@@ -10,3 +10,5 @@ title: MacBook security
 * [Encrypt your hard drive](http://support.apple.com/en-us/HT4790) with FileVault.
   * If you already have an iCloud account associated with your GSA email (e.g. for an iPhone) it makes sense to enable the option to store your FileVault key in iCloud. You can then use your iCloud account name and password to unlock your startup drive or reset your password should your laptop credentials become invalid.
   * If you do not have an iCloud account, you may create one for this purpose or create a recovery key and make alternate arrangements for storing the credential.
+* Set your Hostname to avoid messages such as This computer’s local hostname “‫GSA-xs-MacBook-Pro-7.local﻿‎‬” is already in use on this network. The name has been changed to “‫GSA-xs-MacBook-Pro-8.local﻿‎‬”.
+ * To change your hostname open "System Preferences" -> "Sharing" (blue folder with a crossing sign) and change the nost name there to something more unique.
