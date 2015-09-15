@@ -1,0 +1,19 @@
+---
+name: Core Values
+full_name: Core Values Working Group
+mission: to create a shared understand of values that drive our work and continuously
+  iterate on how our practices reflect those values
+metrics:
+- Statement of core values
+- Number of 18F team members who have participated in a core values discussions (or
+  other activities) and feel that those discussions help them in their work
+- Regular analysis of whether we are practicing core values in our work
+- New efforts to conform to our values
+- Revisions of values as necessary
+leads:
+- sarah
+- sasha
+members:
+- yuda
+- kara
+- mbland

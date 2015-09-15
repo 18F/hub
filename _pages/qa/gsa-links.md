@@ -1,9 +1,23 @@
 ---
 layout: "q-and-a"
 permalink: "/gsa-links/"
-title: Useful GSA links
+title: I need help accessing a government or GSA website.
 ---
 # {{ page.title }}
+
+How do I...
+
+Access my personnel files online?
+
+Book a desk in GSA buildings?
+
+Book travel?
+
+Request and document sick or annual leave?
+
+View my paystub? 
+
+
 
 * [BookIT!](http://bookit.gsa.gov/) helps you book a desk in GSA buildings.
 
