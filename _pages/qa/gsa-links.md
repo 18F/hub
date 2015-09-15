@@ -8,10 +8,15 @@ title: I need help accessing a government or GSA website.
 How do I...
 
 Access your personnel files online?
+
 Book a desk in GSA buildings?
+
 Book travel?
+
 Request and document sick or annual leave?
+
 View my paystub? 
+
 
 
 * [BookIT!](http://bookit.gsa.gov/) helps you book a desk in GSA buildings.
