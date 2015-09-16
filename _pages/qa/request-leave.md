@@ -2,6 +2,11 @@
 layout: q-and-a
 permalink: /request-leave/
 title: Request leave
+tags:
+- ooo
+- pto
+- out of office
+- paid time off
 ---
 # {{ page.title }}
 
@@ -17,4 +22,4 @@ title: Request leave
 
 * Don't go through ALOHA for Jury Duty. Instead, send a message to Leah Gitter with the date(s) you'll be out and add yourself to the calendar as described below. Also, you'll still get paid. 
 
-* **When you know you’re taking time off, please also add an event on the Google calendar "18F Out of Office," so we all know when you’re gone.**
+* **When you know you’re taking time off, please also add an event on the Google calendar "18F Out of Office" and invite yourself, so we all know when you’re gone.**
