@@ -2,6 +2,7 @@
 layout: "q-and-a"
 permalink: "/bookit/"
 title: How do I book a desk at a GSA building?
+tags: BookIT!, BookIT, tools
 ---
 # {{ page.title }}
 
