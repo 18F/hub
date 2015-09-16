@@ -11,6 +11,7 @@ title: Guidelines
 * [Distributed Work Guide](https://docs.google.com/a/gsa.gov/document/d/16ozBoXxTnWutvp63mr5Q8phN21IRFD3LYm3BtgYkQg0/edit)
 * [Front End Style Guide](https://github.com/18F/frontend-style-guide){% unless site.public %}
 * [GitHub Standards]({{ site.baseurl }}/standards/github/)
+* [Git]({{ site.baseurl }}/git/)
 * [How to hold events]({{ site.baseurl }}/team-ops/resources/event-info/)
 * [How we manage client accounts](https://docs.google.com/a/gsa.gov/document/d/1PIgWhoAifBmx6K-ihh8h9HRPQz1Mlj0TKHWv-UNWE-4/)
 * [Leave, telework, and virtual worker policy]({{ site.baseurl }}/team-ops/leave-telework-virtual-worker-policy/)
