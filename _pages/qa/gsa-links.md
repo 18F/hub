@@ -9,11 +9,11 @@ Use
 
 * [ALOHA](http://aloha.gsa.gov/) to request and document sick or annual leave.
 
-* [BookIT!](http://bookit.gsa.gov/) to book a desk in GSA buildings.
+* [BookIT!](http://bookit.gsa.gov/) to book a desk or meeting room in GSA buildings.
 
 * [CHRIS](http://www.gsa.gov/chris) to access your personnel file online.
 
-* [CGE](https://insite.gsa.gov/portal/content/500122)to book travel while on GSA's network. If you need to access this site outside of GSA's network, visit [http://concur.gsa.gov](http://concur.gsa.gov).
+* [CGE](https://insite.gsa.gov/portal/content/500122) to book travel while on GSA's network. If you need to access this site outside of GSA's network, visit [http://concur.gsa.gov](http://concur.gsa.gov).
 
 * [Employee Express](https://insite.gsa.gov/HP_09links_employeeexpress) to view your paystub, change your withholdings, or change your address.
 

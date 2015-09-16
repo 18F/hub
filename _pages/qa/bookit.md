@@ -17,7 +17,7 @@ We use [BookIT!](http://bookit.gsa.gov/) to book a desk or meeting room in GSA b
 
 ## Troubleshooting BookIT!
 
-If you are having login issues, try bookmarking [this address](https://bookit.gsa.gov/mobile/auth/spnego/spnegoLogin.jsp). It should immediately ask for your ENT password.
+If you are having login issues, try bookmarking [the BookIT! login page ](https://bookit.gsa.gov/mobile/auth/spnego/spnegoLogin.jsp). It should immediately ask for your ENT password.
 
 
 ## If I'm still having trouble, can someone else within my organization book rooms for me?

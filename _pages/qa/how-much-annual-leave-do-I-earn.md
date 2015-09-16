@@ -1,7 +1,7 @@
 ---
 layout: "q-and-a"
 permalink: "/how-much-annual-leave-do-I-earn/"
-title: How much leave do I earn every year and what's the maximum amount I can accrue?
+title: How much vacation time do I earn every year and what's the maximum amount I can accrue?
 tags: leave, vacation
 ---
 # {{ page.title }}
