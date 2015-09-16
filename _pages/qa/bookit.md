@@ -5,7 +5,7 @@ title: How do I book a desk at a GSA building?
 ---
 # {{ page.title }}
 
-We use [BookIT!](http://bookit.gsa.gov/) to book a desk or meeting room in GSA buildings.
+We use [BookIT!](http://bookit.gsa.gov/) to reserve a desk or meeting room in GSA buildings.
 
 ## How to Use BookIt
 

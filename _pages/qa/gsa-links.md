@@ -9,7 +9,7 @@ Use
 
 * [ALOHA](http://aloha.gsa.gov/) to request and document sick or annual leave.
 
-* [BookIT!](http://bookit.gsa.gov/) to book a desk or meeting room in GSA buildings.
+* [BookIT!](http://bookit.gsa.gov/) to reserve a desk or meeting room in GSA buildings.
 
 * [CHRIS](http://www.gsa.gov/chris) to access your personnel file online.
 
