@@ -18,7 +18,7 @@ GitHub is a great tool for collaboration at 18F. Even if you don't consider your
 1. [Enable two-factor authentication](https://github.com/settings/security).
     * GitHub access _will not_ be provided if two-factor authentication is turned off.
     * While you're at it, it's a *very, very* good idea to do this for your [Gmail account](http://lifehacker.com/5932700/please-turn-on-two-factor-authentication/all) and [elsewhere](http://lifehacker.com/5938565/heres-everywhere-you-should-enable-two-factor-authentication-right-now/all).
-1. Drop into [#admins-github on Slack](https://18f.slack.com/messages/admins-github/) and ask to be added to [the @18F/18F team on GitHub](https://github.com/orgs/18F/teams/18f), saying that you followed the steps above. After of of the admins says you've been added, accept the "invite" [here](https://github.com/orgs/18F/invitation?via_email=1).
+1. Drop into [#admins-github on Slack](https://18f.slack.com/messages/admins-github/) and ask to be added to [the @18F/18F team on GitHub](https://github.com/orgs/18F/teams/18f), saying that you followed the steps above. After one of the admins says you've been added, accept the "invite" [here](https://github.com/orgs/18F/invitation?via_email=1).
 1. Go to the organization's [people page](https://github.com/orgs/18F/people), click where it says "private" next to your name, and change it to "public."
 
     ![image](../assets/images/github-work/visibility.png)
