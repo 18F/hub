@@ -1,21 +1,27 @@
 ---
 layout: "q-and-a"
 permalink: "/bookit/"
-title: Using BookIT!
+title: How do I book a desk at a GSA building?
 ---
 # {{ page.title }}
 
-## Configure BookIT! to save yourself time in the future
+We use [BookIT!](http://bookit.gsa.gov/) to book a desk or meeting room in GSA buildings.
 
-[BookIT!](https://bookit.gsa.gov) allows you to reserve a meeting room in any GSA building ahead of time.
+## How to Use BookIt
+
+
+
+## Set your default region and office building
+
+* BookIT! can remember your office location, and you won't have to scroll through drop-down menus every time you need to reserve a meeting room.
+
+## Troubleshooting BookIT!
 
 If you are having login issues, try bookmarking [this address](https://bookit.gsa.gov/mobile/auth/spnego/spnegoLogin.jsp). It should immediately ask for your ENT password.
 
-## Set your default region and office building
-* This will make it so that BookIT! remembers your basic preferences, and you won't have to scroll through drop-down menus every time you need to reserve a meeting room.
 
-## Add delegates
-* Add people from your team and a couple other people from ops as your delegates in BookIT!
+## If I'm still having trouble, can someone else within my organization book rooms for me?
+
+Yes, BookIT! allows you to add people as your delegates in BookIT!
   * This allows other people to book or check in for you in emergencies.
   * Follow these steps: `Profile -> View Your Profile -> Delegates -> Edit Profile`.
-
