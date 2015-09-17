@@ -1,11 +1,15 @@
 ---
 layout: q-and-a
 permalink: /attend-event/
-title: Attending an event
+title: How do I attend a conference or event?
 tags:
 - speaking
 - attending
+- conferences
+- conference
+- benefits
 ---
+
 # {{ page.title }}
 
 ## To plan, attend, or travel to an event

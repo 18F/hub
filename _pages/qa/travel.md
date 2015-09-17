@@ -1,9 +1,12 @@
 ---
 layout: q-and-a
 permalink: //travel/
-title: Book travel
+title: How do I book travel for an upcoming trip?
 tags:
-- Concur
+- concur
+- ops
+- travel
+Slack: #travel
 ---
 # {{ page.title }}
 
