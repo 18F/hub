@@ -47,6 +47,11 @@
   latitude: 33.9428575
   longitude: -118.404631
   timezone: 'Pacific Time Zone (UTC-08:00)'
+- code: MSP
+  label: Minneapolis/St. Paul
+  latitude: 44.9778
+  longitude: -93.2650
+  timezone: 'Central Time Zone (UTC-06:00)'
 - code: NYC
   label: New York City
   latitude: 40.641311
