@@ -24,9 +24,9 @@ You can sign up for vision coverage on [Benefeds](https://www.benefeds.com/).
 
 ## How do I look up my Vision Care subscriber ID if I have an eye appointment but don't have my cards yet?
 
-Go to Insite
-Scroll down to the tools menu
-Select CHRIS
-Log onto CHRIS (your username is first name middle initial last name with no spaces)
-Select Employee Views from GSA Personal  Self Service menu
-Select the Benefits tab
+ 1. Go to Insite
+ 2. Scroll down to the tools menu
+ 3. Select CHRIS
+ 4. Log onto CHRIS (your username is first name middle initial last name with no spaces)
+ 5. Select Employee Views from the GSA Personal Self Service menu
+ 6. Select the Benefits tab
