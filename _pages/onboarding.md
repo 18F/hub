@@ -5,7 +5,8 @@ title: Orientation for new employees
 
 # {{ page.title }}
 
-Welcome to 18F! We are so glad you are here.
+Welcome to 18F! This guide outlines what you'll be learning over the next few weeks and outlines all of the paperwork you need to complete.
+
 
 
 ## Do these things immediately!
