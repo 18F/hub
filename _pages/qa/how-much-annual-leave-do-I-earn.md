@@ -5,8 +5,9 @@ title: How much vacation time do I earn every year and what's the maximum amount
 tags:
 - leave
 - vacation
-slack: #benefits 
+slack: #benefits
 ---
+
 # {{ page.title }}
 
 * If you have worked for the federal government for less than three years, you accrue 4 hours of annual leave per pay period.

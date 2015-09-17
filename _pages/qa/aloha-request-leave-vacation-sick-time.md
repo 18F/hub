@@ -20,6 +20,10 @@ slack: #teamops
 
 The best practice is to ask for leave ahead of time. However, it's possible to request leave retroactively, if necessary.
 
+## If I take unexpected leave, especially sick time, is it helpful to submit it by the end of the pay period?
+
+Yes, it's preferred if you can submit it as soon as possible. 
+
 ## How do I request time off?
 
 1. Visit [ALOHA](http://aloha.gsa.gov/) and use your GSA credentials to log in.
