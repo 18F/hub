@@ -1,15 +1,12 @@
 ---
 layout: "q-and-a"
-title: Onboarding guide
+title: Orientation for new employees
 ---
 
 # {{ page.title }}
 
 Welcome to 18F! We are so glad you are here.
 
-## Help make onboarding better
-
-18F cares about the onboarding experience. Throughout this process, we ask that you please keep track of what is missing or confusing, and let us know in the #wg-onboarding channel (a chat room) using Slack (our internal chat client, which you'll setup in just a minute). If you've got particularly pointed feedback, please direct it to Melody Kramer (@melodykramer) and Andrew Maier (@andrewmaier), as they've been asked to take the lead on improving the onboarding process itself. Any information you provide will make life easier for the next person joining the team. Thanks!
 
 ## Do these things immediately!
 
