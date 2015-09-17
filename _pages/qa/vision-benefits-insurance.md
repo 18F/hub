@@ -12,7 +12,7 @@ slack: #benefits
 
 ## When can I sign up for vision coverage?
 
-You must sign up within 60 days of joining 18F, after a qualifying life event, or during open season, which takes place annually in late November and early December.
+You must sign up within 60 days of joining 18F, after a qualifying life event, or during open season.  Open Season typically runs from the Monday of the second full workweek in November through the Monday of the second full workweek in December.
 
 ## Do I need additional vision insurance?
 

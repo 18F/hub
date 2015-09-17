@@ -1,7 +1,12 @@
 ---
 layout: q-and-a
 permalink: //pers-phone-foia/
-title: Personal phones and FOIA
+title: Does accessing government email on my phone make anything else on my phone FOIA-able?
+tags:
+- foia
+- freedom-of-information-act
+- government
+slack: #legalstuff
 ---
 # {{ page.title }}
 
