@@ -1,7 +1,7 @@
 ---
 layout: "q-and-a"
 permalink: "/aloha-request-leave-vacation-sick-time-jury-duty/"
-title: I need to request sick or vacation leave.
+title: How do I request time off for sick leave, vacation leave, and jury duty?
 tags:
 - aloha
 - leave

@@ -1,7 +1,10 @@
 ---
 layout: "q-and-a"
 permalink: "/training-and-classes/"
-title: "Training and classes"
+title: "How do I sign up for training and classes?"
+tags:
+- benefits
+- training
 ---
 
 # {{ page.title }}
@@ -16,7 +19,7 @@ Open the [Speaking requests, attending events](https://docs.google.com/spreadshe
 
 
 ### Step two
-Complete an [individual development plan (IDP)](https://insite.gsa.gov/portal/content/656782). Enter the class or training as a goal.  If you need inspiration, you can find lots of sample IDPs floating around the Internet. You can also check out [this sample](https://drive.google.com/a/gsa.gov/file/d/1Sid8vVFgR69gYOin5FUxbVbuC6XGEu-zIii9dO7xBN4VrWumKvl02Zs0NFKxg_bUGikkSiakn0HBFdlP/view) or [this sample](https://docs.google.com/document/d/1IDVXKHnj9lVWiloBShZ9tuU3Wwe7ErTUL0hVDncKau4/edit) to see how previous 18F team members have completed theirs. 
+Complete an [individual development plan (IDP)](https://insite.gsa.gov/portal/content/656782). Enter the class or training as a goal.  If you need inspiration, you can find lots of sample IDPs floating around the Internet. You can also check out [this sample](https://drive.google.com/a/gsa.gov/file/d/1Sid8vVFgR69gYOin5FUxbVbuC6XGEu-zIii9dO7xBN4VrWumKvl02Zs0NFKxg_bUGikkSiakn0HBFdlP/view) or [this sample](https://docs.google.com/document/d/1IDVXKHnj9lVWiloBShZ9tuU3Wwe7ErTUL0hVDncKau4/edit) to see how previous 18F team members have completed theirs.
 
  Submit your IDP for approval. The approving supervisor is the same person who approves your leave requests.
 

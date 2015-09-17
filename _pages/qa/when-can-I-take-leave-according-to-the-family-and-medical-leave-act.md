@@ -2,7 +2,14 @@
 layout: "q-and-a"
 permalink: "/when-can-I-take-leave-according-to-the-family-and-medical-leave-act/"
 title: When am I allowed to take leave according to the Family and Medical Leave Act?
-tags: fmla, family and medical leave act, maternity leave, paternity leave, parental leave, leave
+tags:
+- fmla
+- family-and-medical-leave-act
+- maternity-leave
+- paternity-leave
+- parental-leave
+- leave
+slack: #benefits
 ---
 # {{ page.title }}
 

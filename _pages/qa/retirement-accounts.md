@@ -1,19 +1,23 @@
 ---
 layout: q-and-a
 permalink: /tsp/
-title: How to Transfer Your Previous Retirement Account into the TSP
+title: How do I transfer my previous retirement accounts into the TSP?
+tags:
+- retirement
+- tsp
+- benefits 
 ---
 # {{ page.title }}
 
 Transferring your previous employer(s) IRA or retirement accounts to the TSP is not the easiest thing to do in the world but is likely worth it. As one of my friends put it, the "TSP is legendary."
 
-* For every account that you have to transfer over, you have to fill out a TSP-60 form. ([link to form - pdf](https://www.tsp.gov/PDF/formspubs/tsp-60.pdf)). If you have trouble with this form, the people at TSP are very nice. You can call them by dialing 1-877-968-3778. Things you need to know for this phone call: **your TSP account number** and your **SSN** and **address**. 
+* For every account that you have to transfer over, you have to fill out a TSP-60 form. ([link to form - pdf](https://www.tsp.gov/PDF/formspubs/tsp-60.pdf)). If you have trouble with this form, the people at TSP are very nice. You can call them by dialing 1-877-968-3778. Things you need to know for this phone call: **your TSP account number** and your **SSN** and **address**.
 
 * You also must fill out paperwork from your previous retirement account or IRA. Both of my retirement accounts made me call, then fill out some online forms, and then print out some paperwork to send out to them (or in one case, send to my previous employer to send to them. They don't make this easy.)
 
-** If you're married, your previous retirement account sends you a form that your spouse must sign in front of a notary. This is because your spouse is entitled to part of your retirement benefits should you die and therefore must agree to transition them over to a TSP. 
+** If you're married, your previous retirement account sends you a form that your spouse must sign in front of a notary. This is because your spouse is entitled to part of your retirement benefits should you die and therefore must agree to transition them over to a TSP.
 
-* You complete the top half of the TSP-60 form and send the form to your previous IRA or retirement account, along with the forms they have given you in step two. They then fill out the bottom part and send it to the TSP program, along with a check. 
+* You complete the top half of the TSP-60 form and send the form to your previous IRA or retirement account, along with the forms they have given you in step two. They then fill out the bottom part and send it to the TSP program, along with a check.
 
 The address that they send this stuff to is:
 

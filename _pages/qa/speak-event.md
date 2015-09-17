@@ -1,9 +1,12 @@
 ---
 layout: q-and-a
 permalink: //speak-event/
-title: Get approval to speak at an event
+title: How do I receive approval to speak at an event?
 tags:
-- giving a talk
+- events
+- conferences
+- conference
+- benefits
 ---
 # {{ page.title }}
 

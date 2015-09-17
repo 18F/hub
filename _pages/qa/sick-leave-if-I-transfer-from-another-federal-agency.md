@@ -2,7 +2,11 @@
 layout: "q-and-a"
 permalink: "/sick-leave-if-I-transfer-from-another-federal-agency/"
 title: If I transfer from another federal agency, will my sick leave transfer with me?
-tags: sick leave, sick time, leave 
+tags:
+- sick-leave
+- sick-time
+- leave
+slack: #benefits 
 ---
 
 # {{ page.title }}

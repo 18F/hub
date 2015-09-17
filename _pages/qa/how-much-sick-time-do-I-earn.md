@@ -2,7 +2,12 @@
 layout: "q-and-a"
 permalink: "/how-much-sick-time-do-I-earn/"
 title: How much sick time do I earn? What is the maximum amount of sick time I can accrue?
-tags: leave, sick leave, sick time, ooo
+tags:
+- leave
+- sick-leave
+- sick-time
+- ooo
+slack: #benefits
 ---
 
 # {{ page.title }}
