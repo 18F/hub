@@ -6,8 +6,9 @@ tags:
 - AWS
 - amazon-web-services
 - devops
-slack: #devops 
+slack: #devops
 ---
+
 # {{ pages.private }}
 
 ## How do I get access to AWS for work in a sandbox environment for prototyping?

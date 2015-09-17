@@ -6,8 +6,9 @@ tags:
 - BookIT!
 - BookIT
 - tools
-slack: #teamops 
+slack: #teamops
 ---
+
 # {{ page.title }}
 
 We use [BookIT!](http://bookit.gsa.gov/) to reserve a desk or meeting room in GSA buildings.
