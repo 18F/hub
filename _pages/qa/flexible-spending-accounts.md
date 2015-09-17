@@ -2,7 +2,10 @@
 layout: "q-and-a"
 permalink: "/flexible-spending-account/"
 title: How do I sign up for a Flexible Spending Account?
-tags: benefits, FSA, flexible-spending-account
+tags:
+- benefits
+- FSA
+- flexible-spending-account
 slack: #benefits
 ---
 # {{ page.title }}

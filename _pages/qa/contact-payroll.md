@@ -2,7 +2,11 @@
 layout: "q-and-a"
 permalink: "/contact-payroll/"
 title: How do I contact payroll if I have a question about my paycheck?
-tags: getting-paid, payroll, benefits, direct-deposit
+tags:
+- getting-paid
+- payroll
+- benefits
+- direct-deposit
 slack: #benefits
 ---
 # {{ page.title }

@@ -2,7 +2,15 @@
 layout: "q-and-a"
 permalink: "/fmla-family-and-medical-leave-act/"
 title: What is the Family and Medical Leave Act?
-tags: fmla, family and medical leave act, maternity leave, paternity leave, parental leave, leave
+tags:
+- fmla
+- family and medical leave act
+- maternity-leave
+- paternity-leave
+- parental-leave
+- leave
+- benefits
+slack: #benefits 
 ---
 
 # {{ page.title }}

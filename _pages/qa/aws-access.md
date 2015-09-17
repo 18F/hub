@@ -1,7 +1,12 @@
 ---
 layout: q-and-a
 permalink: /aws-access/
-title: Amazon Web Services (AWS) Access
+title: How do I get access to AWS for work in a sandbox environment for prototyping?
+tags:
+- AWS
+- amazon-web-services
+- devops
+slack: #devops 
 ---
 # {{ pages.private }}
 

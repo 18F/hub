@@ -2,7 +2,9 @@
 layout: "q-and-a"
 permalink: "/dental-insurance/"
 title: How do I sign up for dental insurance?
-tags: benefits, dental
+tags:
+- benefits
+- dental
 slack: #benefits
 ---
 # {{ page.title }}

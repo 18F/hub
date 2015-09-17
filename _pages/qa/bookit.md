@@ -2,7 +2,11 @@
 layout: "q-and-a"
 permalink: "/bookit/"
 title: How do I book a desk at a GSA building?
-tags: BookIT!, BookIT, tools
+tags:
+- BookIT!
+- BookIT
+- tools
+slack: #teamops 
 ---
 # {{ page.title }}
 
@@ -10,7 +14,7 @@ We use [BookIT!](http://bookit.gsa.gov/) to reserve a desk or meeting room in GS
 
 ## How to Use BookIt
 
-
+**TKTKTTKTKTKKTKT**
 
 ## Set your default region and office building
 

@@ -2,7 +2,14 @@
 layout: "q-and-a"
 permalink: "/aloha-request-leave-vacation-sick-time-jury-duty/"
 title: I need to request sick or vacation leave.
-tags: aloha, leave, vacation, sick leave, sick time, ooo, jury duty
+tags:
+- aloha
+- leave
+- vacation
+- sick-leave
+- sick-time
+- ooo
+- jury-duty
 slack: #teamops
 ---
 # {{ page.title }}
