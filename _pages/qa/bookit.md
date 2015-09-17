@@ -30,4 +30,4 @@ If you are having login issues, try bookmarking [the BookIT! login page ](https:
 
 Yes, BookIT! allows you to add people as your delegates in BookIT!
   * This allows other people to book or check in for you in emergencies.
-  * Follow these steps: `Profile -> View Your Profile -> Delegates -> Edit Profile`.
+  * Follow these steps: `Profile -> View Your Profile -> Delegates -> Edit Profile.`
