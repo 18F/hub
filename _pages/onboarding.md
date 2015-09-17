@@ -19,6 +19,9 @@ Welcome to 18F! We are so glad you are here.
 * [Set up Slack.](../slack/) You'll have questions about the steps below, and you'll need to ask for help.  _(Hint: There's a [#questions channel](https://18f.slack.com/messages/questions/).)_
 
 * [Get GitHub configured properly for work.]({{ site.baseurl }}/github-work/) Even if you aren't a developer, many discussions happen on GitHub, and it's required to add or update Hub pages.
+   * One you setup Git/GitHub try updating your team profile page
+   _Hint: See the [GitHub Basics - Course Materials](https://docs.google.com/document/d/18b-4VPTcuqat-enGQSVzivGH2CsqdQVG0K0eToRM39I/edit#)_
+   * You might also want to ask on the [#admins-github channel](https://18f.slack.com/messages/questions/) if there's a team group you should be added to (e.g. `18f-consulting`)
 
 * [Secure your MacBook.]({{ site.baseurl }}/macbook-security/)
 
