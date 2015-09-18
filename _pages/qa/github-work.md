@@ -1,31 +1,38 @@
 ---
-title: "How we use GitHub"
+title: "How to set up your GitHub account at 18F"
 layout: "q-and-a"
 permalink: "/github-work/"
 ---
 # {{ page.title }}
 
-GitHub is a great tool for collaboration at 18F. Even if you don't consider yourself a developer, we want you to have access to (and eventually be comfortable with) GitHub. The setup is a handful of steps, but we promise it isn't scary.
+GitHub is a tool we use to store all of our code and collaborate with our colleagues. If you don’t code on a regular basis, you may use GitHub to write a blog post, review material, or comment on something a colleague has done — so it’s important to have an account.
 
-## Steps to get set up
+
+## How do I set up my GitHub account?
 
 1. [Create an account](https://github.com/join).
-    * If you're signing up for a new account, use your work email to assist with [records retention](http://ben.balter.com/open-source-for-government/#records).
+    * If you don't currently have a GitHub account, please use your work email to sign up. (This helps assist with [records retention](http://ben.balter.com/open-source-for-government/#records).)
     * If you already have a GitHub account, simply [add your work email](https://github.com/settings/emails).
 1. [Add your name and a profile picture](https://github.com/settings/profile) to your account.
     * This makes it a lot easier for your teammates to know whose account it is and to administer the teams, but most of all it helps a lot with autocomplete in a bunch of situations.
     * We are not dogmatic that the avatar be a headshot, but please make it unique.
 1. [Enable two-factor authentication](https://github.com/settings/security).
-    * GitHub access _will not_ be provided if two-factor authentication is turned off.
-    * While you're at it, it's a *very, very* good idea to do this for your [Gmail account](http://lifehacker.com/5932700/please-turn-on-two-factor-authentication/all) and [elsewhere](http://lifehacker.com/5938565/heres-everywhere-you-should-enable-two-factor-authentication-right-now/all).
+    * 18F team GitHub access _will not_ be provided if two-factor authentication is turned off.
 1. Drop into [#admins-github on Slack](https://18f.slack.com/messages/admins-github/) and ask to be added to [the @18F/18F team on GitHub](https://github.com/orgs/18F/teams/18f), saying that you followed the steps above. After one of the admins says you've been added, accept the "invite" [here](https://github.com/orgs/18F/invitation?via_email=1).
 1. Go to the organization's [people page](https://github.com/orgs/18F/people), click where it says "private" next to your name, and change it to "public."
 
     ![image](../assets/images/github-work/visibility.png)
 
-## Get Github configured properly for work
 
-*This is only relevant if using the command-line.*
+## What will I have access to once I can access the 18F GitHub organization?
+
+After the steps above, you should be a member of the [18F GitHub organization](https://github.com/18F). This will ensure that you can access 18F's private repos — [DevOps](https://github.com/18F/DevOps), edit access to [these pages](https://github.com/18F/hub-pages-private), etc. — and repos where general write access is encouraged. Even if you don't have write access into a repo, we strongly encourage the submission of pull requests for improvements or fixes.
+
+_If you can't access any 18F GitHub repositories:_ Ensure you have two-factor authentication enabled (as explained above) and then ask someone in the [#admins-github Slack channel](https://18f.slack.com/messages/admins-github/) to add you to the 18F GitHub organization.
+
+## How do I properly configure my GitHub for work?
+
+*This is only relevant if you use the command-line to interact with GitHub.*
 
 Use your work email rather than your personal email for work-related commits – instructions at [https://help.github.com/articles/setting-your-email-in-git](https://help.github.com/articles/setting-your-email-in-git). Note that this is different than [setting notifications to go to one or another email address](https://help.github.com/articles/configuring-notification-emails-for-organizations/).
 
@@ -33,13 +40,11 @@ If you’re using your work computer for personal projects on GitHub and want yo
 
 Also, make sure you have notifications turned on. Go to [this page](https://github.com/settings/notifications) and make sure your notifications are set up they way you'd like them. (Some people watch every repo; some only watch when they're mentioned.)
 
-## Teams
-
-After the steps above, you should be a member of the [18F GitHub organization](https://github.com/18F). This will ensure you access into private repos that are team wide — [DevOps](https://github.com/18F/DevOps), edit access to [these pages](https://github.com/18F/hub-pages-private), etc. — and repos where general write access is encouraged. Even if you don't have write access into a repo, we strongly encourage the submission of pull requests for improvements or fixes.
-
-_If you can't access any 18F GitHub repositories:_ Ensure you have two-factor authentication enabled (as explained above) and then ask someone in the [#admins-github Slack channel](https://18f.slack.com/messages/admins-github/) to add you to the 18F GitHub organization.
+## If I need to add contractors or external collaborators to my GitHub account, what do I need to know?
 
 Contractors or external collaborators should only be added to teams with scoped write permissions to the repos they're working on. They should never have admin level rights. In order to seperate these permissions, create a team in the format of `projectname-admins` for staff. Please coordinate with DevOps in the Slack channel when onboarding contractors or external collaborators.
+
+
 
 ## Learn more
 
