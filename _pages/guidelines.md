@@ -21,5 +21,3 @@ title: Guidelines
 * [Terms and Conditions]({{ site.baseurl }}/standards/terms-and-conditions/)
 * [Use of AWS]({{ site.baseurl }}/standards/aws/)
 * [Using Ubuntu]({{ site.baseurl }}/private/team-ops/ubuntu/)
-
-We've tried to collect all of 18F's available standards and guidelines here. **If we've missed something or you see a way to improve this information**, please [file an issue](https://github.com/18F/hub/issues), click the 'edit this page' link at the bottom, or branch-add-pull-request from [the Hub repo](https://github.com/18F/hub).
