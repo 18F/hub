@@ -38,7 +38,7 @@ slack: #legalstuff
 
 * [When connected to a federal network is the data being sent over the connection FOIA-able?]({{ site.baseurl }}/fed-network-foia/)
 
-* [When I'm connected to a govrenment owned mobile hotspot, is any data being sent over the connection FOIA-able?]({{ site.baseurl }}/fed-hotspot-foia/)
+* [When I'm connected to a government-owned mobile hotspot, is any data being sent over the connection FOIA-able?]({{ site.baseurl }}/fed-hotspot-foia/)
 
 ## hatch-act
 
