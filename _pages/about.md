@@ -23,15 +23,7 @@ docs](../101/).
 
 ## Working with Hub Docs
 
-Most documents will have an **Edit this page »** link at the bottom of the
-page. Click this link to open the [GitHub in-browser editing
-interface](https://help.github.com/articles/github-flow-in-the-browser/) and
-make changes directly. This interface allows you to create, edit, rename, move
-or delete Hub files.
-
-Cloning the [Hub repository](https://github.com/18F/hub), editing the files,
-and [running Jekyll locally](http://jekyllrb.com/docs/quickstart/) also works,
-of course.
+See [the editing tutorial]({{ site.baseurl }}/tutorial-for-hub/).
 
 ## Working with Hub Data
 
