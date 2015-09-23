@@ -35,7 +35,7 @@ The system is _only_ available to:
 The system does _not_:
 
 * interact with or change the state of any production Federal information system, whether it is operated by 18F or our Federal partners.
-* collect or store any [sensitive PII](https://github.com/18F/hub-pages-private/blob/master/standards/AWS.md#other-peoples-information).
+* collect or store any [sensitive PII](({{ site.baseurl }}/standards/aws#other-people-39-s-information).
 
 
 ### 90 Day authorization
@@ -106,7 +106,7 @@ The 1 Year is inclusive of all the steps of the 90 Day process. A more thorough 
 
 ### Continuous authorization
 
-Coming soon. 
+Coming soon.
 
 ## Controls
 
@@ -118,13 +118,13 @@ The default and required NIST controls that 18F and GSA Information Security hav
 
 We use a [hardened baseline](https://github.com/fisma-ready/ubuntu-lts) of Ubuntu 14.04 LTS as our default OS for all products and services.
 
-* CM-2	Baseline configuration
-* CM-3	Configuration Change Control  
-* CM-6	Configuration Settings  
+* CM-2  Baseline configuration
+* CM-3  Configuration Change Control
+* CM-6  Configuration Settings
 
 ### Infrastructure as a service
 
-Development environments are exclusively in the [AWS East/West regions](https://18f.signin.aws.amazon.com/console). All AWS users must go through a DevOps [onboarding session and comply with all relevant policies of use](https://github.com/18F/hub-pages-private/blob/master/standards/AWS.md).
+Development environments are exclusively in the [AWS East/West regions](https://18f.signin.aws.amazon.com/console). All AWS users must go through a DevOps [onboarding session and comply with all relevant policies of use]({{ site.baseurl }}/standards/aws).
 
 * SC-7 Boundary protection
 * AC-3 Access enforcement
@@ -134,45 +134,45 @@ Development environments are exclusively in the [AWS East/West regions](https://
 
 All code must be checked into a `git` repository and a remote must be placed within the [18F Organization on GitHub.com](https://github.com/18F).
 
-* CM-8	Information system component inventory  
+* CM-8  Information system component inventory
 
 ### HTTPS Everywhere
 
 All 18F sites are required to use Transport Layer Security (TLS). You must follow the the [18F TLS standards](https://github.com/18F/tls-standards).
 
-* SC-13	Cryptographic protection
-* SC-28 (1)	Protection of Information At Rest | Cryptographic Protection: applicable to systems with Sensitive Personally Identifiable Information Only 
+* SC-13 Cryptographic protection
+* SC-28 (1) Protection of Information At Rest | Cryptographic Protection: applicable to systems with Sensitive Personally Identifiable Information Only
 
 ### Authorization and authentication
 
 We use AWS IAM to manage authorization and authentication.
 
-* AC-2	Account Management  
-* IA-2	Identification and Authentication (Organizational Users) 
-* IA-2 (1)	Identification and Authentication (Organizational Users) | Network Access to Privileged Accounts  
-* IA-2 (2)	Identification and Authentication (Organizational Users) | Network Access to Non-Privileged Accounts  
-* IA-2 (12)	Identification and Authentication | Acceptance of PIV Credentials:  consult with DevOps/CyberSec for Applicability  
+* AC-2 Account Management
+* IA-2 Identification and Authentication (Organizational Users) 
+* IA-2 (1) Identification and Authentication (Organizational Users) | Network Access to Privileged Accounts  
+* IA-2 (2) Identification and Authentication (Organizational Users) | Network Access to Non-Privileged Accounts
+* IA-2 (12) Identification and Authentication | Acceptance of PIV Credentials:  consult with DevOps/CyberSec for Applicability
 
 ### Continuous integration and testing
 
 InfoSec does penetration testing, everything is 18F DevOps.
 
-* CA-8	Penetration testing 
-* RA-5	Vulnerability Scanning  
-* SA-11 (1)	Developer Security Testing and Evaluation| Static Code Analysis 
-* SI-2	Flaw Remediation  
-* SI-10	Information Input Validation  
+* CA-8 Penetration testing
+* RA-5 Vulnerability Scanning
+* SA-11 (1) Developer Security Testing and Evaluation| Static Code Analysis
+* SI-2 Flaw Remediation
+* SI-10 Information Input Validation
 
 ### Monitoring
 
 CloudWatch, CloudTrail, New Relic, Splunk
 
-* AU-2	Audit Events  
-* AU-6	Audit Review, Analysis, and Reporting 
-* SI-4	Information System Monitoring 
+* AU-2 Audit Events
+* AU-6 Audit Review, Analysis, and Reporting
+* SI-4 Information System Monitoring
 
 ### Overall system security
 
 There are controls which are general, and the implementation may differ given the underlying technology. 
 
-* PL-8	Information Security Architecture 
+* PL-8 Information Security Architecture
