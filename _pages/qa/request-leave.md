@@ -7,12 +7,14 @@ tags:
 - pto
 - out of office
 - paid time off
+- vacation
 ---
+
 # {{ page.title }}
 
 ## Request leave (sick, annual, or vacation time)
 
-*  Visit [http://aloha.gsa.gov/](http://aloha.gsa.gov/). Use your GSA credentials to log in.
+* Visit [http://aloha.gsa.gov/](http://aloha.gsa.gov/). Use your GSA credentials to log in.
 
 * Submit supervisor approval to Aaron Snow.
 
