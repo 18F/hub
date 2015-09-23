@@ -16,6 +16,8 @@ We are in the process of redoing this page to make it more streamlined for new e
 
 * [Work remotely? Start here.](../private/remote-employee-faq) If you don't work in DC, please make sure you start here for tips from other 18F employees.
 
+* Reset your [macbook password](https://support.apple.com/en-us/HT202860) and [ENT password](http://reset.gsa.gov).
+
 * [Set up two-factor authentication](../private/two-factor/) for email, Github, and Slack.
 
 * [Set up Slack.](../slack/) You'll have questions about the steps below, and you'll need to ask for help.  _(Hint: There's a [#questions channel](https://18f.slack.com/messages/questions/).)_
