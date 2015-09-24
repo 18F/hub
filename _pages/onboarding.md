@@ -90,6 +90,8 @@ We are in the process of redoing this page to make it more streamlined for new e
 
 * Explore [employee discounts](../private/fed-discount-phone/), including about 15% on cellphone plans.
 
+* If you are not on the Delivery Engineering team, but are interested in attending monthly technical talks, ask to be invited in #dev on Slack. You can also [submit a talk](https://docs.google.com/document/d/1FQLUofvibixHXg0iiUIdF9Up8djUrUL4xqU64sxHg-U/edit). If you are on the Delivery Engineering team, you will be invited automatically.
+
 ### Email and listservs
 
 * [Add a password]({{ site.baseurl }}/listserv-password/) to your GSA email listserv preferences (or change your subscriptions).
