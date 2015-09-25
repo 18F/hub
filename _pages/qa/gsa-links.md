@@ -19,8 +19,6 @@ Use
 
 * [IT Service Desk](http://servicedesk.gsa.gov/) for general IT questions about Employee Express and other passwords. (Note: They may not support requests for Macs, but will support requests for GSA websites.)
 
-* [Tock](https://tock.18f.gov/) to record your weekly hours.
-
 * [Meeting space](http://meet.gsa.gov/) to set up meetings with GSA participants.
 
 * [On-Line University](https://gsaolu.gsa.gov/) to take mandatory trainings for federal employees. The trainings consist of presentations with tests at the end of them. (Examples: IT security and awareness, ethics, telework, travel, and more.)
