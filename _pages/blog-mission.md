@@ -8,6 +8,7 @@ The 18F blog is a place where we share what we’ve learned, what we’ve made, 
 Additionally, our blog is a platform for highlighting the diversity and humanity of our team. We are a thoughtful, civic-minded group, and we acknowledge the value of underscoring that to our readers. Both our business and recruitment benefit when we post personal stories and profiles, which engender warmth and connection between 18F and the larger community.
 
 In sum, our goals are:
+
 * To support and highlight the operational excellence our employees’ daily work provides to GSA, the federal government, and the public
 * To strengthen our partnership with other federal agencies
 * To strengthen our relationship with the public and people who might want to join 18F
