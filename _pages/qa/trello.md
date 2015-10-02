@@ -7,8 +7,8 @@ title: How to use Trello
 
 [Trello](https://trello.com/18f3/) is a collaborative task and project management tool.
 
- * Ask in the #admins-trello channel for an invite.
+* You should be able to sign in with Google account. If not, ask for an invite in the #admins-trello channel.
     
- * Trello accounts support multiple email addresses, so you can use an existing account — if you have one — and just add your GSA email address.
+* Trello accounts support multiple email addresses, so you can use an existing account if you have one by adding your GSA email address.
 
 * [Enable two-factor authentication](https://trello.com/2fa).
