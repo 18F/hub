@@ -14,20 +14,17 @@ slack: #benefits
 
 With Flexible Spending Accounts you can:
 
-* Pay for eligible out-of-pocket health care and dependent care expenses with pre-tax dollars
+* Pay for [eligible out-of-pocket health care and dependent care expenses](http://dtg.adp.com/FSAFEDSExpenseViewer#/search) with pre-tax dollars
 * NOT pay for any type of premiums
 
-You must use all the money in your account, by the end of the year or you risk forfeiture of the unused funds.
-
-There is a grace period. If you have unused funds in your FSA account and incur expenses from January 1 through March 15, you have until April 30 to submit claims against your prior year account.
-
+You must use all the money in your account by the end of the year, or you risk forfeiture of the unused funds. There is a grace period. If you have unused funds in your FSA account and incur expenses from January 1 through March 15, you have until April 30 to submit claims against the prior year.
 
 ## How do I enroll in a Flexible Spending Account?
 
-* You have **60 days** to enroll from the date of your appointment
-* If you do not enroll within 60 days, you must wait until the next Open Season to enroll
-* You must re-enroll each Open Season, which is in late November and early December
-* You can [enroll on the FSA Feds website](https://www.fsafeds.com/GEM)
+* You have **60 days** to enroll from the date of your appointment on the [FSA Feds website](https://www.fsafeds.com/GEM)
+* To be eligible for the current calendar year, you must enroll before October 1
+* If you miss the deadline, you must wait until the next Open Season in November or December
+* You must re-enroll each Open Season
 
 ## What kinds of Flexible Spending Accounts are there?
 
@@ -52,7 +49,8 @@ Used to pay for eligible dependent care expenses such as child care for children
 
 ### Common Reimbursements
 
-Gym memberships can be reimbursed with a Doctor's note
-Eyeglasses
-OTC is covered with a physician's prescription
-[Here is a list of all eligible expenses](http://dtg.adp.com/FSAFEDSExpenseViewer#/home)
+* Gym memberships can be reimbursed with a doctor's note
+* Eyeglasses
+* OTC is covered with a physician's prescription
+
+See more [eligible expenses](http://dtg.adp.com/FSAFEDSExpenseViewer#/home).
