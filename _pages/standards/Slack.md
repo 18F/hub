@@ -28,7 +28,7 @@ If you see anyone violating our Code of Conduct, please report it immediately in
 
 ### Who can use Slack?
 
-Slack is required for all 18F staff. We can also invite people outside 18F to have access to a **single channel** on our Slack account. These single-channel users are free, and don't need financial authorization from TeamOps or security clearance from DevOps. These users may include:
+Slack is required for all 18F staff (including PIFs). We can also invite people outside 18F to have access to a **single channel** on our Slack account. These single-channel users are free, and don't need financial authorization from TeamOps or security clearance from DevOps. These users may include:
 
 * vendors *under contract* (not just a Terms of Service) with 18F
 * vendors with GSA who are working on a project with 18F, for which we have an MOU
