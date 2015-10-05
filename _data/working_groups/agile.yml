@@ -1,6 +1,10 @@
 ---
 name: Agile
 full_name: Agile Guild
+mission: To improve the quality and speed of service delivery through process improvement
+  by encouraging the use of iterative methods in the research, planning, design and
+  development of solutions we implement.
+status: active
 leads:
 - sarah
 members:
