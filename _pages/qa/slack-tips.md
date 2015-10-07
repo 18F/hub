@@ -17,4 +17,4 @@ title: Slack tips
     * [Turn on desktop notifications for particular channels only](https://slack.zendesk.com/hc/en-us/articles/201649323-Overriding-default-notification-preferences-for-a-channel-or-group).
 * You can see all of the links posted in a particular Slack channel by clicking on [this link](https://18f.slack.com/archives/design/links) and replacing "design" with the name of any Slack channel.
 * Click on the timestamp on any Slack post to go to the archival view of that post. This is helpful if you'd like to post the link to another channel.
-* When using Slack on mobile, you can mention someone in a channel they aren't in and they *won't* get a notification. You only get the "invite them" options when on desktop.
+* When using Slack on mobile, if you mention someone in a channel they aren't in, they *won't* get a notification. You only get the "invite them" options when on desktop.
