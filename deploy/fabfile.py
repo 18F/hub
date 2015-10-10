@@ -39,22 +39,25 @@ PUBLIC_RUBY_CMD = "/opt/install/rbenv/shims/ruby"
 SETTINGS = {
   'internal': {
     'host': '18f-hub', 'port': 4000, 'home': '/home/ubuntu',
+    'log': '/var/log/hub/build.log',
     'branch': 'master',
     'cmd': "%s ./go deploy_internal " % INTERNAL_RUBY_CMD,
   },
   'submodules': {
     'host': '18f-hub', 'port': 4001, 'home': '/home/ubuntu',
+    'log': '/var/log/hub/build.log',
     'branch': 'master',
     'cmd': "%s ./go deploy_submodules " % INTERNAL_RUBY_CMD,
   },
   'public': {
     'host': '18f-site', 'port': 4002, 'home': '/home/site/production',
+    'log': '/home/site/production/hub.log',
     'branch': 'production-public',
     'cmd': "%s ./go deploy_public " % PUBLIC_RUBY_CMD,
   },
 }[INSTANCE]
 
-LOG = "%s/hub.log" % SETTINGS['home']
+LOG = SETTINGS['log']
 REMOTE_REPO_DIR = "%s/hub" % SETTINGS['home']
 
 fabric.api.env.use_ssh_config = True
