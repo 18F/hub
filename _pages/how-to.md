@@ -171,6 +171,8 @@ These tips come from fellow 18F staffers who really wished they had known them w
 
 * [What do I need to know about working from the New York City office?](https://docs.google.com/a/gsa.gov/document/d/1dhAwKE2C2-iICmiPa_AbSLBqMXoGl1NnWcEwruzA0bA/edit?usp=sharing)
 
+* [San Francisco Office Tour](https://docs.google.com/document/d/1-48fQYpz4UHCXMbvROAwmBpPd57pBfL7t5vlUlodVVw/edit#)
+
 ## Remote employees: You're not alone!
 
 * [What do I need to know about working remotely?](../private/remote-employee-faq/) If you don't work in D.C., these tips are for you.
