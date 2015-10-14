@@ -21,8 +21,8 @@ You must use all the money in your account by the end of the year, or you risk f
 
 ## How do I enroll in a Flexible Spending Account?
 
-* You have **60 days** to enroll from the date of your appointment on the [FSA Feds website](https://www.fsafeds.com/GEM)
-* To be eligible for the current calendar year, you must enroll before October 1
+* You have **60 days** from the date of your appointment to enroll on the [FSA Feds website](https://www.fsafeds.com/GEM), **but:**
+* To be eligible for the current calendar year, you must enroll **before October 1**
 * If you miss the deadline, you must wait until the next Open Season in November or December
 * You must re-enroll each Open Season
 
