@@ -39,7 +39,7 @@ If you haven’t received an OLU email after two months  on the job and you alre
 
 ## I took my training and CHRIS doesn’t recognize this, what happened?
 
-It takes CHRIS 4 days to reflect OLU certifications
+It takes CHRIS 4 days to reflect OLU certifications.
 
 ## What browser should I use?
 
