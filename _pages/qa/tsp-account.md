@@ -12,6 +12,6 @@ slack: #benefits
 # {{ page.title }}
 
 
-Eligibility information is available [directly on the TSP website](https://www.tsp.gov/planparticipation/eligibility/participantEligibility.shtml).
+Eligibility information is available [directly on the TSP website](https://www.tsp.gov/PlanParticipation/EligibilityAndContributions/index.html).
 
-You can also find [information about starting, changing, and stopping your contributions](https://www.tsp.gov/planparticipation/eligibility/actionsOnContributions.shtml).
+You can also find [information about starting, changing, and stopping your contributions](https://www.tsp.gov/PlanParticipation/EligibilityAndContributions/actionsOnContributions.html).
