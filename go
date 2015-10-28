@@ -45,14 +45,15 @@ def_command :test, 'Execute automated tests' do |args = []|
   exec_cmd "bundle exec rake test #{args.join ' '}"
 end
 
-JEKYLL_PUBLIC_CONFIG = '--config _config.yml,_config_public.yml'
+JEKYLL_PUBLIC_CONFIG = %w(--config _config.yml,_config_public.yml)
 
-def_command :serve, 'Serves the internal hub at localhost:4000' do
-  serve_jekyll ''
+def_command :serve, 'Serves the internal hub at localhost:4000' do |args|
+  serve_jekyll args
 end
 
-def_command :serve_public, 'Serves the public hub at localhost:4000/hub' do
-  serve_jekyll JEKYLL_PUBLIC_CONFIG
+def_command(
+  :serve_public, 'Serves the public hub at localhost:4000/hub') do |args|
+  serve_jekyll args.concat(JEKYLL_PUBLIC_CONFIG)
 end
 
 
@@ -95,11 +96,12 @@ def_command :validate, 'Build, then validate no internal links are broken' do
   validate_private
 end
 
-def_command :build, 'Builds the internal and external versions of the Hub' do
+def_command(
+  :build, 'Builds the internal and external versions of the Hub') do |args|
   puts 'Building internal version...'
-  build_jekyll ''
+  build_jekyll args
   puts 'Building public version...'
-  build_jekyll JEKYLL_PUBLIC_CONFIG
+  build_jekyll args.concat(JEKYLL_PUBLIC_CONFIG)
 end
 
 def_command :ci_build, 'Runs tests and builds both Hub versions' do
