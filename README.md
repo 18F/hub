@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/18F/hub.png?label=ready&title=Ready)](https://waffle.io/18F/hub)
 [![Coverage Status](https://coveralls.io/repos/18F/hub/badge.svg?branch=coveralls)](https://coveralls.io/r/18F/hub?branch=coveralls)
 
 ## 18F Hub
