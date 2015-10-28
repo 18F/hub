@@ -106,7 +106,7 @@ end
 
 def_command :ci_build, 'Runs tests and builds both Hub versions' do
   test
-  build
+  build []
   validate_public
 end
 
