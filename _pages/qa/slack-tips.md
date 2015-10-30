@@ -9,7 +9,8 @@ title: Slack tips
     * `Option+Up` or `Option+Down` is a quick-switch between channels and direct messages. Use `Cmd +` to go through your channel history.
     * `Esc` marks all messages in the current channel as read.
     * `Shift-Esc` marks **all** messages across **all** channels as read. Only do this if you’ve caught up in channels for your projects first.
-    * `Shift+Option` or `Alt+Up/Down` cycles through channels with unread messages.
+    * `Shift+Option+Up/Down` or `Alt+Up/Down` cycles through channels with unread messages.
+    * `Shift+Cmd+K` shows all of your direct messages in one place.
 * [Here are some formatting tricks](https://slack.zendesk.com/hc/en-us/articles/202288908-How-can-I-add-formatting-to-my-messages-)
 * There are some really useful settings in:
     * The advanced settings section
