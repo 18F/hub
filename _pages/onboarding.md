@@ -12,13 +12,13 @@ We are in the process of redoing this page to make it more streamlined for new e
 
 ## Do these things immediately!
 
-* Please read the [18F code of conduct](https://github.com/18F/code-of-conduct/blob/master/code-of-conduct.md).
+* Please read the [18F code of conduct](https://github.com/18F/code-of-conduct/blob/master/code-of-conduct.md).{% unless site.public %}
 
-* [Work remotely? Start here](../private/remote-employee-faq). If you don't work in DC, please make sure you start here for tips from other 18F employees.
+* [Work remotely? Start here](../private/remote-employee-faq). If you don't work in DC, please make sure you start here for tips from other 18F employees.{% endunless %}
 
-* Reset your [Mac password](https://support.apple.com/en-us/HT202860) and [ENT password](http://reset.gsa.gov).
+* Reset your [Mac password](https://support.apple.com/en-us/HT202860) and [ENT password](http://reset.gsa.gov).{% unless site.public %}
 
-* [Set up two-factor authentication](../private/two-factor/) for email, GitHub, and Slack.
+* [Set up two-factor authentication](../private/two-factor/) for email, GitHub, and Slack.{% endunless %}
 
 * [Set up Slack](../slack/). You'll have questions about the steps below, and you'll need to ask for help.  _(Hint: There's a [#questions channel](https://18f.slack.com/messages/questions/).)_
 
@@ -36,9 +36,9 @@ We are in the process of redoing this page to make it more streamlined for new e
 * [Run the `laptop` script](https://github.com/18F/laptop) to configure your 18F laptop with everything you need to be productive.
     * Read [Greg and Mel's blog post](https://18f.gsa.gov/2015/03/03/how-to-use-github-and-the-terminal-a-guide/) on how to use GitHub, which will walk you through the script.
 
-* [Get your badge]({{ site.baseurl }}/badge/).
+* [Get your badge]({{ site.baseurl }}/badge/).{% unless site.public %}
 
-* [Set up VPN and remote network access](../private/access-gsa-remote/). [this may be failing currently on Macs]
+* [Set up VPN and remote network access](../private/access-gsa-remote/). [this may be failing currently on Macs]{% endunless %}
 
 * Make a calendar reminder to badger for access to On-line University (OLU), GSA's mandatory training courses.
     * You won't have OLU access until you are set up in CHRIS. You will receive
@@ -68,35 +68,35 @@ We are in the process of redoing this page to make it more streamlined for new e
 
 * Read the [18F open source policy](https://github.com/18F/open-source-policy/blob/master/policy.md) (especially if you're not a developer!) and the [team process FAQ.](https://github.com/18F/open-source-policy/blob/master/practice.md).
 
-* [Learn about weekly time reporting]({{ site.baseurl }}/timecard/), which occurs every Monday.
+* [Learn about weekly time reporting]({{ site.baseurl }}/timecard/), which occurs every Monday.{% unless site.public %}
 
-* Here are some [hardware and software tips](../private/uses-this/) from your coworkers.
+* Here are some [hardware and software tips](../private/uses-this/) from your coworkers.{% endunless %}
 
 * [Get a conference line from GSA if you might ever need a phone line for client calls]({{ site.baseurl}}/reserve-conference-line/).
 
 * [Configure Bookit]({{ site.baseurl }}/bookit/), our room reservation system, to save yourself time in the future.
 
-* Make sure your [work phone](../../work-phone/) is on its way.
+* Make sure your [work phone](../../work-phone/) is on its way.{% unless site.public %}
 
 * [Sync work info to an iOS device](../private/ios-sync/).
 
 * [Connect with 18F on social media](../private/socialmedia/) (if you're into that).
 
-* [Get business cards](../private/business-cards/).
+* [Get business cards](../private/business-cards/).{% endunless %}
 
 * [After getting OLU access, get set-up to travel with GSA](https://docs.google.com/a/gsa.gov/document/d/12CvKaLm4Me6g69VLj6mDTmRdF0fHNaNXIfsqNu9ZMsI/edit).
 
-* Review the [Office of Government Ethics Social Media Standards](http://www.oge.gov/DisplayTemplates/ModelSub.aspx?id=8589959880).
+* Review the [Office of Government Ethics Social Media Standards](http://www.oge.gov/DisplayTemplates/ModelSub.aspx?id=8589959880).{% unless site.public %}
 
-* Explore [employee discounts](../private/fed-discount-phone/), including about 15% on cellphone plans.
+* Explore [employee discounts](../private/fed-discount-phone/), including about 15% on cellphone plans.{% endunless %}
 
 * If you are not on the Delivery Engineering team, but are interested in attending monthly technical talks, ask to be invited in #dev on Slack. You can also [submit a talk](https://docs.google.com/document/d/1FQLUofvibixHXg0iiUIdF9Up8djUrUL4xqU64sxHg-U/edit). If you are on the Delivery Engineering team, you will be invited automatically.
 
 ### Email and listservs
 
-* [Add a password]({{ site.baseurl }}/listserv-password/) to your GSA email listserv preferences (or change your subscriptions).
+* [Add a password]({{ site.baseurl }}/listserv-password/) to your GSA email listserv preferences (or change your subscriptions).{% unless site.public %}
 
-* [Subscribe to some listservs](../private/listservs/).
+* [Subscribe to some listservs](../private/listservs/).{% endunless %}
 
 ### Tools
 
@@ -108,12 +108,12 @@ We are in the process of redoing this page to make it more streamlined for new e
 
 * Get access to [Google Analytics](https://www.google.com/analytics) by posting in Slack channel #analytics. As a backup, ping @Gray on Slack.
 
-* Learn more about [Trello]({{ site.baseurl }}/trello/).
+* Learn more about [Trello]({{ site.baseurl }}/trello/).{% unless site.public %}
 
-* Learn about [mural.ly,](../private/murally) too.
+* Learn about [mural.ly,](../private/murally) too.{% endunless %}
 
 ## Someone else should have taken care of these
-Speak up if you haven't been added to [the 18F mailing lists](../private/listservs/#18f-specific) the appropriate lists and the 18F team calendars below. Team calendars are stored in the left hand menu of Google Calendar, where you can toggle them on or off.
+Speak up if you haven't been added to [the 18F mailing lists (private link)](../private/listservs/#18f-specific) the appropriate lists and the 18F team calendars below. Team calendars are stored in the left hand menu of Google Calendar, where you can toggle them on or off.
 
 * 18F Events and 18F Out of Office
 * Check if the Guild or Working Group you're in has a calendar (they will need to add you first).
