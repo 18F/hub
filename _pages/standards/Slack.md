@@ -18,7 +18,7 @@ Everything in this standard is **required**, unless explicitly stated otherwise.
 
 ## Complete your profile
 
-Because we are a distributed team, Slack is often the first way we "meet" each other. [**Please fully complete your profile**](https://18f.slack.com/account/profile) so people have a better chance of knowing who you are. This includes first name, last name, a unique profile picture (photos are preferred, but not required), phone number, and a summary of what you do, what teams you're on, and where you're located.
+Because we are a distributed team, Slack is often the first way we "meet" each other. [**Please fully complete your profile**](https://18f.slack.com/account/profile) so people have a better chance of knowing who you are. This includes first name, last name, a unique profile picture (photos are preferred, but not required), phone number, and a summary of what you do, what teams you're on, and where you're located.  In your profile, append your location (city abbreviation in parentheses) to the end of your last name.  
 
 ## Code of Conduct 
 
