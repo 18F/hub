@@ -8,8 +8,7 @@ Employees must report to work or have leave approved every scheduled work day.
 All requests for leave should be submitted in ALOHA to the administrative supervisor or
 designee. Do this at least three business days in advance.
 
-For now, Aaron Snow is everyone's administrative supervisor.  In the future, the
-administrative supervisor will be the person listed as your supervisor in our organizational charts. If
+Your administrative supervisor will be the person listed as your supervisor in our organizational charts. If
 your administrative supervisor is out (say on vacation) they can designate
 leave approval authority to another person.
 
