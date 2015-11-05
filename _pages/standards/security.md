@@ -35,7 +35,7 @@ The system is _only_ available to:
 The system does _not_:
 
 * interact with or change the state of any production Federal information system, whether it is operated by 18F or our Federal partners.
-* collect or store any [sensitive PII](({{ site.baseurl }}/standards/aws#other-people-39-s-information).
+* collect or store any [sensitive PII]({{ site.baseurl }}/standards/aws#other-people-39-s-information).
 
 
 ### 90 Day authorization
