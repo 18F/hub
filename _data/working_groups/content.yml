@@ -1,14 +1,17 @@
 ---
-name: Content Strategy
-full_name: Content Strategy Working Group
+name: Content
+full_name: Content Guild
 mission: Integrate content strategy into all 18F projects. Promote painless, concise,
   and elegant writing.
 leads:
 - emileigh
 - kate
 members:
-- andrewmaier
 - andre
+- andrewmaier
+- britta.gustafson
 - greg
 - jameshupp
 - jhunter
+- nicole.fenton
+- tadhg
