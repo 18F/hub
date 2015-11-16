@@ -1,7 +1,7 @@
 ---
 layout: q-and-a
 permalink: //fed-hotspot-foia/
-title: When I'm connected to a govrenment owned mobile hotspot, is any data being sent over the connection FOIA-able?
+title: When I'm connected to a government owned mobile hotspot, is any data being sent over the connection FOIA-able?
 tags:
 - foia
 - freedom-of-information-act
