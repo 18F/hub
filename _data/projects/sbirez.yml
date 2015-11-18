@@ -5,9 +5,8 @@ github:
 - 18F/afsbirez
 description: An application to simplify, streamline, and unify the Small Business
   Innovation Research application process.
-partner:
+partners:
 - Air Force
-partners: 
 impact: To encourage new small businesses to work with the Federal Government.
 stage: alpha
 milestones:

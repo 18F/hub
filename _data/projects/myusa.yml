@@ -5,12 +5,11 @@ github:
 - 18F/myusa
 description: A digital services platform for Americans to register, sign in, and manage
   ongoing transactions with U.S. Federal Government services.
-partner:
+partners:
 - General Services Administration
 - Department of Homeland Security
-partners:
-- Early adopters ready for launch include Small Business Administration, Department
-  of Labor, and GSA.
+- Small Business Administration
+- Department of Labor
 impact: The millions of Americans who conduct online transactions with U.S. government.
 stage: alpha
 milestones:

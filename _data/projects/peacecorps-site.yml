@@ -5,9 +5,8 @@ github:
 - 18F/peacecorps-site
 description: A redesign of peacecorps.gov, offering a new, user-focused experience
   for users.
-partner:
+partners:
 - Peace Corps
-partners: 
 impact: 7,000 Peace Corps Volunteers in the field, hundreds of thousands Prospective/Returned
   Volunteers, friends, and family.
 stage: beta

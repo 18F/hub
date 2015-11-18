@@ -5,8 +5,8 @@ github:
 - 18F/calc
 description: CALC is a tool to help contracting personnel estimate their per-hour
   labor costs for a contract, based on historical pricing information.
-partner: General Services Administration
-partners: 
+partners:
+- General Services Administration
 impact: All federal acquisition personnel involved in buying professional services
 stage: live
 milestones:

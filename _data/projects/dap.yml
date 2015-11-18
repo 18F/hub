@@ -5,7 +5,7 @@ github:
 - gsa/analytics.usa.gov
 - 18f/analytics-reporter
 description: A lightweight dashboard that shows web traffic across the .gov domain.
-partner:
+partners:
 - General Services Administration
 stage: beta
 milestones:

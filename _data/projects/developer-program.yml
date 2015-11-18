@@ -6,9 +6,8 @@ github:
 description: A suite of tools, resources, and consulting services to assist agencies
   in the production and management of government APIs.  This two-year-old program
   was adopted by 18F to scale out its impact and to grow the government’s API portfolio.
-partner:
+partners:
 - General Services Administration
-partners: 
 stage: live
 impact: Over 70 agencies served, including each cabinet department, National Archives,
   Federal Communications Commission, Consumer Financial Protection Bureau, and the

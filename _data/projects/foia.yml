@@ -6,9 +6,9 @@ github:
 - 18F/foia-hub
 description: A new tool to search for the correct agency or office to make a FOIA
   request.
-partner:
+partners:
 - Department of Justice
-partners: 'Also participating: FOIA agency task force.'
+- FOIA agency task force
 impact: The U.S. Federal Government processed nearly 700,000 FOIA requests in fiscal
   year 2013.
 stage: alpha

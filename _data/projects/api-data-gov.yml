@@ -7,15 +7,14 @@ github:
 description: 'A hosted, shared-service that provides an API key, analytics, and proxy
   solution for government web services. We are currently accepting clients for this
   free service: contact us to learn more.'
-partner:
+partners:
 - Census
-- FCC
-- FDA
-- GSA
-- NREL
+- Federal Communications Commission
+- U.S. Food and Drug Administration
+- General Services Administration
+- National Renewable Energy Laboratory
 - Regulations.gov
-- USDA
-partners: 
+- Department of Agriculture
 stage: beta
 impact: 2,800 API users and 66 million API requests served since July 2013
 milestones: 
