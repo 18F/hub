@@ -5,9 +5,8 @@ github:
 - 18F/discovery
 description: Market research tool for the OASIS procurement vehicle, which serves
   contracting specialists throughout the U.S. Federal Government.
-partner:
+partners:
 - General Services Administration
-partners: 
 impact: 
 stage: beta
 milestones:
