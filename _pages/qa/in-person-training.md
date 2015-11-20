@@ -29,7 +29,7 @@ Enter your training in the event tracker on [Salesforce](https://insite.gsa.gov/
 
 
 ### Step four
-When your IDP is approved, you’ll get an email asking you to complete an [SF-182](https://drive.google.com/a/gsa.gov/file/d/0B9DenuU408s4ZDRHVWNMSEI2WlE/view). Follow the link in that email to submit it for approval.
+When your IDP is approved, you’ll get an email asking you to complete an [SF-182](https://drive.google.com/a/gsa.gov/file/d/0B9DenuU408s4ZDRHVWNMSEI2WlE/view) ([Salesforce online version here](https://gsa.my.salesforce.com/a2r/o)). Follow the link in that email to submit it for approval.
 
 If travel is required, add a travel expense request to the SF-182. If you're traveling, you'll also need to get [travel authorization](../travel/) once the SF-182 is approved.
 
