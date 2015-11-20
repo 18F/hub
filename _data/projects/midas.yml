@@ -7,7 +7,10 @@ description: A platform that facilitates collaborative work worldwide. Individua
   can create projects, propose working groups, or assemble "tiger teams" to act on
   their ideas. Anyone can also post tasks online and people with the requisite skills
   can respond and complete the task.
-partners: 
+partners:
+- General Services Administration
+- Department of State
+- Department of Health and Human Services
 stage: beta
 impact: 2 million federal employees
 milestones:
