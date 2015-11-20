@@ -6,7 +6,8 @@ github:
 description: Landing page design for Treasury’s My Retirement Account program, which
   will provide a simple, safe, and affordable way for individuals to start saving
   for retirement.
-partners: 
+partners:
+- U.S. Department of Treasury
 impact: Millions of Americans do not have access to an employer-sponsored retirement
   plan, which includes more than 50% of full-time and 75% of part-time workers.
 stage: live
