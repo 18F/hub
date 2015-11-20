@@ -5,9 +5,8 @@ github:
 - 18F/C2
 description: At the core, Communicart (a.k.a. C2) is simple tool to automate and manage
   approval workflows, with use cases implemented for GSA purchase approvals.
-partner:
+partners:
 - General Services Administration
-partners: 
 stage: live
 impact: For the GSA use cases alone, Communicart could be used by over 80,000 U.S.
   Federal Government purchase card holders.
