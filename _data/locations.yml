@@ -77,6 +77,11 @@
   latitude: 35.880079
   longitude: -78.787996
   timezone: 'Eastern Time Zone (UTC-05:00)'
+- code: ROA
+  label: Roanoake, VA
+  latitude: 37.324767
+  longitude: -79.9792301
+  timezone: 'Eastern Time Zone (UTC-05:00)'
 - code: SAN
   label: San Diego
   latitude: 32.733801
