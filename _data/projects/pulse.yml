@@ -6,9 +6,8 @@ github:
 - 18F/domain-scan
 description: A lightweight dashboard that uses the official .gov domain list to measure
   HTTPS integration and participation in the Digital Analytics Program.
-partner:
+partners:
 - General Services Administration
-partners: 
 stage: beta
 milestones:
 - 'April 2015: 18F began work on project'

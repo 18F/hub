@@ -1,7 +1,7 @@
 ---
 project: USCIS projects
 name: uscis
-partner:
+partners:
 - U.S. Citizenship and Immigration Services
 contact: 18f-uscis-projects@gsa.gov
 stage: alpha
