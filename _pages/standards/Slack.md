@@ -3,7 +3,7 @@ title: Slack Standards
 permalink: /standards/slack/
 ---
 
-This page is being deprecated. It will be ported over to [handbook.18f.gov/slack](handbook.18f.gov/slack) and maintained there. 
+This page is being deprecated. It will be ported over to [handbook.18f.gov/slack](https://handbook.18f.gov/slack) and maintained there. 
 
 # {{ page.title }}
 
