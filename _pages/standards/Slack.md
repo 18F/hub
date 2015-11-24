@@ -2,6 +2,9 @@
 title: Slack Standards
 permalink: /standards/slack/
 ---
+
+This page is being deprecated. It will be ported over to handbook.18f.gov/slack and will be maintained there. 
+
 # {{ page.title }}
 
 Instead of maintaining our own [IRC](https://en.wikipedia.org/wiki/Internet_Relay_Chat) servers for chat capabilities, 18F uses [Slack](https://slack.com/). This living document is the 18F team standards and practices for our use of Slack. **Any change to this standard, or any global technical change to our Slack account, will be announced via an `@channel` in `#news`** (the default channel to which all users are subscribed and unable to leave).
