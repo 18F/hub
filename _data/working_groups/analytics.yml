@@ -3,7 +3,7 @@ name: Analytics
 full_name: Analytics Guild
 mission: To integrate website analytics into all 18F projects.
 github_repos:
-- 18F/analytics
+- 18F/g-analytics
 - 18F/analytics-standards
 leads:
 - gray

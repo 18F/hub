@@ -61,8 +61,6 @@ These tips come from fellow 18F staffers who really wished they had known them w
 
 ## Software
 
-* [What software is approved for standard use at GSA?]({{ site.baseurl }}/gsa-approved-software/)
-
 * [Can we use software as a service (SaaS) tools](../private/tools/) that help productivity and collaboration, such as Trello, HootSuite, or Pivotal Tracker?
 
 * [How do I get set up on mural.ly (the collaborative whiteboard/sticky note tool)?](../private/murally/)
@@ -87,8 +85,6 @@ These tips come from fellow 18F staffers who really wished they had known them w
 
 * [Get a Thunderbolt display fixed](../private/thunderbolt-fix/)
 
-* [I want to do "insert thing X here" on my GSA furnished Dell laptop.]({{ site.baseurl }}/gsa-dell/)
-
 
 ## Passwords and authentication
 
@@ -110,7 +106,7 @@ These tips come from fellow 18F staffers who really wished they had known them w
 
 * [Learn how to create a Google Group or Google Site using your gsa.gov account.]({{ site.baseurl }}/google-group-site/)
 
-* [Access Google Analytics.]({{ site.baseurl }}/wg/analytics/)
+* [Access Google Analytics.](https://github.com/18F/analytics-standards)
 
 ## Slack
 
