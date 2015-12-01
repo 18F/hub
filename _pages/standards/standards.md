@@ -44,10 +44,10 @@ Our objective is to deliver the best environment to do development work in the F
 
 The work here is also subject to constant improvement. Pull requests from anyone at 18F, from any team, are **strongly encouraged**.
 
-- [AWS](aws/)
+- [AWS](https://pages.18f.gov/before-you-ship/aws/)
 - [Slack](slack/)
 - [GitHub](github/)
-- [Security](security/)
+- [Security](https://pages.18f.gov/before-you-ship/security/)
 - [Terms and Conditions](terms-and-conditions/)
 
 ### A quick note on delight
