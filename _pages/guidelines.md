@@ -17,8 +17,8 @@ title: Guidelines
 * [Leave, telework, and virtual worker policy]({{ site.baseurl }}/team-ops/leave-telework-virtual-worker-policy/)
 * [Open Source Policy](https://github.com/18F/open-source-policy)
 * [Publishing and content submission on 18f.gsa.gov]({{ site.baseurl }}/private/18F-site/publishing/){% endunless %}
-* [Security Guidelines]({{ site.baseurl }}/standards/security/)
+* [Security Guidelines](https://pages.18f.gov/before-you-ship/security/)
 * [Slack Guidelines]({{ site.baseurl }}/standards/slack/)
 * [Terms and Conditions]({{ site.baseurl }}/standards/terms-and-conditions/)
-* [Use of AWS]({{ site.baseurl }}/standards/aws/)
+* [Use of AWS](https://pages.18f.gov/before-you-ship/aws/)
 * [Using Ubuntu]({{ site.baseurl }}/private/team-ops/ubuntu/)
