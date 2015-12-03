@@ -3,6 +3,9 @@ title: "How to set up your GitHub account at 18F"
 layout: "q-and-a"
 permalink: "/github-work/"
 ---
+
+This page has been migrated to [https://handbook.18f.gov/github](https://handbook.18f.gov/github) and will be maintained there.
+
 # {{ page.title }}
 
 GitHub is a tool we use to store all of our code and collaborate with our colleagues. If you don’t code on a regular basis, you may use GitHub to write a blog post, review material, or comment on something a colleague has done — so it’s important to have an account.
