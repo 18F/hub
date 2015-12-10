@@ -6,7 +6,6 @@ mission: |
 links:
 - url: http://18f.github.io/grouplet-playbook
   text: Grouplet Playbook
-tasks: https://trello.com/b/UTWUl10z/18f-working-group-working-group
 github_repos:
 - 18F/grouplet-playbook
 leads:

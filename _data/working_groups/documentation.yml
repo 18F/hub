@@ -8,7 +8,6 @@ links:
   text: 18F Public Hub
 - url: http://18f.github.io/guides
   text: 18F Guides
-tasks: https://trello.com/b/cI4LmXOj/wg-documentation
 github_repos:
 - 18F/hub
 - 18F/guides
