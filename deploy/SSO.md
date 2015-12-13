@@ -90,10 +90,16 @@ and forwards the request to the target host. Using the earlier example,
 `https://hub.18f.gov/foo`.
 
 ```
-  location ~/(?<target_host>[^/]+)(?<remaining_uri>.*)$ {
+  location "~^/(?<target_host>[^/]+).18f.gov/(?<remaining_uri>.*)$" {
     rewrite ^ $scheme://$target_host$remaining_uri;
   }
 ```
+
+Note that the `location` expression matches `.18f.gov/` explicitly. This is to
+prevent [open redirect vulnerabilities](https://www.owasp.org/index.php/Open_redirect).
+[Phishing attacks](https://www.owasp.org/index.php/Phishing) can take
+advantage of open redirects to send users to malicious sites without realizing
+it, because the link appears to come from your trusted domain.
 
 ### .conf files
 
