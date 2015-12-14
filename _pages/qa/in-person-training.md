@@ -15,7 +15,7 @@ The [official training policy](https://docs.google.com/document/d/18VcWDZbXw7lNA
 
 
 ### Step one
-Open the [Speaking requests, attending events](https://docs.google.com/spreadsheets/d/1Y0336rKQ4FiTFhoQynRjoVuJFzXEgaV0QcHqaNd-Eis/edit#gid=2072167708) spreadsheet. Enter the class or training you’d like to attend in the second tab— ”Training Requests.”
+Open the [Speaking requests, attending events](https://docs.google.com/spreadsheets/d/1Y0336rKQ4FiTFhoQynRjoVuJFzXEgaV0QcHqaNd-Eis/edit#gid=2065658991) spreadsheet. Enter the class or training you’d like to attend in the second tab— ”Training Requests.”
 
 
 ### Step two
