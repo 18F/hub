@@ -27,7 +27,7 @@ Yes, it's preferred if you can submit it as soon as possible.
 ## How do I request time off?
 
 1. Visit [ALOHA](http://aloha.gsa.gov/) and use your GSA credentials to log in.
-2. Submit your supervisor approval to Aaron Snow.
+2. Submit your supervisor approval to your supervisor.
 3. Add an event to the Google calendar "18F Out of Office," so everyone knows you're out of the office.
 
 ## How do I access ALOHA if I'm a remote employee?
