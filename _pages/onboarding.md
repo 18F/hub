@@ -3,7 +3,7 @@ layout: "q-and-a"
 title: Orientation for new employees
 ---
 
-```This page is in the process of being deprecated. We are keeping it here to ensure that all information has been transported to the new page. Click to find the [new employee checklist](https://handbook.18f.gov/checklist) and [handbook](https://github.com/18F/handbook).```
+**This page is in the process of being deprecated. We are keeping it here to ensure that all information has been transported to the new page. Click to find the [new employee checklist](https://handbook.18f.gov/checklist) and [handbook](https://github.com/18F/handbook).**
 
 
 ## Do these things immediately!
