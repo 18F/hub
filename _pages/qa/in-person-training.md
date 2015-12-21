@@ -7,6 +7,8 @@ tags:
 - training
 ---
 
+#This page is being deprecated. All information from this page can now be found [here](https://handbook.18f.gov/professional-development-and-training.
+
 # {{ page.title }}
 
 Want to increase your workplace savvy by taking a class or attending a training? Good news! As an 18F team member, you’re eligible for tuition reimbursement through GSA. The process can take a couple weeks, but it’s relatively painless— it just involves a few rounds of paperwork and supervisory approval.
