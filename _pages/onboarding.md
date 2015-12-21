@@ -3,16 +3,12 @@ layout: "q-and-a"
 title: Orientation for new employees
 ---
 
-# {{ page.title }}
-
-Welcome to 18F! We are so glad you are here.
-
-We are in the process of redoing this page to make it more streamlined for new employees. If you want to see a preview of the new page, [please click here to see the Newcomer's Guide to 18F](https://docs.google.com/document/d/1Rv8_QSEkHzS6Rc-A39_v2kH48ZFHjyXoeAVTTmBkpwk/edit#heading=h.y0rk4ydz384i) - eventually this page will be replaced by the Newcomer's Guide, which organizes information by day and week. 
+**This page is in the process of being deprecated. We are keeping it here to ensure that all information has been transported to the new page. Click to find the [new employee checklist](https://handbook.18f.gov/checklist) and [handbook](https://github.com/18F/handbook).** 
 
 
 ## Do these things immediately!
 
-* Please read the [18F code of conduct](https://github.com/18F/code-of-conduct/blob/master/code-of-conduct.md).{% unless site.public %}
+* Please read the [18F code of conduct](https://handbook.18f.gov/code-of-conduct).{% unless site.public %}
 
 * [Work remotely? Start here](../private/remote-employee-faq). If you don't work in DC, please make sure you start here for tips from other 18F employees.{% endunless %}
 
