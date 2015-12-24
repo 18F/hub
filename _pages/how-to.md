@@ -2,8 +2,7 @@
 layout: "q-and-a"
 title: How to...
 ---
-
-# This page is being deprecated. Please search [this repo](handbook.18f.gov) for the question you have. All material here is replicated there.
+{% unless site.public %}# This page is being deprecated. Please search [this repo](https://handbook.18f.gov/) for the question you have. All material here is replicated there.{% endunless %}
 
 # {{ page.title }}
 
