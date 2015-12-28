@@ -24,3 +24,11 @@ links:
 - url: https://18f.gsa.gov/hub/
   text: 18F Public Hub production instance
 tasks: https://github.com/18F/hub/issues
+team:
+- github: mbland
+- github: afeld
+- github: melodykramer
+licenses:
+  .about.yml:
+    name: CC0
+    url: https://github.com/18F/hub/blob/master/LICENSE.md
