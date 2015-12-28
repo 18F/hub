@@ -2,7 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     RedCloth (4.2.9)
-    about_yml (0.0.6)
+    about_yml (0.0.8)
       json-schema
       octokit (~> 3.0)
       safe_yaml (~> 1.0)
