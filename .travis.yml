@@ -14,3 +14,7 @@ env:
 script: bundle exec ./go ci_build
 notifications:
   webhooks: http://project-monitor.cf.18f.us/projects/hub/status
+
+script: bundle exec rake run_about_yml_check
+notifications:
+  webhooks: http://project-monitor.cf.18f.us/projects/hub/status
