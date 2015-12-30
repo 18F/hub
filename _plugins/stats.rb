@@ -1,44 +1,47 @@
-class Stats < Jekyll::Generator
-  OFFICE_AIRPORT_CODES = %w(
-    CHI
-    DCA
-    IAD
-    MDW
-    ORD
-    SFO
-  ).to_set.freeze
+module Hub
+  class Stats
+    OFFICE_AIRPORT_CODES = %w(
+      CHI
+      DCA
+      IAD
+      MDW
+      ORD
+      SFO
+    ).to_set.freeze
 
-  def generate(site)
-    site.data['stats'] = {
-      'percent_remote' => percent_remote(site)
-    }
-  end
-
-  private
-
-  def is_remote?(airport_code)
-    !OFFICE_AIRPORT_CODES.include?(airport_code)
-  end
-
-  def users_with_location(site)
-    site.data['team'].select do |person|
-      loc = person['location']
-      loc && !loc.empty?
+    def self.percent_remote(site)
+      percent_remote_decimal = num_remote(site).to_f / num_with_location(site)
+      (percent_remote_decimal * 100).to_i
     end
-  end
 
-  def num_remote(site)
-    users_with_location(site).count do |person|
-      loc = person['location']
-      is_remote?(loc)
+    def self.assign_stats(site)
+      site.data['stats'] = {
+        'percent_remote' => percent_remote(site)
+      }
     end
-  end
 
-  def num_with_location(site)
-    users_with_location(site).size
-  end
+    private
 
-  def percent_remote(site)
-    ((num_remote(site).to_f / num_with_location(site)) * 100).to_i
+    def self.is_remote?(airport_code)
+      !OFFICE_AIRPORT_CODES.include?(airport_code)
+    end
+
+    def self.users_with_location(site)
+      site.data['team'].select do |person|
+        loc = person['location']
+        loc && !loc.empty?
+      end
+    end
+
+    def self.num_remote(site)
+      users_with_location(site).count do |person|
+        loc = person['location']
+        is_remote?(loc)
+      end
+    end
+
+    def self.num_with_location(site)
+      users_with_location(site).size
+    end
   end
 end
