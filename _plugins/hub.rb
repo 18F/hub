@@ -45,6 +45,8 @@ module Hub
       Departments.generate_pages(site)
       WorkingGroups.generate_pages(site)
       Snippets.generate_pages(site)
+
+      Stats.assign_stats(site)
     end
   end
 end
