@@ -11,7 +11,12 @@ module Hub
 
     def self.percent_remote(site)
       percent_remote_decimal = num_remote(site).to_f / num_with_location(site)
-      (percent_remote_decimal * 100).to_i
+      if percent_remote_decimal.nan?
+        # no team members, which probably means the data submodule isn't loaded
+        nil
+      else
+        (percent_remote_decimal * 100).to_i
+      end
     end
 
     def self.assign_stats(site)
