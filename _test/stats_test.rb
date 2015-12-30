@@ -21,11 +21,27 @@ require 'minitest/autorun'
 
 module Hub
   class StatsTest < ::Minitest::Test
-    def test_returns_nil_for_zero_members
-      site = ::Jekyll::Site.new(::Jekyll::Configuration::DEFAULTS)
-      site.data['team'] = []
+    def setup
+      @site = ::Jekyll::Site.new(::Jekyll::Configuration::DEFAULTS)
+      @site.data['team'] = []
+    end
 
-      result = Stats.percent_remote(site)
+    def test_returns_correct_value
+      @site.data['team'] = [
+        {
+          'location' => 'ANC'
+        },
+        {
+          'location' => 'DCA'
+        }
+      ]
+
+      result = Stats.percent_remote(@site)
+      assert_equal 50, result
+    end
+
+    def test_returns_nil_for_zero_members
+      result = Stats.percent_remote(@site)
       assert_equal nil, result
     end
   end
