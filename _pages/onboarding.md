@@ -102,7 +102,7 @@ title: Orientation for new employees
 
 * Check out our [GitHub tips]({{ site.baseurl }}/github-work/).
 
-* Get access to [Google Analytics](https://www.google.com/analytics) by posting in Slack channel #analytics. As a backup, ping @Gray on Slack.
+* Get access to [Google Analytics](https://www.google.com/analytics) by posting in Slack channel #g-analytics. 
 
 * Learn more about [Trello]({{ site.baseurl }}/trello/).{% unless site.public %}
 
