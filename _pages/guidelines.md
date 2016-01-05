@@ -20,5 +20,5 @@ title: Guidelines
 * [Security Guidelines](https://pages.18f.gov/before-you-ship/security/)
 * [Slack Guidelines]({{ site.baseurl }}/standards/slack/)
 * [Terms and Conditions]({{ site.baseurl }}/standards/terms-and-conditions/)
-* [Use of AWS](https://pages.18f.gov/before-you-ship/aws/)
+* [Use of AWS](https://pages.18f.gov/before-you-ship/infrastructure/aws/)
 * [Using Ubuntu]({{ site.baseurl }}/private/team-ops/ubuntu/)
