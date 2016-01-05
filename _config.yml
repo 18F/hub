@@ -116,3 +116,7 @@ prose:
 # For Google Analytics
 google_analytics_ua: UA-48605964-24
 
+jekyll_get:
+  data: team_raw
+  json: 'https://team-api.18f.gov/public/api/team/'
+  cache: true

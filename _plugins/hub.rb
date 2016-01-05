@@ -32,6 +32,10 @@ module Hub
     # Executes all of the data processing and artifact/page generation phases
     # for the Hub.
     def generate(site)
+      # jekyll_get pulls data from team_api, but it's nested
+      site.data['team'] = site.data['team_raw']['results']
+      # more transformations here?
+      # dump pre-transformations site.data
       Joiner.join_data(site)
       Snippets.publish(site)
       CrossReferencer.build_xrefs(site.data)
@@ -45,6 +49,7 @@ module Hub
       Departments.generate_pages(site)
       WorkingGroups.generate_pages(site)
       Snippets.generate_pages(site)
+      # dump post-tranformation site_data
     end
   end
 end
