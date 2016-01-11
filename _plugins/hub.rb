@@ -21,7 +21,6 @@
 
 require 'hash-joiner'
 require 'team_hub'
-require 'pry'
 
 module Hub
 
