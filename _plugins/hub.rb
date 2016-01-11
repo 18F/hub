@@ -21,6 +21,7 @@
 
 require 'hash-joiner'
 require 'team_hub'
+require 'pry'
 
 module Hub
 
@@ -33,22 +34,28 @@ module Hub
     # for the Hub.
     def generate(site)
       # jekyll_get pulls data from team_api, but it's nested
-      site.data['team'] = site.data['team_raw']['results']
-      # more transformations here?
-      # dump pre-transformations site.data
+      site.data.keys.each do |data_type|
+        if data_type.end_with? '_raw'
+          site.data[data_type[0..-5]] = site.data[data_type]['results']
+          site.data.delete data_type
+        end
+      end
+      # site.data['snippets'] = site.data['snippets_raw']
+      site.data['guest_users'] = []
+
       Joiner.join_data(site)
       Snippets.publish(site)
-      CrossReferencer.build_xrefs(site.data)
-      Canonicalizer.canonicalize_data(site.data)
+      #CrossReferencer.build_xrefs(site.data)
+      #Canonicalizer.canonicalize_data(site.data)
       Auth.generate_artifacts(site)
-      ::HashJoiner.prune_empty_properties(site.data)
+      #::HashJoiner.prune_empty_properties(site.data)
       Api.generate_api(site)
 
       Team.generate_pages(site)
       Projects.generate_pages(site)
       Departments.generate_pages(site)
       WorkingGroups.generate_pages(site)
-      Snippets.generate_pages(site)
+      Snippets.generate_pages(site)  # TODO: will need this data, not presently in API
       # dump post-tranformation site_data
     end
   end

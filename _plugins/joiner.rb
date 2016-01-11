@@ -35,18 +35,18 @@ module Hub
     # +site+:: Jekyll site data object
     def self.join_data(site)
       impl = JoinerImpl.new site
-      impl.setup_join_source {|source| Joiner.assign_empty_defaults source}
+      # impl.setup_join_source {|source| Joiner.assign_empty_defaults source}
 
       impl.join_team_data
-      impl.join_project_data
+      # impl.join_project_data
 
-      impl.promote_private_data 'departments'
-      impl.promote_private_data 'working_groups'
-      impl.promote_private_data 'pif_team'
-      impl.promote_private_data 'pif_projects'
+      # impl.promote_private_data 'departments'
+      # impl.promote_private_data 'working_groups'
+      # impl.promote_private_data 'pif_team'
+      # impl.promote_private_data 'pif_projects'
 
       impl.join_snippet_data SNIPPET_VERSIONS
-      impl.import_guest_users
+      # impl.import_guest_users   # remove?
 
       site.data.delete 'private'
     end

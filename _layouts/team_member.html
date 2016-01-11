@@ -10,6 +10,7 @@ scripts:
 <div class="team-member">
 
   <img class="img-circle team-img bio-clip" src="{{ site.baseurl }}/{{ member.image }}" alt="Photo of {{ member.full_name }}">
+
   <h1>{{ member.full_name }}</h1>
   <p>
     {% if member.email %}email: <a href="mailto:{{ member.email }}">{{ member.email }}</a><br/>{% endif %}
@@ -22,13 +23,13 @@ scripts:
 
   {% if member.projects %}
   <h2>Projects</h2>{% for proj in member.projects %}
-  <a href="{{ site.baseurl }}/projects/{{ proj.name | canonicalize }}">{{ proj.project }}</a><br/>{% endfor %}
+  <a href="{{ site.baseurl }}/projects/{{ proj.name | canonicalize }}">{{ proj.full_name }}</a><br/>{% endfor %}
   {% endif %}
 
-  {% if member.working_groups %}
+  {% if member.working-groups %}
   <h2>Working Groups</h2>
-  <p>{% for wg in member.working_groups %}
-  <a href="{{ site.baseurl }}/wg/{{ wg.name | canonicalize }}">{{ wg.name }}</a><br/>
+  <p>{% for wg in member.working-groups %}
+  <a href="{{ site.baseurl }}/wg/{{ wg.name | canonicalize }}">{{ wg.full_name }}</a><br/>
   {% endfor %}</p>
   {% endif %}
 
@@ -36,14 +37,14 @@ scripts:
     {% if member.skills %}
     <h2>Skills</h2>
     {% for skill in member.skills %}
-    <a href="{{ site.baseurl }}/skills/?{{ skill | downcase | strip | uri_escape }}">{{ skill | downcase | strip }}</a><br/>
+    <a href="{{ site.baseurl }}/skills/?{{ skill.name | downcase | strip | uri_escape }}">{{ skill.name }}</a><br/>
     {% endfor %}
     {% endif %}
   </div>
   <script type="text/template" class="template-skills">
     <h2>Skills</h2>
     <% _(skills).each(function(skill) { %>
-    <a href="{{ site.baseurl }}/skills/?<%= encodeURIComponent(skill) %>"><%= skill %></a><br/>
+    <a href="{{ site.baseurl }}/skills/?<%= encodeURIComponent(skill.name) %>"><%= skill %></a><br/>
     <% }); %>
   </script>
 
@@ -51,14 +52,14 @@ scripts:
     {% if member.interests %}
     <h2>Interests</h2>
     {% for interest in member.interests %}
-    <a href="{{ site.baseurl }}/interests/?{{ interest | downcase | strip | uri_escape }}">{{ interest | downcase | strip }}</a><br/>
+    <a href="{{ site.baseurl }}/interests/?{{ interest.name | downcase | strip | uri_escape }}">{{ interest.name }}</a><br/>
     {% endfor %}
     {% endif %}
   </div>
   <script type="text/template" class="template-interests">
     <h2>Interests</h2>
     <% _(interests).each(function(interest) { %>
-    <a href="{{ site.baseurl }}/interests/?<%= encodeURIComponent(interest) %>"><%= interest %></a><br/>
+    <a href="{{ site.baseurl }}/interests/?<%= encodeURIComponent(interest.name) %>"><%= interest %></a><br/>
     <% }); %>
   </script>
 

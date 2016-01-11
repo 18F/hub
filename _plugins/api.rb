@@ -145,17 +145,12 @@ module Hub
     def self.generate_skills_endpoints(site)
       return [] unless site.data.member? 'skills'
       endpoint_info = []
-      ['Skills', 'Interests'].each do |category|
-        category_index = site.data['skills'][category]
-        next if category_index.nil? || category_index.empty?
-        skills = {}
-        category_index.each do |skill, members|
-          skills[skill] = members.map {|i| i['name']}
-        end
-        endpoint_info << generate_endpoint(site,
-          Canonicalizer.canonicalize(category), "#{category}",
-          "Index of team members by #{category.downcase}", skills)
+      skills = {}
+      site.data['skills'].each do |skill|
+        skills[skill['name']] = skill['members'].map {|m| m['name']}
       end
+      endpoint_info << generate_endpoint(site, 'skills', 'skills',
+        "Index of team members by skill", skills)
       endpoint_info
     end
 
