@@ -18,7 +18,7 @@ title: Team By Location
   <h2>&lt; {{ location.code }} /&gt;</h2>
   {% if location.projects %}
   <p>{{ location.projects.size | pluralize: "project" }}:
-  {% for i in location.projects %}<a href="{{ site.baseurl }}/projects/{{ i.name | canonicalize }}">{{ i.project }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}
+  {% for i in location.projects %}<a href="{{ site.baseurl }}/projects/{{ i.name | canonicalize }}">{{ i.name }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}
   </p>{% endif %}
 
   {% if location.working_groups %}

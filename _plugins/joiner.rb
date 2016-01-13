@@ -37,7 +37,7 @@ module Hub
       impl = JoinerImpl.new site
       # impl.setup_join_source {|source| Joiner.assign_empty_defaults source}
 
-      impl.join_team_data
+      # impl.join_team_data
       # impl.join_project_data
 
       # impl.promote_private_data 'departments'
@@ -136,10 +136,9 @@ module Hub
     end
 
     # Joins team member data, converts site.data[team] to a hash of
-    # username => team_member, and assigns team member images.
+    # username => team_member
     def join_team_data
       promote_private_data 'team'
-      assign_team_member_images
     end
 
     # Joins public and private project data.
@@ -204,27 +203,6 @@ module Hub
     # +category+:: key into +site.data['private']+ specifying data collection
     def promote_private_data(category)
       @data[category] = @join_source[category] if @join_source != @data
-    end
-
-    # Assigns the +image+ property of each team member based on the team
-    # member's username and whether or not an image asset exists for that team
-    # member. +site.config[+'missing_team_member_img'] is used as the default
-    # when no image asset is available.
-    def assign_team_member_images
-      base = @site.source
-      img_dir = site.config['team_img_dir']
-      missing = File.join(img_dir, site.config['missing_team_member_img'])
-
-      site.data['team'].each do |member|
-        img = File.join(img_dir, "#{member['name']}.jpg")
-
-        if (File.exists? File.join(base, img) or
-            ::TeamHub::PrivateAssets.exists?(site, img))
-          member['image'] = img
-        else
-          member['image'] = missing
-        end
-      end
     end
 
     # Joins snippet data into +site.data[+'snippets'] and filters out snippets

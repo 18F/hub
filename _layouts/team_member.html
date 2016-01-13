@@ -8,8 +8,8 @@ scripts:
 
 {% assign member = page.team_member %}
 <div class="team-member">
-
-  <img class="img-circle team-img bio-clip" src="{{ site.baseurl }}/{{ member.image }}" alt="Photo of {{ member.full_name }}">
+  
+  <img class="img-circle team-img bio-clip" src="{{ member.name | photo_or_placeholder:site }}" alt="Photo of {{ member.full_name }}">
 
   <h1>{{ member.full_name }}</h1>
   <p>
@@ -37,7 +37,7 @@ scripts:
     {% if member.skills %}
     <h2>Skills</h2>
     {% for skill in member.skills %}
-    <a href="{{ site.baseurl }}/skills/?{{ skill.name | downcase | strip | uri_escape }}">{{ skill.name }}</a><br/>
+    <a href="{{ site.baseurl }}/skills/{{ skill.slug }}/">{{ skill.name }}</a><br/>
     {% endfor %}
     {% endif %}
   </div>
@@ -72,28 +72,3 @@ scripts:
   {% assign s = latest_snippet %}{% include snippet.html %}{% endif %}
 
 </div>
-
-<script>
-
-// Data for team members
-MEMBERS = [
-  {
-    email: {{ member.email | jsonify }},
-    skills: {{ member.skills | jsonify }},
-    interests: {{ member.interests | jsonify }},
-    location: {{ member.location | jsonify }},
-    image: {{ member.image | jsonify }},
-    name: {{ member.name | jsonify }},
-    full_name: {{ member.full_name | jsonify }}
-  }
-];
-
-// Merge local data with team member's Midas profile
-MIDAS = {
-  url: '{{ site.midas_url }}'
-};
-
-// Page category
-CATEGORY = '{{ page.category }}';
-
-</script>

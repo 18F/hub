@@ -54,6 +54,7 @@ module Hub
       Projects.generate_pages(site)
       Departments.generate_pages(site)
       WorkingGroups.generate_pages(site)
+      Skills.generate_pages(site)
       Snippets.generate_pages(site)  # TODO: will need this data, not presently in API
       # dump post-tranformation site_data
     end

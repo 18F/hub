@@ -1,14 +1,24 @@
 <div class="team-members">{% for member in members %}
   <div class="team-member">
     <div class="team-member-cell">
-      {% capture img_basename %}{{ member.image | split:"/" | last }}{% endcapture %}
-      <a href="{{ site.baseurl }}/team/{{ member.name | canonicalize }}"><img class="team-member-thumb" src="{{ site.baseurl }}/{{ member.image }}" alt="{% if img_basename == site.missing_team_member_img %}18F logo, {{ member.full_name }} photo missing{% else %}{{ member.full_name }}{% endif %}"></a>
+      <a href="{{ site.baseurl }}/team/{{ member.name | canonicalize }}">
+      <img class="team-member-thumb"
+       src="{{ site.baseurl }}/{{ member.name | photo_or_placeholder:site }}"
+        alt="{% if member.name | existing_photo:site %}
+             18F logo, {{ member.full_name }} photo missing
+             {% else %}{{ member.full_name }}{% endif %}">
+      </a>
     </div>
     <div class="team-member-info">
       <a href="{{ site.baseurl }}/team/{{ member.name | canonicalize }}">{{ member.full_name }}</a>{% if member.location %} -
       <a class="location" href="{{ site.baseurl }}/locations#{{ member.location }}">{{ member.location }}</a><br/>{% endif %}
       {% if member.projects %}
-        Projects: {% for p in member.projects %}<a href="{{ site.baseurl }}/projects/{{ p.name | canonicalize }}">{{ p.project }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}<br/>
+        Projects:
+        {% for p in member.projects %}
+          <a href="{{ site.baseurl }}/projects/{{ p.name | canonicalize }}">
+            {{ p.name }}</a>
+            {% unless forloop.last %}, {% endunless %}
+        {% endfor %}<br/>
       {% endif %}
     </div>
   </div>
