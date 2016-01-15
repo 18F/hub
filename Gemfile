@@ -13,12 +13,14 @@ gem 'uglifier'
 gem 'coveralls', require: false
 gem 'go_script'
 gem 'about_yml'
+gem 'hmac_authentication'
 
 group :jekyll_plugins do
   gem 'jekyll-assets'
   gem 'jekyll_pages_api'
   gem 'liquid_pluralize'
   gem 'jekyll_pages_api_search'
+  # gem 'jekyll-get', :git => 'https://github.com/18F/jekyll-get.git'
 end
 
 group :test do

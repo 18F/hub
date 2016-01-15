@@ -118,26 +118,26 @@ google_analytics_ua: UA-48605964-24
 
 jekyll_get:
   - data: team_raw
-    json: 'https://team-api.18f.gov/public/api/team/'
+    json: 'https://team-api.18f.gov/api/team/'
     cache: false
   - data: locations_raw
-    json: 'https://team-api.18f.gov/public/api/locations/'
+    json: 'https://team-api.18f.gov/api/locations/'
     cache: false
   - data: projects_raw
-    json: 'https://team-api.18f.gov/public/api/projects/'
+    json: 'https://team-api.18f.gov/api/projects/'
     cache: false
   - data: departments_raw
-    json: 'https://team-api.18f.gov/public/api/departments/'
+    json: 'https://team-api.18f.gov/api/departments/'
     cache: false
   - data: working_groups_raw
-    json: 'https://team-api.18f.gov/public/api/working-groups/'
+    json: 'https://team-api.18f.gov/api/working-groups/'
     cache: false
   - data: guilds_raw
-    json: 'https://team-api.18f.gov/public/api/guilds/'
+    json: 'https://team-api.18f.gov/api/guilds/'
     cache: false
   - data: skills_raw
-    json: 'https://team-api.18f.gov/public/api/skills/'
+    json: 'https://team-api.18f.gov/api/skills/'
     cache: false
   - data: interests_raw
-    json: 'https://team-api.18f.gov/public/api/interests/'
+    json: 'https://team-api.18f.gov/api/interests/'
     cache: false
