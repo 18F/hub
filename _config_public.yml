@@ -22,3 +22,29 @@ defaults:
       path: "private"
     values:
       published: false
+
+jekyll_get:
+  - data: team_raw
+    json: 'https://team-api.18f.gov/api/public/team/'
+    cache: false
+  - data: locations_raw
+    json: 'https://team-api.18f.gov/api/public/locations/'
+    cache: false
+  - data: projects_raw
+    json: 'https://team-api.18f.gov/api/public/projects/'
+    cache: false
+  - data: departments_raw
+    json: 'https://team-api.18f.gov/api/public/departments/'
+    cache: false
+  - data: working_groups_raw
+    json: 'https://team-api.18f.gov/api/public/working-groups/'
+    cache: false
+  - data: guilds_raw
+    json: 'https://team-api.18f.gov/api/public/guilds/'
+    cache: false
+  - data: skills_raw
+    json: 'https://team-api.18f.gov/api/public/skills/'
+    cache: false
+  - data: interests_raw
+    json: 'https://team-api.18f.gov/api/public/interests/'
+    cache: false

@@ -55,6 +55,15 @@ locally](http://localhost:4000/101/), or on the [18F Public
 Hub](https://18f.gsa.gov/hub/101/) for details and tips on how to set up and
 work with the Hub development environment.
 
+#### Authentication
+
+If `_config.yml` and not `_config_public.yml` is used,
+data will be collected from the team-api's private server
+(https://team-api.18f.gov/api), which requires authentication; get
+the HMAC shared secret, copy and edit `set_hmac_auth.sample.sh`,
+and source the edited file to set the shared secret into
+environment variables.
+
 ### Contributing
 
 1.  Fork the repo ( https://github.com/18F/hub/fork ). If you're an 18F team member, you'll likely find it easier to clone the repo instead of forking it (`git clone --recursive git@github.com:18F/hub.git`). The recursive clone ensures that you'll grab the contents of private submodules.
