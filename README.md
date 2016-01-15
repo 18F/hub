@@ -57,8 +57,7 @@ work with the Hub development environment.
 
 #### Authentication
 
-If `_config.yml` and not `_config_public.yml` is used,
-data will be collected from the team-api's private server
+Data is collected from the team-api's private server
 (https://team-api.18f.gov/api), which requires authentication; get
 the HMAC shared secret, copy and edit `set_hmac_auth.sample.sh`,
 and source the edited file to set the shared secret into

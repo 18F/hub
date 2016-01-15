@@ -66,7 +66,7 @@ module Jekyll_Get
             end
           end
         rescue Exception => e
-          puts "Error collecting jekyll_get data for #{d['data']}: #{e}"
+          puts "Error collecting jekyll_get data for #{d['data']} (#{d['json']}): #{e}"
           next
         end
       end
