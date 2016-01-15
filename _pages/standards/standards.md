@@ -12,7 +12,7 @@ All information systems in the Federal Government must comply with *all* relevan
 
 ### Security
 
-The Federal Information Security Management Act, or FISMA, is the law covering the **security of digital systems**. The vast majority of compliance with FISMA is maintained by the 18F DevOps team and GSA InfoSec, but there a [few things developers should know about the security of digital systems](https://github.com/18F/DevOps/blob/master/standards/security.md).
+The Federal Information Security Management Act, or FISMA, is the law covering the **security of digital systems**. The vast majority of compliance with FISMA is maintained by the 18F DevOps team and GSA InfoSec, but there a [few things developers should know about the security of digital systems](https://pages.18f.gov/before-you-ship/security/).
 
 ### Privacy
 
@@ -44,7 +44,7 @@ Our objective is to deliver the best environment to do development work in the F
 
 The work here is also subject to constant improvement. Pull requests from anyone at 18F, from any team, are **strongly encouraged**.
 
-- [AWS](https://pages.18f.gov/before-you-ship/aws/)
+- [AWS](https://pages.18f.gov/before-you-ship/infrastructure/aws/)
 - [Slack](slack/)
 - [GitHub](github/)
 - [Security](https://pages.18f.gov/before-you-ship/security/)

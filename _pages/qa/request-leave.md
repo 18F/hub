@@ -16,7 +16,7 @@ tags:
 
 * Visit [http://aloha.gsa.gov/](http://aloha.gsa.gov/). Use your GSA credentials to log in.
 
-* Submit supervisor approval to Aaron Snow.
+* Submit supervisor approval to your functionl supervisor (not Aaron Snow).  If you don't know who this is, ask in #questions.
 
 * See your remaining leave balances by clicking "Create My Leave Request." Note that you don't actually have to submit.
 
