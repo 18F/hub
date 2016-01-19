@@ -230,11 +230,15 @@ module Hub
         joined = []
         snippets.each do |snippet|
           username = snippet['username']
-          member = team[username] || team[@team_by_email[username]]
-
+          team_members = team.select do |member|
+            (team[member]['name'] == snippet['username'] ||
+             team[member]['deprecated_name'] == snippet['username'] ||
+             team[member]['email'] == snippet['username'] )
+          end
+          member, member_data = team_members.first
           if member
-            snippet['name'] = member['name']
-            snippet['full_name'] = member['full_name']
+            snippet['name'] = member_data['name']
+            snippet['full_name'] = member_data['full_name']
             joined << snippet
           end
         end

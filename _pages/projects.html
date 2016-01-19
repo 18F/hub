@@ -6,7 +6,7 @@ title: Projects
 
 {% for proj in site.data.projects %}
 <div class="index-entry">
-	<h2><a href="{{ site.baseurl }}/projects/{{ proj.name | canonicalize }}">{{ proj.project }}</a></h2>
+	<h2><a href="{{ site.baseurl }}/projects/{{ proj.name | canonicalize }}">{{ proj.full_name }}</a></h2>
 	<p>{% if proj.description %}{{ proj.description }}{% endif %}</p>
 	<p>{% if proj.team %}{% assign member_separator = ', ' %}{% assign members = proj.team %}Team: {% include team_members_short.html %}{% endif %}</p>
 </div>

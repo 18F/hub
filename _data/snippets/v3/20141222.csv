@@ -1,0 +1,50 @@
+Timestamp,Public,Username,Last week,This week
+12/16/2014 19:31:15,Public,catherine,"- Wrote IPython Notebooks for live, executable documentation of openFEC architecture & data systems
+- Found & fixed bugs in rdbms_subsetter when used against Oracle; added optional --schema argument
+- Followed through on suggestions from flask_restful's project leads, got patch merged into upstream trunk","- Pursue performance problem in selecting random row set from Oracle
+- Start on new endpoints for openFEC's REST server
+- Pick up AFSBIREZ work again"
+12/22/2014 11:56:03,Public,mbland,"- Blog post:
+  [Snippets](https://github.com/18F/hub/issues/://18f.gsa.gov/2014/12/17/snippets/)
+- Hub:
+  - [editable pages](https://github.com/18F/hub/pull/4)
+  - [index pages](https://github.com/18F/hub/pull/5)
+  - [started data-validator](https://github.com/18F/data-validator/pull/1)
+  - [enlisted PIF Dan Hammer](https://github.com/18f/hub/issues/9)
+  - [beta stage header](https://github.com/18F/hub/pull/20)
+  - [automated deployment notes](https://github.com/18F/hub/pull/18)
+  - lots of joiner functionality (
+    [#10](https://github.com/18F/hub/pull/10),
+    [#11](https://github.com/18F/hub/pull/11),
+    [#12](https://github.com/18F/hub/pull/12),
+    [#13](https://github.com/18F/hub/pull/13),
+    [#14](https://github.com/18F/hub/pull/14),
+    [#16](https://github.com/18F/hub/pull/16),
+    [#17](https://github.com/18F/hub/pull/17)),
+    much of which extracted into the
+    [hash-joiner gem](https://rubygems.org/gems/hash-joiner)
+    (integrated in [#19](https://github.com/18F/hub/pull/19))
+- Hub doc strategy:
+  - [expand public data](https://github.com/18F/data-private/issues/1)
+  - [consolidate info](https://github.com/18F/hub-pages-private/issues/1)
+  - [Hub as canonical policy/standard register](https://github.com/18F/hub-pages-private/issues/2)
+- Doc working group: weekly meeting","- Launch public Hub; announce in blog post
+- Draft Working Groups post"
+12/22/2014 12:27:04,Public,eric,"Prepared and published the full .gov domain list, with an accompanying blog post. Met with OGP prior to doing so.
+
+Worked with DevOps on a small sprint on making our Packer-based Ubuntu process production-ready (didn't finish).
+
+Several productive team FOIA meetings on evaluating our goals and priorities.
+
+Led a meeting with the government-wide FOIA Task Force. Attended a team FOIA demo to FOIA officers from around the government.
+","
+
+Wrapping up FOIA tasks. Speaking with a reporter about the .gov domain list."
+12/22/2014 14:38:14,Public,shawn,"- developed Hourglass labor price search prototype and basic visualizations
+- researched new schemes for the dashboard project status colors
+- created a [tool](https://github.com/shawnbot/dotgov-screenshots) to take screenshots of all of the [.gov domains](https://catalog.data.gov/dataset/gov-domains-api)
+- researched CSS frameworks for use across 18F projects","- improve the Hourglass prototype with auto-complete search and data download
+- improve the .gov screenshot tool"
+12/23/2014 4:36:36,Public,afeld,"* Getting more familiar with Chef
+* Troubleshooting and fixing the Vagrant and EC2 setups of CAP
+* Start work on generalizing C2",* Build workflow for the White House Service Center in C2

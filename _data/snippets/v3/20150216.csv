@@ -1,0 +1,79 @@
+Timestamp,Public,Username,Last week,This week
+2/13/2015 14:39:53,Public,mbland,"Hub:
+- Lots of tweaking and cleanup, by
+  [myself](https://github.com/search?q=repo%3A18F%2Fhub+created%3A""2015-02-06+..+2015-02-13""+author%3Ambland)
+  and [Michelle Hertzfeld](https://github.com/search?q=repo%3A18F%2Fhub+created%3A""2015-02-06+..+2015-02-13""+author%3Ameiqimichelle)
+- New hires are now using the Hub as an onboarding tool on day one
+- Lots of [accessibility fixes thanks to Nick
+  Bristow](https://github.com/search?q=repo%3A18F%2Fhub+created%3A""2015-02-06+..+2015-02-13""+author%3Anickbristow)
+- Inquired about finalizing
+  [team-ops](https://github.com/18F/hub-pages-private/issues/3) and
+  [DevOps](https://github.com/18F/DevOps/issues/233) doc migrations
+- [Incorporated prose.io as default 
+  editor](https://github.com/18F/hub/pull/144); Dave Cole working on
+  [improving authorization flow](https://github.com/18F/hub/issues/153)
+- [Locations map thanks to Shawn Allen and Marco
+  Segreto](https://github.com/18F/hub/pull/108)
+- Began addressing [page speed issues](https://github.com/18F/hub/issues/145)
+- Public Hub deployments:
+  [#116](https://github.com/18F/hub/pull/116);
+  [#141](https://github.com/18F/hub/pull/141);
+  [#157](https://github.com/18F/hub/pull/157)
+- Briefed folks from USCIS, CFPB on the Hub and Snippets
+- All GitHub activity:
+  [Hub](https://github.com/search?q=repo%3A18F%2Fhub+created%3A""2015-02-06+..+2015-02-13""&type=Issues);
+  [hash-joiner](https://github.com/search?q=repo%3A18F%2Fhash-joiner+created%3A""2015-02-06+..+2015-02-13""&type=Issues)
+
+Documentation Working Group:
+- Weekly meeting
+- Initiating content strategy discussions around
+  [18F Guides](http://18f.github.io/guides/)
+  ([18F/hub#113](https://github.com/18F/hub/issues/113))
+- In a good position to begin planning a team-wide Documentation Fixit
+
+Testing Grouplet:
+- Weekly meeting
+- Finalized OKRs
+- Drafted [Testing
+  Roadmap](http://18f.github.io/automated-testing-playbook/roadmap/)
+- Discussed testing survey results; will feed into Roadmap, Cookbook, and
+  Moncef Belyamani's work to set up a [project
+  dashboard](https://github.com/codeforamerica/projectmonitor)
+- Will begin soliciting, publishing ""Cookbook"" articles (one per week)
+
+Working Group Working Group (WG^2):
+- Weekly meeting
+- Finalized OKRs
+- Discussed User Research Guild, Accessibility Guild progress
+- Identified need for clear 20% time policy to promote grouplet participation
+- Identified need for cross-group impact metrics to justify 20% time
+  investment
+
+Misc:
+- 18f.gsa.gov: [#522](https://github.com/18F/18f.gsa.gov/pull/522);
+  reviewed [#510](https://github.com/18F/18f.gsa.gov/pull/510)
+- [All GitHub
+  activity](https://github.com/search?q=author%3Ambland+created%3A""2015-02-06+..+2015-02-13""&type=Issues)","- Hub: page speed tweaks (particularly dealing with JavaScript loading);
+  scaling up data model; internal cleanups; continuing documentation
+  improvements
+- Doc WG: plan Documentation Fixit
+- Testing WG: help launch Cookbook and Dashboard; continue Playbook
+  review/editing
+- WG^2: Follow-through on 20% policy, impact metrics
+- Possibly get another blog post on the publishing calendar"
+2/13/2015 15:08:40,Public,melody,"Acclimated to 18F (week one)
+
+Wrote [blog post](https://18f.gsa.gov/2015/02/17/three-18f-products-that-will-help-your-workplace/)
+
+Conducted interviews for future case studies
+
+","Conducting interviews with 18F team members
+
+Writing blog posts and thinking more about web content / design
+
+Working with the Peace Corps team and FOIA team on some projects"
+2/15/2015 15:34:27,Public,robert,"Work on SSA task order
+Lots of SSA meeting and discussion
+DoL briefing of new program manager
+Other DoL Status and reporting
+Architectural discussion with Tom about Navy",

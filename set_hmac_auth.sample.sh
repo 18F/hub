@@ -9,3 +9,4 @@ export WORKING_GROUPS_RAW_HMAC=<shared_secret>
 export GUILDS_RAW_HMAC=<shared_secret>
 export SKILLS_RAW_HMAC=<shared_secret>
 export INTERESTS_RAW_HMAC=<shared_secret> 
+export SNIPPETS_RAW_HMAC=<shared_secret> 

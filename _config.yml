@@ -141,3 +141,8 @@ jekyll_get:
   - data: interests_raw
     json: 'https://team-api.18f.gov/api/interests/'
     cache: false
+  # Though the snippets endpoint exists, right now
+  # it only contains snippet dates, no data
+  #- data: snippets_raw
+  #  json: 'https://team-api.18f.gov/api/snippets/'
+  #  cache: false
