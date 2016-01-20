@@ -373,18 +373,33 @@ ul.main-nav {
   list-style: none inside none;
 
   li {
-    color: #ffffff;
-    background-color: #005CB5;
-    border-bottom: 2px solid #6EA2D4;
+    color: #000000;
+    // background-color: #ffffff;
     margin-left: 1em;
     margin-bottom: 0;
+    margin-top: 1em;
+    line-height: 1.33em;
+    text-align: center;
     padding: 2.5em 5em;
 
+    // a {
+    //   color: #ffffff;
+    //   display: block;
+    //   font-size: 225%;
+    //   text-decoration: none;
+    // }
+
     a {
-      color: #ffffff;
-      display: block;
-      font-size: 225%;
+      background: #bc8300;
+      border-bottom: 2px solid #976900;
+      margin: 1em;
+      padding: 0.8em 1em;
+      text-shadow: rgba(151,105,0,0.66) 0 1px 0;
       text-decoration: none;
+      border-radius: 0.2em;
+      font-weight: 600;
+      color: #fff;
+      display: block;
     }
   }
 
