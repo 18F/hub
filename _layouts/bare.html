@@ -1,36 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
   {% include head.html %}
-</head>
+  <body>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="skip-nav">
-    <a href="#anchor">Skip to main content</a>
-  </div>
+    {% include site-header.html %}
+    {% unless site.public %}
+      <!--# include virtual="{{ site.baseurl }}/auth/$authenticated_user/index.html"  -->
+    {% endunless %}
 
-  <div class="stage-bug">
-    <span>This site is in alpha. <a href="https://18f.gsa.gov/dashboard/stages/"><span class="sr-only">This site is in alpha.</span>Learn more here.</a></span>
-  </div>
+      <main class="article">
+        <div class="page">
+          <div class="wrapper">
+            {{ content }}
+          </div>
+        </div>
+      </main>
 
-{% include nav-main.html %}
-{% unless site.public %}
-    <!--# include virtual="{{ site.baseurl }}/auth/$authenticated_user/index.html"  -->
-{% endunless %}
-
-<section class="container bare">
-  {% jekyll_pages_api_search_interface %}
-  <div class="bare-content wrapper" role="main" itemscope itemprop="mainContentOfPage">
-    {{ content }}
-
-    <hr/>
-    {% include edit_link.html %}
-  </div>
-</section>
-
-  {% include footer.html %}
-
-</body>
-{% include scripts.html %}
+    {% include site-footer.html %}
+  </body>
 </html>

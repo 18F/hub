@@ -2,36 +2,96 @@
 permalink: /
 title: Home
 ---
-<div>
-<span class="index-title"><img src="{{ site.baseurl }}/assets/images/logo-18f.png" alt="18F logo" width=100 height=100> hub</span>
-</div>
-
-<div class="index-layout">
-  <div class="lhs">
-    <div class="site-desc">{{ site.description }}</div>
-    <p class="site-tagline">
-      The Hub helps 18F organize its information and explore the connections
-      among team members, projects, and skill sets.
-    </p>
-  </div>
-
-  <div>
-  <ul class="main-nav">
-    <li><a href="{{ site.baseurl }}/onboarding/">New to 18F?</a>
-      New to 18F? Start here!
-    </li>
-    <li><a href="{{ site.baseurl }}/how-to/">How to...</a>
-      A collection of FAQs about life at 18F.
-    </li>
-    <li><a href="https://pages.18f.gov/guides/">Guides</a>
-      Learn best practices employed by 18F.
-    </li>
-    <li><a href="{{ site.baseurl }}/team/">Team</a>
-      Learn about your 18F teammates.
-    </li>
-    <li><a href="{{ site.baseurl }}/projects/">Projects</a>
-      Learn about 18F projects.
-    </li>
-  </ul>
-  </div>
-</div>
+<!DOCTYPE html>
+<html>
+  {% include head.html %}
+  <body class="layout-homepage">
+    <header class="site-header">
+      <div class="wrapper">
+        <h1 class="logo"><a href="{{site.baseurl}}/"><img src="{{site.baseurl}}/seets/images/logo/18F-Logo-Bright-M.png" alt="18F"> Hub</a></h1>    
+        <form>
+          <div class="field">
+            <label>
+              <span class="label-text">Find the documentation <span class="youre-looking-for">you&rsquo;re looking for.</span></span>
+              <input type="search">         
+            </label>
+          </div>
+          <button>Search</button>
+        </form>
+        <div class="popular-search-terms">
+          <h1>Popular search terms</h1>
+          <ul>
+             <li><a href="#">Message formatting</a></li>
+             <li><a href="#">Slackbot</a></li>
+             <li><a href="#">two-factor authentication</a></li>
+          </ul>
+        </div>
+        <nav class="nav">
+          <a href="#" class="nav-homepage">Our homepage</a>
+          <a href="#" class="nav-sign-in">Sign In</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="handbook-contribute">
+        <div class="wrapper">
+          <section class="handbook">
+            <h1>Our Handbook</h1>
+            <p>Everything you need to know to hit the ground running at 18F.</p> 
+            <a class="button" href="/handbook">Get started</a>
+          </section>
+          <section class="contribute">
+            <h1>Contribute</h1>
+            <p>Want to write something that&rsquo;ll help the rest of your colleagues? Start here.</p>
+            <a class="button" href="#">Share something</a>
+          </section>
+        </div>
+      </div>
+      <div class="wrapper page">
+        <section class="other-information">
+          <h1>We&rsquo;re also working on</h1>
+          <ul>
+            <li>Guides</li>
+            <li>Team API</li>
+            <li>About.yml</li>
+          </ul>
+        </section>
+        <section class="browse-by-tag">
+          <h1>Browse by tag</h1>
+          <ul>
+            <li>Tag 1</li>
+            <li>Tag 2</li>
+            <li>Tag 3</li>
+          </ul>
+        </section>
+        <section class="top-traffic">
+        <h1>Most requested pages</h1>
+        <ol>
+          <li><a href="#">All Things 18F Intake!</a></li>
+          <li><a href="#">Team</a></li>
+          <li><a href="#">Acano Workflows</a></li>
+          <li><a href="#">Onboarding</a></li>
+          <li><a href="#">Accessing the GSA Network Remotely</a></li>
+          <li><a href="#">How to&hellip;</a></li>
+          <li><a href="#">Roles - Observer</a></li>
+          <li><a href="#">Team By Location</a></li>
+          <li><a href="#">18F structure</a></li>
+        </ol>
+        </section>
+        <section class="landingham-tips">
+          <h1>Tips from Mrs. Landingham</h1>
+          <article class="tip">
+            <p>You can start a hangout from any channel by typing <code>/hangout</code>.</p>
+          </article>
+          <article class="tip">
+            <p><a href="#">18F offsites</a> allow us to plan for the future, meet each other, and have meetings with our teams and working groups.</p>
+          </article>
+          <article class="tip">
+            <p>One way to help meetings start on time is by ending meetings a little early. To try this, <a href="#">enable "Speedy meetings"</a> in Google calendar.</p>
+          </article>
+        </section>
+      </div>  
+    </main>
+    {% include site-footer.html %}
+  </body>
+</html>
