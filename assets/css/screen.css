@@ -2,6 +2,8 @@
 
 /* @override http://localhost:4000/stylesheets/screen.css */
 
+/* @override http://localhost:4000/stylesheets/screen.css */
+
 /* @group animations */
 
 @-webkit-keyframes wobble {
@@ -85,16 +87,6 @@
 
 /* @end */
 
-header.banner{
-	background: lemonchiffon;
-	padding: 1em 0;
-	text-align: center;
-}
-
-header.banner::before{
-	content: ":finger_wagging:";
-}
-
 /* @group bootstrap */
 
 html {
@@ -159,6 +151,52 @@ a[href^="https://18f.slack.com"]::before{
 
 img { max-width: 100%; }
 
+/* @group icomoon */
+
+@font-face {
+    font-family: 'icomoon';
+    src:    url('fonts/icomoon.eot?8ojtgr');
+    src:    url('fonts/icomoon.eot?8ojtgr#iefix') format('embedded-opentype'),
+        url('fonts/icomoon.ttf?8ojtgr') format('truetype'),
+        url('fonts/icomoon.woff?8ojtgr') format('woff'),
+        url('fonts/icomoon.svg?8ojtgr#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-search:before {
+    content: "\e900";
+}
+.icon-pencil:before {
+    content: "\e905";
+}
+.icon-search_big:before {
+    content: "\e986";
+}
+.icon-menu:before {
+    content: "\e9bd";
+}
+
+
+
+/* @end */
+
+
 /* @end */
 
 /* @group .site-header */
@@ -168,16 +206,13 @@ img { max-width: 100%; }
 	border-bottom: 1px solid #e3e3e3; 
 }
 
-.site-header .wrapper .logo,
-.site-header .wrapper .logo a,
-.site-header .wrapper .logo a img{ 
-	float: left; 
-}
+.site-header .logo,
+.site-header .logo a,
+.site-header .logo a img{ float: left; }
 
-.site-header .wrapper .logo{
-	margin-bottom: 0.5em;
-}
-.site-header .wrapper > .logo:hover{
+.site-header .logo{ margin-bottom: 0.5em; }
+
+.site-header .logo:hover{
   -webkit-animation-name: wobble;
   animation-name: wobble;
   -webkit-animation-duration: 0.6s;
@@ -192,17 +227,17 @@ img { max-width: 100%; }
 }
 
 .site-header .logo a{
-	font-size: 24px;
+	font-size: 23px;
 	font-weight: 100;
 	text-decoration: none;
-	line-height: 44px;
+	line-height: 40px;
 	color: #222;	
 }
 
 .site-header .logo img{
-	width: 44px;
-	height: 44px;
-	margin-right: 0.2em;
+	width: 40px;
+	height: 40px;
+	margin-right: 0.175em;
 }
 
 
@@ -220,17 +255,44 @@ img { max-width: 100%; }
 .site-header form input{
 	border-radius: 3px;
 	-webkit-appearance: none;
+	appearance: none;
 	border: 1px solid #ccc;
 	display: block;
 	width: 100%;
-	height: 2.4em;
+	height: 40px;
 	font: inherit;
-	padding: 0.2em;
+	padding: 2px;
+	padding-left: 20px;
+}
+
+.site-header form label::before{
+    content: "\e900";
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-shadow: 1px 1px 1px white;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1;
+    position: absolute;
+    bottom: 12px;
+    top: auto;
+    left: 8px;
+    color: #aaa;
+	position: absolute;
+	margin-top: -0.5em;
+}
+
+.site-header form .field.is-focused label::before{
+    color: #555;
 }
 
 .site-header form button{
 	position: absolute;
-	right: 1px;
+	left: -9999em;
 	bottom: 3px;
 	border: 1px solid #ddd;
 	border-radius: 2px;
@@ -241,6 +303,7 @@ img { max-width: 100%; }
 	color: #555;
 	padding: 4px 12px;
 	height: 2.33em;
+	
 }
 
 .site-header form button:hover{
@@ -299,7 +362,7 @@ img { max-width: 100%; }
 		padding-right: 224px; 
 		padding-left: 128px; 
 	}
-	.site-header .logo{ margin-left: -128px;}
+	.site-header .logo{ margin-left: -128px; margin-bottom: 0;}
 	.site-header form{ clear: none; }
 
 }
@@ -940,11 +1003,29 @@ a[id]{
 	
 	a.table-of-contents--toggle{
 		display: inline-block;
+		vertical-align: middle;
 		color: #006fbe;
-		border-radius: 0.25em;
-		border: 1px solid #006fbe;
-		padding: 0.5em 1em;
+		border-radius: 3px;
+		border: 1px solid #ccc;
+		width: 1.67em;
+		height: 1.67em;
 		text-align: center;
+		text-indent: -9999em;
+		position: relative;
+	}
+	
+	a.table-of-contents--toggle::before{
+	width: 0.67em;
+	height: 0.67em;
+	background: url(images/icons/menu.gif) top left no-repeat;
+	background-size: cover;
+	position: absolute;
+	content: "";
+	left: 50%;
+	top: 50%;
+	margin-left: -0.33em;
+	margin-top: -0.33em;
+	opacity: 0.7;
 	}
 	
 	body nav.nav-table-of-contents .wrapper{ display: none; }
@@ -1004,13 +1085,12 @@ a[id]{
 	display: inline-block;
 	height: 6px;
 	width: 6px;
-	left: 0.5em;
-	position: relative;
-	top: 0.4em;
+
 	transform: rotate(-45deg);
 	-webkit-transform: rotate(45deg);
-	vertical-align: top;
-	margin-right: -0.075em;
+	vertical-align: middle;
+	margin-right: -0.6em;
+	margin-left: 0.5em;
 	}
 	
 	nav.nav-main ol li:last-child::after{	
@@ -1134,33 +1214,17 @@ a[id]{
 
 /* @end */
 
-/* @group article */
+/* @group .layout-article */
 
-
-
-@media screen and (min-width: 711.11px){
-	.layout-article .site-header .wrapper{
-		padding-left: 64px;
-		padding-right: 256px;	
-	}
+	.layout-article{
 	
-	.layout-article .site-header .wrapper .logo{
-		position: absolute;
-		left: 0;
-		top: 0;	
 	}
-	
-	.layout-article .site-header .wrapper form{
-		width: 100%;
-		clear: none;
-		margin-left: 24px;
-		margin-top: 8px;
-	}
-}
+
+
 
 /* @end */
 
-/* @group homepage */
+/* @group .layout-homepage */
 
 .layout-homepage .site-header{
 	background: #0088cb;
@@ -1172,7 +1236,6 @@ a[id]{
 	line-height: 1.4em;
 	text-align: center;
 	border-top: 1px solid #0c68af;
-	text-shadow: rgba(0,99,173,0.08) 1px 1px 0;	
 }
 
 .layout-homepage .site-header div.wrapper{
@@ -1227,6 +1290,28 @@ a[id]{
 	margin: 0 auto	;
 }
 
+.layout-homepage .site-header form .field label::before{
+    content: "\e986";
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-shadow: none !important;
+    line-height: 1;
+    position: absolute;
+    bottom: 19px;
+    top: auto;
+    left: 16px;
+    color: #c89932;
+    font-size: 20px;
+}
+
+.layout-homepage .site-header form .field.is-focused label::before{
+	color: #bc8200;
+}
+
 .layout-homepage .site-header .popular-search-terms h1,
 .layout-homepage .site-header .popular-search-terms ul,
 .layout-homepage .site-header .popular-search-terms ul li{
@@ -1243,14 +1328,16 @@ a[id]{
 	border-radius: 0.25em;
 	background: #fff8e9;
 	margin-bottom: 1.6em;
-	height: 3.6em;
+	height: 56px;
+	font-size: 24px;
+	font-weight: 400;
+	padding-left: 36px;
+	color: #78442e;
 }
 
 .layout-homepage .site-header form button{
 	background: #fff3e3;
 	color: #7e5845;
-	right: 0.4em;
-	bottom: 0.4em;
 	height: 2.8em;
 	border-radius: 0.125em;
 	border: 1px solid #e7be73;
