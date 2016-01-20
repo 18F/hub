@@ -62,23 +62,11 @@
 <!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ site.baseurl }}/assets/images/favicons/18f-center-144.png">
 
-<!-- CSS
-================================================== -->
-<style>{% asset normalize.css %}
-{% asset fonts.css %}
-{% asset pygments-theme.css %}
-{% for sheet_url in page.stylesheets %}
-{{ sheet_url | split:"/" | last | asset }}
-{% endfor %}</style>
-<!--link href="{{ site.baseurl }}/assets/css/styles.css" rel="stylesheet"-->
-<!--link href="https://fonts.googleapis.com/css?family=Raleway:400,700%7COpen+Sans:300,400,700" rel="stylesheet" type="text/css"-->
-<link href="{{ site.baseurl }}/assets/css/styles.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Raleway:400,700%7COpen+Sans:300,400,700" rel="stylesheet" type="text/css">
-
-  <link href='https://fonts.googleapis.com/css?family=Merriweather:400,700,400italic,700italic,300italic,300|Source+Sans+Pro:200,300,300italic,400,400italic,600,600italic,900' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" type="text/css" href="{{site.baseurl}}/assets/css/reset.css">
-  <link rel="stylesheet" type="text/css" href="{{site.baseurl}}/assets/css/screen.css">
-  <link rel="stylesheet" type="text/css" href="{{site.baseurl}}/assets/css/tablesaw.bare.css">
+<link href='https://fonts.googleapis.com/css?family=Merriweather:400,700,400italic,700italic,300italic,300|Source+Sans+Pro:200,300,300italic,400,400italic,600,600italic,900' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="{{site.baseurl}}/assets/css/reset.css">
+<link rel="stylesheet" type="text/css" href="{{site.baseurl}}/assets/css/screen.css">
+<link rel="stylesheet" type="text/css" href="{{site.baseurl}}/assets/css/tablesaw.bare.css">
 
 <!-- Javascript
 ================================================== -->
@@ -96,7 +84,6 @@
 <!--[if lt IE 9]>
   <script src="{{ site.baseurl }}{% asset_path ie8/html5shiv %}"></script>
   <script src="{{ site.baseurl }}{% asset_path ie8/respond %}"></script>
-  <link href="{{ site.baseurl }}{% asset_path ie8/ie.css %}" rel="stylesheet">
 <![endif]-->
 
 <script>
