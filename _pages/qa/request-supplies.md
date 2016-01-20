@@ -17,6 +17,6 @@ If you don't see this link, it's possible that you haven't been set up as a memb
 
 If you're requesting software that no one else at 18F uses yet, be sure you have permission from #devops first. If it's software that runs directly on your laptop, speak with @kimber first. TeamOps will not approve software without DevOps clearance. 
 
-If you'd like to check out Apple peripherals (i.e. Magic mouse, keyboard, etc., make your request [here](https://docs.google.com/a/gsa.gov/forms/d/1d2Qa1KpjTGkn8yK_2cTY5UgMAtsJKQkNgQsqU_WBFKs/viewform)
+If you'd like to check out Apple peripherals (i.e. Magic mouse, keyboard, etc., make your request [here](https://docs.google.com/a/gsa.gov/forms/d/1d2Qa1KpjTGkn8yK_2cTY5UgMAtsJKQkNgQsqU_WBFKs/viewform).
 
 Drop by #equipment if you have trouble accessing, or ask any questions about the procurement process in #teamops.
