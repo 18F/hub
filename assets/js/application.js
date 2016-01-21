@@ -6,6 +6,14 @@ $(document).ready(function() {
   initBody();
   $('table').addClass('tablesaw-stack');
 
+  $('input').focus(function(){
+    $(this).parents('.field').addClass('is-focused')
+  });
+
+  $('input').blur(function(){
+    $(this).parents('.field').removeClass('is-focused')
+  });
+
   var tableOfContentsToggle = 
     $('<a href="#" class="table-of-contents--toggle">Show table of contents</a>')
       .click(function(){
