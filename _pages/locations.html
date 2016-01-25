@@ -17,7 +17,7 @@ title: Team By Location
 
 <figure id="team-map"></figure>
 
-{% for location in site.data.locations %}
+{% for location in site.data.locations | sort:"code" %}
 <div id="{{ location.code }}" class="index-entry">
   <h2>&lt; {{ location.code }} /&gt;</h2>
   {% if location.projects %}
