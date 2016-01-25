@@ -45,6 +45,7 @@ module Hub
       # impl.promote_private_data 'pif_team'
       # impl.promote_private_data 'pif_projects'
 
+      impl.extend_location_data
       impl.join_snippet_data SNIPPET_VERSIONS
       # impl.import_guest_users   # remove?
 
@@ -135,18 +136,13 @@ module Hub
       index.values
     end
 
-    # Joins team member data, converts site.data[team] to a hash of
-    # username => team_member
-    def join_team_data
-      promote_private_data 'team'
-    end
-
-    # Joins public and private project data.
-    def join_project_data
-      promote_private_data 'projects'
-
-      if @public_mode
-        @data['projects'].delete_if {|p| p['status'] == 'Hold'}
+    # Populates details of team members in location data
+    def extend_location_data
+      @data['locations'].each do |loc|
+        (loc['team'] || []).each do |member|
+          full_member_record = @data['team'].find {|m| m['name'] == member['name']}
+          member.update full_member_record
+        end
       end
     end
 

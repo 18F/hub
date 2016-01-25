@@ -64,6 +64,12 @@ module Hub
       path = r.render_asset_path
       path.end_with? '.js' and path[0..-('.js'.length + 1)] or path
     end
+
+    # Because checking class types in Jekyll does not seem to work,
+    # we wrap a check for of data type as a filter
+    def is_hash?(data)
+      return data.is_a? Hash
+    end
   end
 end
 

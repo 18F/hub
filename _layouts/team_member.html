@@ -8,7 +8,7 @@ scripts:
 
 {% assign member = page.team_member %}
 <div class="team-member">
-  
+
   <img class="img-circle team-img bio-clip" src="{{ member.name | photo_or_placeholder:site }}" alt="Photo of {{ member.full_name }}">
 
   <h1>{{ member.full_name }}</h1>
@@ -22,13 +22,13 @@ scripts:
   </p>
 
   {% if member.projects %}
-  <h2>Projects</h2>{% for proj in member.projects %}
+  <h2>Projects</h2>{% for proj in member.projects | sort:"name" %}
   <a href="{{ site.baseurl }}/projects/{{ proj.name | canonicalize }}">{{ proj.full_name }}</a><br/>{% endfor %}
   {% endif %}
 
   {% if member.working-groups %}
   <h2>Working Groups</h2>
-  <p>{% for wg in member.working-groups %}
+  <p>{% for wg in member.working-groups | sort:"name" %}
   <a href="{{ site.baseurl }}/wg/{{ wg.name | canonicalize }}">{{ wg.full_name }}</a><br/>
   {% endfor %}</p>
   {% endif %}
