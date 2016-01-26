@@ -66,9 +66,9 @@ module Hub
     end
 
     # Because checking class types in Jekyll does not seem to work,
-    # we wrap a check for of data type as a filter
-    def is_hash?(data)
-      return data.is_a? Hash
+    # we need a filter that returns it
+    def class_name(data)
+      data.class.name
     end
   end
 end

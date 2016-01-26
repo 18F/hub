@@ -21,7 +21,8 @@ layout: bare
 
 		<h1>GitHub Repos</h1>
 		<ul>
-			{% if proj.github | is_hash %}
+			{% assign github_class = proj.github | class_name %}
+			{% if github_class == 'Hash' %}
 				<li><a href="https://github.com/{{ proj.github.name }}">{{ proj.github.name }}</a></li>
 		  {% else %}
 			  {% for repo in proj.github %}
