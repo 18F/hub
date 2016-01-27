@@ -129,7 +129,7 @@ module Hub
 
     # Populates details of team members in location data
     def extend_location_data
-      @data['locations'].each do |loc|
+      (@data['locations'] or []).each do |loc|
         (loc['team'] || []).each do |member|
           full_member_record = @data['team'].find {|m| m['name'] == member['name']}
           member.update full_member_record
