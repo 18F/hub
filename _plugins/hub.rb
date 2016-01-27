@@ -29,23 +29,24 @@ module Hub
   class Generator < ::Jekyll::Generator
     safe true
 
-    # Executes all of the data processing and artifact/page generation phases
-    # for the Hub.
-    def generate(site)
-      # jekyll_get pulls data from team_api, but it's nested
+    # jekyll_get pulls data from team_api, but it's nested
+    def unnest_site_api_data(site)
       site.data.keys.each do |data_type|
         if data_type.end_with? '_raw'
           site.data[data_type[0..-5]] = site.data[data_type]['results']
           site.data.delete data_type
         end
       end
-      # site.data['snippets'] = site.data['snippets_raw']
+    end
+
+    # Executes all of the data processing and artifact/page generation phases
+    # for the Hub.
+    def generate(site)
+      unnest_site_api_data(site)
       site.data['guest_users'] = []
 
       Joiner.join_data(site)
       Snippets.publish(site)
-      #CrossReferencer.build_xrefs(site.data)
-      #Canonicalizer.canonicalize_data(site.data)
       Auth.generate_artifacts(site)
       #::HashJoiner.prune_empty_properties(site.data)
       Api.generate_api(site)

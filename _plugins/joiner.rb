@@ -35,15 +35,6 @@ module Hub
     # +site+:: Jekyll site data object
     def self.join_data(site)
       impl = JoinerImpl.new site
-      # impl.setup_join_source {|source| Joiner.assign_empty_defaults source}
-
-      # impl.join_team_data
-      # impl.join_project_data
-
-      # impl.promote_private_data 'departments'
-      # impl.promote_private_data 'working_groups'
-      # impl.promote_private_data 'pif_team'
-      # impl.promote_private_data 'pif_projects'
 
       impl.extend_location_data
       impl.join_snippet_data SNIPPET_VERSIONS
@@ -176,29 +167,6 @@ module Hub
         end
       end
       team_by_email
-    end
-
-    # Prepares +site.data[@source]+ prior to joining its data with
-    # +site.data+. All data nested within +'private'+ attributes will be
-    # stripped when @public_mode is +true+, and will be promoted to the same
-    # level as its parent when @public_mode is +false+.
-    #
-    # If a block is given, +site.data[@source]+ will be passed to the block
-    # for other initialization/setup.
-    def setup_join_source
-      if @public_mode
-        HashJoiner.remove_data @join_source, 'private'
-      else
-        HashJoiner.promote_data @join_source, 'private'
-      end
-      yield @join_source if block_given?
-    end
-
-    # Promote data from +site.data['private']+ into +site.data+, if
-    # +site.data['private']+ exists.
-    # +category+:: key into +site.data['private']+ specifying data collection
-    def promote_private_data(category)
-      @data[category] = @join_source[category] if @join_source != @data
     end
 
     # Joins snippet data into +site.data[+'snippets'] and filters out snippets
