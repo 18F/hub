@@ -32,9 +32,8 @@ module Hub
     end
 
     def set_team(team_list)
-      @site.data['private']['team'] = team_list
+      @site.data['team'] = team_list
       @impl.create_team_by_email_index
-      @impl.promote_private_data 'team'
     end
 
     def add_snippet(version, timestamp, name, full_name,
