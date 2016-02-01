@@ -3,7 +3,7 @@
     <div class="team-member-cell">
       <a href="{{ site.baseurl }}/team/{{ member.name | canonicalize }}">
       <img class="team-member-thumb"
-       src="{{ site.baseurl }}{{ member.name | photo_or_placeholder:site }}"
+       src="{{ member.name | photo_or_placeholder:site }}"
         alt="{% if member.name | existing_photo:site %}
              18F logo, {{ member.full_name }} photo missing
              {% else %}{{ member.full_name }}{% endif %}">

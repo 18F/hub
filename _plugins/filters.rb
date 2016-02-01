@@ -21,21 +21,15 @@ module Hub
   # Contains Hub-specific Liquid filters.
   module Filters
 
-    # relative URL OF team member's photo, or `nil` if their photo is missing
-    def existing_photo(name, site)
-      img_file_path = File.join(site['team_img_dir'], "#{name}.jpg")
-      if File.exists? img_file_path
-        return "/#{img_file_path}"
-      else
-        return nil
-      end
-    end
-
     # URL of team member's photo, or to the substitute image
     # when their photo is missing
     def photo_or_placeholder(name, site)
-      return (existing_photo(name, site) ||
-        "/" + File.join(site['team_img_dir'], site['missing_team_member_img']))
+      base = site['baseurl'] || ''
+      img_file_path = File.join(site['team_img_dir'], "#{name}.jpg")
+      if File.exists? img_file_path
+        return File.join(base, img_file_path)
+      end
+      File.join(base, site['team_img_dir'], site['missing_team_member_img'])
     end
 
     # Breaks a YYYYMMDD timestamp into a hyphenated version: YYYY-MM-DD
