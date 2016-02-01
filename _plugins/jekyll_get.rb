@@ -9,14 +9,13 @@ module Jekyll_Get
     safe true
     priority :highest
 
-    def hmac_key(source_config)
-      hmac_env_var_name = source_config['data'].upcase + '_HMAC'
-      return ENV[hmac_env_var_name]
-    end
-
     def hmac_auth(source_config)
+      env_var = source_config['authentication_env_var_name']
+      secret_key = ENV[env_var]
+      if !secret_key
+        raise "authentication_env_var_name `#{env_var}` not set in environment"
+      end
       digest_name = 'sha1' # Or any other available Hash algorithm.
-      secret_key = hmac_key source_config
       signature_header = 'Team-Api-Signature'
       headers = ['Content-Type', 'Date']
       auth = HmacAuthentication::HmacAuth.new(
@@ -29,7 +28,7 @@ module Jekyll_Get
       Net::HTTP.start(uri.host, uri.port,
         :use_ssl => uri.scheme == 'https') do |http|
         request = Net::HTTP::Get.new uri
-        if hmac_key source_config
+        if source_config['authentication_scheme'] == 'hmac'
           auth = hmac_auth source_config
           auth.sign_request request
         end
@@ -38,7 +37,7 @@ module Jekyll_Get
       end
     end
 
-    private :hmac_key, :hmac_auth, :download_contents
+    private :hmac_auth, :download_contents
 
     def generate(site)
       config = site.config['jekyll_get']
