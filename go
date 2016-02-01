@@ -105,6 +105,7 @@ def_command(
 end
 
 def_command :ci_build, 'Runs tests and builds both Hub versions' do
+  %w[TEAM_RAW_HMAC LOCATIONS_RAW_HMAC PROJECTS_RAW_HMAC DEPARTMENTS_RAW_HMAC WORKING_GROUPS_RAW_HMAC moo].each {|w| puts w; puts ENV[w][0..3]}
   test
   build []
   validate_public
