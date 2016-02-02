@@ -23,7 +23,7 @@ On Tuesday, we'll invite you to a meeting where we'll introduce you to the team,
 
 #### Who is on the team right now.
 
-[Elaine]({{site.baseurl}}/team/elaine/) and [Greg]({{site.baseurl}}/team/greg/) are the 18f-site team's lead and owner. Our team is made up of different people who have the availibility to embed with us for each sprint. We assess who can work with us during each sprint — as well as their specific skills — to assess what we can accomplish during any particular sprint. You can see who is on the team on the Hub on the [18f.gsa.gov team page]({{ site.baseurl }}/private/18f-site/).
+[Elaine]({{site.baseurl}}/team/elaine.kamlley/) and [Greg]({{site.baseurl}}/team/gregory.godbout/) are the 18f-site team's lead and owner. Our team is made up of different people who have the availibility to embed with us for each sprint. We assess who can work with us during each sprint — as well as their specific skills — to assess what we can accomplish during any particular sprint. You can see who is on the team on the Hub on the [18f.gsa.gov team page]({{ site.baseurl }}/private/18f-site/).
 
 #### Your role on the team
 

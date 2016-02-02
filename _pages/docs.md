@@ -14,7 +14,7 @@ Documentation integrated into the Hub and linked from this index should be store
 Visit our [News Clips page]({{ site.baseurl }}/clips) to see press coverage of our team, our products, and our mission.
 
 ## DigitalGov Webinar Videos
-- [Large Scale Development Culture Change: Google and the US Government](https://www.youtube.com/watch?v=CWSLSHljQLM) _by [Mike Bland]({{ site.baseurl }}/team/mbland)_
+- [Large Scale Development Culture Change: Google and the US Government](https://www.youtube.com/watch?v=CWSLSHljQLM) _by [Mike Bland]({{ site.baseurl }}/team/michael.bland)_
 - [Out in the Open: The Role of Open Source in Building the Consumer Financial Protection Bureau](https://www.youtube.com/watch?v=tce1B02ZGqc) _by CFPB Dev Lead Bill Shelton_
-- [Recent API Trends in Government: API Standards and Open Source Documentation](https://www.youtube.com/watch?v=ZRhRU5y0jEk) _by [Gray Brooks]({{ site.baseurl }}/team/gray) and [Eric Mill]({{ site.baseurl }}/team/eric)_
-- [How to Run An Agile Project in Government](https://www.youtube.com/watch?v=FpBjClJTVQ0) _by [Rob Read]({{ site.baseurl }}/team/robert)_
+- [Recent API Trends in Government: API Standards and Open Source Documentation](https://www.youtube.com/watch?v=ZRhRU5y0jEk) _by [Gray Brooks]({{ site.baseurl }}/team/richard.g.brooks) and [Eric Mill]({{ site.baseurl }}/team/eric.mill)_
+- [How to Run An Agile Project in Government](https://www.youtube.com/watch?v=FpBjClJTVQ0) _by [Rob Read]({{ site.baseurl }}/team/robert.read)_
