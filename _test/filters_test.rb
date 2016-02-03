@@ -8,13 +8,6 @@ module Hub
     include Filters
   end
 
-  class FiltersTest < ::Minitest::Test
-    def test_trim_suffix
-      assert_equal 'foo', TestFilters.new().trim_suffix('foo.js', '.js')
-      assert_equal 'foo.js', TestFilters.new().trim_suffix('foo.js', '.css')
-    end
-  end
-
   class PhotoOrPlaceholderFilterTest < ::Minitest::Test
     include Filters
 
