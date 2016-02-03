@@ -32,31 +32,10 @@ module Hub
       File.join(base, site['team_img_dir'], site['missing_team_member_img'])
     end
 
-    # Breaks a YYYYMMDD timestamp into a hyphenated version: YYYY-MM-DD
-    # +timestamp+:: timestamp in the form YYYYMMDD
-    def hyphenate_yyyymmdd(timestamp)
-      Canonicalizer.hyphenate_yyyymmdd timestamp
-    end
-
     # Returns a canonicalized, URL-friendly substitute for an arbitrary string.
     # +s+:: string to canonicalize
     def canonicalize(s)
       Canonicalizer.canonicalize s
-    end
-
-    # Chops off the suffix from s, if s ends with suffix.
-    def trim_suffix(s, suffix)
-      s.end_with? suffix and s[0..-(suffix.length + 1)] or s
-    end
-
-    # Retrieves the asset_path for a search component.
-    # This is to make the path compatible with require.js.
-    def require_js_asset_path(path)
-      # Digging into the jekyll-assets internals here, since we can't invoke
-      # the Filter directly. https://github.com/jekyll/jekyll-help/issues/97
-      r = ::Jekyll::AssetsPlugin::Renderer.new @context, path
-      path = r.render_asset_path
-      path.end_with? '.js' and path[0..-('.js'.length + 1)] or path
     end
 
     # Because checking class types in Jekyll does not seem to work,

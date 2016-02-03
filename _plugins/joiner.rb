@@ -119,14 +119,6 @@ module Hub
       create_team_by_email_index
     end
 
-    # Takes Hash<string, Array<Hash>> collections and flattens them
-    # Array<Hash>.
-    def self.flatten_index(index)
-      private_data = index['private']
-      index['private'] = {'private' => private_data.values} if private_data
-      index.values
-    end
-
     # Populates details of team members in location data
     def extend_location_data
       (@data['locations'] or []).each do |loc|
@@ -211,9 +203,5 @@ module Hub
       @data['snippets'] = result
     end
 
-    # Imports the guest_users list into the top-level site.data object.
-    def import_guest_users
-      @data['guest_users'] = @join_source['hub']['guest_users']
-    end
   end
 end
