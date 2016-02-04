@@ -14,7 +14,7 @@ need to manage documentation or to collaborate.
 
 ## Security
 
-We **require all new members** to follow **[security
+We **require all new members** (including PIFs) to follow **[security
 standards](https://github.com/fisma-ready/github#readme)** which include using
 two-factor authentication (2FA) and completing a GitHub user profile prior to
 joining the organization. 
