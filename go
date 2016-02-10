@@ -97,7 +97,7 @@ def_command :validate, 'Build, then validate no internal links are broken' do
 end
 
 def_command(
-  :build, 'Builds the internal and external versions of the Hub') do |args|
+  :build, 'Builds the internal and external versions of the Hub') do |args = []|
   puts 'Building internal version...'
   build_jekyll args
   puts 'Building public version...'
