@@ -1,4 +1,0 @@
-[submodule "_pages/private"]
-	path = _pages/private
-	url = git@github.com:18F/hub-pages-private.git
-	branch = master
