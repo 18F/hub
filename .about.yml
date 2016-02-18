@@ -29,6 +29,11 @@ team:
 - github: afeld
 - github: melodykramer
 - github: mtorres253
+- github: andrewmaier
+- github: ccostino
+- github: ertzeid
+- github: catherinedevlin
+- github: nicoleslaw
 licenses:
   .about.yml:
     name: CC0
