@@ -37,7 +37,7 @@ scripts:
     {% if member.skills %}
     <h2>Skills</h2>
     {% for skill in member.skills %}
-    <a href="{{ site.baseurl }}/skills/{{ skill.slug }}/">{{ skill.name }}</a><br/>
+    <a href="{{ site.baseurl }}/skills/{{ skill.slug | cgi_escape }}/">{{ skill.name }}</a><br/>
     {% endfor %}
     {% endif %}
   </div>

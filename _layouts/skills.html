@@ -6,6 +6,6 @@ layout: bare
 {% assign skills = site.data.skills | sort:"name" %}
 <ul>
   {% for skill in skills %}
-    <li><a href="{{ site.baseurl }}/skills/{{ skill.slug }}">{{ skill.name }}</a></li>
+    <li><a href="{{ site.baseurl }}/skills/{{ skill.slug | cgi_escape }}">{{ skill.name }}</a></li>
   {% endfor %}
 </ul>
