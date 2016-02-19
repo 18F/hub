@@ -19,61 +19,6 @@ module Hub
   # Contains utility functions for canonicalizing names and the order of data.
   class Canonicalizer
 
-    # Canonicalizes the order and names of certain fields within site_data.
-    def self.canonicalize_data(site_data)
-      sort_by_last_name! site_data['team']
-      canonicalize_locations(site_data)
-      canonicalize_projects(site_data)
-      canonicalize_working_groups(site_data)
-      canonicalize_snippets(site_data)
-      canonicalize_skills(site_data)
-    end
-
-    def self.canonicalize_locations(site_data)
-      if site_data.member? 'locations'
-        site_data['locations'].each do |l|
-          sort_by_last_name! (l['team'] || [])
-          ['projects', 'working_groups'].each do |category|
-            l[category].sort_by!{|i| i['name']} if l[category]
-          end
-        end
-      end
-    end
-
-    def self.canonicalize_projects(site_data)
-      if site_data.member? 'projects'
-        site_data['projects'].each do |p|
-          sort_by_last_name! p['team'] if p['team']
-        end
-      end
-    end
-
-    def self.canonicalize_working_groups(site_data)
-      if site_data.member? 'working_groups'
-        site_data['working_groups'].each do |wg|
-          ['leads', 'members'].each do |member_type|
-            sort_by_last_name! wg[member_type] if wg.member? member_type
-          end
-        end
-
-        site_data['team'].each do |member|
-          (member['working_groups'] || []).sort_by! {|wg| wg['name']}
-        end
-      end
-    end
-
-    def self.canonicalize_snippets(site_data)
-      if site_data.member? 'snippets_team_members'
-        sort_by_last_name! site_data['snippets_team_members']
-      end
-    end
-
-    def self.canonicalize_skills(site_data)
-      if site_data.member? 'skills'
-        site_data['skills'].each {|unused,xref| combine_skills! xref}
-      end
-    end
-
     # Returns a canonicalized, URL-friendly substitute for an arbitrary string.
     # +s+:: string to canonicalize
     def self.canonicalize(s)
@@ -99,35 +44,6 @@ module Hub
     # +timestamp+:: timestamp in the form YYYYMMDD
     def self.hyphenate_yyyymmdd(timestamp)
       "#{timestamp[0..3]}-#{timestamp[4..5]}-#{timestamp[6..7]}"
-    end
-
-    # Consolidate skills entries that are not exactly the same. Selects the
-    # lexicographically smaller version of the skill name as a standard.
-    #
-    # In the future, we may just consider raising an error if there are two
-    # different strings for the same thing.
-    #
-    # +skills_ref+:: hash from skills => team members; updated in-place
-    def self.combine_skills!(skills_xref)
-      canonicals = {}
-      skills_xref.each do |skill, members|
-        canonicalized = Canonicalizer.canonicalize(skill)
-
-        if not canonicals.member? canonicalized
-          canonicals[canonicalized] = skill
-        else
-          current = canonicals[canonicalized]
-          if current < skill
-            skills_xref[current].concat(members)
-            members.clear
-          else
-            members.concat(skills_xref[current])
-            skills_xref[current].clear
-            canonicals[canonicalized] = skill
-          end
-        end
-      end
-      skills_xref.delete_if {|unused_skill,members| members.empty?}
     end
   end
 end

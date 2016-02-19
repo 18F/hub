@@ -12,3 +12,6 @@ _test/tmp_public
 coverage/*
 *.pyc
 node_modules
+
+# Never check secret key into version control!
+set_hmac_auth.sh

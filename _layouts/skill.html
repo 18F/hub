@@ -1,0 +1,22 @@
+---
+layout: bare
+---
+{% assign skill = page.skill %}
+
+<div>
+
+	<h1>Skill: {{ skill.name }}</h1>
+
+	{% if skill.members and skill.members.length != 0 %}
+	<section class="hub-page-section">
+
+	<ul>
+		{% for i in skill.members %}
+			<li><a href="{{ site.baseurl }}/team/{{ i.name | canonicalize }}">{{ i.full_name }}</a></li>
+		{% endfor %}
+	</ul>
+
+	</section>
+	{% endif %}
+
+</div>

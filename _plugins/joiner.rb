@@ -35,18 +35,10 @@ module Hub
     # +site+:: Jekyll site data object
     def self.join_data(site)
       impl = JoinerImpl.new site
-      impl.setup_join_source {|source| Joiner.assign_empty_defaults source}
 
-      impl.join_team_data
-      impl.join_project_data
-
-      impl.promote_private_data 'departments'
-      impl.promote_private_data 'working_groups'
-      impl.promote_private_data 'pif_team'
-      impl.promote_private_data 'pif_projects'
-
+      impl.extend_location_data
       impl.join_snippet_data SNIPPET_VERSIONS
-      impl.import_guest_users
+      # impl.import_guest_users   # remove?
 
       site.data.delete 'private'
     end
@@ -127,27 +119,13 @@ module Hub
       create_team_by_email_index
     end
 
-    # Takes Hash<string, Array<Hash>> collections and flattens them
-    # Array<Hash>.
-    def self.flatten_index(index)
-      private_data = index['private']
-      index['private'] = {'private' => private_data.values} if private_data
-      index.values
-    end
-
-    # Joins team member data, converts site.data[team] to a hash of
-    # username => team_member, and assigns team member images.
-    def join_team_data
-      promote_private_data 'team'
-      assign_team_member_images
-    end
-
-    # Joins public and private project data.
-    def join_project_data
-      promote_private_data 'projects'
-
-      if @public_mode
-        @data['projects'].delete_if {|p| p['status'] == 'Hold'}
+    # Populates details of team members in location data
+    def extend_location_data
+      (@data['locations'] or []).each do |loc|
+        (loc['team'] || []).each do |member|
+          full_member_record = @data['team'].find {|m| m['name'] == member['name']}
+          member.update full_member_record
+        end
       end
     end
 
@@ -183,50 +161,6 @@ module Hub
       team_by_email
     end
 
-    # Prepares +site.data[@source]+ prior to joining its data with
-    # +site.data+. All data nested within +'private'+ attributes will be
-    # stripped when @public_mode is +true+, and will be promoted to the same
-    # level as its parent when @public_mode is +false+.
-    #
-    # If a block is given, +site.data[@source]+ will be passed to the block
-    # for other initialization/setup.
-    def setup_join_source
-      if @public_mode
-        HashJoiner.remove_data @join_source, 'private'
-      else
-        HashJoiner.promote_data @join_source, 'private'
-      end
-      yield @join_source if block_given?
-    end
-
-    # Promote data from +site.data['private']+ into +site.data+, if
-    # +site.data['private']+ exists.
-    # +category+:: key into +site.data['private']+ specifying data collection
-    def promote_private_data(category)
-      @data[category] = @join_source[category] if @join_source != @data
-    end
-
-    # Assigns the +image+ property of each team member based on the team
-    # member's username and whether or not an image asset exists for that team
-    # member. +site.config[+'missing_team_member_img'] is used as the default
-    # when no image asset is available.
-    def assign_team_member_images
-      base = @site.source
-      img_dir = site.config['team_img_dir']
-      missing = File.join(img_dir, site.config['missing_team_member_img'])
-
-      site.data['team'].each do |member|
-        img = File.join(img_dir, "#{member['name']}.jpg")
-
-        if (File.exists? File.join(base, img) or
-            ::TeamHub::PrivateAssets.exists?(site, img))
-          member['image'] = img
-        else
-          member['image'] = missing
-        end
-      end
-    end
-
     # Joins snippet data into +site.data[+'snippets'] and filters out snippets
     # from team members not appearing in +site.data[+'team'] or
     # +team_by_email+.
@@ -252,11 +186,15 @@ module Hub
         joined = []
         snippets.each do |snippet|
           username = snippet['username']
-          member = team[username] || team[@team_by_email[username]]
-
+          team_members = team.select do |member|
+            (team[member]['name'] == snippet['username'] ||
+             team[member]['deprecated_name'] == snippet['username'] ||
+             team[member]['email'] == snippet['username'] )
+          end
+          member, member_data = team_members.first
           if member
-            snippet['name'] = member['name']
-            snippet['full_name'] = member['full_name']
+            snippet['name'] = member_data['name']
+            snippet['full_name'] = member_data['full_name']
             joined << snippet
           end
         end
@@ -265,9 +203,5 @@ module Hub
       @data['snippets'] = result
     end
 
-    # Imports the guest_users list into the top-level site.data object.
-    def import_guest_users
-      @data['guest_users'] = @join_source['hub']['guest_users']
-    end
   end
 end

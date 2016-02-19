@@ -28,6 +28,7 @@ GEM
     execjs (2.6.0)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
+    fast_secure_compare (1.0.1)
     fastimage (1.7.0)
       addressable (~> 2.3, >= 2.3.5)
     ffi (1.9.10)
@@ -37,6 +38,9 @@ GEM
     hash-joiner (0.0.7)
       safe_yaml
     hike (1.2.3)
+    hmac_authentication (1.0.0)
+      bundler (~> 1.10)
+      fast_secure_compare
     html-proofer (2.5.1)
       addressable (~> 2.3)
       colored (~> 1.2)
@@ -169,6 +173,7 @@ DEPENDENCIES
   coveralls
   go_script
   hash-joiner
+  hmac_authentication
   html-proofer
   jekyll
   jekyll-assets
@@ -186,4 +191,4 @@ DEPENDENCIES
   weekly_snippets
 
 BUNDLED WITH
-   1.10.6
+   1.11.2

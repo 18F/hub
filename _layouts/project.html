@@ -5,7 +5,7 @@ layout: bare
 
 <div>
 
-	<h1>{{ proj.project }}</h1>
+	<h1>{{ proj.full_name }}</h1>
 
 	{% if proj.description %}
 		<p>
@@ -21,9 +21,14 @@ layout: bare
 
 		<h1>GitHub Repos</h1>
 		<ul>
-			{% for repo in proj.github %}
-				<li><a href="https://github.com/{{ repo }}">{{ repo }}</a></li>
-			{% endfor %}
+			{% assign github_class = proj.github | class_name %}
+			{% if github_class == 'Hash' %}
+				<li><a href="https://github.com/{{ proj.github.name }}">{{ proj.github.name }}</a></li>
+		  {% else %}
+			  {% for repo in proj.github %}
+  				<li><a href="https://github.com/{{ repo }}">{{ repo }}</a></li>
+				{% endfor %}
+			{% endif %}
 		</ul>
 
 	</section>

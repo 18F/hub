@@ -116,3 +116,51 @@ prose:
 # For Google Analytics
 google_analytics_ua: UA-48605964-24
 
+jekyll_get:
+  - data: team_raw
+    json: 'https://team-api.18f.gov/api/team/'
+    cache: false
+    authentication_scheme: hmac
+    authentication_env_var_name: HMAC_KEY
+  - data: locations_raw
+    json: 'https://team-api.18f.gov/api/locations/'
+    cache: false
+    authentication_scheme: hmac
+    authentication_env_var_name: HMAC_KEY
+  - data: projects_raw
+    json: 'https://team-api.18f.gov/api/projects/'
+    cache: false
+    authentication_scheme: hmac
+    authentication_env_var_name: HMAC_KEY
+  - data: departments_raw
+    json: 'https://team-api.18f.gov/api/departments/'
+    cache: false
+    authentication_scheme: hmac
+    authentication_env_var_name: HMAC_KEY
+  - data: working_groups_raw
+    json: 'https://team-api.18f.gov/api/working-groups/'
+    cache: false
+    authentication_scheme: hmac
+    authentication_env_var_name: HMAC_KEY
+  - data: guilds_raw
+    json: 'https://team-api.18f.gov/api/guilds/'
+    cache: false
+    authentication_scheme: hmac
+    authentication_env_var_name: HMAC_KEY
+  - data: skills_raw
+    json: 'https://team-api.18f.gov/api/skills/'
+    cache: false
+    authentication_scheme: hmac
+    authentication_env_var_name: HMAC_KEY
+  - data: interests_raw
+    json: 'https://team-api.18f.gov/api/interests/'
+    cache: false
+    authentication_scheme: hmac
+    authentication_env_var_name: HMAC_KEY
+  # Though the snippets endpoint exists, right now
+  # it only contains snippet dates, no data
+  #- data: snippets_raw
+  #  json: 'https://team-api.18f.gov/api/snippets/'
+  #  cache: false
+  #  authentication_scheme: hmac
+  #  authentication_env_var_name: HMAC_KEY
