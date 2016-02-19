@@ -28,14 +28,10 @@ See [the editing tutorial]({{ site.baseurl }}/tutorial-for-hub/).
 ## Working with Hub Data
 
 The master copy of 18F team data is stored within the [private
-18F/data-private repository](https://github.com/18F/data-private), to which
-only 18F team members have access. All updates to team information should
-happen in that repository.
-
-A copy of the team data with internal details removed will be imported into
-the `_data/public` directory to facilitate deployment of the [public Hub
-instance](https://18f.gsa.gov/hub) and enable people outside the 18F team to
-run a demonstration instance.
+18F/team-api.18f.gov repository](https://github.com/18F/team-api.18f.gov/), to
+which only 18F team members have access. All updates to team information should
+happen in that repository, and the Hub connects directly to the
+[Team API](https://team-api.18f.gov/api/) to retrieve this data.
 
 ## Hacking the Hub
 
