@@ -226,4 +226,4 @@ The [18F Hub](https://github.com/18F/hub) webhooks ensure that updates to the in
 - For the internal and staging Hubs, changes committed to the `master` branch are deployed immediately.
 - For the public Hub, [open a pull request to merge the `master` branch into `production-public` branch](https://github.com/18F/hub/compare/production-public...master). Merging the pull request will trigger the webhook that will initiate deployment.
 
-The [data-private](https://github.com/18F/data-private) and [hub-pages-private](https://github.com/18F/hub-pages-private) webhooks ensure that changes to those repositories are propagated immediately to the internal Hub and staging instance of the public Hub. Those changes will not appear in the production instance of the public Hub until they are merged into the `production-public` branch.
+The [hub-pages-private](https://github.com/18F/hub-pages-private) webhooks ensure that changes to that repositories are propagated immediately to the internal Hub and staging instance of the public Hub. Those changes will not appear in the production instance of the public Hub until they are merged into the `production-public` branch.
