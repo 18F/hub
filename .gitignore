@@ -12,3 +12,5 @@ _test/tmp_public
 coverage/*
 *.pyc
 node_modules
+.ruby-gemset
+.ruby-version
