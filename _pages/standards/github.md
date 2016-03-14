@@ -3,6 +3,8 @@ title: GitHub standards
 ---
 # {{ page.title }}
 
+This page is deprecated and has been moved to the [Handbook](https://handbook.18f.gov/github/#rules).
+
 Git and GitHub are the [standard
 tools](https://github.com/18F/DevOps#approved-toolchain) for revision control at
 18F. These tools [not just for
