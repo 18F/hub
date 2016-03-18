@@ -1,6 +1,7 @@
 ---
-layout: "q-and-a"
+layout: "redirect"
 title: Orientation for new employees
+redirect_url: "https://github.com/18F/onboarding-documents/blob/master/Checklists/new-hire-checklist.md"
 ---
 
 **This page is in the process of being deprecated. We are keeping it here to ensure that all information has been transported to the new page. Click to find the [new employee checklist](https://handbook.18f.gov/checklist) and [handbook](https://github.com/18F/handbook).**
