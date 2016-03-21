@@ -2,6 +2,9 @@
 <html lang="en">
 
 <head>
+  {% if page.redirect_url %}
+    <meta http-equiv="refresh" content="0; URL='{{ page.redirect_url }}'" />
+  {% endif %}
   {% include head.html %}
 </head>
 
@@ -9,10 +12,15 @@
   <div class="skip-nav">
     <a href="#anchor">Skip to main content</a>
   </div>
-
-  <div class="stage-bug">
-    <span>This site is in alpha. <a href="https://18f.gsa.gov/dashboard/stages/"><span class="sr-only">This site is in alpha.</span>Learn more here.</a></span>
-  </div>
+  {% if page.redirect_url %}
+    <div class="stage-bug">
+      <span>This page is being moved. If you are not redirected, visit <a href='{{ page.redirect_url }}'>{{ page.redirect_url }}</a></span>
+    </div>
+  {% else %}
+    <div class="stage-bug">
+      <span>This site is in alpha. <a href="https://18f.gsa.gov/dashboard/stages/"><span class="sr-only">This site is in alpha.</span>Learn more here.</a></span>
+    </div>
+  {% endif %}
 
 {% include nav-main.html %}
 {% unless site.public %}
