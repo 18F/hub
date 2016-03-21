@@ -1,8 +1,9 @@
-"/team/":
-  redirect_url: "Team Browser"
+# Team Browswer not currently live
+# "/team/":
+#   redirect_url: "Team Browser"
 
-"/locations/":
-  redirect_url: "Team Browser"
+# "/locations/":
+#   redirect_url: "Team Browser"
 
 "/private/intake/":
   redirect_url: "https://handbook.18f.gov/project-intake-101/"
@@ -13,8 +14,8 @@
 "/how-to/":
   redirect_url: "https://handbook.18F.gov"
 
-"/projects/":
-  redirect_url: "Team Browser"
+# "/projects/":
+#   redirect_url: "Team Browser"
 
 "/private/access-gsa-remote/":
   redirect_url: "https://handbook.18f.gov/networks/"
@@ -31,29 +32,29 @@
 "/private/float-intro/":
   redirect_url: "https://handbook.18f.gov/float/"
 
-"/skills/":
-  redirect_url: "Team Browser"
+# "/skills/":
+#   redirect_url: "Team Browser"
 
 "/structure/":
   redirect_url: "https://handbook.18f.gov/#about-us"
 
-"/projects/myra/":
-  redirect_url: "Team Browser"
+# "/projects/myra/":
+#   redirect_url: "Team Browser"
 
 "/standards/slack/":
   redirect_url: "https://handbook.18f.gov/slack/"
 
-"/interests/":
-  redirect_url: "Team Browser"
+# "/interests/":
+#   redirect_url: "Team Browser"
 
-"/projects/ekip-api/":
-  redirect_url: "Team Browser"
+# "/projects/ekip-api/":
+#   redirect_url: "Team Browser"
 
 "/travel/":
   redirect_url: "https://handbook.18f.gov/travel-101/"
 
-"/skills/?body=":
-  redirect_url: "Team Browser"
+# "/skills/?body=":
+#   redirect_url: "Team Browser"
 
 "/private/float-intro/float-ops-admin/":
   redirect_url: "https://handbook.18f.gov/float/"
@@ -70,8 +71,8 @@
 "/projects/methods/":
   redirect_url: "https://handbook.18F.gov"
 
-"/team/jamie.albrecht/":
-  redirect_url: "Team Browser"
+# "/team/jamie.albrecht/":
+#   redirect_url: "Team Browser"
 
 "/private/float-intro/observer/":
   redirect_url: "https://handbook.18f.gov/float/"
@@ -82,8 +83,8 @@
 "/request-supplies/":
   redirect_url: "https://handbook.18f.gov/gsa-tools-equipment-and-transit/#office-supplies"
 
-"/about/":
-  redirect_url: "Remove"
+# "/about/":
+#   redirect_url: "Remove"
 
 "/private/acano/":
   redirect_url: "https://handbook.18f.gov/acano/"
@@ -124,11 +125,11 @@
 "/team-ops/leave-telework-virtual-worker-policy/":
   redirect_url: "https://handbook.18f.gov/leave-telework-and-virtual-worker/"
 
-"/team/sarah.allen/":
-  redirect_url: "Team Browser"
+# "/team/sarah.allen/":
+#   redirect_url: "Team Browser"
 
-"/api/":
-  redirect_url: "Team Browser"
+# "/api/":
+#   redirect_url: "Team Browser"
 
 "/bookit/":
   redirect_url: "https://handbook.18f.gov/gsa-tools-equipment-and-transit/#bookit"
