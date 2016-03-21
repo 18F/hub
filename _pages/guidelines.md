@@ -1,7 +1,6 @@
 ---
 layout: bare
 title: Guidelines
-redirect_url: "https://handbook.18f.gov/bookmarks/#guides-and-standards"
 ---
 # {{ page.title }}
 

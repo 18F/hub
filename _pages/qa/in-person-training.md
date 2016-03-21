@@ -1,7 +1,6 @@
 ---
 layout: "q-and-a"
 permalink: "/training-and-classes/"
-redirect_url: "https://handbook.18f.gov/professional-development-and-training/"
 title: "How do I sign up for training and classes?"
 tags:
 - benefits

@@ -1,0 +1,3 @@
+{% if site.data.redirects[page.url] %}
+  <meta http-equiv="refresh" content="0; URL='{{ site.data.redirects[page.url].redirect_url }}'" />
+{% endif %}
