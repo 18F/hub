@@ -1,0 +1,9 @@
+{% if site.data.redirects[page.url] %}
+  <div class="stage-bug">
+    <span>This page is being moved. If you are not redirected, visit <a href='{{ site.data.redirects[page.url].redirect_url }}'>{{ site.data.redirects[page.url].redirect_url }}</a></span>
+  </div>
+{% else %}
+  <div class="stage-bug">
+    <span>This site is in alpha. <a href="https://18f.gsa.gov/dashboard/stages/"><span class="sr-only">This site is in alpha.</span>Learn more here.</a></span>
+  </div>
+{% endif %}

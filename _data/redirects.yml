@@ -1,0 +1,146 @@
+"/team/":
+  redirect_url: "https://pages.18f.gov/team-browser/"
+
+"/locations/":
+  redirect_url: "https://pages.18f.gov/team-browser/"
+
+"/private/intake/":
+  redirect_url: "https://handbook.18f.gov/project-intake-101/"
+
+"/onboarding/":
+  redirect_url: "https://github.com/18F/onboarding-documents/blob/master/Checklists/new-hire-checklist.md"
+
+"/how-to/":
+  redirect_url: "https://handbook.18F.gov"
+
+"/projects/":
+  redirect_url: "https://pages.18f.gov/team-browser/"
+
+"/private/access-gsa-remote/":
+  redirect_url: "https://handbook.18f.gov/networks/"
+
+"/guidelines/":
+  redirect_url: "https://handbook.18f.gov/bookmarks/#guides-and-standards"
+
+"/private/acano-workflows/":
+  redirect_url: "https://handbook.18f.gov/acano/"
+
+"/training-and-classes/":
+  redirect_url: "https://handbook.18f.gov/professional-development-and-training/"
+
+"/private/float-intro/":
+  redirect_url: "https://handbook.18f.gov/float/"
+
+"/skills/":
+  redirect_url: "https://pages.18f.gov/team-browser/"
+
+"/structure/":
+  redirect_url: "https://handbook.18f.gov/#about-us"
+
+"/projects/myra/":
+  redirect_url: "https://pages.18f.gov/team-browser/"
+
+"/standards/slack/":
+  redirect_url: "https://handbook.18f.gov/slack/"
+
+"/interests/":
+  redirect_url: "https://pages.18f.gov/team-browser/"
+
+"/projects/ekip-api/":
+  redirect_url: "https://pages.18f.gov/team-browser/"
+
+"/travel/":
+  redirect_url: "https://handbook.18f.gov/travel-101/"
+
+"/skills/?body=":
+  redirect_url: "https://pages.18f.gov/team-browser/"
+
+"/private/float-intro/float-ops-admin/":
+  redirect_url: "https://handbook.18f.gov/float/"
+
+"/team-ops/processes/referrals-and-interviews/":
+  redirect_url: "https://handbook.18f.gov/talent/"
+
+"/github-work/":
+  redirect_url: "https://handbook.18f.gov/github/"
+
+"/otp/":
+  redirect_url: "https://handbook.18f.gov/networks/"
+
+"/projects/methods/":
+  redirect_url: "https://handbook.18F.gov"
+
+"/team/jamie.albrecht/":
+  redirect_url: "https://pages.18f.gov/team-browser/"
+
+"/private/float-intro/observer/":
+  redirect_url: "https://handbook.18f.gov/float/"
+
+"/private/float-intro/project-manager/":
+  redirect_url: "https://handbook.18f.gov/float/"
+
+"/request-supplies/":
+  redirect_url: "https://handbook.18f.gov/gsa-tools-equipment-and-transit/#office-supplies"
+
+# "/about/":
+#   redirect_url: "Remove"
+
+"/private/acano/":
+  redirect_url: "https://handbook.18f.gov/acano/"
+
+"/add-contact/":
+  redirect_url: "https://github.com/18F/team-api.18f.gov#adding-18f-team-members"
+
+"/private/remote-employee-faq/":
+  redirect_url: "https://handbook.18f.gov/distributed/"
+
+"/request-leave/":
+  redirect_url: "https://handbook.18f.gov/leave-telework-and-virtual-worker/"
+
+"/private/ios-sync/":
+  redirect_url: "https://handbook.18f.gov/google-calendar/"
+
+"/private/n00b/":
+  redirect_url: "https://handbook.18F.gov"
+
+"/standards/github/":
+  redirect_url: "https://handbook.18f.gov/github/"
+
+"/private/two-factor/":
+  redirect_url: "https://handbook.18f.gov/#how-we-work"
+
+"/google-group-site/":
+  redirect_url: "https://handbook.18f.gov/general-contacts-and-listservs/#heading-27"
+
+"/private/business-cards/":
+  redirect_url: "https://handbook.18f.gov/equipment/#business-cards"
+
+"/private/logins-software-and-tools/":
+  redirect_url: "https://handbook.18F.gov"
+
+"/snippets/":
+  redirect_url: "https://handbook.18F.gov"
+
+"/team-ops/leave-telework-virtual-worker-policy/":
+  redirect_url: "https://handbook.18f.gov/leave-telework-and-virtual-worker/"
+
+"/team/sarah.allen/":
+  redirect_url: "https://pages.18f.gov/team-browser/"
+
+"/api/":
+  redirect_url: "https://pages.18f.gov/team-browser/"
+
+"/bookit/":
+  redirect_url: "https://handbook.18f.gov/gsa-tools-equipment-and-transit/#bookit"
+
+"/hatch-act/":
+  redirect_url: "https://handbook.18f.gov/hatch-act-foia-ethics-code-of-conduct/"
+
+"/olu/":
+  redirect_url: "https://handbook.18f.gov/gsa-tools-equipment-and-transit/#online-university"
+
+"/private/employee-express/":
+  redirect_url: "https://handbook.18f.gov/gsa-tools-equipment-and-transit/#employee-express"
+
+"/private/request-supplies/":
+  redirect_url: "https://handbook.18f.gov/gsa-tools-equipment-and-transit/#office-supplies"

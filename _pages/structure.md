@@ -1,0 +1,4 @@
+---
+layout: "bare"
+title: structure
+---
