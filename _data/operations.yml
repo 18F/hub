@@ -1,0 +1,36 @@
+config:
+  projected:
+    fillColor: "rgb(63, 191, 191)"
+    strokeColor: "rgba(220,220,220,0.8)"
+    highlightFill: "rgba(220,220,220,0.75)"
+    highlightStroke: "rgba(220,220,220,1)"
+  actual:
+    fillColor: "rgb(63, 191, 63)"
+    strokeColor: "rgba(220,220,220,0.8)"
+    highlightFill: "rgba(220,220,220,0.75)"
+    highlightStroke: "rgba(220,220,220,1)"
+data:
+  - period_name: "FY15Q1"
+    projected: 8146000
+    actual: 3426524
+  - period_name: "FY15Q2"
+    projected: 8146000
+    actual: 3609433
+  - period_name: "FY15Q3"
+    projected: 8146000
+    actual: 3776804
+  - period_name: "FY15Q4"
+    projected: 4081582
+    actual:
+  - period_name: "FY16Q1"
+    projected: 7685892
+    actual:
+  - period_name: "FY16Q2"
+    projected: 9301382
+    actual:
+  - period_name: "FY16Q3"
+    projected: 13008042
+    actual:
+  - period_name: "FY16Q4"
+    projected: 15972563
+    actual:
